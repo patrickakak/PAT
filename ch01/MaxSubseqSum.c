@@ -109,14 +109,14 @@ static int DivideAndConquer(int A[], int left, int right)
 		LeftBorderSum += A[i];
 		if (LeftBorderSum > MaxLeftBorderSum)
 			MaxLeftBorderSum = LeftBorderSum;
-	}	/* Left part done */
+	} /* Left part done */
 
 	MaxRightBorderSum = 0, RightBorderSum = 0;
 	for (i = centre+1; i <= right; i++) {	/* Scan from centre to right */
 		RightBorderSum += A[i];
 		if (RightBorderSum > MaxRightBorderSum)
 			MaxRightBorderSum = RightBorderSum;
-	}	/* Right part done */
+	} /* Right part done */
 
 	/* Return the maximum of the three */
 	return Max3(MaxLeftSum, MaxRightSum, MaxLeftBorderSum+MaxRightBorderSum);
