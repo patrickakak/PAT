@@ -37,24 +37,25 @@ struct outcome MaxSubseqSum4(int A[], int N)
 	struct outcome ret;
 	int gap, i;
 
+	/* Set MaxSum as -1 in case of all K numbers are negative except '0' */
 	ThisSum = 0, MaxSum = -1, gap = 0;
 	ret.first = ret.last = ret.MaxSum = 0;
 	for (i = 0; i < N; i++) {
-		ThisSum += A[i];
+		ThisSum += A[i];	// Online processing
 		if (ThisSum > MaxSum) {
 			MaxSum = ThisSum;
 			gap++;
-			/* Find the last member of the maximum subsequence */
+			/* Find the last member of the maximum subsequence 
+			 * then find the first */
 			ret.last = i;
 			ret.first = ret.last - gap + 1;
 		} else if (ThisSum < 0) {
 			ThisSum = 0;
 			gap = 0;
-		} else	/* ThisSum == MaxSum */
+		} else	// ThisSum == MaxSum
 			gap++;
 	}
 	ret.MaxSum = MaxSum;
-
 	return ret;
 }
 

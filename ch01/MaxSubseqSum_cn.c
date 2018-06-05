@@ -1,3 +1,7 @@
+/**
+ * PTA--Data Structures and Algorithms (Chinese version)
+ * Maximum Subsequence Sum 
+ */
 #include <stdio.h>
 
 #define MAXK 10
