@@ -1,6 +1,6 @@
 /**
  * PTA--Data Structures and Algorithms (English)
- * Maximum Subsequence Sum
+ * 7-1 Maximum Subsequence Sum
  */
 #include <stdio.h>
 
