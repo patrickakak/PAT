@@ -7,6 +7,7 @@ Stack CreateStack( int MaxElements )
 	S->Top1 = -1;
 	S->Top2 = MaxElements;
 	S->Array = (ElementType *) malloc(MaxElements * sizeof(ElementType));
+
 	return S;
 }
 
