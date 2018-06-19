@@ -56,11 +56,11 @@ ElementType EvalPostfix( char *expr )
 
 	if ((expr[0] == '.' || expr[0] == '-') && expr[1] == '\0') return Infinity; 
 
-	// If input is only one float number, print it directly                     
-	for (i = 1; expr[i]; i++)                                                   
-		if (expr[i] != '.' && !isdigit(expr[i]))                                
-			flag = 1;                                                           
-	if (flag == 0) return atof(expr); 
+	// If input is only one float number, print it directly
+	for (i = 1; expr[i]; i++)
+		if (expr[i] != '.' && !isdigit(expr[i]))
+			flag = 1;
+	if (flag == 0) return atof(expr);
 
 	S = CreateStack();
 
