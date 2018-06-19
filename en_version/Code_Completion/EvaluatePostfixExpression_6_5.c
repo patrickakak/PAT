@@ -51,10 +51,10 @@ ElementType EvalPostfix( char *expr )
 	Stack S;
 	int i, flag = 0;
 
-	// If expression string is empty, return Infinity                           
-	if (expr[0] == '\0') return Infinity;                                       
+	// If expression string is empty, return Infinity
+	if (expr[0] == '\0') return Infinity;
 
-	if ((expr[0] == '.' || expr[0] == '-') && expr[1] == '\0') return Infinity; 
+	if ((expr[0] == '.' || expr[0] == '-') && expr[1] == '\0') return Infinity;
 
 	// If input is only one float number, print it directly
 	for (i = 1; expr[i]; i++)
