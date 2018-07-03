@@ -6,6 +6,7 @@ struct Node {
 	int Length;
 };
 
+// Depth of binary tree: [log2N]+1
 int BinarySearch( List Tbl, ElementType K )
 {
 	int left, right, mid;
