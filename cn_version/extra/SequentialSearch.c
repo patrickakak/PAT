@@ -6,7 +6,7 @@ struct LNode {
 
 // With a sentinel
 // If i == 0, you find it!
-int SequentialSearch(List Tbl, int K)
+int SequentialSearch( List Tbl, int K )
 {
 	int i;
 
@@ -16,7 +16,7 @@ int SequentialSearch(List Tbl, int K)
 }
 
 // Without a sentinel
-int SequentialSearch(List Tbl, int K)
+int SequentialSearch( List Tbl, int K )
 {
 	int i;
 
