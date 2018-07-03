@@ -9,6 +9,7 @@ struct TreeNode {
 // Binary tree preorder traversal
 void PreOrderTraversal( BinTree BT )
 {
+	// If the tree is empty, do nothing
 	if (BT) {
 		printf("%d", BT->Data);	// Visit data in root node
 		PreOrderTraversal(BT->Left);	// PreOrderTraversal recursively
