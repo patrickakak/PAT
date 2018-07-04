@@ -7,7 +7,7 @@ void LevelOrderTraversal( BinTree BT )
 	if (!BT) return;	// If it's an empty tree
 	Q = CreateQueue(MaxSize);	// Create and initialize queue
 	EnQueue(Q, BT);
-	while (!IsEmpetyQ(Q)) {
+	while (!IsEmptyQ(Q)) {
 		T = DeQueue(Q);
 		printf("d\n", T->Data);
 		if (T->Left) EnQueue(T->Left);
