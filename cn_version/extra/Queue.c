@@ -29,7 +29,7 @@ void AddQ(Queue Q, ElementType item)
 		return;
 	}
 	Q->rear = (Q->rear+1)%MaxSize;
-	Q->Data[Q->rear] = item;
+	Q->pData[Q->rear] = item;
 }
 
 int IsEmptyQ(Queue Q)
@@ -44,6 +44,6 @@ ElementType DeleteQ(Queue Q)
 		return ERROR; // Need to define ERROR
 	}
 	Q->front = (Q->front+1)%MaxSize;
-	return Q->Data[Q->front];
+	return Q->pData[Q->front];
 }
 
