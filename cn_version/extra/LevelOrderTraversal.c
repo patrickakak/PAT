@@ -10,8 +10,8 @@ void LevelOrderTraversal( BinTree BT )
 	while (!IsEmptyQ(Q)) {
 		T = DeQueue(Q);
 		printf("d\n", T->Data);
-		if (T->Left) EnQueue(T->Left);
-		if (T->Right) EnQueue(T->Right);
+		if (T->Left) EnQueue(Q, T->Left);
+		if (T->Right) EnQueue(Q, T->Right);
 	}
 }
 
