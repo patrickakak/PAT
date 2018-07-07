@@ -28,7 +28,7 @@ int main()
 
 Tree BuildTree(struct TNode T[])
 {
-	int i, N, Root=-1, check[MaxSize];
+	int i, N, Root=Null, check[MaxSize];
 	char cl, cr;
 
 	scanf("%d\n", &N);
