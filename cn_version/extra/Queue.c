@@ -12,7 +12,7 @@ struct QNode {
 Queue CreatQueue(int MaxSize)
 {
 	Queue Q = (Queue) malloc(sizeof(struct QNode));
-	Q->pData = (ElementType *) malloc(Max * sizeof(ElementType));
+	Q->pData = (ElementType *) malloc(MaxSize * sizeof(ElementType));
 	Q->front = Q->rear = 0;
 	Q->Max = MaxSize;
 	return Q;
