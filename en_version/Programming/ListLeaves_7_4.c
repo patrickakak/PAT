@@ -132,3 +132,4 @@ int IsEmptyQ(Queue Q)
 {
 	return (Q->Front == Q->Rear);
 }
+
