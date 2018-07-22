@@ -3,6 +3,7 @@
 #define MAX 30
 #define Once 1
 #define Twice 2
+
 typedef enum {false, true} bool;
 typedef int ElementType;
 struct StackRecord {
@@ -26,7 +27,7 @@ int main()
 			scanf("%d", &stack[size].Data);
 			stack[size++].Tag = Once; 	// First time pushed into stack
 			break;
-		default:
+		default: 	// Pop
 			while (size > 0 && stack[size-1].Tag == Twice) { 	// Pop out node(s) with Tag=2
 				if (flag) printf(" "); else flag = true;
 				printf("%d", stack[--size].Data);
