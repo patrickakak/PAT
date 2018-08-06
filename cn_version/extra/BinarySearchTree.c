@@ -66,20 +66,20 @@ BinTree Delete(ElementType X, BinTree BST)
 	Position Tmp;
 
 	if (!BST) printf("Couldn't find the element\n");
-	else if (X < BST->Data)	 // Left subtree deletion recursively
+	else if (X < BST->Data)		// Left subtree deletion recursively
 		BST->Left = Delete(X, BST->Left);
 	else if (X > BST->Data)		// Right subtree deletion recursively
 		BST->Right = Delete(X, BST->Right);
 	else	// Find the node
-		if (BST->Left && BST->Right) { // The node has two children
+		if (BST->Left && BST->Right) {	// The node has two children
 			Tmp = FindMin(BST->Right);	// Find the minimum in right subtree to replace the node
 			BST->Data = Tmp->Data;
-			BST->Right = Delete(BST->Data, BST->Right); // Delete the minimum in the right subtree
+			BST->Right = Delete(BST->Data, BST->Right);		// Delete the minimum in the right subtree
 		} else {	// There is only one child or no child at all of this node
 			Tmp = BST;
 			if (!BST->Left)		// There's right child or no child
 				BST = BST->Right;
-			else if (!BST->Right) // There's left child or no child
+			else if (!BST->Right)	// There's left child or no child
 				BST = BST->Left;
 			free(Tmp);
 		}
