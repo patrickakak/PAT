@@ -102,9 +102,9 @@ BinTree Delete(ElementType X, BinTree BST)
 		BST->Right = Delete(X, BST->Right);
 	else	// Find the node
 		if (BST->Left && BST->Right) {	// The node has two children
-			Tmp = FindMin(BST->Right);	// Find the minimum of right-subtree
+			Tmp = FindMax(BST->Left);	// Find the maximum of left subtree
 			BST->Data = Tmp->Data;
-			BST->Right = Delete(BST->Data, BST->Right); // Delete the minimum in the right subtree
+			BST->Left = Delete(BST->Data, BST->Left); // Delete the maximum of left subtree
 		} else {	// There is only one child or no child at all of this node
 			Tmp = BST;
 			if (!BST->Left)		// There's right child or no child
