@@ -28,6 +28,9 @@ int main()
 	for (BST=NULL, i=0; i < SIZE; i++)
 		BST = Insert(Arr[i], BST);
 
+	for (i=SIZE-1; i >= 0; i--)
+		BST = Delete(Arr[i], BST);
+
 	return 0;
 }
 
@@ -37,7 +40,7 @@ Position Find(ElementType X, BinTree BST)
 	if (X < BST->Data)
 		return Find(X, BST->Left);	// Continue seeking in right subtree
 	else if (X > BST->Data)
-		return Find(X, BST->Right);		// ... in left subtree
+		return Find(X, BST->Right);	// ... in left subtree
 	else	// X == BST->Data
 		return BST;		// Seeking done, return the position
 }
@@ -112,3 +115,4 @@ BinTree Delete(ElementType X, BinTree BST)
 		}
 	return BST;
 }
+
