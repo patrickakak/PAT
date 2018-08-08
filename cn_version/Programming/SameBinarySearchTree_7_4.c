@@ -31,11 +31,11 @@ int main()
 	scanf("%d", &N);
 	while (N) {
 		scanf("%d", &L);
-		T = MakeTree(N);
+		T = MakeTree(N); 	// Make the benchmark tree
 		for (i = 0; i < L; i++) {
 			if (Judge(T, N)) printf("Yes\n");
 			else printf("No\n");
-			ResetT(T);	// Clear out the flag
+			ResetT(T);	// Clear out all the flags
 		}
 		FreeTree(T);
 		scanf("%d", &N);
@@ -51,10 +51,10 @@ Tree MakeTree(int N)
 	ElementType V;
 
 	scanf("%d", &V);
-	T = NewNode(V);
+	T = NewNode(V); 	// Build a tree with a single node
 	for (i = 1; i < N; i++) {
 		scanf("%d", &V);
-		T = Insert(T, V);
+		T = Insert(T, V); 	// Insert following nodes into the tree recursively
 	}
 	return T;
 }
@@ -80,6 +80,7 @@ Tree Insert(Tree T, ElementType V)
 	return T;
 }
 
+/* Return: 0 - Not identical,  1 - identical trees */
 static int check(Tree T, ElementType V)
 {
 	if (T->flag) {
@@ -87,10 +88,10 @@ static int check(Tree T, ElementType V)
 		else if (V > T->v) return check(T->Right, V);
 		else return 0;
 	} else
-		if (V == T->v) {
+		if (V == T->v) { 	// If v has just been visited, set flag=1
 			T->flag = 1;
 			return 1;
-		} else
+		} else 			// If the last node of v is unvisited, return 0
 			return 0;
 }
 
@@ -100,11 +101,11 @@ int Judge(Tree T, int N)
 	ElementType V;
 
 	scanf("%d", &V);
-	if (V != T->v) flag = 1;
-	else T->flag = 1;
+	if (V != T->v) flag = 1; 	// flag=1 to indicate follwing invalid readin
+	else T->flag = 1; 		// T->flag=1 to indicate we've already check the validity of root
 	for (i = 1; i < N; i++) {
 		scanf("%d", &V);
-		if ((!flag) && (!check(T, V))) flag = 1;
+		if ((!flag) && (!check(T, V))) flag = 1; // If flag=1, don't bother to check
 	}
 	if (flag) return 0;
 	else return 1;
