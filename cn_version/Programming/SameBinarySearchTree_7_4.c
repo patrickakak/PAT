@@ -86,13 +86,12 @@ static int check(Tree T, ElementType V)
 		if (V < T->v) return check(T->Left, V);
 		else if (V > T->v) return check(T->Right, V);
 		else return 0;
-	} else {
+	} else
 		if (V == T->v) {
 			T->flag = 1;
 			return 1;
 		} else
 			return 0;
-	}
 }
 
 int Judge(Tree T, int N)
