@@ -32,9 +32,9 @@ int main()
 	for (i = 0; i < N; i++)
 		scanf("%d", &arr[i]);
 
-	qsort(arr, N, sizeof(int), compare);
-	SortByInorder(1, N, arr);
-	for (i = 1; i <= N; i++) {
+	qsort(arr, N, sizeof(int), compare); // Inorder traversal of CBST is a incremental sequence
+	SortByInorder(1, N, arr);	// Match levelorderArr with inorder sequence in arr
+	for (i = 1; i <= N; i++) {	// Begins with index 1
 		if (flag) flag = 0;
 		else putchar(' ');
 		printf("%d", LevelOrderArr[i]);
@@ -62,5 +62,4 @@ void SortByInorder(int root, int N, int arr[])
 		SortByInorder((root<<1)+1, N, arr);
 	}
 }
-
 
