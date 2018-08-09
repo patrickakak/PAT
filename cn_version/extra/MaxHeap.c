@@ -117,8 +117,7 @@ void BuildMaxHeap(int arr[], int N)
 		temp = arr[i];
 		for (Parent = i; Parent*2 <= N; Parent = Child) {
 			Child = Parent * 2;
-			if ((Child != N) && 
-					(arr[Child] < arr[Child+1]))
+			if ((Child != N) && (arr[Child] < arr[Child+1]))
 				Child++;
 			if (temp >= arr[Child]) break;
 			else arr[Parent] = arr[Child];
