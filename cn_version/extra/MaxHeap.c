@@ -25,8 +25,10 @@ int main()
 
 	scanf("%d", &N);
 	H = Create(N);
-	for (i = 1; i <= N; i++)
+	for (i = 1; i <= N; i++) {
 		scanf("%d", &H->Elements[i]);
+		H->Size++;
+	}
 
 	BuildMaxHeap(H->Elements, N);
 	
