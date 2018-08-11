@@ -45,14 +45,14 @@ int main()
 
 LGraph CreateGraph(int VertexNum)
 {
-    Vertex V;
-    LGraph Graph;
+	Vertex V;
+	LGraph Graph;
 
-    Graph = (LGraph) malloc(sizeof(struct GNode));
-    Graph->Nv = VertexNum;
-    Graph->Ne = 0;
+	Graph = (LGraph) malloc(sizeof(struct GNode));
+	Graph->Nv = VertexNum;
+	Graph->Ne = 0;
 
-    /* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
+	/* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
 	for (V = 0; V < Graph->Nv; V++)
 		Graph->G[V].FirstEdge = NULL;	    // Or INFINITY
 

@@ -34,19 +34,19 @@ int main()
 
 MGraph CreateGraph(int VertexNum)
 {
-    Vertex V, W;
-    MGraph Graph;
+	Vertex V, W;
+	MGraph Graph;
 
-    Graph = (MGraph) malloc(sizeof(struct GNode));
-    Graph->Nv = VertexNum;
-    Graph->Ne = 0;
+	Graph = (MGraph) malloc(sizeof(struct GNode));
+	Graph->Nv = VertexNum;
+	Graph->Ne = 0;
 
-    /* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
-    for (V = 0; V < Graph->Nv; V++)
+	/* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
+	for (V = 0; V < Graph->Nv; V++)
 		for (W = 0; W < Graph->Nv; W++)
 			Graph->G[V][W] = 0;	    // Or INFINITY
 
-    return Graph;
+	return Graph;
 }
 
 void InsertEdge(MGraph Graph, Edge E)
