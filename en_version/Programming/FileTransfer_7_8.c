@@ -47,19 +47,6 @@ int main()
 }
 
 /*
-// T = O(N^2)
-void Find(SetType S[], ElementType X)
-{
-	int i;
-
-	for (i = 0; i < MaxSize && S[i].Data != X; i++) ;
-	if (i >= MaxSize) return -1;
-	for (; S[i].Parent >= 0; i = S[i].Parent) ;
-	return i;
-}
-*/
-
-/*
 // TSSN implimentation: two simple sometimes naive 
 // if Union(Find(2), Find(1)), ... Union(Find(n), Find(1)), then T = O(N^2))
 void Union(SetType S, SetName Root1, SetName Root2)
@@ -82,6 +69,19 @@ void Union(SetType S, SetName Root1, SetName Root2)
 		S[Root2] = Root1;
 	}
 }
+
+/*
+// T = O(N^2)
+void Find(SetType S[], ElementType X)
+{
+	int i;
+
+	for (i = 0; i < MaxSize && S[i].Data != X; i++) ;
+	if (i >= MaxSize) return -1;
+	for (; S[i].Parent >= 0; i = S[i].Parent) ;
+	return i;
+}
+*/
 
 /*
 SetName Find(SetType S, ElementType X)
