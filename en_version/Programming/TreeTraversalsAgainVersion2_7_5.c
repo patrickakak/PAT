@@ -18,16 +18,15 @@ int main()
 			switch (OP[3]) {
 			case 'h': 	// Push
 				scanf("%d", &temp);
-				pre[preCnt++] = temp;
-				stack[Cnt++] = temp;
+				stack[Cnt++] = pre[preCnt++] = temp;
 			   	break;
 			default: 	// Pop
 				in[inCnt++] = stack[--Cnt];
-				break;
 			}
 		}
 	}
 	solve(0, 0, 0, N); 	// Core algorithm
+	
 	printf("%d", post[0]);
 	for (i = 1; i < N; i++) printf(" %d", post[i]);
 	putchar('\n');
@@ -51,3 +50,4 @@ void solve(int preL, int inL, int postL, int n)
 	solve(preL+1, inL, postL, L);
 	solve(preL+L+1, inL+L+1, postL+L, R);
 }
+
