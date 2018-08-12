@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAXN 100
+#define MAXN 31
 
 int stack[MAXN], pre[MAXN], in[MAXN], post[MAXN];
 
@@ -44,8 +44,9 @@ void solve(int preL, int inL, int postL, int n)
 	root = pre[preL];
 	post[postL+n-1] = root;
 	
-	for (i = 0; i < n; i++)
+	for (i = 0; i < n; i++) 	// Find the root in in[MAXN]
 		if (in[inL+i] == root) break;
+	
 	L = i; R = n-L-1;
 	solve(preL+1, inL, postL, L);
 	solve(preL+L+1, inL+L+1, postL+L, R);
