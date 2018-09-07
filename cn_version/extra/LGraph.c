@@ -3,19 +3,19 @@
 
 #define MaxVertexNum 10
 
-typedef int Vertex;		/* Using the index of vertex to represent a vertex */
+typedef int Vertex; 	/* Using the index of vertex to represent a vertex */
 typedef int WeightType;
 typedef char DataType;
 typedef struct AdjVNode *PtrToAdjVNode;
 struct AdjVNode {
-	Vertex AdjV;	// Index of adjacent node
-	WeightType Weight;	// Weight
+	Vertex AdjV; 		/* Index of adjacent node */
+	WeightType Weight;	/* Weight */
 	PtrToAdjVNode Next;
 };
 
 typedef struct VNode {
 	PtrToAdjVNode FirstEdge;
-	DataType Data;	// To store the data of vertex
+	DataType Data; 	/* To store the data of vertex */
 } AdjList[MaxVertexNum];
 
 typedef struct GNode *PtrToGNode;
