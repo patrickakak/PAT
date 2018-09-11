@@ -9,39 +9,15 @@ typedef struct Coord_st {
 } Coordinate;
 
 /* Whether James can jump onto a crocdile's head in one step from the island? */
-int FirstJump(int step, Coordinate c) 
-{
-	return (R + step) * (R + step) >= (c.x * c.x + c.y * c.y);
-}
+int FirstJump( int step, Coordinate c );
 
 /* Whether there's a change to jump onto another crocdile? */
-int Within1Step(int step, Coordinate c1, Coordinate c2) 
-{
-	return step * step >= 
-		(c1.x - c2.x) * (c1.x - c2.x) + (c1.y - c2.y) * (c1.y - c2.y);
-}
+int Within1Step( int step, Coordinate c1, Coordinate c2 );
 
 /* If James can jump to bank in current position? */
-int Jump2Bank(int step, Coordinate c) 
-{
-	return c.x <= -M2B + step || c.x >= M2B - step 
-		|| c.y >= M2B - step || c.y <= -M2B + step;
-}
+int Jump2Bank( int step, Coordinate c );
 
-int DFS(int step, Coordinate *croc, int cur, int *visited, int n) 
-{
-	int i;
-
-	/* Depth first seaching recursively, return 1 if the path is found */
-	if (Jump2Bank(step, croc[cur])) return 1;
-
-	for (i = 0; i < n; ++i)
-		if (!visited[i] && Within1Step(step, croc[cur], croc[i])) {
-			visited[i] = 1;
-			if (DFS(step, croc, i, visited, n)) return 1;
-		}
-	return 0;
-}
+int DFS( int step, Coordinate *croc, int cur, int *visited, int n );
 
 int main() 
 {
@@ -70,4 +46,37 @@ int main()
 
 	return 0;
 }
+
+int FirstJump( int step, Coordinate c )
+{
+	return (R + step) * (R + step) >= (c.x * c.x + c.y * c.y);
+}
+
+int Within1Step( int step, Coordinate c1, Coordinate c2 )
+{
+	return step * step >= 
+		(c1.x - c2.x) * (c1.x - c2.x) + (c1.y - c2.y) * (c1.y - c2.y);
+}
+
+int Jump2Bank( int step, Coordinate c )
+{
+	return c.x <= -M2B + step || c.x >= M2B - step 
+		|| c.y >= M2B - step || c.y <= -M2B + step;
+}
+
+int DFS( int step, Coordinate *croc, int cur, int *visited, int n )
+{
+	int i;
+
+	/* Depth first seaching recursively, return 1 if the path is found */
+	if (Jump2Bank(step, croc[cur])) return 1;
+
+	for (i = 0; i < n; ++i)
+		if (!visited[i] && Within1Step(step, croc[cur], croc[i])) {
+			visited[i] = 1;
+			if (DFS(step, croc, i, visited, n)) return 1;
+		}
+	return 0;
+}
+
 
