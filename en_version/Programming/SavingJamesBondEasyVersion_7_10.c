@@ -2,7 +2,7 @@
 
 #define R 15		/* Radius of the island circle */
 #define M2B 50		/* Maximum length to the bank */
-#define MAX 128		/* Maximum number of crocdiles */
+#define MAX 100		/* Maximum number of crocdiles */
 
 typedef struct Coord_st {
 	int x, y;
@@ -23,8 +23,7 @@ int main()
 	/* Can reach bank directly */
 	if (step >= M2B - R) { printf("Yes\n"); return 0; }
 
-	for (i = 0; i < n; ++i)
-		scanf("%d%d", &croc[i].x, &croc[i].y);
+	for (i = 0; i < n; ++i) scanf("%d%d", &croc[i].x, &croc[i].y);
 
 	for (i = 0; i < n; ++i)
 		/* Traverse all the crocs that can be jumped onto from the island */
@@ -61,11 +60,11 @@ int Jump2Bank( int step, Coordinate c )
 		|| c.y >= M2B - step || c.y <= -M2B + step;
 }
 
+/* Depth first seaching recursively, return 1 if the path is found */
 int DFS( int step, Coordinate *croc, int cur, int *visited, int n )
 {
 	int i;
 
-	/* Depth first seaching recursively, return 1 if the path is found */
 	if (Jump2Bank(step, croc[cur])) return 1;
 
 	for (i = 0; i < n; ++i)
