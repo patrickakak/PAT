@@ -28,6 +28,9 @@ MGraph BuildGraph();
 
 int main()
 {
+	MGraph Graph;
+
+	Graph = BuildGraph();
 
 	return 0;
 }
