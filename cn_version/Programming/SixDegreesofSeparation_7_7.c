@@ -108,13 +108,13 @@ void BFS(Vertex V, MGraph Graph)
 	Last = Q->Data[Q->Rear];
 	while (!IsEmptyQ(Q)) {
 		CurV = Dequeue(Q);
-		for (W = 1; W <= Graph->Nv; W++) {
+		for (W = 1; W <= Graph->Nv; W++)
 			if (Graph->G[CurV][W] && !visited[W]) {
 				visited[W] = true;
 				Cnt++;
 				Enqueue(Q, W);
 			}
-		}
+
 		/* When the last layer handling of BFS is finished */
 		if (CurV == Last) {
 			Last = Q->Data[Q->Rear];
@@ -141,10 +141,8 @@ int IsFullQ(Queue Q)
 
 void Enqueue(Queue Q, ElementType Item)
 {
-	if (IsFullQ(Q)) {
-		printf("Queue full!\n");
-		return;
-	}
+	if (IsFullQ(Q)) { printf("Queue full!\n"); return; }
+
 	Q->Rear = (Q->Rear + 1) % MaxVertexNum;
 	Q->Data[Q->Rear] = Item;
 }
@@ -156,10 +154,8 @@ int IsEmptyQ(Queue Q)
 
 ElementType Dequeue(Queue Q)
 {
-	if (IsEmptyQ(Q)) {
-		printf("Queue empty!\n");
-		return -1;
-	}
+	if (IsEmptyQ(Q)) { printf("Queue empty!\n"); return -1; }
+
 	Q->Front = (Q->Front + 1) % MaxVertexNum;
 	return Q->Data[Q->Front];
 }
