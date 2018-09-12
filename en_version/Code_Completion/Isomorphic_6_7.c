@@ -9,12 +9,10 @@ int Isomorphic(Tree T1, Tree T2)
 	if ((T1->Left == NULL) && (T2->Left == NULL))
 		return Isomorphic(T1->Right, T2->Right);	/* Both have no left subtree */
 	if (((T1->Left != NULL) && (T2->Left != NULL))
-			&& (T1->Left->Element == T2->Left->Element))
-		/* No need to swap the left and the right */
+			&& (T1->Left->Element == T2->Left->Element))	/* No need to swap the left and the right */
 		return (Isomorphic(T1->Left, T2->Left)
 				&& Isomorphic(T1->Right, T2->Right));
-	/* Need to swap the left and the right */
-	else
+	else	/* Need to swap the left and the right */
 		return (Isomorphic(T1->Left, T2->Right)
 				&& Isomorphic(T1->Right, T2->Left));
 }
