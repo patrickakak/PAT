@@ -39,6 +39,9 @@ LGraph BuildGraph();
 
 int main()
 {
+	LGraph Graph;
+
+	Graph = BuildGraph();
 
 	return 0;
 }
