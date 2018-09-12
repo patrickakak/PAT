@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MaxVertexNum 10
-
 typedef int Vertex; 	/* Using the index of vertex to represent a vertex */
 typedef int WeightType;
-typedef char DataType;
 typedef struct AdjVNode *PtrToAdjVNode;
 struct AdjVNode {
 	Vertex AdjV; 		/* Index of adjacent node */
@@ -13,6 +10,8 @@ struct AdjVNode {
 	PtrToAdjVNode Next;
 };
 
+#define MaxVertexNum 10
+typedef char DataType;
 typedef struct VNode {
 	PtrToAdjVNode FirstEdge;
 	DataType Data; 	/* To store the data of vertex */
@@ -33,8 +32,8 @@ struct ENode {
 };
 typedef PtrToENode Edge;
 
-LGraph CreateGraph(int VertexNum);
-void InsertEdge(LGraph Graph, Edge E);
+LGraph CreateGraph( int VertexNum );
+void InsertEdge( LGraph Graph, Edge E );
 LGraph BuildGraph();
 
 int main()
@@ -46,10 +45,10 @@ int main()
 	return 0;
 }
 
-LGraph CreateGraph(int VertexNum)
+LGraph CreateGraph( int VertexNum )
 {
-	Vertex V;
 	LGraph Graph;
+	Vertex V;
 
 	Graph = (LGraph) malloc(sizeof(struct GNode));
 	Graph->Nv = VertexNum;
@@ -62,7 +61,7 @@ LGraph CreateGraph(int VertexNum)
 	return Graph;
 }
 
-void InsertEdge(LGraph Graph, Edge E)
+void InsertEdge( LGraph Graph, Edge E )
 {
 	PtrToAdjVNode NewNode;
 
@@ -96,8 +95,8 @@ LGraph BuildGraph()
 
 	scanf("%d", &Nv);
 	Graph = CreateGraph(Nv);
-	scanf("%d", &(Graph->Ne));
-	if (Graph->Ne != 0) {
+	scanf("%d", &Graph->Ne);
+	if (Graph->Ne) {
 		E = (Edge) malloc(sizeof(struct ENode));
 		for (i = 0; i < Graph->Ne; i++) {
 			scanf("%d %d %d", &E->V1, &E->V2, &E->Weight);
@@ -106,7 +105,7 @@ LGraph BuildGraph()
 	}
 	/* If there's a need to read the data of vertex */
 	for (V = 0; V < Graph->Nv; V++)
-		scanf(" %c", &(Graph->G[V].Data));
+		scanf(" %c", &Graph->G[V].Data);
 
 	return Graph;
 }
