@@ -13,8 +13,8 @@ struct GNode {
 	DataType Data[MaxVertexNum];	/* To store data in vertex */
 };
 typedef PtrToGNode MGraph;	/* Matrix Graph */
-typedef int Vertex;		/* Using the index of vertex to represent a vertex */
 
+typedef int Vertex;		/* Using the index of vertex to represent a vertex */
 typedef struct ENode *PtrToENode;
 struct ENode {
 	Vertex V1, V2;		/* Directed edge <V1, V2> */
@@ -70,7 +70,7 @@ MGraph BuildGraph()
 
 	scanf("%d", &Nv);
 	Graph = CreateGraph(Nv);
-	scanf("%d", &(Graph->Ne));
+	scanf("%d", &Graph->Ne);
 	if (Graph->Ne != 0) {
 		E = (Edge) malloc(sizeof(struct ENode));
 		for (i = 0; i < Graph->Ne; i++) {
@@ -80,7 +80,7 @@ MGraph BuildGraph()
 	}
 	/* If there's a need to read the data of vertex */
 	for (V = 0; V < Graph->Nv; V++)
-		scanf(" %c", &(Graph->Data[V]));
+		scanf(" %c", &Graph->Data[V]);
 
 	return Graph;
 }
