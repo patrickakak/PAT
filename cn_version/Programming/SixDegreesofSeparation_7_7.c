@@ -29,15 +29,15 @@ struct QNode {
 };
 typedef PtrToQNode Queue;
 
-MGraph CreateGraph(int VertexNum);
-void InsertEdge(MGraph Graph, Edge E);
+MGraph CreateGraph( int VertexNum );
+void InsertEdge( MGraph Graph, Edge E );
 MGraph BuildGraph();
 Queue CreatQueue();
-int IsFullQ(Queue Q);
-void Enqueue(Queue Q, ElementType Item);
-int IsEmptyQ(Queue Q);
-ElementType Dequeue(Queue Q);
-void BFS(Vertex V, MGraph Graph);
+int IsFullQ( Queue Q );
+void Enqueue( Queue Q, ElementType Item );
+int IsEmptyQ( Queue Q );
+ElementType Dequeue( Queue Q );
+void BFS( Vertex V, MGraph Graph );
 
 int main()
 {
@@ -51,7 +51,7 @@ int main()
 	return 0;
 }
 
-MGraph CreateGraph(int VertexNum)
+MGraph CreateGraph( int VertexNum )
 {
 	Vertex V, W;
 	MGraph Graph;
@@ -68,7 +68,7 @@ MGraph CreateGraph(int VertexNum)
 	return Graph;
 }
 
-void InsertEdge(MGraph Graph, Edge E)
+void InsertEdge( MGraph Graph, Edge E )
 {
 	/* Undirected Graphs, need to insert edge<V2, V1> also */
 	Graph->G[E->V1][E->V2] = 1;
@@ -94,7 +94,7 @@ MGraph BuildGraph()
 	return Graph;
 }
 
-void BFS(Vertex V, MGraph Graph)
+void BFS( Vertex V, MGraph Graph )
 {
 	Queue Q;
 	Vertex CurV, W, Last;
@@ -134,28 +134,26 @@ Queue CreatQueue()
 	return Q;
 }
 
-int IsFullQ(Queue Q)
+int IsFullQ( Queue Q )
 {
 	return (Q->Rear + 1) % MaxVertexNum == Q->Front;
 }
 
-void Enqueue(Queue Q, ElementType Item)
+void Enqueue( Queue Q, ElementType Item )
 {
 	if (IsFullQ(Q)) { printf("Queue full!\n"); return; }
-
 	Q->Rear = (Q->Rear + 1) % MaxVertexNum;
 	Q->Data[Q->Rear] = Item;
 }
 
-int IsEmptyQ(Queue Q)
+int IsEmptyQ( Queue Q )
 {
-	return (Q->Front == Q->Rear);
+	return Q->Front == Q->Rear;
 }
 
-ElementType Dequeue(Queue Q)
+ElementType Dequeue( Queue Q )
 {
 	if (IsEmptyQ(Q)) { printf("Queue empty!\n"); return -1; }
-
 	Q->Front = (Q->Front + 1) % MaxVertexNum;
 	return Q->Data[Q->Front];
 }
