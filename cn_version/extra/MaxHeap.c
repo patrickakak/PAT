@@ -86,10 +86,10 @@ MaxHeap BuildMaxHeap( int N )
 
 	/* Build a MaxHeap in this way, in the worst case, the time that we need 
 	 * to move elements of Heap equals to the sum of every node heights:
-	 *     eg. X = [log2N], (full binary tree)
-	 *     2^0 + 2^1*(X-1) + 2^2*(X-2) + ... + 2^(X-1) * (X-(X-1))
+	 *     eg. X = [logN], (full binary tree)
+	 *     2^0*X + 2^1*(X-1) + 2^2*(X-2) + ... + 2^(X-1) * (X-(X-1))
 	 *   = (2^0 + 2^1 + 2^2 + ... + 2^X-1)*X - (2^1 + 2^2*2 + 2^3*3 + ... + 2^(X-1) * (X-1))
-	 *   = 2^(X+1) - X - 2 = 2N - log2N - 2 (i.e. T = O(N))
+	 *   = 2^(X+1) - X - 2 = 2N - logN - 2 (i.e. T = O(N))
 	 */
 	for (i = N/2; i > 0; i--)
 		PercolateDown(i, H);
@@ -119,7 +119,7 @@ void PercolateDown( int p, MaxHeap H )
 
 	for (Parent = p; Parent*2 <= H->Size; Parent = Child) {
 		Child = Parent * 2;
-		if ((Child != H->Size) && (H->Elements[Child] < H->Elements[Child+1]))
+		if (Child != H->Size && H->Elements[Child] < H->Elements[Child+1])
 			Child++;	// Child point to the larger one of two children
 		if (Tmp >= H->Elements[Child]) break;
 		else H->Elements[Parent] = H->Elements[Child];
