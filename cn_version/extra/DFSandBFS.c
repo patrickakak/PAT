@@ -1,5 +1,6 @@
 /* Depth First Search (pseudocode): 
  *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2)
+ *   (N/E is the number of vertex/edge respectively)
  */
 void DFS( Vertex V )
 {
@@ -10,7 +11,9 @@ void DFS( Vertex V )
 			DFS(W);
 }
 
-/* Matrix implememtation (directed graph): */
+/* Matrix implememtation (directed graph): 
+ * T = O(N^2), traverse every node and its neighbor 
+ */
 void DFS_m( MGraph Graph, Vertex V )
 {
 	Vertex W;
@@ -21,7 +24,9 @@ void DFS_m( MGraph Graph, Vertex V )
 			DFS_m(Graph, W);
 }
 
-/* List implememtation (directed graph): */
+/* List implememtation (directed graph): 
+ * T = O(N+E), traverse every vertex and edge 
+ */
 void DFS_l( LGraph Graph, Vertex V )
 {
 	Vertex W;
@@ -39,6 +44,7 @@ void DFS_l( LGraph Graph, Vertex V )
 
 /* Breadth First Search (pseudocode): 
  *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2) 
+ *   (N/E is the number of vertex/edge respectively)
  */
 void BFS( Vertex V )
 {
@@ -55,7 +61,9 @@ void BFS( Vertex V )
 	}
 }
 
-/* Matrix implememtation (directed graph): */
+/* Matrix implememtation (directed graph): 
+ * T = O(N^2): Same as DFS_m
+ */
 void BFS_m( MGraph Graph, Vertex V )
 {
 	Vertex W;
@@ -72,7 +80,9 @@ void BFS_m( MGraph Graph, Vertex V )
 	}
 }
 
-/* List implememtation (directed graph): */
+/* List implememtation (directed graph): 
+ * T = O(N+E): Same as DBS_l
+ * */
 void BFS_l( LGraph Graph, Vertex V )
 {
 	Vertex W;
@@ -82,7 +92,7 @@ void BFS_l( LGraph Graph, Vertex V )
 	Enqueue(V, Q);
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
-		for (Tmp=Graph->G[V].FirstEdge; Tmp; Tmp=Tmp->Next) {
+		for (Tmp = Graph->G[V].FirstEdge; Tmp; Tmp = Tmp->Next) {
 			W = Tmp->AdjV;
 			if (!visited[W]) {
 				visited[W] = true;
