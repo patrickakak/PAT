@@ -1,5 +1,5 @@
-/* Depth First Search: 
- *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2) i
+/* Depth First Search (pseudocode): 
+ *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2)
  */
 void DFS( Vertex V )
 {
@@ -10,7 +10,32 @@ void DFS( Vertex V )
 			DFS(W);
 }
 
-/* Breadth First Search: 
+/* Matrix implememtation (directed graph): */
+void DFS_m( MGraph Graph, Vertex V )
+{
+	Vertex W;
+	visited[V] = true;
+
+	for (W = 0; W < Graph->Nv; W++)
+		if (!visited[W] && Graph->G[V][W])
+			DFS_m(Graph, W);
+}
+
+/* List implememtation (directed graph): */
+void DFS_l( LGraph Graph, Vertex V )
+{
+	PtrToAdjVNode Tmp;
+
+	visited[V] = true;
+	Tmp = Graph->G[V].FirstEdge;
+	while (Tmp) {
+		if (!visited[Tmp->AdjV])
+			DFS_l(Graph, Tmp->AdjV);
+		Tmp = Tmp->Next;
+	}
+}
+
+/* Breadth First Search (pseudocode): 
  *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2) 
  */
 void BFS( Vertex V )
@@ -24,6 +49,40 @@ void BFS( Vertex V )
 			if (!visited[W]) {
 				visited[W] = true;
 				Enqueue(W, Q);
+			}
+	}
+}
+
+/* Matrix implememtation (directed graph): */
+void BFS_m( MGraph Graph, Vertex V )
+{
+	Vertex W;
+	visited[V] = true;
+
+	Enqueue(V, Q);
+	while (!IsEmpty(Q)) {
+		V = Dequeue(Q);
+		for (W = 0; W < Graph->Nv; W++)
+			if (!visited[W]) {
+				visited[W] = true;
+				Enqueue(W, Q);
+			}
+	}
+}
+
+/* List implememtation (directed graph): */
+void BFS_l( LGraph Graph, Vertex V )
+{
+	PtrToAdjVNode Tmp;
+
+	visited[V] = true;
+	Enqueue(V, Q);
+	while (!IsEmpty(Q)) {
+		V = Dequeue(Q);
+		for (Tmp=Graph->G[V].FirstEdge; Tmp; Tmp=Tmp->Next)
+			if (!visited[Tmp->AdjV]) {
+				visited[Tmp->AdjV] = true;
+				Enqueue(Tmp->AdjV, Q);
 			}
 	}
 }
