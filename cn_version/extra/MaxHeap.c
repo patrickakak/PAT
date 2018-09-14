@@ -66,8 +66,7 @@ int IsFull( MaxHeap H )
 
 ElementType DeleteMax( MaxHeap H )
 {
-	int Parent, Child;
-	ElementType MaxItem, temp;
+	ElementType MaxItem;
 
 	if (IsEmpty(H)) { printf("MaxHeap is empty!\n"); return ERROR; }
 	MaxItem = H->Elements[1];	// Get the max value to return
