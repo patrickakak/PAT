@@ -24,13 +24,15 @@ void DFS_m( MGraph Graph, Vertex V )
 /* List implememtation (directed graph): */
 void DFS_l( LGraph Graph, Vertex V )
 {
+	Vertex W;
 	PtrToAdjVNode Tmp;
 
 	visited[V] = true;
 	Tmp = Graph->G[V].FirstEdge;
 	while (Tmp) {
-		if (!visited[Tmp->AdjV])
-			DFS_l(Graph, Tmp->AdjV);
+		W = Tmp->AdjV;
+		if (!visited[W])
+			DFS_l(Graph, W);
 		Tmp = Tmp->Next;
 	}
 }
@@ -73,17 +75,20 @@ void BFS_m( MGraph Graph, Vertex V )
 /* List implememtation (directed graph): */
 void BFS_l( LGraph Graph, Vertex V )
 {
+	Vertex W;
 	PtrToAdjVNode Tmp;
 
 	visited[V] = true;
 	Enqueue(V, Q);
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
-		for (Tmp=Graph->G[V].FirstEdge; Tmp; Tmp=Tmp->Next)
-			if (!visited[Tmp->AdjV]) {
-				visited[Tmp->AdjV] = true;
-				Enqueue(Tmp->AdjV, Q);
+		for (Tmp=Graph->G[V].FirstEdge; Tmp; Tmp=Tmp->Next) {
+			W = Tmp->AdjV;
+			if (!visited[W]) {
+				visited[W] = true;
+				Enqueue(W, Q);
 			}
+		}
 	}
 }
 
