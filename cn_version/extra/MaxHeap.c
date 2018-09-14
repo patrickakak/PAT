@@ -74,11 +74,12 @@ int IsEmpty( MaxHeap H )
 	return H->Size == 0;
 }
 
-/* We can get T = O(N) rather by using Insert function to get T = O(NlogN) */
+/* We can get T = O(N) rather by using Insert function to get T = O(NlogN)
+ * Prerequisite: Knowing the number of input beforehand */
 MaxHeap BuildMaxHeap( int N )
 {
+	int i;
 	MaxHeap H;
-	int i, Parent, Child, temp;
 
 	H = Create(N);
 	for (i = 1; i <= N; i++) { scanf("%d", &H->Elements[i]); H->Size++; }
@@ -88,19 +89,11 @@ MaxHeap BuildMaxHeap( int N )
 	 *     eg. X = [log2N], (full binary tree)
 	 *     2^0 + 2^1*(X-1) + 2^2*(X-2) + ... + 2^(X-1) * (X-(X-1))
 	 *   = (2^0 + 2^1 + 2^2 + ... + 2^X-1)*X - (2^1 + 2^2*2 + 2^3*3 + ... + 2^(X-1) * (X-1))
-	 *   = 2^(X+1) - X -2 = 2N - log2N -2 (i.e. T = O(N))
+	 *   = 2^(X+1) - X - 2 = 2N - log2N - 2 (i.e. T = O(N))
 	 */
-	for (i = N/2; i > 0; i--) {
-		temp = H->Elements[i];
-		for (Parent = i; Parent*2 <= N; Parent = Child) {
-			Child = Parent * 2;
-			if ((Child != N) && (H->Elements[Child] < H->Elements[Child+1]))
-				Child++;
-			if (temp >= H->Elements[Child]) break;
-			else H->Elements[Parent] = H->Elements[Child];
-		}
-		H->Elements[Parent] = temp;
-	}
+	for (i = N/2; i > 0; i--)
+		PercolateDown(i, H);
+
 	return H;
 }
 
@@ -124,9 +117,9 @@ void PercolateDown( int p, MaxHeap H )
 	/* 'Parent*2 <= H->Size' to find out if there is a left child,
 	 * 'Parent=Child' to jump into the larger child's position */
 
-	for (Parent = 1; Parent*2 <= H->Size; Parent = Child) {
+	for (Parent = p; Parent*2 <= H->Size; Parent = Child) {
 		Child = Parent * 2;
-		if ((Child = Parent*2) && (H->Elements[Child] < H->Elements[Child+1]))
+		if ((Child != H->Size) && (H->Elements[Child] < H->Elements[Child+1]))
 			Child++;	// Child point to the larger one of two children
 		if (Tmp >= H->Elements[Child]) break;
 		else H->Elements[Parent] = H->Elements[Child];
