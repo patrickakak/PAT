@@ -12,11 +12,13 @@ struct HeapStruct {
 	int Capacity;
 };
 
-MaxHeap Create(int MaxSize);
-void Insert(MaxHeap H, ElementType item);
-int IsFull(MaxHeap H);
-int IsEmpty(MaxHeap H);
-void BuildMaxHeap(int arr[], int N);	// T = O(N)
+MaxHeap Create( int MaxSize );
+void PercolateUp( int p, MaxHeap H );
+void PercolateDown( int p, MaxHeap H );
+void Insert( MaxHeap H, ElementType item );
+int IsFull( MaxHeap H );
+int IsEmpty( MaxHeap H );
+void BuildMaxHeap( int arr[], int N );	// T = O(N)
 
 int main()
 {
@@ -35,7 +37,7 @@ int main()
 	return 0;
 }
 
-MaxHeap Create(int MaxSize)
+MaxHeap Create( int MaxSize )
 {
 	MaxHeap H = (MaxHeap) malloc(sizeof(struct HeapStruct));
 	H->Elements = (ElementType *) malloc((MaxSize + 1) * sizeof(ElementType));
@@ -45,66 +47,42 @@ MaxHeap Create(int MaxSize)
 	return H;
 }
 
-void Insert(MaxHeap H, ElementType item)
+void Insert( MaxHeap H, ElementType item )
 {
 	/* Insert item into MaxHeap, H->Elements[0] has been set */
-	int i;
+	int p;
 
-	if (IsFull(H)) {
-		printf("MaxHeap is full!\n");
-		return;
-	}
-	i = ++H->Size;	// i point to the last element of the MaxHeap
+	if (IsFull(H)) { printf("MaxHeap is full!\n"); return; }
+	p = ++H->Size;	// p point to the last element of the MaxHeap
+	H->Elements[p] = item;
 
-	/* If parent node is smaller, drag it down along the path to the root */
-
-	for (; H->Elements[i/2] < item; i /= 2)
-		H->Elements[i] = H->Elements[i/2];
-	H->Elements[i] = item;
+	PercolateUp(p, H);
 }
 
-int IsFull(MaxHeap H)
+int IsFull( MaxHeap H )
 {
 	return H->Size == H->Capacity;
 }
 
-ElementType DeleteMax(MaxHeap H)
+ElementType DeleteMax( MaxHeap H )
 {
 	int Parent, Child;
 	ElementType MaxItem, temp;
 
-	if (IsEmpty(H)) {
-		printf("MaxHeap is empty!\n");
-		return ERROR;
-	}
+	if (IsEmpty(H)) { printf("MaxHeap is empty!\n"); return ERROR; }
 	MaxItem = H->Elements[1];	// Get the max value to return
-
-	/* Get the last element to replace the first valid node (Element[1]) */
-
-	temp = H->Elements[H->Size--];
-
-	/* 'Parent*2 <= H->Size' to find out if there is a left child,
-	 * 'Parent=Child' to jump into the larger child's position */
-
-	for (Parent = 1; Parent*2 <= H->Size; Parent = Child) {
-		Child = Parent * 2;
-		if ((Child != H->Size) && 
-				(H->Elements[Child] < H->Elements[Child+1]))
-			Child++;	// Child point to the larger one of two children
-		if (temp >= H->Elements[Child]) break;
-		else H->Elements[Parent] = H->Elements[Child];
-	}
-	H->Elements[Parent] = temp;
+	H->Elements[1] = H->Elements[H->Size--];
+	PercolateDown(1, H);
 	return MaxItem;
 }
 
-int IsEmpty(MaxHeap H)
+int IsEmpty( MaxHeap H )
 {
 	return H->Size == 0;
 }
 
 /* We can get T = O(N) rather by using Insert function to get T = O(NlogN) */
-void BuildMaxHeap(int arr[], int N)
+void BuildMaxHeap( int arr[], int N )
 {
 	int i, Parent, Child, temp;
 
@@ -126,5 +104,35 @@ void BuildMaxHeap(int arr[], int N)
 		}
 		arr[Parent] = temp;
 	}
+}
+
+void PercolateUp( int p, MaxHeap H )
+{
+	int i;
+	ElementType Tmp;
+
+	/* If parent node is smaller, drag it down along the path to the root */
+
+	for (i=p, Tmp=H->Elements[p]; H->Elements[i/2] < Tmp; i /= 2)
+		H->Elements[i] = H->Elements[i/2];
+	H->Elements[i] = Tmp;
+}
+
+void PercolateDown( int p, MaxHeap H )
+{
+	ElementType Tmp = H->Elements[p];
+	int Parent, Child;
+
+	/* 'Parent*2 <= H->Size' to find out if there is a left child,
+	 * 'Parent=Child' to jump into the larger child's position */
+
+	for (Parent = 1; Parent*2 <= H->Size; Parent = Child) {
+		Child = Parent * 2;
+		if ((Child = Parent*2) && (H->Elements[Child] < H->Elements[Child+1]))
+			Child++;	// Child point to the larger one of two children
+		if (Tmp >= H->Elements[Child]) break;
+		else H->Elements[Parent] = H->Elements[Child];
+	}
+	H->Elements[Parent] = Tmp;
 }
 
