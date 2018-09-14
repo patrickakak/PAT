@@ -14,7 +14,7 @@ void PercolateDown( int p, PriorityQueue H )
 	ElementType Tmp = H->Elements[p];
 	int Parent, Child;
 
-	for (Parent = 1; Parent*2 <= H->Size; Parent = Child) {
+	for (Parent = p; Parent*2 <= H->Size; Parent = Child) {
 		Child = Parent * 2;
 		if ((Child = Parent*2) && (H->Elements[Child] > H->Elements[Child+1]))
 			Child++;
