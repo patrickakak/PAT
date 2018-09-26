@@ -20,20 +20,21 @@ struct HeapStruct {
 	int Capacity;
 };
 
-MinHeap CreateMinHeap( int MaxSize );
-MinHeap ReadData( int N, ElementType c[], WeightType f[], MinHeap H );
-HuffmanTree Huffman( MinHeap H );
-MinHeap BuildMinHeap( int N, ElementType c[], WeightType f[] );
-HuffmanTree DeleteMin( MinHeap H );
-void MinHeapInsert( MinHeap H, HuffmanTree T );
-int WPL( HuffmanTree T, int Depth );
-bool Judge( int N, int CodeLen, ElementType *c, WeightType *f );
+MinHeap CreateMinHeap (int MaxSize);
+MinHeap ReadData (int N, ElementType c[], WeightType f[], MinHeap H);
+HuffmanTree Huffman (MinHeap H);
+MinHeap BuildMinHeap (int N, ElementType c[], WeightType f[]);
+HuffmanTree DeleteMin (MinHeap H);
+void MinHeapInsert (MinHeap H, HuffmanTree T);
+int WPL (HuffmanTree T, int Depth);
+bool Judge (int N, int CodeLen, ElementType *c, WeightType *f);
 HuffmanTree CreateHuffmanTree();
-void DeleteTree( HuffmanTree T );
-void PercolateUp( int p, MinHeap H );
-void PercolateDown( int p, MinHeap H );
+void DeleteTree (HuffmanTree T);
+void PercolateUp (int p, MinHeap H);
+void PercolateDown (int p, MinHeap H);
 
-int main()
+int 
+main()
 {
 	ElementType c[MAXN];
 	WeightType f[MAXN];
@@ -93,7 +94,8 @@ int main()
 	return 0;
 }
 
-MinHeap CreateMinHeap( int MaxSize )
+MinHeap 
+CreateMinHeap (int MaxSize)
 {
 	MinHeap H = (MinHeap) malloc(sizeof(struct HeapStruct));
 	H->Data = (HuffmanTree) malloc((MaxSize+1) * sizeof(struct TreeNode));
@@ -103,7 +105,8 @@ MinHeap CreateMinHeap( int MaxSize )
 	return H;
 }
 
-MinHeap ReadData( int N, ElementType c[], WeightType f[], MinHeap H )
+MinHeap 
+ReadData (int N, ElementType c[], WeightType f[], MinHeap H)
 {
 	int i;
 
@@ -117,7 +120,8 @@ MinHeap ReadData( int N, ElementType c[], WeightType f[], MinHeap H )
 	return H;
 }
 
-void MinHeapInsert( MinHeap H, HuffmanTree T )
+void 
+MinHeapInsert (MinHeap H, HuffmanTree T)
 {
 	int p;
 
@@ -126,7 +130,8 @@ void MinHeapInsert( MinHeap H, HuffmanTree T )
 	PercolateUp(p, H);
 }
 
-HuffmanTree Huffman( MinHeap H )
+HuffmanTree 
+Huffman (MinHeap H)
 {
 	int i;
 	HuffmanTree T;
@@ -142,7 +147,8 @@ HuffmanTree Huffman( MinHeap H )
 	return T;
 }
 
-HuffmanTree DeleteMin( MinHeap H )
+HuffmanTree 
+DeleteMin (MinHeap H)
 {
 	HuffmanTree MinItem;
 
@@ -153,7 +159,8 @@ HuffmanTree DeleteMin( MinHeap H )
 	return MinItem;
 }
 
-MinHeap BuildMinHeap( int N, ElementType c[], WeightType f[] )
+MinHeap 
+BuildMinHeap (int N, ElementType c[], WeightType f[])
 {
 	int i;
 	MinHeap H;
@@ -166,7 +173,8 @@ MinHeap BuildMinHeap( int N, ElementType c[], WeightType f[] )
 	return H;
 }
 
-int WPL( HuffmanTree T, int Depth )
+int 
+WPL (HuffmanTree T, int Depth)
 {
 	int rw = 0, lw = 0;
 	
@@ -179,7 +187,8 @@ int WPL( HuffmanTree T, int Depth )
 	}
 }
 
-bool Judge( int N, int CodeLen, ElementType c[], WeightType f[] )
+bool 
+Judge (int N, int CodeLen, ElementType c[], WeightType f[])
 {
 	char ch, s[MAXN];
 	int i, j, k, CurWeight;
@@ -231,7 +240,8 @@ bool Judge( int N, int CodeLen, ElementType c[], WeightType f[] )
 	return false;
 }
 
-HuffmanTree CreateHuffmanTree()
+HuffmanTree 
+CreateHuffmanTree()
 {
 	HuffmanTree T = (HuffmanTree) malloc(sizeof(struct TreeNode));
 	T->Weight = 0;
@@ -239,12 +249,14 @@ HuffmanTree CreateHuffmanTree()
 	return T;
 }
 
-void DeleteTree( HuffmanTree T )
+void 
+DeleteTree (HuffmanTree T)
 {
 	if (T) { DeleteTree(T->Left); DeleteTree(T->Right); free(T); }
 }
 
-void PercolateUp( int p, MinHeap H )
+void
+PercolateUp (int p, MinHeap H)
 {
 	int i;
 	struct TreeNode Tmp;
@@ -254,7 +266,8 @@ void PercolateUp( int p, MinHeap H )
 	H->Data[i] = Tmp;
 }
 
-void PercolateDown( int p, MinHeap H )
+void 
+PercolateDown (int p, MinHeap H)
 {
 	struct TreeNode Tmp = H->Data[p];
 	int Parent, Child;
