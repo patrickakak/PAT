@@ -102,3 +102,11 @@ void BFS_l( LGraph Graph, Vertex V )
 	}
 }
 
+/* List all components in a graph wheather if's strongly connected or not */
+void ListComponents(Graph G)
+{
+	for (each V in G)
+		if (!visited[V])
+			DFS(V);		// or BFS(V)
+}
+
