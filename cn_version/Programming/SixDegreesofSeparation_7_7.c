@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define Limit 6
 #define MaxVertexNum 10001
-bool visited[MaxVertexNum];
+
 typedef int WeightType;
 typedef struct GNode *PtrToGNode;
 struct GNode {
@@ -29,29 +30,70 @@ struct QNode {
 };
 typedef PtrToQNode Queue;
 
-MGraph CreateGraph( int VertexNum );
-void InsertEdge( MGraph Graph, Edge E );
+MGraph CreateGraph(int VertexNum);
+void InsertEdge(MGraph Graph, Edge E);
 MGraph BuildGraph();
 Queue CreatQueue();
-int IsFullQ( Queue Q );
-void Enqueue( Queue Q, ElementType Item );
-int IsEmptyQ( Queue Q );
-ElementType Dequeue( Queue Q );
-void BFS( Vertex V, MGraph Graph );
+int IsFullQ(Queue Q);
+void Enqueue(Queue Q, ElementType Item);
+int IsEmptyQ(Queue Q);
+ElementType Dequeue(Queue Q);
+void SDS(MGraph Graph);
+int BFS(MGraph Graph, Vertex V, bool visited[]);
 
 int main()
 {
-	MGraph G;
-	Vertex V;
+	MGraph Graph;
 
-	G = BuildGraph();
-	for (V = 1; V <= G->Nv; V++)
-		BFS(V, G);
+	Graph = BuildGraph();
+
+	SDS(Graph);
 
 	return 0;
 }
 
-MGraph CreateGraph( int VertexNum )
+void SDS(MGraph Graph)
+{
+	Vertex V;
+	int count;
+	bool visited[MaxVertexNum];
+
+	for (V = 1; V <= Graph->Nv; V++) {
+		memset(visited+1, false, Graph->Nv);
+		count = BFS(Graph, V, visited);
+		printf("%d: %.2f%%\n", V, 100*(double)count/Graph->Nv);
+	}
+}
+
+int BFS(MGraph Graph, Vertex V, bool visited[])
+{
+	Vertex W;
+	int count, level, last, tail;
+	Queue Q;
+
+	visited[V] = true;
+	count = 1;
+	level = 0;
+	last = V;
+	Q = CreatQueue();
+	Enqueue(Q, V);
+	while (!IsEmptyQ(Q)) {
+		V = Dequeue(Q);
+		for (W = 1; W <= Graph->Nv; W++)
+			if (!visited[W] && Graph->G[V][W]) {
+				visited[W] = true;
+				Enqueue(Q, W);
+				count++;
+				tail = W;
+			}
+		/* When the last layer handling of BFS is finished */
+		if (V == last) { level++; last = tail; }
+		if (level == Limit) break;
+	}
+	return count;
+}
+
+MGraph CreateGraph(int VertexNum)
 {
 	Vertex V, W;
 	MGraph Graph;
@@ -68,7 +110,7 @@ MGraph CreateGraph( int VertexNum )
 	return Graph;
 }
 
-void InsertEdge( MGraph Graph, Edge E )
+void InsertEdge(MGraph Graph, Edge E)
 {
 	/* Undirected Graphs, need to insert edge<V2, V1> also */
 	Graph->G[E->V1][E->V2] = 1;
@@ -84,7 +126,7 @@ MGraph BuildGraph()
 	scanf("%d", &Nv);
 	Graph = CreateGraph(Nv);
 	scanf("%d", &Graph->Ne);
-	if (Graph->Ne != 0) {
+	if (Graph->Ne) {
 		E = (Edge) malloc(sizeof(struct ENode));
 		for (i = 0; i < Graph->Ne; i++) {
 			scanf("%d %d", &E->V1, &E->V2);
@@ -94,39 +136,6 @@ MGraph BuildGraph()
 	return Graph;
 }
 
-void BFS( Vertex V, MGraph Graph )
-{
-	Queue Q;
-	Vertex CurV, W, Last;
-	int i, Cnt = 1, Magnitude = 0; 	// 'Magnitude' to indicate the range of BFS
-	double ratio;
-
-	for (i = 1; i <= Graph->Nv; i++) visited[i] = false;
-	visited[V] = true;
-	Q = CreatQueue();
-	Enqueue(Q, V);
-	Last = Q->Data[Q->Rear];
-	while (!IsEmptyQ(Q)) {
-		CurV = Dequeue(Q);
-		for (W = 1; W <= Graph->Nv; W++)
-			if (Graph->G[CurV][W] && !visited[W]) {
-				visited[W] = true;
-				Cnt++;
-				Enqueue(Q, W);
-			}
-
-		/* When the last layer handling of BFS is finished */
-		if (CurV == Last) {
-			Last = Q->Data[Q->Rear];
-			Magnitude++;
-			if (Magnitude >= Limit) break;
-		}
-	}
-	ratio = (double)Cnt / Graph->Nv;
-	ratio *= 100;
-	printf("%d: %.2lf%%\n", V, ratio);
-}
-
 Queue CreatQueue()
 {
 	Queue Q = (Queue) malloc(sizeof(struct QNode));
@@ -134,24 +143,24 @@ Queue CreatQueue()
 	return Q;
 }
 
-int IsFullQ( Queue Q )
+int IsFullQ(Queue Q)
 {
 	return (Q->Rear + 1) % MaxVertexNum == Q->Front;
 }
 
-void Enqueue( Queue Q, ElementType Item )
+void Enqueue(Queue Q, ElementType Item)
 {
 	if (IsFullQ(Q)) { printf("Queue full!\n"); return; }
 	Q->Rear = (Q->Rear + 1) % MaxVertexNum;
 	Q->Data[Q->Rear] = Item;
 }
 
-int IsEmptyQ( Queue Q )
+int IsEmptyQ(Queue Q)
 {
 	return Q->Front == Q->Rear;
 }
 
-ElementType Dequeue( Queue Q )
+ElementType Dequeue(Queue Q)
 {
 	if (IsEmptyQ(Q)) { printf("Queue empty!\n"); return -1; }
 	Q->Front = (Q->Front + 1) % MaxVertexNum;
