@@ -96,7 +96,7 @@ int IsSafe(Vertex V, int step)
 /* Whether there's a change to jump onto another crocdile? */
 int Jump(Vertex cur, Vertex nearby, int step)
 {
-	return step*step >= (cur.x - nearby.x)*(cur.x - nearby.x) + (
-			cur.y - nearby.y)*(cur.y - nearby.y);
+	return step*step >= (cur.x - nearby.x)*(cur.x - nearby.x) 
+		+ (cur.y - nearby.y)*(cur.y - nearby.y);
 }
 
