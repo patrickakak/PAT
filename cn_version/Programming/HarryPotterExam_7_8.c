@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #define MaxVertexNum 100
 #define INFINITY 65535
