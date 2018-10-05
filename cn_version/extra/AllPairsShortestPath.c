@@ -5,7 +5,7 @@
  *     b. Update dist[w] (w is a vertex affected by v)
  * ----------------------- Method 1 ------------------------------------------
  *   Scan all the uncollected vertices, in this way, Ta=O(|V|^3), Tb=O(|E||V|), 
- * suit for dense graph (i.e. E = O(|V|^2)). Total T = O(|V|^3 + |E||V|)
+ * suit for sparse graph (i.e. E = O(|V|^2)). Total T = O(|V|^3 + |E||V|)
  *
  * ----------------------- Method 2 ------------------------------------------
  *   Also, one can implement function FindMinDist() by using MinHeap, 
@@ -13,7 +13,7 @@
  * Total T = O(|V|*(|V|+|E|)log|V|) 
  *
  * ----------------------- Method 3 ------------------------------------------
- * Floyd algorithm, suit for dense graph also, and T = O(|V|^3)
+ * Floyd algorithm with elegancy, suit for dense graph, and T = O(|V|^3)
  * Initiaization: for (each v in G) ,set D[v][v] = 0, D[i][j] = INFINITY 
  * if there's no path between i->j;
  */
