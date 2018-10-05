@@ -33,7 +33,7 @@ bool Floyd(MGraph Graph, WeightType D[][MaxVertexNum], Vertex path[][MaxVertexNu
 			for (j = 0; j < Graph->Nv; j++)
 				if (D[i][k] + D[k][j] < D[i][j]) {
 					D[i][j] = D[i][k] + D[k][j];
-					if (i==j && D[i][j] < 0)	/* Negative-cost cycle is found */
+					if (i == j && D[i][j] < 0)	/* Negative-cost cycle is found */
 						return false;	/* Can't handle properly, return error */
 					path[i][j] = k;
 				}
