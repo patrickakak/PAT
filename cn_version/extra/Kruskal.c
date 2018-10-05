@@ -1,7 +1,8 @@
-/* Adjacency list: Kruskal algorithm to generate minimum spinning tree */
+/* Adjacency list implementaton: 
+ *   Kruskal algorithm to generate minimum spinning tree (suit for sparse graph )*/
 
 /*-------------------- Start of Union-Find definition --------------------*/
-typedef Vertex ElementType;	/* element type can be represented as non-negtive integer */
+typedef Vertex ElementType;		/* element type can be represented as non-negtive integer */
 typedef Vertex SetName;		/* Set index of root node as the name of a set */
 typedef ElementType SetType[MaxVertexNum];	/* Indices of Set elements begin with 0 */
 
@@ -17,7 +18,7 @@ void InitializeVSet(SetType S, int N)
 void Union(SetType S, SetName Root1, SetName Root2)
 {
 	/* Small Set absorbed into a bigger one Guaranteed */
-	if ( S[Root2] < S[Root1] ) {	/* If Set2 is larger */
+	if (S[Root2] < S[Root1]) {	/* If Set2 is larger */
 		S[Root2] += S[Root1];	/* Merge Set1 into Set2 */
 		S[Root1] = Root2;
 	} else {	/* If set1 is larger */
@@ -63,8 +64,8 @@ void PercDown(Edge ESet, int p, int N)
 		Child = Parent * 2 + 1;
 		if ((Child != N-1) && (ESet[Child].Weight > ESet[Child+1].Weight))
 			Child++;
-		if (X.Weight <= ESet[Child].Weight) break; /* Find the right position */
-		else  /* Percolate X down */
+		if (X.Weight <= ESet[Child].Weight) break;	/* Find the right position */
+		else	/* Percolate X down */
 			ESet[Parent] = ESet[Child];
 	}
 	ESet[Parent] = X;
@@ -108,7 +109,7 @@ int Kruskal(LGraph Graph, LGraph MST)
 	WeightType TotalWeight;
 	int ECount, NextEdge;
 	SetType VSet;	/* Vertices array */
-	Edge ESet;		/* Edges array */
+	Edge ESet;	/* Edges array */
 
 	InitializeVSet(VSet, Graph->Nv);	/* Initialize vertices Union-Find set */
 	ESet = (Edge) malloc(sizeof(struct ENode) * Graph->Ne);
@@ -118,7 +119,7 @@ int Kruskal(LGraph Graph, LGraph MST)
 	 * (To use adjacency list version graph) */
 	MST = CreateGraph(Graph->Nv);
 	TotalWeight = 0;	/* Initialize total weight */
-	ECount = 0;			/* Initialize vertices counter */
+	ECount = 0;		/* Initialize vertices counter */
 
 	NextEdge = Graph->Ne;	/* The original scale of edges Set */
 	/* When edges collected are not enough to from a tree */
@@ -137,7 +138,7 @@ int Kruskal(LGraph Graph, LGraph MST)
 		}
 	}
 	if (ECount < Graph->Nv-1)
-		TotalWeight = -1; /* Set error mark to indicate no such spinning tree */
+		TotalWeight = -1;	/* Set error mark to indicate no such spinning tree */
 
 	return TotalWeight;
 }
