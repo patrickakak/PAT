@@ -1,4 +1,4 @@
-/* Adjacency matrix: weighted signle source shortest path problem */
+/* Adjacency matrix: weighted single source shortest path problem */
 
 /* Return the minimum element of array dist (among uncollected vertices)
  *
@@ -50,7 +50,6 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	dist[S] = 0;
 	collected[S] = true;
 	while (1) {
-		/**/
 		V = FindMinDist(Graph, dist, collected);
 		if (V == ERROR) break;	/* If no such V, end algorithm */
 		collected[V] = true;	/* To collect V */
