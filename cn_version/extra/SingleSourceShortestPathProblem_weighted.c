@@ -7,11 +7,11 @@
  *     b. Update dist[w] (w is a vertex affected by v)
  * ----------------------- Method 1 ------------------------------------------
  *   Scan all the uncollected vertices, in this way, Ta=O(|V|^2), Tb=O(|E|), 
- *   suit for sparse graph(E = O(|V|^2)). Total T = O(|V|^2 + |E|)
+ *   suit for dense graph (i.e. E = O(|V|^2)). Total T = O(|V|^2 + |E|)
  *
  * ----------------------- Method 2 ------------------------------------------
  *   Also, one can implement function FindMinDist() by using MinHeap, 
- *   Ta=O(|V|log|V|), Tb=O(|E|log|V|), suit for dense graph, 
+ *   Ta=O(|V|log|V|), Tb=O(|E|log|V|), suit for sparse graph, 
  *   Total T = O((|V|+|E|)log|V|) ~ O(|E|log|V|) */
 Vertex FindMinDist(MGraph Graph, int dist[], bool collected[])
 {
