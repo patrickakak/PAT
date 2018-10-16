@@ -28,7 +28,7 @@ int MaxSubseqSum(int A[], int K)
 			MaxSum = ThisSum;
 		/* MaxSum is no less than 0, so we use 'else if' branch statement */
 		else if (ThisSum < 0)
-			ThisSum = 0;
+			ThisSum = 0; 	/* Start over */
 	}
 	return MaxSum;
 }
