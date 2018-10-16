@@ -18,7 +18,7 @@ PtrToOutNode MaxSubseqSum4(int A[], int N);
 
 int main()
 {
-	int K, i, a[MAXK+1];
+	int K, i, a[MAXK];
 	PtrToOutNode out;
 
 	scanf("%d", &K);
@@ -36,12 +36,10 @@ int main()
 
 PtrToOutNode MaxSubseqSum4(int A[], int N)
 {
-	int ThisSum, MaxSum, gap, i;
-	PtrToOutNode out;
+	int ThisSum=0, MaxSum=-1, gap=0, i;
+	PtrToOutNode out = (PtrToOutNode) malloc(sizeof(struct OutNode));
 
 	/* Set MaxSum as -1 in case of all K numbers are negative except '0' */
-	ThisSum = 0, MaxSum = -1, gap = 0;
-	out = (PtrToOutNode) malloc(sizeof(struct OutNode));
 	out->first = out->last = out->MaxSum = 0;
 	for (i = 0; i < N; i++) {
 		ThisSum += A[i];
@@ -52,9 +50,9 @@ PtrToOutNode MaxSubseqSum4(int A[], int N)
 			 * then find the first */
 			out->last = i;
 			out->first = out->last - gap + 1;
-		} else if (ThisSum < 0)
-			ThisSum = gap = 0;
-		else 	/* ThisSum == MaxSum */
+		} else if (ThisSum < 0) {
+			ThisSum = 0; gap = 0;
+		} else 	/* ThisSum == MaxSum */
 			gap++;
 	}
 	out->MaxSum = MaxSum;
