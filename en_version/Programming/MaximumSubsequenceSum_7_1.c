@@ -1,13 +1,14 @@
-/**
- * PTA--Data Structures and Algorithms (English)
- * 7-1 Maximum Subsequence Sum
+/* Sample Input:
+ * 10
+ * -10 1 2 3 4 -5 -23 3 7 -21
+ * Sample Output:
+ * 10 1 4
  */
 #include <stdio.h>
 
 #define MAXK 100000
 struct outcome {
-	int first;
-	int last;
+	int first, last;
 	int MaxSum;
 };
 
