@@ -45,11 +45,11 @@ PtrToOutNode MaxSubseqSum4(int A[], int N)
 		ThisSum += A[i];
 		if (ThisSum > MaxSum) {
 			MaxSum = ThisSum;
-			gap++;
 			/* Find the last member of the maximum subsequence 
 			 * then find the first */
 			out->last = i;
-			out->first = out->last - gap + 1;
+			out->first = out->last - gap;
+			gap++;
 		} else if (ThisSum < 0) {
 			ThisSum = 0; gap = 0;
 		} else 	/* ThisSum == MaxSum */
