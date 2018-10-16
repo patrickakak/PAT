@@ -1,3 +1,9 @@
+/* Sample Input:
+ * 6
+ * -2 11 -4 13 -5 -2
+ * Sample Output: 
+ * 20
+ */
 #include <stdio.h>
 
 #define MAXK 100000
