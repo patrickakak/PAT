@@ -36,10 +36,10 @@ int main()
 
 PtrToOutNode MaxSubseqSum4(int A[], int N)
 {
+	/* Set MaxSum as -1 in case of all K numbers are negative except '0' */
 	int ThisSum=0, MaxSum=-1, gap=0, i;
 	PtrToOutNode out = (PtrToOutNode) malloc(sizeof(struct OutNode));
 
-	/* Set MaxSum as -1 in case of all K numbers are negative except '0' */
 	out->first = out->last = out->MaxSum = 0;
 	for (i = 0; i < N; i++) {
 		ThisSum += A[i];
