@@ -1,31 +1,32 @@
-// PTA--Data Structures and Algorithms (Chinese version)
-// 7-1 Maximum subsequence sum
 #include <stdio.h>
 
 #define MAXK 100000
 
-int MaxSubseqSum4(int A[], int N);
+int MaxSubseqSum(int A[], int K);
 
 int main()
 {
-	int K, i, a[MAXK+1];
+	int K, i, a[MAXK];
 
 	scanf("%d", &K);
-	for (i=0; i<K; i++)
+	for (i = 0; i < K; i++)
 		scanf("%d", &a[i]);
-	printf("%d\n", MaxSubseqSum4(a, K));
+	printf("%d\n", MaxSubseqSum(a, K));
+
 	return 0;
 }
 
-int MaxSubseqSum4(int A[], int N)
+/* Online processing, T=O(N) */
+int MaxSubseqSum(int A[], int K)
 {
-	int ThisSum, MaxSum;
-	int i;
+	int i, ThisSum, MaxSum;
+
 	ThisSum = MaxSum = 0;
-	for (i=0; i<N; i++) {
+	for (i = 0; i < K; i++) {
 		ThisSum += A[i];
 		if (ThisSum > MaxSum)
 			MaxSum = ThisSum;
+		/* MaxSum is no less than 0, so we use 'else if' branch statement */
 		else if (ThisSum < 0)
 			ThisSum = 0;
 	}
