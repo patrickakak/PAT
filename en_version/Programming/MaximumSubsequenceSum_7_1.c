@@ -51,7 +51,7 @@ PtrToOutNode MaxSubseqSum4(int A[], int N)
 			out->first = out->last - gap;
 			gap++;
 		} else if (ThisSum < 0) {
-			ThisSum = 0; gap = 0;
+			ThisSum = 0, gap = 0;
 		} else 	/* ThisSum == MaxSum */
 			gap++;
 	}
