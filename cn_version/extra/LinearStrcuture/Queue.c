@@ -1,12 +1,12 @@
 /* Queue data structure (FIFO, n = MaxSize-1 to indicate full queue) */
 
-// defile ERROR, ElementType here
+/* defile ERROR, ElementType here */
 typedef struct QNode *Queue;
 struct QNode {
 	ElementType *pData;
-	int          front; // front: index of a cell in front of the 1st cell
-	int          rear;  // rear: index of last cell
-	int          Max;   // To store the size
+	int front; 	/* front: index of a cell in front of the 1st cell */
+	int rear; 	/* rear: index of last cell */
+	int Max; 	/* To store the size */
 };
 
 Queue CreatQueue(int MaxSize)
@@ -18,7 +18,7 @@ Queue CreatQueue(int MaxSize)
 	return Q;
 }
 
-// You can input MaxSize in main function
+/* You can input MaxSize in main function */
 int IsFullQ(Queue Q)
 {
 	return ((Q->rear+1)%(Q->Max) == Q->front);
@@ -43,7 +43,7 @@ ElementType DeleteQ(Queue Q)
 {
 	if (IsEmptyQ(Q)) {
 		printf("Queue empty!\n");
-		return ERROR; // Need to define ERROR
+		return ERROR; 	/* Need to define ERROR */
 	}
 	Q->front = (Q->front+1)%(Q->Max);
 	return Q->pData[Q->front];
