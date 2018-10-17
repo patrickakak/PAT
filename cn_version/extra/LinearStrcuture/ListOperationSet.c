@@ -57,7 +57,7 @@ bool Delete(List L, Position P)
 	Position i;
 
 	if (P < 0 || P > L->Last) {
-		printf("No such L[%d] element", P ); 
+		printf("No such L[%d] element", P);
 		return false; 
 	}
 	for (i = P+1; i <= L->Last; i++)
