@@ -77,8 +77,7 @@ Polynomial Add(Polynomial P1, Polynomial P2)
 			sum = P1->coef + P2->coef;
 			if (sum) Attach(sum, P1->exp, &Rear);
 
-			P1 = P1->link;
-			P2 = P2->link;
+			P1 = P1->link; P2 = P2->link;
 			break;
 		case -1:
 			Attach(P2->coef, P2->exp, &Rear);
