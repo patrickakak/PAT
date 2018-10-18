@@ -41,7 +41,7 @@ bool IsEmpty(Queue Q)
 	return (Q->Front == Q->Rear);
 }
 
-ElementType DeleteQ(Queue Q)
+ElementType Dequeue(Queue Q)
 {
 	if (IsEmpty(Q)) { 
 		printf("Empty queue");

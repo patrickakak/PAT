@@ -19,7 +19,7 @@ bool IsEmpty(Queue Q)
 	return (Q->Front == NULL);
 }
 
-ElementType DeleteQ(Queue Q)
+ElementType Dequeue(Queue Q)
 {
 	Position FrontCell; 
 	ElementType FrontElem;
