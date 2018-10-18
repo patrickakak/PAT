@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 typedef struct Node *PtrToNode;
-typedef PtrToNode Polynomial;
 struct Node {
 	int coef;
 	int exp;
 	PtrToNode link;
 };
+typedef PtrToNode Polynomial;
 
 /* Assistant functions */
 int Compare(int a, int b);
