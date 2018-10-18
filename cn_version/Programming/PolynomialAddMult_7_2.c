@@ -4,15 +4,15 @@
 typedef struct Node *PtrToNode;
 typedef PtrToNode Polynomial;
 struct Node {
-	int Coef;
-	int Exp;
-	PtrToNode Link;
+	int coef;
+	int exp;
+	PtrToNode link;
 };
 
 /* Assistant functions */
 int Compare(int a, int b);
-PtrToNode MakeNode(int Coef, int Exp);
-void Attach(int Coef, int Exp, PtrToNode *pRear);
+PtrToNode MakeNode(int c, int e);
+void Attach(int c, int e, PtrToNode *pRear);
 
 /* Main feature functions */
 Polynomial Add(Polynomial P1, Polynomial P2);
@@ -22,14 +22,14 @@ Polynomial ReadPoly();
 
 int main()
 {
-	Polynomial P1, P2, PMult, PAdd;
+	Polynomial P1, P2, PP, PS; 	/* Product and sum of P1 and P2 */
 
 	P1 = ReadPoly();
 	P2 = ReadPoly();
-	PMult = Mult(P1, P2);
-	PAdd = Add(P1, P2);
-	PrintPoly(PMult);
-	PrintPoly(PAdd);
+	PP = Mult(P1, P2);
+	PS = Add(P1, P2);
+	PrintPoly(PP);
+	PrintPoly(PS);
 
 	return 0;
 }
@@ -39,59 +39,58 @@ int Compare(int a, int b)
 	return a > b ? 1 : a == b ? 0 : -1;
 }
 
-PtrToNode MakeNode(int Coef, int Exp)
+PtrToNode MakeNode(int c, int e)
 {
 	PtrToNode P;
 	
 	P = (PtrToNode) malloc(sizeof(struct Node));
-	P->Coef = Coef;
-	P->Exp = Exp;
-	P->Link = NULL;
+	P->coef = c;
+	P->exp = e;
+	P->link = NULL;
 	return P;
 }
 
-void Attach(int Coef, int Exp, PtrToNode *pRear)
+void Attach(int c, int e, PtrToNode *pRear)
 {
 	PtrToNode P;
 
-	P = MakeNode(Coef, Exp);
-	(*pRear)->Link = P;
-	(*pRear) = P;
+	P = MakeNode(c, e);
+	(*pRear)->link = P;
+	*pRear = P;
 }
 
 Polynomial Add(Polynomial P1, Polynomial P2)
 {
 	Polynomial P, Rear, Tmp;
-	int Sum;
+	int sum;
 	
 	/* Using a dummy header for convenience */
-	P = (Polynomial) malloc(sizeof(struct Node));
-	P->Link = NULL;
+	P = (Polynomial) malloc(sizeof(struct Node)); P->link = NULL;
 	Rear = P;
 	while (P1 && P2)
-		switch (Compare(P1->Exp, P2->Exp)) {
+		switch (Compare(P1->exp, P2->exp)) {
 		case 1:
-			Attach(P1->Coef, P1->Exp, &Rear);
-			P1 = P1->Link;
+			Attach(P1->coef, P1->exp, &Rear);
+			P1 = P1->link;
 			break;
 		case 0:
-			Sum = P1->Coef + P2->Coef;
-			if (Sum) Attach(Sum, P1->Exp, &Rear);
+			sum = P1->coef + P2->coef;
+			if (sum) Attach(sum, P1->exp, &Rear);
 
-			P1 = P1->Link;
-			P2 = P2->Link;
+			P1 = P1->link;
+			P2 = P2->link;
 			break;
 		case -1:
-			Attach(P2->Coef, P2->Exp, &Rear);
-			P2 = P2->Link;
+			Attach(P2->coef, P2->exp, &Rear);
+			P2 = P2->link;
 			break;
 		}
 
 	/* Handle the rest of the list which is not empty */
-	while (P1) { Attach(P1->Coef, P1->Exp, &Rear); P1 = P1->Link; }
-	while (P2) { Attach(P2->Coef, P2->Exp, &Rear); P2 = P2->Link; }
+	for (; P1; P1 = P1->link) Attach(P1->coef, P1->exp, &Rear);
+	for (; P2; P2 = P2->link) Attach(P2->coef, P2->exp, &Rear);
 
-	Tmp = P; P = P->Link; free(Tmp);
+	Tmp = P; P = P->link; free(Tmp);
 	return P;
 }
 
@@ -99,52 +98,48 @@ Polynomial Mult(Polynomial P1, Polynomial P2)
 {
 	Polynomial P;
 	PtrToNode Rear, t1, t2, Tmp;
-	int Coefficient, Exponent;
+	int c, e;
 
 	/* If one of the polynomial list is empty */
 	if (!P1 || !P2) return NULL;
 
-	P = (Polynomial) malloc(sizeof(struct Node));
-	P->Link = NULL;
+	t1 = P1; t2 = P2;
+	P = (Polynomial) malloc(sizeof(struct Node)); P->link = NULL;
 	Rear = P;
-	t1 = P1;
-	t2 = P2;
 	/* Create a polynomial list firstly */
 	while (t2) {
-		Attach(t1->Coef*t2->Coef, t1->Exp+t2->Exp, &Rear);
-		t2 = t2->Link;
+		Attach(t1->coef*t2->coef, t1->exp+t2->exp, &Rear);
+		t2 = t2->link;
 	}
-	t1 = t1->Link;
+	t1 = t1->link;
 
 	/* Add new items into polynomial P created beforehand */
 	while (t1) {
-		t2 = P2;
-		Rear = P;
+		t2 = P2; Rear = P;
 		while (t2) {
-			Coefficient = t1->Coef * t2->Coef;
-			Exponent = t1->Exp + t2->Exp;
+			c = t1->coef * t2->coef;
+			e = t1->exp + t2->exp;
 
 			/* Find the position to insert into */
-			while (Rear->Link && Rear->Link->Exp > Exponent)
-				Rear = Rear->Link;
-			if (Rear->Link && Rear->Link->Exp == Exponent) {
+			while (Rear->link && Rear->link->exp > e)
+				Rear = Rear->link;
+			if (Rear->link && Rear->link->exp == e) {
 				/* Coefficient sum is not 0 */
-				if (Rear->Link->Coef + Coefficient)
-					Rear->Link->Coef += Coefficient;
+				if (Rear->link->coef + c)
+					Rear->link->coef += c;
 				else {
-					Tmp = Rear->Link; Rear->Link = Tmp->Link; free(Tmp);
+					Tmp = Rear->link; Rear->link = Tmp->link; free(Tmp);
 				}
 			} else {
-				Tmp = MakeNode(Coefficient, Exponent);
-				Tmp->Link = Rear->Link;
-				Rear->Link = Tmp;
+				Tmp = MakeNode(c, e);
+				Tmp->link = Rear->link; Rear->link = Tmp;
 			}
-			t2 = t2->Link;
+			t2 = t2->link;
 		}
-		t1 = t1->Link;
+		t1 = t1->link;
 	}
 
-	Tmp = P; P = P->Link; free(Tmp);
+	Tmp = P; P = P->link; free(Tmp);
 	return P;
 }
 
@@ -159,8 +154,8 @@ void PrintPoly(Polynomial P)
 		if (!flag) flag = 1;
 		else printf(" ");
 
-		printf("%d %d", T->Coef, T->Exp);
-		T = T->Link;
+		printf("%d %d", T->coef, T->exp);
+		T = T->link;
 	}
 	putchar('\n');
 }
@@ -171,14 +166,14 @@ Polynomial ReadPoly()
 	Polynomial P, Rear, t;
 
 	scanf("%d", &N);
-	P = (Polynomial) malloc(sizeof(struct Node));
-	P->Link = NULL;
+	P = (Polynomial) malloc(sizeof(struct Node)); P->link = NULL;
 	Rear = P;
 	while (N--) {
 		scanf("%d %d", &c, &e);
 		Attach(c, e, &Rear);
 	}
-	t = P; P = P->Link; free(t);
+
+	t = P; P = P->link; free(t);
 	return P;
 }
 
