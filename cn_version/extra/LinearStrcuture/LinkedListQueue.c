@@ -1,4 +1,4 @@
-/* Implimentaion of queue in linked list:
+/* Implimentaion of queue in linked list (without headnode):
  * Note: Front and Rear point to the first node and last node respectively 
  */ 
 typedef struct Node *PtrToNode;
