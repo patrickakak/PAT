@@ -1,3 +1,19 @@
+/* Sample Input:
+ * 00100 6 4
+ * 00000 4 99999
+ * 00100 1 12309
+ * 68237 6 -1
+ * 33218 3 00000
+ * 99999 5 68237
+ * 12309 2 33218
+ * Sample Output:
+ * 00000 4 33218
+ * 33218 3 12309
+ * 12309 2 00100
+ * 00100 1 99999
+ * 99999 5 68237
+ * 68237 6 -1
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,10 +34,10 @@ struct ListRecord {
 };
 
 List CreateList();
-void PrintList( List L );
-List ReverseK( List L, int K ); // Reverse the links of every K elements on L
-int FindPos( List L, int Current, int K );
-int CountList( List L );
+void PrintList(List L);
+List ReverseK(List L, int K); // Reverse the links of every K elements on L
+int FindPos(List L, int Current, int K);
+int CountList(List L);
 
 int main()
 {
@@ -51,7 +67,7 @@ int main()
 	return 0;
 }
 
-int CountList( List L )
+int CountList(List L)
 {
 	int i, t;
 	for (t = L->FirAddr, i = 0; t != -1; i++, t = L->Arr[t].Next)
@@ -59,7 +75,7 @@ int CountList( List L )
 	return i;
 }
 
-List ReverseK( List L, int K )
+List ReverseK(List L, int K)
 {
 	int i, j;
 	int Times, W, T, P, R;
@@ -95,7 +111,7 @@ List ReverseK( List L, int K )
 	return L;
 }
 
-int FindPos( List L, int Current, int K )
+int FindPos(List L, int Current, int K)
 {
 	int i, index;
 	
@@ -116,7 +132,7 @@ List CreateList()
 	return L;
 }
 
-void PrintList( List L )
+void PrintList(List L)
 {
 	int i, t;
 
