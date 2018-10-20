@@ -50,7 +50,6 @@ int main()
 						   last group of reversed elements */
 
 	/* freopen("test.txt", "r", stdin); */
-
 	scanf("%d %d %d", &firAddr, &N, &K);
 	L = CreatL(); L->fir = firAddr;
 	Readin(L, N);
@@ -59,17 +58,15 @@ int main()
     if (K == 1) { PrintL(L); DestroyL(L); exit(EXIT_SUCCESS); }
 	while (time--) {
 		new = ReverseK(L, K);
-		if (!flag) {
+		if (!flag) { 	/* First time handling */
 			addrH = new;
 			flag = 1;
 		} else
 			L->pData[last].next = new;
 		last = L->fir;
-		L->fir = L->pData[last].next;
+		L->fir = L->pData[last].next; 	/* Move head */
 	}
-	L->fir = addrH;
-	PrintL(L);
-	DestroyL(L);
+	L->fir = addrH; PrintL(L); DestroyL(L);
 	return 0;
 }
 
