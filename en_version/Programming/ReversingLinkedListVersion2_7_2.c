@@ -1,108 +1,134 @@
+/* Sample Input:
+ * 00100 6 4
+ * 00000 4 99999
+ * 00100 1 12309
+ * 68237 6 -1
+ * 33218 3 00000
+ * 99999 5 68237
+ * 12309 2 33218
+ * --------------
+ * Sample Output:
+ * 00000 4 33218
+ * 33218 3 12309
+ * 12309 2 00100
+ * 00100 1 99999
+ * 99999 5 68237
+ * 68237 6 -1
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXN 100000
-typedef struct LNode *PtrToLNode;
+typedef int AddrType, ElemType, PtrType;
 struct LNode {
-	int addr;
-	int data;
-	int next;
+	AddrType addr;
+	ElemType elem;
+	PtrType next;
 };
+typedef struct LNode *PtrToLNode;
 
-typedef struct LNode ElementType;
-typedef struct LinkedList *List;
-struct LinkedList {
-	int firAddr;
-	int cnt;
-	ElementType *pData;
+#define MAXN 100000
+typedef struct LNode DataType;
+struct List_st {
+	AddrType fir;
+	DataType *pData;
 };
+typedef struct List_st *List;
 
-List MakeList();
-void ReadInput(List L, int N);
-void PrintList(List L);
-int CntList(List L);
-int ReverseK(List H, int K);
+List CreatL();
+void Readin(List L, int N);
+void PrintL(List L);
+int GetLLen(List L);
+PtrType ReverseK(List L, int K);
+void DestroyL(List L);
 
 int main()
 {
 	List L;
-	int firAddr, N, K, times, new, last, fir, flag=0;
+	int N, K, lenL, time, flag=0;
+	AddrType firAddr, addrH;
+	PtrType new, last; 	/* last points to the last node of 
+						   last group of reversed elements */
+
+	/* freopen("test.txt", "r", stdin); */
 
 	scanf("%d %d %d", &firAddr, &N, &K);
-	L = MakeList();
-	L->firAddr = firAddr;
+	L = CreatL(); L->fir = firAddr;
+	Readin(L, N);
 
-	ReadInput(L, N);
-	L->cnt = CntList(L);
-	times = L->cnt/K;
-	while (times--) {
+    lenL = GetLLen(L); time = lenL/K;
+    if (K == 1) { PrintL(L); DestroyL(L); exit(EXIT_SUCCESS); }
+	while (time--) {
 		new = ReverseK(L, K);
 		if (!flag) {
-			fir = new;
+			addrH = new;
 			flag = 1;
 		} else
 			L->pData[last].next = new;
-		last = L->firAddr;
-		L->firAddr = L->pData[last].next;
+		last = L->fir;
+		L->fir = L->pData[last].next;
 	}
-	L->firAddr = fir;
-	PrintList(L);
+	L->fir = addrH;
+	PrintL(L);
+	DestroyL(L);
 	return 0;
 }
 
-List MakeList()
+List CreatL()
 {
-	List L = (List) malloc(sizeof(struct LNode));
-	L->firAddr = -1;
-	L->pData = (ElementType *) malloc(MAXN*sizeof(struct LNode));
+	List L;
+	L = (List) malloc(sizeof(struct List_st));
+	L->fir = -1;
+	L->pData = (DataType *) malloc(MAXN*sizeof(DataType));
 	return L;
 }
 
-void ReadInput(List L, int N)
+void Readin(List L, int N)
 {
-	int addr;
+	int i;
+	AddrType a;
 
-	while (N--) {
-		scanf("%d", &addr);
-		scanf("%d %d", &L->pData[addr].data, &L->pData[addr].next);
-		L->pData[addr].addr = addr;
+	for (i = 0; i < N; i++) {
+		scanf("%d", &a);
+		scanf("%d %d", &L->pData[a].elem, &L->pData[a].next);
+		L->pData[a].addr = a;
 	}
 }
 
-void PrintList(List L)
+void PrintL(List L)
 {
-	int i;
-
-    for (i = L->firAddr; i != -1; i = L->pData[i].next)
-    	if (L->pData[i].next == -1)
-			printf("%05d %d -1\n", L->pData[i].addr, L->pData[i].data);
+	AddrType t;
+	for (t=L->fir; t!=-1; t=L->pData[t].next)
+		if (L->pData[t].next == -1)
+			printf("%05d %d -1\n", t, L->pData[t].elem);
 		else
-			printf("%05d %d %05d\n",
-					L->pData[i].addr, L->pData[i].data, L->pData[i].next);
+			printf("%05d %d %05d\n", t, L->pData[t].elem, L->pData[t].next);
 }
 
-int CntList(List L)
+int GetLLen(List L)
 {
-	int cnt, t;
-	for (t=L->firAddr, cnt=0; t != -1; cnt++, t=L->pData[t].next) ;
-	return cnt;
+	int t, len = 0;
+	for (t=L->fir; t!=-1; t=L->pData[t].next) len++;
+	return len;
 }
 
-int ReverseK(List L, int K)
+PtrType ReverseK(List L, int K)
 {
-	int cnt, new, old, tmp;
+	PtrType new, old, tmp;
 
-	cnt = 1;
-	new = L->firAddr;
-	old = L->pData[new].next;
-	while (cnt < K) {
+	new = L->fir; old = L->pData[new].next;
+	while (--K) {
 		tmp = L->pData[old].next;
 		L->pData[old].next = new;
 		new = old;
 		old = tmp;
-		cnt++;
 	}
-	L->pData[L->firAddr].next = old;
+	L->pData[L->fir].next = old;
 	return new;
+}
+
+void DestroyL(List L)
+{
+	free(L->pData);
+	free(L);
 }
 
