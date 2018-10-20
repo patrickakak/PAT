@@ -61,10 +61,8 @@ int Judge(Stack S, int N)
 
 	for (i = 0; i < N; i++) {
 		scanf("%d", &x);
-		if (flag || (x-max > S->Max)) {
-			flag = 1;
-			continue;
-		}
+		if (flag) continue;
+
 		/* x>last or x<last */
 		if (x > last) {
 			if (x-max+CntS(S) > S->Max) {
