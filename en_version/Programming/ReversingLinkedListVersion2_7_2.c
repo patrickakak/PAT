@@ -54,8 +54,8 @@ int main()
 	L = CreatL(); L->fir = firAddr;
 	Readin(L, N);
 
-    lenL = GetLLen(L); time = lenL/K;
-    if (K == 1) { PrintL(L); DestroyL(L); exit(EXIT_SUCCESS); }
+	lenL = GetLLen(L); time = lenL/K;
+	if (K == 1) { PrintL(L); DestroyL(L); exit(EXIT_SUCCESS); }
 	while (time--) {
 		new = ReverseK(L, K);
 		if (!flag) { 	/* First time handling */
