@@ -1,7 +1,8 @@
-/* Implimentaion of queue in array
+/* Implimentaion of queue(FIFO) in array:
  * Note: Front points to the front position of fist element, 
  *       Rear points to the last element 
  */
+/* defile ERROR, ElementType here */
 typedef int Position;
 struct QNode {
 	ElementType *Data; 	/* Array to store elements */
