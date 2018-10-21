@@ -74,12 +74,11 @@ Tree BuildTree(struct TNode T[])
 	int i, N, Root=Null, check[MaxSize];
 	char cl, cr;
 
-	scanf("%d\n", &N);
+	scanf("%d\n", &N); 	/* Don't forget to read the linefeed character */
 	if (N) {
 		for (i = 0; i < N; i++) check[i] = 0;
 		for (i = 0; i < N; i++) {
 			scanf("%c %c %c", &T[i].Data, &cl, &cr); getc(stdin);
-
 			/* Handle left subtree index character */
 			if (cl != '-') {
 				T[i].Left = cl - '0';
