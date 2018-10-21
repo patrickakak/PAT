@@ -1,7 +1,8 @@
+/* Define MAXSIZE here */
 typedef struct LNode *List;
 struct LNode {
 	ElementType Element[MAXSIZE];
-	int Length;
+	int Length; 	/* Max length equals MAXSIZE-1 */
 };
 
 /* With a sentinel
