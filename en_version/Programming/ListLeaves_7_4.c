@@ -1,4 +1,16 @@
-// Data Structures and Algorithms (English) 7-4 List Leaves
+/* Sample Input:
+ * 8
+ * 1 -
+ * - -
+ * 0 -
+ * 2 7
+ * - -
+ * - -
+ * 5 -
+ * 4 6
+ * Sample Output:
+ * 4 1 5
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,15 +30,12 @@ struct QNode {
 	int Max;
 };
 
-// Feature functions
 Tree BuildTree(struct TNode TreeArr[]);
 void LevelOrderListLeaves(Tree R);
-
-// Operation set for queue
 Queue CreatQueue(int MaxSz);
-void EnQueue(Queue Q, Tree T);
+void Enqueue(Queue Q, Tree T);
 int IsFullQ(Queue Q);
-Tree DeQueue(Queue Q);
+Tree Dequeue(Queue Q);
 int IsEmptyQ(Queue Q);
 
 int main()
@@ -43,18 +52,17 @@ Tree BuildTree(struct TNode TreeArr[])
 	int i, N, Root, check[MaxSize];
 	char cl, cr;
 
-	// Read the number of tree nodes
+	/* Read the number of tree nodes */
 	scanf("%d\n", &N);
 	if (N <= 0) return EmptyTree;
 
-	// Array to find out root
+	/* Array to find out root */
 	for (i = 0; i < MaxSize; i++) check[i] = 0;
 	for (i = 0; i < N; i++) {
 		scanf("%c %c", &cl, &cr);
 		getc(stdin);
 		if (cl != '-') {
-			// '6'-'0' is 6 of int
-			TreeArr[i].Left = cl - '0';
+			TreeArr[i].Left = cl - '0'; 	/* '6'-'0' is 6 of integer */
 			check[TreeArr[i].Left] = 1;
 		} else 
 			TreeArr[i].Left = Null;
@@ -75,21 +83,21 @@ void LevelOrderListLeaves(Tree R)
 {
 	Queue Q;
 	Tree T;
-	int flag = 1; // To control output format
+	int flag = 1; 	/* To control output format */
 
 	if (R == EmptyTree) return;
 	Q = CreatQueue(MaxSize);
-	EnQueue(Q, R);
+	Enqueue(Q, R);
 
 	while (!IsEmptyQ(Q)) {
-		T = DeQueue(Q);
+		T = Dequeue(Q);
 		if (TreeArr[T].Left == Null && TreeArr[T].Right == Null) {
 			if (flag) flag = 0;
 			else printf(" ");
-			printf("%d", T); // T is the index of the tree node in array
+			printf("%d", T); 	/* T is the index of the tree node in array */
 		}
-		if (TreeArr[T].Left != Null) EnQueue(Q, TreeArr[T].Left);
-		if (TreeArr[T].Right != Null) EnQueue(Q, TreeArr[T].Right);
+		if (TreeArr[T].Left != Null) Enqueue(Q, TreeArr[T].Left);
+		if (TreeArr[T].Right != Null) Enqueue(Q, TreeArr[T].Right);
 	}
 	putchar('\n');
 }
@@ -103,7 +111,7 @@ Queue CreatQueue(int MaxSz)
 	return Q;
 }
 
-void EnQueue(Queue Q, Tree T)
+void Enqueue(Queue Q, Tree T)
 {
 	if (IsFullQ(Q)) {
 		printf("Full Queue!\n");
@@ -118,7 +126,7 @@ int IsFullQ(Queue Q)
 	return ((Q->Rear+1) % (Q->Max) == Q->Front);
 }
 
-Tree DeQueue(Queue Q)
+Tree Dequeue(Queue Q)
 {
 	if (IsEmptyQ(Q)) {
 		printf("Queue empty!\n");
