@@ -78,9 +78,7 @@ Tree BuildTree(struct TNode T[])
 	if (N) {
 		for (i = 0; i < N; i++) check[i] = 0;
 		for (i = 0; i < N; i++) {
-			scanf("%c %c %c", &T[i].Data, &cl, &cr);
-			getc(stdin);
-
+			scanf("%c %c %c", &T[i].Data, &cl, &cr); getc(stdin);
 			if (cl != '-') {
 				T[i].Left = cl - '0';
 				check[T[i].Left] = 1;
