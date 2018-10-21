@@ -66,7 +66,6 @@ int main()
 	R2 = BuildTree(T2);
 	if (Isomorphic(R1, R2)) printf("Yes\n");
 	else printf("No\n");
-
 	return 0;
 }
 
@@ -80,12 +79,14 @@ Tree BuildTree(struct TNode T[])
 		for (i = 0; i < N; i++) check[i] = 0;
 		for (i = 0; i < N; i++) {
 			scanf("%c %c %c", &T[i].Data, &cl, &cr); getc(stdin);
+
+			/* Handle left subtree index character */
 			if (cl != '-') {
 				T[i].Left = cl - '0';
 				check[T[i].Left] = 1;
 			} else
 				T[i].Left = Null;
-
+			/* Handle right subtree index character */
 			if (cr != '-') {
 				T[i].Right = cr - '0';
 				check[T[i].Right] = 1;
@@ -108,14 +109,16 @@ bool Isomorphic(Tree R1, Tree R2)
 		return false; 	/* One of them is empty */
 	if (T1[R1].Data != T2[R2].Data)
 		return false; 	/* Roots are different */
-	/* Both have no left subtree */
+	/* A: Both have no left subtree */
 	if (T1[R1].Left==Null && T2[R2].Left==Null)
 		return Isomorphic(T1[R1].Right, T2[R2].Right);
-	if ((T1[R1].Left!=Null && T2[R2].Left!=Null) 
-			&& (T1[T1[R1].Left].Data==T2[T2[R2].Left].Data))
+	/* B: Both left subtree are not empty */
+	if (T1[R1].Left!=Null && T2[R2].Left!=Null 
+			&& T1[T1[R1].Left].Data==T2[T2[R2].Left].Data)
 		/* No need to swap the left and the right */
 		return (Isomorphic(T1[R1].Left, T2[R2].Left) 
 				&& Isomorphic(T1[R1].Right, T2[R2].Right));
+	/* C: One of the left subtree is empty */
 	else 	/* Need to swap the left and the right */
 		return (Isomorphic(T1[R1].Left, T2[R2].Right) 
 				&& Isomorphic(T1[R1].Right, T2[R2].Left));
