@@ -44,6 +44,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define Null -1
 #define MaxSize 10
@@ -55,7 +56,7 @@ struct TNode {
 } T1[MaxSize], T2[MaxSize];
 
 Tree BuildTree(struct TNode T[]);
-int Isomorphic(Tree R1, Tree R2);
+bool Isomorphic(Tree R1, Tree R2);
 
 int main()
 {
@@ -99,14 +100,14 @@ Tree BuildTree(struct TNode T[])
 }
 
 /* A recursive function */
-int Isomorphic(Tree R1, Tree R2)
+bool Isomorphic(Tree R1, Tree R2)
 {
 	if (R1==Null && R2==Null) 	/* Both empty */
-		return 1;
+		return true;
 	if ((R1==Null && R2!=Null) || (R2==Null && R1!=Null))
-		return 0; 	/* One of them is empty */
+		return false; 	/* One of them is empty */
 	if (T1[R1].Data != T2[R2].Data)
-		return 0; 	/* Roots are different */
+		return false; 	/* Roots are different */
 	/* Both have no left subtree */
 	if (T1[R1].Left==Null && T2[R2].Left==Null)
 		return Isomorphic(T1[R1].Right, T2[R2].Right);
