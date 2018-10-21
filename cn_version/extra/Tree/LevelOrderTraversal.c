@@ -1,17 +1,19 @@
-// LevelOrderTraversal
-void LevelOrderTraversal( BinTree BT )
+/* Level order traversal */
+void LevelOrderTraversal(BinTree BT)
 {
 	Queue Q;
 	BinTree T;
 
-	if (!BT) return;	// If it's an empty tree
-	Q = CreateQueue(MaxSize);	// Create and initialize queue
-	EnQueue(Q, BT);
+	if (!BT) return;	/* Empty tree, do nothing */
+	Q = CreatQueue(MaxSize);	/* Create and initialize queue */
+	Enqueue(Q, BT);
 	while (!IsEmptyQ(Q)) {
-		T = DeQueue(Q);
-		printf("d\n", T->Data);
-		if (T->Left) EnQueue(Q, T->Left);
-		if (T->Right) EnQueue(Q, T->Right);
+		T = Dequeue(Q);
+		printf("%d", T->Data);
+		if (T->Left)
+			Enqueue(Q, T->Left);
+		if (T->Right)
+			Enqueue(Q, T->Right);
 	}
 }
 
