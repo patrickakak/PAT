@@ -13,131 +13,132 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define MaxSize 10
+#define ERROR -1
 #define Null -1
-#define EmptyTree -1
-
 typedef int Tree;
 struct TNode {
 	Tree Left, Right;
-} TreeArr[MaxSize];
+} T[MaxSize];
 
-typedef struct QNode *Queue;
+typedef Tree ElemType;
+typedef struct QNode *PtrToQNode;
 struct QNode {
-	Tree *pTArr;
 	int Front, Rear;
 	int Max;
+	ElemType *pData;
 };
+typedef PtrToQNode Queue;
 
-Tree BuildTree(struct TNode TreeArr[]);
-void LevelOrderListLeaves(Tree R);
-Queue CreatQueue(int MaxSz);
-void Enqueue(Queue Q, Tree T);
-int IsFullQ(Queue Q);
-Tree Dequeue(Queue Q);
-int IsEmptyQ(Queue Q);
+Tree BuildTree(struct TNode T[]);
+void LevelOrderTraversal(Tree R);
+bool Enqueue(Queue Q, ElemType item);
+ElemType Dequeue(Queue Q);
+bool IsFullQ(Queue Q);
+bool IsEmptyQ(Queue Q);
+Queue CreatQ(int Size);
+void DestroyQ(Queue Q);
 
 int main()
 {
 	Tree R;
 
-	R = BuildTree(TreeArr);
-	LevelOrderListLeaves(R);
+	R = BuildTree(T);
+	LevelOrderTraversal(R);
 	return 0;
 }
 
-Tree BuildTree(struct TNode TreeArr[])
+Tree BuildTree(struct TNode T[])
 {
-	int i, N, Root, check[MaxSize];
+	int i, N, Root=Null, check[MaxSize]; 	/* check[] to find out root */
 	char cl, cr;
 
-	/* Read the number of tree nodes */
-	scanf("%d\n", &N);
-	if (N <= 0) return EmptyTree;
+	scanf("%d\n", &N); 	/* Read the number of tree nodes */
+	if (N) {
+		for (i = 0; i < MaxSize; i++) check[i] = 0;
+		for (i = 0; i < N; i++) {
+			scanf("%c %c", &cl, &cr); getc(stdin);
 
-	/* Array to find out root */
-	for (i = 0; i < MaxSize; i++) check[i] = 0;
-	for (i = 0; i < N; i++) {
-		scanf("%c %c", &cl, &cr);
-		getc(stdin);
-		if (cl != '-') {
-			TreeArr[i].Left = cl - '0'; 	/* '6'-'0' is 6 of integer */
-			check[TreeArr[i].Left] = 1;
-		} else 
-			TreeArr[i].Left = Null;
-
-		if (cr != '-') {
-			TreeArr[i].Right = cr - '0';
-			check[TreeArr[i].Right] = 1;
-		} else
-			TreeArr[i].Right = Null;
+			if (cl != '-') {
+				T[i].Left = cl - '0'; 	/* '6'-'0' is 6 of integer */
+				check[T[i].Left] = 1;
+			} else
+				T[i].Left = Null;
+			if (cr != '-') {
+				T[i].Right = cr - '0';
+				check[T[i].Right] = 1;
+			} else
+				T[i].Right = Null;
+		}
+		for (i = 0; i < N; i++)
+			if (!check[i]) break;
+		Root = i;
 	}
-	for (i = 0; i < N; i++)
-		if (!check[i])
-			break;
-	return (Root = i);
+	return Root;
 }
 
-void LevelOrderListLeaves(Tree R)
+void LevelOrderTraversal(Tree R)
 {
 	Queue Q;
-	Tree T;
-	int flag = 1; 	/* To control output format */
+	Tree t;
+	int flag = 0; 	/* To control output format */
 
-	if (R == EmptyTree) return;
-	Q = CreatQueue(MaxSize);
+	if (R == Null) return;
+	Q = CreatQ(MaxSize);
 	Enqueue(Q, R);
-
 	while (!IsEmptyQ(Q)) {
-		T = Dequeue(Q);
-		if (TreeArr[T].Left == Null && TreeArr[T].Right == Null) {
-			if (flag) flag = 0;
+		t = Dequeue(Q);
+		if (T[t].Left==Null && T[t].Right==Null) { 	/* Print leaves of tree */
+			if (!flag) flag = 1;
 			else printf(" ");
-			printf("%d", T); 	/* T is the index of the tree node in array */
+			printf("%d", t);
 		}
-		if (TreeArr[T].Left != Null) Enqueue(Q, TreeArr[T].Left);
-		if (TreeArr[T].Right != Null) Enqueue(Q, TreeArr[T].Right);
+		if (T[t].Left != Null) Enqueue(Q, T[t].Left);
+		if (T[t].Right != Null) Enqueue(Q, T[t].Right);
 	}
+	DestroyQ(Q);
 	putchar('\n');
 }
 
-Queue CreatQueue(int MaxSz)
+Queue CreatQ(int Size)
 {
 	Queue Q = (Queue) malloc(sizeof(struct QNode));
-	Q->pTArr = (Tree *) malloc(MaxSz * sizeof(Tree));
 	Q->Front = Q->Rear = 0;
-	Q->Max = MaxSz;
+	Q->Max = Size;
+	Q->pData = (ElemType *) malloc(Size * sizeof(ElemType));
 	return Q;
 }
 
-void Enqueue(Queue Q, Tree T)
+void DestroyQ(Queue Q)
 {
-	if (IsFullQ(Q)) {
-		printf("Full Queue!\n");
-		return;
-	}
-	Q->Rear = (Q->Rear+1)%(Q->Max);
-	Q->pTArr[Q->Rear] = T;
+	free(Q->pData);
+	free(Q);
 }
 
-int IsFullQ(Queue Q)
+bool Enqueue(Queue Q, ElemType item)
 {
-	return ((Q->Rear+1) % (Q->Max) == Q->Front);
+	if (IsFullQ(Q)) return false;
+	Q->Rear = (Q->Rear+1) % Q->Max;
+	Q->pData[Q->Rear] = item;
+	return true;
 }
 
-Tree Dequeue(Queue Q)
+ElemType Dequeue(Queue Q)
 {
-	if (IsEmptyQ(Q)) {
-		printf("Queue empty!\n");
-		return EmptyTree;
-	}
-	Q->Front = (Q->Front+1) % (Q->Max);
-	return Q->pTArr[Q->Front];
+	if (IsEmptyQ(Q)) return ERROR;
+	Q->Front = (Q->Front+1) % Q->Max;
+	return Q->pData[Q->Front];
 }
 
-int IsEmptyQ(Queue Q)
+bool IsFullQ(Queue Q)
 {
-	return (Q->Front == Q->Rear);
+	return (Q->Rear+1)%Q->Max == Q->Front;
+}
+
+bool IsEmptyQ(Queue Q)
+{
+	return Q->Front == Q->Rear;
 }
 
