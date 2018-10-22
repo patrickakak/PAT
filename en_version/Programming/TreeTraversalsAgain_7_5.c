@@ -109,7 +109,7 @@ void PostOrderTraversal(Stack S, int N)
 		scanf("%s", Op);
 		if (!strcmp(Op, "Push")) {
 			scanf("%d", &x.Elem);
-			x.Nv = 1;
+			x.Nv = 1; 	/* First time visit, same pace with preorder sequence */
 			Push(S, x);
 		} else 	/* Either Push or Pop */
 			/* Increase the visitation times of stack top element by one 
