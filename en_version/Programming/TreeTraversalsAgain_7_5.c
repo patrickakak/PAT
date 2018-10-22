@@ -40,40 +40,22 @@ bool IsEmptyS(Stack S);
 bool IsFullS(Stack S);
 bool Push(Stack S, DataType item);
 DataType Pop(Stack S);
+void PostOrderTraversal(Stack S, int N);
 
 int main()
 {
-	int N, i, flag=0; 	/* flag to control output format */
-	char Op[5]; 	/* Operation of stack */
-	DataType x, t;
+	int N; 	/* flag to control output format */
 	Stack S;
 
 	scanf("%d", &N);
 	if (!N) return 0;
 
+	/* Given the preorder and inorder of a binary tree, generate the postorder 
+	 * traversal sequence of this tree */
 	S = CreatS(MAXSIZE);
-	for (i = 0; i < 2*N; i++) {
-		scanf("%s", Op);
-		if (!strcmp(Op, "Push")) {
-			scanf("%d", &x.Elem);
-			x.Nv = 1;
-			Push(S, x);
-		} else 	/* Either Push or Pop */
-			/* Increase the visitation times of stack top element by one 
-			 * in a loop, if it has been visited three times, then just 
-			 * pop it out (it will be in postorder naturally) */
-			while (!IsEmptyS(S) && ++S->pData[S->Top].Nv==3) {
-				t = Pop(S);
-				if (!flag) flag = 1; else putchar(' ');
-				printf("%d", t.Elem);
-			}
-	}
-	while (!IsEmptyS(S)) { 	/* Pop out those remaining elements */
-		t = Pop(S);
-		if (!flag) flag = 1; else putchar(' ');
-		printf("%d", t.Elem);
-	}
+	PostOrderTraversal(S, N);
 	DestroyS(S);
+	
 	putchar('\n');
 	return 0;
 }
@@ -115,5 +97,34 @@ DataType Pop(Stack S)
 	ERROR.Elem = ERROR.Nv = -1;
 	if (IsEmptyS(S)) return ERROR;
 	else return S->pData[S->Top--];
+}
+
+void PostOrderTraversal(Stack S, int N)
+{
+	int i, flag=0; 	/* flag to control output format */
+	char Op[5]; 	/* Operation of stack */
+	DataType x, t;
+	
+	for (i = 0; i < 2*N; i++) {
+		scanf("%s", Op);
+		if (!strcmp(Op, "Push")) {
+			scanf("%d", &x.Elem);
+			x.Nv = 1;
+			Push(S, x);
+		} else 	/* Either Push or Pop */
+			/* Increase the visitation times of stack top element by one 
+			 * in a loop, if it has been visited three times, then just 
+			 * pop it out (it will be in postorder naturally) */
+			while (!IsEmptyS(S) && ++S->pData[S->Top].Nv==3) {
+				t = Pop(S);
+				if (!flag) flag = 1; else putchar(' ');
+				printf("%d", t.Elem);
+			}
+	}
+	while (!IsEmptyS(S)) { 	/* Pop out those remaining elements */
+		t = Pop(S);
+		if (!flag) flag = 1; else putchar(' ');
+		printf("%d", t.Elem);
+	}
 }
 
