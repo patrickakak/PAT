@@ -91,6 +91,7 @@ BinTree Insert(BinTree BST, ElementType X)
 		/* Should be the left subtree to insert into */
 		else if (X > BST->Data)
 			BST->Right = Insert(BST->Right, X);
+		/* Otherwise X already exists, do nothing */
 
 	return BST;
 }
