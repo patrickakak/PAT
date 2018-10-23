@@ -1,4 +1,9 @@
-/* Operation set of Binary Search Tree (BST) */
+/* Operation set of Binary Search Tree (BST) 
+ *
+ * So how to determine if a tree is a BST or not?, we can use inorder 
+ * traversal to help us, set a last variable to store the last element (L) 
+ * popped out stack and compare it with the current element (X) popped out, 
+ * if X is lesser than L, then an error occured */
 #include <stdio.h>
 #include <stdlib.h>
 
