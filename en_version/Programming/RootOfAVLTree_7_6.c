@@ -55,17 +55,14 @@ AVLTree Insert(AVLTree T, ElementType X)
 			 * last time, so if the tree gets unbalanced, it must be the Left
 			 * subtree which is relatively taller */
 
-			if (GetHeight(T->Left) - GetHeight(T->Right) == 2) {
+			if (GetHeight(T->Left) - GetHeight(T->Right) == 2)
 				if (X < T->Left->v) T = LLRotation(T);
 				else T = LRRotation(T);
-			}
 		} else if (X > T->v) {
 			T->Right = Insert(T->Right, X);
-
-			if (GetHeight(T->Right) - GetHeight(T->Left) == 2) {
+			if (GetHeight(T->Right) - GetHeight(T->Left) == 2)
 				if (X > T->Right->v) T = RRRotation(T);
 				else T = RLRotation(T);
-			}
 		}
 	return T;
 }
