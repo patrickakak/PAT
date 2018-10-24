@@ -91,7 +91,10 @@ Tree Insert(Tree T, ElementType V)
 	return T;
 }
 
-/* Return: 0 - Not identical,  1 - identical trees */
+/* Return: 0-Not identical,  1-identical trees
+ * Note: cause the times of checking is definitly less than elements number 
+ * in tree, also, the elements of new sequence is same, so no need to check 
+ * whether T is NULL or not */
 static int check(Tree T, ElementType V)
 {
 	if (T->flag)
