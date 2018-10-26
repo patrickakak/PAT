@@ -26,7 +26,7 @@ int main()
 	 *         / \  /                 / \   /
 	 *        0   2 4              A[0]A[2] A[4]
 	 ***********************************************************/
-	scanf("%d", &N);
+	scanf("%d", &N); 	/* N is positve guranteed */
 	for (i = 0; i < N; i++)
 		scanf("%d", &A[i]);
 
@@ -48,11 +48,11 @@ int compar(const void *pA, const void *pB)
 	return *(int *)pA - *(int *)pB;
 }
 
-/* Inorder traversal: extract the data inside arr (which have been sorted 
- * out when using function qsort), fill them into LevelOrderArr.
+/* Inorder traversal: extract the data inside array A (which have been 
+ * re-arranged using qsort), fill them into LevelOrderCBST array
  *   
- * Cause in complete binary tree, 2i and 2i+1 is the left and the right child 
- * of the i node respectively (array begins with index 1) */
+ * In complete binary tree (CBST), 2i+1 and 2i+2 is the left and right 
+ * child of the i node respectively (array begins with index zero) */
 void InorderSort(int A[], int R, int N)
 {
 	if (R < N) {
