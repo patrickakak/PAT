@@ -1,3 +1,23 @@
+/* Sample Input:
+ * 10
+ * 5 8 6 2 4 1 0 10 9 7
+ * 5
+ * 6 3 10 0 5
+ * 5
+ * 5 7 0 10 3
+ * ------------------------------
+ * Sample Output:
+ * Preorder: 5 2 1 0 4 8 6 7 10 9
+ * 6 is found
+ * 3 is not found
+ * 10 is found
+ * 10 is the largest key
+ * 0 is found
+ * 0 is the smallest key
+ * 5 is found
+ * Not Found
+ * Inorder: 1 2 4 6 8 9
+ */
 #define EMPTY NULL
 
 BinTree Insert(BinTree BST, ElementType X)
