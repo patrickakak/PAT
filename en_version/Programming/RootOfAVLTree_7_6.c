@@ -1,128 +1,134 @@
+/* Sample Input1:
+ * 5
+ * 88 70 61 96 120
+ * Sample Output1:
+ * 70
+ * ----------------
+ * Sample Input2:
+ * 7
+ * 88 70 61 96 120 90 65
+ * Sample Output2:
+ * 88
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int ElementType;
-typedef struct TreeNode *AVLTree;
-struct TreeNode {
-	ElementType v;
+typedef struct TNode *PtrToTNode;
+typedef PtrToTNode AVLTree;
+typedef int ElemType;
+struct TNode {
+	ElemType v;
 	AVLTree Left, Right;
+	int Height;
 };
 
-AVLTree Insert(AVLTree T, ElementType X);	/* Insert a node recursively */
-int GetHeight(AVLTree T);
-AVLTree LLRotation(AVLTree T);	/* Left-Left rotation */
-AVLTree LRRotation(AVLTree T);	/* Left-Right rotation */
-AVLTree RRRotation(AVLTree T);	/* Right-Right rotation */
-AVLTree RLRotation(AVLTree T);	/* Right-Left rotation */
+AVLTree InsertAVL(AVLTree T, ElemType V);
+AVLTree NewNode(ElemType V);
+AVLTree SingleLeftRotation(AVLTree A);
+AVLTree SingleRightRotation(AVLTree A);
+AVLTree DoubleLeftRightRotation(AVLTree A);
+AVLTree DoubleRightLeftRotation(AVLTree A);
+int GetHeight(AVLTree A);
+int Max(int a, int b);
 
 int main()
 {
-	ElementType X;
 	int N, i;
+	ElemType x;
 	AVLTree T = NULL;
 
-	/**
-	 *  ----------------------------------
-	 * | INPUT                 |   OUTPUT |
-	 *  ----------------------------------
-	 * | 5                     |          |
-	 * | 88 70 61 96 120       |    70    |
-	 * | 7                     |          |
-	 * | 88 70 61 96 120 90 65 |    88    |
-	 *  ----------------------------------
-	 */
-	scanf("%d", &N);
+	scanf("%d", &N); 	/* N is positive guaranteed */
 	for (i = 0; i < N; i++) {
-		scanf("%d", &X);
-		T = Insert(T, X);
+		scanf("%d", &x);
+		T = InsertAVL(T, x);
 	}
 	printf("%d\n", T->v);
-
 	return 0;
 }
 
-AVLTree Insert(AVLTree T, ElementType X)
+AVLTree InsertAVL(AVLTree T, ElemType V)
 {
-	if (!T) {
-		T = (AVLTree) malloc(sizeof(struct TreeNode));
-		T->v = X;
-		T->Left = T->Right = NULL;
-	} else
-		if (X < T->v) {
-			T->Left = Insert(T->Left, X);
+	if (!T) T = NewNode(V);
+	else if (V < T->v) {
+		T->Left = InsertAVL(T->Left, V);
 
-			/* Self-balancing after completing a insertation, cause 'X < T->v'
-			 * last time, so if the tree gets unbalanced, it must be the Left
-			 * subtree which is relatively taller */
+		/* Self-balancing after completing a insertation, cause 'X < T->v'
+		 * last time, so if the tree gets unbalanced, it must be the Left
+		 * subtree which is relatively taller */
 
-			if (GetHeight(T->Left) - GetHeight(T->Right) == 2)
-				if (X < T->Left->v) T = LLRotation(T);
-				else T = LRRotation(T);
-		} else if (X > T->v) {
-			T->Right = Insert(T->Right, X);
-			if (GetHeight(T->Right) - GetHeight(T->Left) == 2)
-				if (X > T->Right->v) T = RRRotation(T);
-				else T = RLRotation(T);
+		if (GetHeight(T->Left)-GetHeight(T->Right) == 2) {
+			if (V < T->Left->v)
+				T = SingleLeftRotation(T);
+			else
+				T = DoubleLeftRightRotation(T);
 		}
+	} else if (V > T->v) {
+		T->Right = InsertAVL(T->Right, V);
+		if (GetHeight(T->Right)-GetHeight(T->Left) == 2) {
+			if (V > T->Right->v)
+				T = SingleRightRotation(T);
+			else
+				T = DoubleRightLeftRotation(T);
+		}
+	}
 	return T;
 }
 
-int GetHeight(AVLTree T)
+AVLTree NewNode(ElemType V)
 {
-	int HL, HR, MaxH;
-
-	if (T) {
-		HL = GetHeight(T->Left);
-		HR = GetHeight(T->Right);
-		MaxH = HL > HR ? HL : HR;
-		return (MaxH + 1);
-	} else
-		return 0;
+	AVLTree T = (AVLTree) malloc(sizeof(struct TNode));
+	T->v = V;
+	T->Left = T->Right = NULL;
+	T->Height = 0;
+	return T;
 }
 
-AVLTree LLRotation(AVLTree T)
+int GetHeight(AVLTree A)
 {
-	AVLTree Parent = T->Left;
-	T->Left = Parent->Right;
-	Parent->Right = T;
-	return Parent;
+	int HL, HR;
+
+	if (!A) return 0;
+	else {
+		HL = GetHeight(A->Left);
+		HR = GetHeight(A->Right);
+		return Max(HL, HR) + 1;
+	}
 }
 
-AVLTree LRRotation(AVLTree T)
+int Max(int a, int b)
 {
-	AVLTree Parent, LChild, RChild; /* LChild, RChild to store childs of new parent temporarily */
-
-	Parent = T->Left->Right;
-	LChild = Parent->Left;
-	RChild = Parent->Right;
-	Parent->Right = T;
-	Parent->Left = T->Left;
-	T->Left->Right = LChild;
-	T->Left = RChild;
-
-	return Parent;
+	return a > b ? a : b;
 }
 
-AVLTree RRRotation(AVLTree T)
+AVLTree SingleLeftRotation(AVLTree A)
 {
-	AVLTree Parent = T->Right;
-	T->Right = Parent->Left;
-	Parent->Left = T;
-	return Parent;
+	AVLTree B = A->Left;
+	A->Left = B->Right;
+	B->Right = A;
+	A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
+	B->Height = Max(GetHeight(B->Left), A->Height) + 1;
+	return B;
 }
 
-AVLTree RLRotation(AVLTree T)
+AVLTree SingleRightRotation(AVLTree A)
 {
-	AVLTree Parent, LChild, RChild;
+	AVLTree B = A->Right;
+	A->Right = B->Left;
+	B->Left = A;
+	A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
+	B->Height = Max(GetHeight(B->Left), A->Height) + 1;
+	return B;
+}
 
-	Parent = T->Right->Left;
-	LChild = Parent->Left;
-	RChild = Parent->Right;
-	Parent->Left = T;
-	Parent->Right = T->Right;
-	T->Right->Left = RChild;
-	T->Right = LChild;
+AVLTree DoubleLeftRightRotation(AVLTree A)
+{
+	A->Left = SingleRightRotation(A->Left);
+	return SingleLeftRotation(A);
+}
 
-	return Parent;
+AVLTree DoubleRightLeftRotation(AVLTree A)
+{
+	A->Right = SingleLeftRotation(A->Right);
+	return SingleRightRotation(A);
 }
 
