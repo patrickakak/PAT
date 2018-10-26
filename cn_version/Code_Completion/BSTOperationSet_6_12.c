@@ -1,6 +1,6 @@
 #define EMPTY NULL
 
-BinTree Insert( BinTree BST, ElementType X )
+BinTree Insert(BinTree BST, ElementType X)
 {
 	if (!BST) {
 		BST = (BinTree) malloc(sizeof(struct TNode));
@@ -15,7 +15,7 @@ BinTree Insert( BinTree BST, ElementType X )
 	return BST;
 }
 
-BinTree Delete( BinTree BST, ElementType X )
+BinTree Delete(BinTree BST, ElementType X)
 {
 	Position Tmp;
 
@@ -40,7 +40,7 @@ BinTree Delete( BinTree BST, ElementType X )
 	return BST;
 }
 
-Position Find( BinTree BST, ElementType X )
+Position Find(BinTree BST, ElementType X)
 {
 	while (BST) {
 		if (X < BST->Data)
@@ -53,20 +53,20 @@ Position Find( BinTree BST, ElementType X )
 	return EMPTY;
 }
 
-Position FindMin( BinTree BST )
+Position FindMin(BinTree BST)
 {
-	if (!BST) return EMPTY;
+	if (!BST)
+		return EMPTY;
 	if (!BST->Left)
 		return BST;
 	else
 		return FindMin(BST->Left);
 }
 
-Position FindMax( BinTree BST )
+Position FindMax(BinTree BST)
 {
 	if (BST)
-		while (BST->Right)
-			BST = BST->Right;
+		while (BST->Right) BST = BST->Right;
 	return BST;
 }
 
