@@ -9,9 +9,11 @@
 
 #define MAX 1000
 typedef int ElemType;
-int LevelOrderCBST[MAX], j=0;
+int LevelOrderCBST[MAX], index=0;
 
 int compar(const void *pA, const void *pB);
+/* Every time when calling this function to visit CBST node in inorder 
+ * sequence, it assign the data in A[] implied by index to levelorder array */
 void InorderSort(int Root, int N, ElemType A[]);
 
 int main()
@@ -20,6 +22,7 @@ int main()
 	ElemType A[MAX];
 
 	/***********************************************************
+	 *          Actual CBST:          LevelOrderCSBT array:
 	 *               6                        0
 	 *             /   \                    /   \
 	 *            3     8                  1     2
@@ -57,9 +60,9 @@ int compar(const void *pA, const void *pB)
  * child of the i node respectively (array begins with index zero) */
 void InorderSort(int Root, int N, ElemType A[])
 {
-	if (Root < N) {
+	if (Root < N) { 	/* if Root is valid */
 		InorderSort(2*Root+1, N, A);
-		LevelOrderCBST[Root] = A[j++];
+		LevelOrderCBST[Root] = A[index++]; 	/* Assain value */
 		InorderSort(2*Root+2, N, A);
 	}
 }
