@@ -1,3 +1,9 @@
+/* Sample Input:
+ * 10
+ * 1 2 3 4 5 6 7 8 9 0
+ * Sample Output:
+ * 6 3 8 1 5 7 9 0 2 4
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -32,9 +38,11 @@ int main()
 	for (i = 0; i < N; i++)
 		scanf("%d", &arr[i]);
 
-	qsort(arr, N, sizeof(int), compare); // Inorder traversal of CBST is a incremental sequence
-	SortByInorder(1, N, arr);	// Match levelorderArr with inorder sequence in arr
-	for (i = 1; i <= N; i++) {	// Begins with index 1
+	/* Inorder traversal of CBST is a incremental sequence */
+	qsort(arr, N, sizeof(int), compare);
+	/* Match levelorderArr with inorder sequence in arr */
+	SortByInorder(1, N, arr);
+	for (i = 1; i <= N; i++) { 	/* Begins with index one */
 		if (flag) flag = 0;
 		else putchar(' ');
 		printf("%d", LevelOrderArr[i]);
