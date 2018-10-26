@@ -7,51 +7,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MaxSize 1000
+#define MAX 1000
+int LevelOrderCBST[MAX], j=0;
 
-int LevelOrderArr[MaxSize];
-int j = 0;
-
-int compare(const void *pA, const void *pB);
-void SortByInorder(int root, int N, int arr[]);
+int compar(const void *pA, const void *pB);
+void InorderSort(int A[], int R, int N);
 
 int main()
 {
-	int N, i = 0, flag = 1, arr[MaxSize];
+	int A[MAX], N, i, flag=0;
 
-	/* ---------------------------------------------
-	 * | INPUT               | OUTPUT              |
-	 * ---------------------------------------------
-	 * | 10                  |                     |
-	 * | 1 2 3 4 5 6 7 8 9 0 | 6 3 8 1 5 7 9 0 2 4 |
-	 * ---------------------------------------------
-	 *                    6
-	 *                  /   \
-	 *                 3     8
-	 *                / \   / \
-	 *               1   5 7   9
-	 *              / \  /
-	 *             0   2 4
-	 */
+	/***********************************************************
+	 *               6                        A[6]
+	 *             /   \                    /      \
+	 *            3     8                A[3]     A[8]
+	 *           / \   / \               /  \     /   \
+	 *          1   5 7   9           A[1]  A[5]A[7] A[9]
+	 *         / \  /                 / \   /
+	 *        0   2 4              A[0]A[2] A[4]
+	 ***********************************************************/
 	scanf("%d", &N);
 	for (i = 0; i < N; i++)
-		scanf("%d", &arr[i]);
+		scanf("%d", &A[i]);
 
 	/* Inorder traversal of CBST is a incremental sequence */
-	qsort(arr, N, sizeof(int), compare);
+	qsort(A, N, sizeof(int), compar);
+	InorderSort(A, 0, N);
 	/* Match levelorderArr with inorder sequence in arr */
-	SortByInorder(1, N, arr);
-	for (i = 1; i <= N; i++) { 	/* Begins with index one */
-		if (flag) flag = 0;
+	for (i = 0; i < N; i++) {
+		if (!flag) flag = 1;
 		else putchar(' ');
-		printf("%d", LevelOrderArr[i]);
+		printf("%d", LevelOrderCBST[i]);
 	}
 	putchar('\n');
-
 	return 0;
 }
 
-int compare(const void *pA, const void *pB)
+int compar(const void *pA, const void *pB)
 {
 	return *(int *)pA - *(int *)pB;
 }
@@ -61,12 +53,12 @@ int compare(const void *pA, const void *pB)
  *   
  * Cause in complete binary tree, 2i and 2i+1 is the left and the right child 
  * of the i node respectively (array begins with index 1) */
-void SortByInorder(int root, int N, int arr[])
+void InorderSort(int A[], int R, int N)
 {
-	if (root <= N) {
-		SortByInorder(root<<1, N, arr);
-		LevelOrderArr[root] = arr[j++];
-		SortByInorder((root<<1)+1, N, arr);
+	if (R < N) {
+		InorderSort(A, 2*R+1, N);
+		LevelOrderCBST[R] = A[j++];
+		InorderSort(A, 2*R+2, N);
 	}
 }
 
