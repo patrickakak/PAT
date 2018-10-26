@@ -24,10 +24,10 @@ struct TNode {
 
 AVLTree InsertAVL(AVLTree T, ElemType V);
 AVLTree NewNode(ElemType V);
-AVLTree SingleLeftRotation(AVLTree A);
-AVLTree SingleRightRotation(AVLTree A);
-AVLTree DoubleLeftRightRotation(AVLTree A);
-AVLTree DoubleRightLeftRotation(AVLTree A);
+AVLTree SingleLeftRotation(AVLTree A); 		/* Left-Left rotation */
+AVLTree SingleRightRotation(AVLTree A); 	/* Right-Right rotation */
+AVLTree DoubleLeftRightRotation(AVLTree A); 	/* Left-Right rotation */
+AVLTree DoubleRightLeftRotation(AVLTree A); 	/* Right-Left rotation */
 int GetHeight(AVLTree A);
 int Max(int a, int b);
 
