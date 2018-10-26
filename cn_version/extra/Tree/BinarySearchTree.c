@@ -54,14 +54,13 @@ Position Find(BinTree BST, ElementType X) 	/* Tail recursion */
 /* Tail recursion can always be transformed into loop way */
 Position IterFind(BinTree BST, ElementType X)	/* Iteration */
 {
-	while (BST) {
+	while (BST)
 		if (X < BST->Data) 	/* Go seeking in right subtree */
 			BST = BST->Left;
 		else if (X > BST->Data) 	/* Go seeking in left subtree */
 			BST = BST->Right;
 		else
 			return BST;
-	}
 	return EMPTY;
 }
 
