@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MaxSize 1005
+#define MaxSize 1000
 
 int LevelOrderArr[MaxSize];
 int j = 0;
@@ -19,8 +19,7 @@ int main()
 {
 	int N, i = 0, flag = 1, arr[MaxSize];
 
-	/**
-	 * ---------------------------------------------
+	/* ---------------------------------------------
 	 * | INPUT               | OUTPUT              |
 	 * ---------------------------------------------
 	 * | 10                  |                     |
