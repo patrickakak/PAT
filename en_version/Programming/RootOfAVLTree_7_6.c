@@ -71,6 +71,7 @@ AVLTree InsertAVL(AVLTree T, ElemType V)
 				T = DoubleRightLeftRotation(T);
 		}
 	}
+	T->Height = Max(GetHeight(T->Left), GetHeight(T->Right)) + 1;
 	return T;
 }
 
@@ -85,14 +86,8 @@ AVLTree NewNode(ElemType V)
 
 int GetHeight(AVLTree A)
 {
-	int HL, HR;
-
 	if (!A) return 0;
-	else {
-		HL = GetHeight(A->Left);
-		HR = GetHeight(A->Right);
-		return Max(HL, HR) + 1;
-	}
+	else return A->Height;
 }
 
 int Max(int a, int b)
