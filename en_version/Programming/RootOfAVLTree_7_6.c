@@ -71,6 +71,9 @@ AVLTree InsertAVL(AVLTree T, ElemType V)
 				T = DoubleRightLeftRotation(T);
 		}
 	}
+	/* Update height of AVL tree so we don't need to use the 
+	 * recursive version of GetHeight() function */
+
 	T->Height = Max(GetHeight(T->Left), GetHeight(T->Right)) + 1;
 	return T;
 }
