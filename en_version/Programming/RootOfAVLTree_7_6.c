@@ -24,7 +24,7 @@ struct TNode {
 
 AVLTree InsertAVL(AVLTree T, ElemType V);
 AVLTree NewNode(ElemType V);
-AVLTree SingleLeftRotation(AVLTree A); 		/* Left-Left rotation */
+AVLTree SingleLeftRotation(AVLTree A); 	/* Left-Left rotation */
 AVLTree SingleRightRotation(AVLTree A); 	/* Right-Right rotation */
 AVLTree DoubleLeftRightRotation(AVLTree A); 	/* Left-Right rotation */
 AVLTree DoubleRightLeftRotation(AVLTree A); 	/* Right-Left rotation */
