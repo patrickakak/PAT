@@ -36,10 +36,10 @@ int compar(const void *a, const void *b)
 
 void solve(int ALeft, int ARight, int TRoot)
 {
-	// Initial call: solve(0, N-1, 0)
+	/* Initial call: solve(0, N-1, 0) */
 	int n, L, LeftTRoot, RightTRoot;
 
-	n = ARight - ALeft + 1;		// Get the problem size
+	n = ARight - ALeft + 1;		/* Get the problem size */
 	if (n == 0) return;
 
 	L = GetLeftLength(n);
@@ -54,13 +54,13 @@ void solve(int ALeft, int ARight, int TRoot)
 /* n = 2^H - 1 + X,  H = [log2(N+1-X)] --> H = [log2(N+1)] */
 int GetLeftLength(int n)
 {
-	int H, L, X, Tmp; 		// H: height of perfect tree
+	int H, L, X, Tmp; 		/* H: height of perfect tree */
 
 	H = (int) floor(log2(n+1));
-	Tmp = (int) pow(2, H-1);	// Tmp = 2^(H-1)
-	X = n - 2*Tmp + 1;		// X = n - 2^H + 1
+	Tmp = (int) pow(2, H-1);	/* Tmp = 2^(H-1) */
+	X = n - 2*Tmp + 1;		/* X = n - 2^H + 1 */
 	X = min(X, Tmp);
-	L = Tmp - 1 + X;		// L = 2^(H-1) - 1 + X
+	L = Tmp - 1 + X;		/* L = 2^(H-1) - 1 + X */
 
 	return L;
 }
