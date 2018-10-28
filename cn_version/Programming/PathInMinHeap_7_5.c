@@ -1,47 +1,103 @@
+/* Sample Input:
+ * 5 3
+ * 46 23 26 24 10
+ * 5 4 3
+ * Sample Output:
+ * 24 23 10
+ * 46 23 10
+ * 26 10
+ */
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-#define MAXN 1001
-#define MINH -10001
+#define MAXSIZE 1000
+#define MIN -65535
+typedef int ElemType;
+typedef struct HNode *PtrToHNode;
+struct HNode {
+	ElemType *pData;
+	int size;
+};
+typedef PtrToHNode Heap;
+typedef Heap MinHeap;
 
-int H[MAXN], size;
-
-void Create();
-void Insert(int X);
+Heap CreatH(int MaxSize);
+void PercUp(Heap H, int p);
+bool InsertH(Heap H, ElemType x);
+void PathUpToR(Heap H, int p);
+bool IsFullH(Heap H);
+void DestroyH(Heap H);
 
 int main()
 {
-	int n, m, x, i, j;
+	int N, M, i, p;
+	MinHeap H;
+	ElemType x;
 
-	scanf("%d %d", &n, &m);
-	Create();	// Initialize MinHeap
-	for (i = 0; i < n; i++) {
+	scanf("%d %d", &N, &M);
+	H = CreatH(N);	/* Create and initialize MinHeap */
+	for (i = 0; i < N; i++) {
 		scanf("%d", &x);
-		Insert(x);	// Insert a node at a time to build a min-heap
+		InsertH(H, x);	/* Insert one node at a time to build a MinHeap */
 	}
-	for (i = 0; i < m; i++) {
-		scanf("%d", &j);
-		printf("%d", H[j]);
-		while (j > 1) {		// Output value of node along the path to the root
-			j /= 2;
-			printf(" %d", H[j]);
-		}
-		putchar('\n');
+	for (i = 0; i < M; i++) {
+		scanf("%d", &p);
+		PathUpToR(H, p);	/* Print nodes from position p to root */
 	}
+	DestroyH(H);
 	return 0;
 }
 
-void Create()
+bool InsertH(Heap H, ElemType x)
 {
-	size = 0;
-	H[0] = MINH;	// Set a sentinel
+	int p;
+
+	if (IsFullH(H)) {
+		puts("Full Heap!");
+		return false;
+	}
+	p = ++H->size;
+	H->pData[p] = x;
+	PercUp(H, p);
+	return true;
 }
 
-void Insert(int X)
+bool IsFullH(Heap H)
 {
-	int i;
+	return H->size == MAXSIZE;
+}
 
-	for (i = ++size; H[i/2] > X; i /= 2)
-		H[i] = H[i/2];
-	H[i] = X;
+void PercUp(Heap H, int p)
+{
+	ElemType x = H->pData[p];
+	for (; H->pData[p/2] > x; p /= 2)
+		H->pData[p] = H->pData[p/2];
+	H->pData[p] = x;
+}
+
+Heap CreatH(int MaxSize)
+{
+	MinHeap H = (Heap) malloc(sizeof(struct HNode));
+	H->pData = (ElemType *) malloc((MaxSize + 1)*sizeof(ElemType));
+	H->size = 0;
+	H->pData[0] = MIN;
+	return H;
+}
+
+void PathUpToR(Heap H, int p)
+{
+	printf("%d", H->pData[p]);
+	while (p > 1) {
+		p /= 2;
+		printf(" %d", H->pData[p]);
+	}
+	putchar('\n');
+}
+
+void DestroyH(Heap H)
+{
+	free(H->pData);
+	free(H);
 }
 
