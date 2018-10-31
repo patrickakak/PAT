@@ -13,28 +13,28 @@ struct TreeNode {
 };
 
 #define MinData -1
-typedef struct HeapStruct *MinHeap;
+typedef struct HeapStruct *Heap;
 struct HeapStruct {
 	HuffmanTree Data;
 	int Size;
 	int Capacity;
 };
+typedef Heap MinHeap;
 
-MinHeap CreateMinHeap (int MaxSize);
-MinHeap ReadData (int N, ElementType c[], WeightType f[], MinHeap H);
-HuffmanTree Huffman (MinHeap H);
-MinHeap BuildMinHeap (int N, ElementType c[], WeightType f[]);
-HuffmanTree DeleteMin (MinHeap H);
-void MinHeapInsert (MinHeap H, HuffmanTree T);
-int WPL (HuffmanTree T, int Depth);
-bool Judge (int N, int CodeLen, ElementType *c, WeightType *f);
+Heap CreatHeap(int MaxSize);
+Heap ReadData(int N, ElementType c[], WeightType f[], Heap H);
+HuffmanTree Huffman(Heap H);
+Heap BuildHeap(int N, ElementType c[], WeightType f[]);
+HuffmanTree DeleteMin(MinHeap H);
+void HeapInsert(MinHeap H, HuffmanTree T);
+int WPL(HuffmanTree T, int Depth);
+bool Judge(int N, int CodeLen, ElementType *c, WeightType *f);
 HuffmanTree CreateHuffmanTree();
-void DeleteTree (HuffmanTree T);
-void PercolateUp (int p, MinHeap H);
-void PercolateDown (int p, MinHeap H);
+void DeleteTree(HuffmanTree T);
+void PercolateUp(int p, MinHeap H);
+void PercolateDown(int p, MinHeap H);
 
-int 
-main()
+int main()
 {
 	ElementType c[MAXN];
 	WeightType f[MAXN];
@@ -80,7 +80,7 @@ main()
 	 */
 
 	scanf("%d\n", &N);
-	H = BuildMinHeap(N, c, f);
+	H = BuildHeap(N, c, f);
 
 	T = Huffman(H);
 	CodeLen = WPL(T, 0);	/* Calculate the smallest WPL */
@@ -94,8 +94,7 @@ main()
 	return 0;
 }
 
-MinHeap 
-CreateMinHeap (int MaxSize)
+Heap CreatHeap(int MaxSize)
 {
 	MinHeap H = (MinHeap) malloc(sizeof(struct HeapStruct));
 	H->Data = (HuffmanTree) malloc((MaxSize+1) * sizeof(struct TreeNode));
@@ -105,8 +104,7 @@ CreateMinHeap (int MaxSize)
 	return H;
 }
 
-MinHeap 
-ReadData (int N, ElementType c[], WeightType f[], MinHeap H)
+Heap ReadData(int N, ElementType c[], WeightType f[], MinHeap H)
 {
 	int i;
 
@@ -120,8 +118,7 @@ ReadData (int N, ElementType c[], WeightType f[], MinHeap H)
 	return H;
 }
 
-void 
-MinHeapInsert (MinHeap H, HuffmanTree T)
+void HeapInsert(MinHeap H, HuffmanTree T)
 {
 	int p;
 
@@ -130,8 +127,7 @@ MinHeapInsert (MinHeap H, HuffmanTree T)
 	PercolateUp(p, H);
 }
 
-HuffmanTree 
-Huffman (MinHeap H)
+HuffmanTree Huffman(MinHeap H)
 {
 	int i;
 	HuffmanTree T;
@@ -141,14 +137,13 @@ Huffman (MinHeap H)
 		T->Left = DeleteMin(H);
 		T->Right = DeleteMin(H);
 		T->Weight = T->Left->Weight + T->Right->Weight;
-		MinHeapInsert(H, T);
+		HeapInsert(H, T);
 	}
 	T = DeleteMin(H);
 	return T;
 }
 
-HuffmanTree 
-DeleteMin (MinHeap H)
+HuffmanTree DeleteMin(MinHeap H)
 {
 	HuffmanTree MinItem;
 
@@ -159,13 +154,12 @@ DeleteMin (MinHeap H)
 	return MinItem;
 }
 
-MinHeap 
-BuildMinHeap (int N, ElementType c[], WeightType f[])
+MinHeap BuildHeap(int N, ElementType c[], WeightType f[])
 {
 	int i;
 	MinHeap H;
 
-	H = CreateMinHeap(N);
+	H = CreatHeap(N);
 	H = ReadData(N, c, f, H);
 	
 	for (i = H->Size/2; i > 0; i--)
@@ -173,8 +167,7 @@ BuildMinHeap (int N, ElementType c[], WeightType f[])
 	return H;
 }
 
-int 
-WPL (HuffmanTree T, int Depth)
+int WPL(HuffmanTree T, int Depth)
 {
 	int rw = 0, lw = 0;
 	
@@ -187,8 +180,7 @@ WPL (HuffmanTree T, int Depth)
 	}
 }
 
-bool 
-Judge (int N, int CodeLen, ElementType c[], WeightType f[])
+bool Judge(int N, int CodeLen, ElementType c[], WeightType f[])
 {
 	char ch, s[MAXN];
 	int i, j, k, CurWeight;
@@ -240,8 +232,7 @@ Judge (int N, int CodeLen, ElementType c[], WeightType f[])
 	return false;
 }
 
-HuffmanTree 
-CreateHuffmanTree()
+HuffmanTree CreateHuffmanTree()
 {
 	HuffmanTree T = (HuffmanTree) malloc(sizeof(struct TreeNode));
 	T->Weight = 0;
@@ -249,14 +240,12 @@ CreateHuffmanTree()
 	return T;
 }
 
-void 
-DeleteTree (HuffmanTree T)
+void DeleteTree(HuffmanTree T)
 {
 	if (T) { DeleteTree(T->Left); DeleteTree(T->Right); free(T); }
 }
 
-void
-PercolateUp (int p, MinHeap H)
+void PercolateUp(int p, MinHeap H)
 {
 	int i;
 	struct TreeNode Tmp;
@@ -266,8 +255,7 @@ PercolateUp (int p, MinHeap H)
 	H->Data[i] = Tmp;
 }
 
-void 
-PercolateDown (int p, MinHeap H)
+void PercolateDown(int p, MinHeap H)
 {
 	struct TreeNode Tmp = H->Data[p];
 	int Parent, Child;
