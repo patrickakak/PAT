@@ -139,15 +139,16 @@ bool Judge(WeightType CodeLen, int N, ElemType c[], WeightType f[])
 			case '0':
 				if (!pT->Left) pT->Left = MakeNode(0);
 				/* To check whether we've encountered a leaf node */
-				else if (pT->Left->weight != 0) break;
+				else if (pT->Left->weight != 0) goto END;
 				pT = pT->Left;
 				break;
 			case '1':
 				if (!pT->Right) pT->Right = MakeNode(0);
-				else if (pT->Right->weight != 0) break;
+				else if (pT->Right->weight != 0) goto END;
 				pT = pT->Right;
 				break;
 			}
+END:
 		/* Assign weight value to a leaf node */
 		if (!pT->Left && !pT->Right) pT->weight = w;
 		/* It's not a leaf node, which indicates the current node must be
