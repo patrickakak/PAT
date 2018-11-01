@@ -75,7 +75,7 @@ Heap CreatHeap(int N);
 Heap BuildHeap(WeightType f[], int N);
 WeightType WPL(Tree T, int Depth);
 void DestroyTree(Tree T);
-bool Judge(int CodeLen, int N, ElemType c[], WeightType f[]);
+bool Judge(WeightType CodeLen, int N, ElemType c[], WeightType f[]);
 void DestroyHeap(Heap H);
 
 int main()
@@ -112,7 +112,7 @@ void DestroyHeap(Heap H)
 	free(H);
 }
 
-bool Judge(int CodeLen, int N, ElemType c[], WeightType f[])
+bool Judge(WeightType CodeLen, int N, ElemType c[], WeightType f[])
 {
 	ElemType ch;
 	char code[MAXN+1];
