@@ -86,7 +86,6 @@ int main()
 	HuffmanTree HT;
 	MinHeap H;
 
-	freopen("data.txt", "r", stdin);
 	scanf("%d\n", &N);
 	for (i = 0; i < N-1; i++)
 		scanf("%c %d ", &c[i], &f[i]);
