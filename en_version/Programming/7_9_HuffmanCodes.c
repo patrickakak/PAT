@@ -76,6 +76,7 @@ Heap BuildHeap(WeightType f[], int N);
 WeightType WPL(Tree T, int Depth);
 void DestroyTree(Tree T);
 bool Judge(int CodeLen, int N, ElemType c[], WeightType f[]);
+void DestroyHeap(Heap H);
 
 int main()
 {
@@ -85,6 +86,7 @@ int main()
 	HuffmanTree HT;
 	MinHeap H;
 
+	freopen("data.txt", "r", stdin);
 	scanf("%d\n", &N);
 	for (i = 0; i < N-1; i++)
 		scanf("%c %d ", &c[i], &f[i]);
@@ -93,13 +95,21 @@ int main()
 	H = BuildHeap(f, N);	/* Start to build a huffman tree */
 	HT = BuildHuffmanTree(H, N);
 	CodeLen = WPL(HT, 0);	/* Calculate the smallest WPL */
+	DestroyTree(HT);
 
 	scanf("%d\n", &M);
 	for (i = 0; i < M; i++)
 		if (Judge(CodeLen, N, c, f)) puts("Yes");
 		else puts("No");
 
+	DestroyHeap(H);
 	return 0;
+}
+
+void DestroyHeap(Heap H)
+{
+	free(H->pItems);
+	free(H);
 }
 
 bool Judge(int CodeLen, int N, ElemType c[], WeightType f[])
@@ -109,6 +119,7 @@ bool Judge(int CodeLen, int N, ElemType c[], WeightType f[])
 	Tree T, pT;
 	int i, j, k, flag = 0;
 	WeightType w;
+	bool ret;
 
 	T = MakeNode(0);
 	for (i = 0; i < N; i++) {
@@ -123,7 +134,7 @@ bool Judge(int CodeLen, int N, ElemType c[], WeightType f[])
 		w = f[j];	/* Find matching f[j] */
 
 		pT = T;
-		for (k = 0; code[k]; k++) {
+		for (k = 0; code[k]; k++)
 			switch (code[k]) {
 			case '0':
 				if (!pT->Left) pT->Left = MakeNode(0);
@@ -137,16 +148,17 @@ bool Judge(int CodeLen, int N, ElemType c[], WeightType f[])
 				pT = pT->Right;
 				break;
 			}
-		}
 		/* Assign weight value to a leaf node */
 		if (!pT->Left && !pT->Right) pT->weight = w;
 		/* It's not a leaf node, which indicates the current node must be
 		 * precode of another node */
 		else flag = 1;
 	}
-	if (!flag && CodeLen == WPL(T, 0)) return true;
+	if (!flag && CodeLen == WPL(T, 0)) ret = true;
+	else ret = false;
+	
 	DestroyTree(T);
-	return false;
+	return ret;
 }
 
 void DestroyTree(Tree T)
@@ -178,7 +190,7 @@ Heap BuildHeap(WeightType f[], int N)
 
 	H = CreatHeap(N);
 	for (i = 0; i < N; i++) {
-		H->pItems[i+1] = MakeNode(f[i]);
+		H->pItems[i+1] = MakeNode(f[i]);	/* Index begins with one */
 		H->size++;
 	}
 	for (i = H->size/2; i > 0; i--)
@@ -189,8 +201,8 @@ Heap BuildHeap(WeightType f[], int N)
 
 Heap CreatHeap(int N)
 {
-	Heap H = (Heap) malloc(sizeof(struct HNode));
-	H->pItems = (ItemType *) malloc((N+1)*sizeof(ItemType));
+	Heap H = (Heap) malloc(sizeof(*H));
+	H->pItems = (ItemType *) malloc((N+1)*sizeof(*H->pItems));
 	H->size = 0;
 	H->capacity = N;
 	H->pItems[0] = MakeNode(MIN);	/* Set a setinel */
@@ -217,7 +229,7 @@ HuffmanTree BuildHuffmanTree(MinHeap H, int N)
 
 PtrToTNode MakeNode(WeightType w)
 {
-	ItemType New = (ItemType) malloc(sizeof(ItemType));
+	ItemType New = (ItemType) malloc(sizeof(*New));
 	New->Left = New->Right = NULL;
 	New->weight = w;
 	return New;
