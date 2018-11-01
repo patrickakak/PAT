@@ -65,7 +65,7 @@ struct HNode {	/* Heap node struct */
 typedef PtrToHNode Heap;
 typedef Heap MinHeap;
 
-HuffmanTree BuildHuffmanTree(MinHeap H, int N);
+HuffmanTree Huffman(MinHeap H, int N);
 PtrToTNode MakeNode(WeightType w);
 void InsertHeap(Heap H, ItemType it);
 void PercUp(Heap H, int p);
@@ -92,7 +92,7 @@ int main()
 	scanf("%c %d\n", &c[i], &f[i]);
 	
 	H = BuildHeap(f, N);	/* Start to build a huffman tree */
-	HT = BuildHuffmanTree(H, N);
+	HT = Huffman(H, N);
 	CodeLen = WPL(HT, 0);	/* Calculate the smallest WPL */
 	DestroyTree(HT);
 
@@ -107,6 +107,7 @@ int main()
 
 void DestroyHeap(Heap H)
 {
+	free(H->pItems[0]);		/* Don't forget to free setinel */
 	free(H->pItems);
 	free(H);
 }
@@ -208,7 +209,7 @@ Heap CreatHeap(int N)
 	return H;
 }
 
-HuffmanTree BuildHuffmanTree(MinHeap H, int N)
+HuffmanTree Huffman(MinHeap H, int N)
 {
 	int i;
 	HuffmanTree HT;
