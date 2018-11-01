@@ -94,13 +94,13 @@ int main()
 	H = BuildHeap(f, N);	/* Start to build a huffman tree */
 	HT = Huffman(H, N);
 	CodeLen = WPL(HT, 0);	/* Calculate the smallest WPL */
-	DestroyTree(HT);
 
 	scanf("%d\n", &M);
 	for (i = 0; i < M; i++)
 		if (Judge(CodeLen, N, c, f)) puts("Yes");
 		else puts("No");
 
+	DestroyTree(HT);
 	DestroyHeap(H);
 	return 0;
 }
