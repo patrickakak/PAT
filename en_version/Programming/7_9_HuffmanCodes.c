@@ -128,8 +128,8 @@ bool Judge(WeightType CodeLen, int N, ElemType c[], WeightType f[])
 		/* The length of string (like 00101) must be less than or equal with
 		 * N-1 (which is the length of a list that a tree may collapse into) */
 		
-		if (strlen(code) > N-1 || flag)
-			continue;
+		if (strlen(code) > N-1 || flag) { flag = 1; continue; }
+		
 		for (j = 0; j < N && c[j] != ch; j++) ;
 		w = f[j];	/* Find matching f[j] */
 
