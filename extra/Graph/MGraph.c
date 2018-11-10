@@ -3,6 +3,7 @@
  */ 
 
 #define MaxVertexNum 10
+#define INFINITY 65535
 
 typedef int WeightType;
 typedef char DataType;
@@ -26,7 +27,7 @@ typedef PtrToENode Edge;
 /**
  * Functions 
  */
-MGraph CreateGraph(int VertexNum)
+MGraph CreatGraph(int VertexNum)
 {
 	Vertex V, W;
 	MGraph Graph;
@@ -38,7 +39,7 @@ MGraph CreateGraph(int VertexNum)
 	/* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
 	for (V = 0; V < Graph->Nv; V++)
 		for (W = 0; W < Graph->Nv; W++)
-			Graph->G[V][W] = 0;	    // Or INFINITY
+			Graph->G[V][W] = INFINITY;
 
 	return Graph;
 }
@@ -60,7 +61,7 @@ MGraph BuildGraph()
 	int Nv, i;
 
 	scanf("%d", &Nv);
-	Graph = CreateGraph(Nv);
+	Graph = CreatGraph(Nv);
 	scanf("%d", &Graph->Ne);
 	if (Graph->Ne != 0) {
 		E = (Edge) malloc(sizeof(struct ENode));
@@ -68,12 +69,18 @@ MGraph BuildGraph()
 			scanf("%d %d %d", &E->V1, &E->V2, &E->Weight);
 			InsertEdge(Graph, E);
 		}
+		free(E);
 	}
 	/* If there's a need to read the data of vertex */
 	for (V = 0; V < Graph->Nv; V++)
 		scanf(" %c", &Graph->Data[V]);
 
 	return Graph;
+}
+
+void DestroyGraph(MGraph Graph)
+{
+	free(G);
 }
 
 /*
@@ -84,10 +91,10 @@ void BuildGraph()
 	int i, j, v1, v2, w;
 
 	scanf("%d", &Nv);
-	// CreateGraph
+	// CreatGraph
 	for (i = 0; i < Nv; i++)
 		for (j = 0; j < Nv; j++)
-			G[i][j] = 0;	// Or INFINITY
+			G[i][j] = INFINITY;
 	scanf("%d", &Ne);
 	for (i = 0; i < Ne; i++) {
 		scanf("%d %d %d", &v1, &v2, &w);
