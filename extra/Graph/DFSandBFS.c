@@ -30,19 +30,22 @@ void DFS_m(MGraph Graph, Vertex V)
  * Graph adjacency list implementation (directed graph): 
  * T = O(N+E), traverse every vertex and edge 
  */
-void DFS_l(LGraph Graph, Vertex V)
-{
-	Vertex W;
-	PtrToAdjVNode Tmp;
 
+void Visit(Vertex V)
+{
+	printf("Visiting vertex#%d\n", V);
+}
+
+void DFS_l(LGraph Graph, Vertex V, void (*Visit)(Vertex))
+{
+	PtrToAdjVNode W;
+
+	Visit(V);	/* Visit vertex V */
 	visited[V] = true;
-	Tmp = Graph->G[V].FirstEdge;
-	while (Tmp) {
-		W = Tmp->AdjV;
-		if (!visited[W])
-			DFS_l(Graph, W);
-		Tmp = Tmp->Next;
-	}
+	
+	for (W = Graph->G[V].FirstEdge; W; W = W->Next)
+		if (!Visited[W->AdjV])
+			DFS(Graph, W->AdjV, Visit);		/* Visit it recursively */
 }
 
 /**
@@ -69,18 +72,33 @@ void BFS(Vertex V)
  * Graph adjacency matrix implementation (directed graph): 
  * T = O(N^2): Same as DFS_m
  */
-void BFS_m(MGraph Graph, Vertex V)
-{
-	Vertex W;
-	visited[V] = true;
 
-	Enqueue(V, Q);
+/* IsEdge() to check whether edge<V, W> is one of the edges of Graph or not. 
+ * In this case, a non-exsistent edge is marked as INFINITY: */
+bool IsEdge(Mgraph Graph, Vertex V, Vertex W)
+{
+	return Graph->G[V][W] < INFINITY ? true : false;
+}
+
+/* visited[] is a global array, initialized to be false */
+void BFS_m(MGraph Graph, Vertex S, void (*Visit)(Vertex))
+{
+	Queue Q;
+	Vertex V, W;
+
+	Q = CreatQueue(MaxSize);	/* Create a empty queue with size of MaxSize */
+	Visit(S);	/* Do something with vertex S */
+	visited[V] = true;
+	Enqueue(Q, V);
+
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
 		for (W = 0; W < Graph->Nv; W++)
-			if (!visited[W]) {
+			/* If W is the adjacent node of V and never visited before: */
+			if (!visited[W] && IsEdge(Graph, V, W)) {
+				Visit(W);
 				visited[W] = true;
-				Enqueue(W, Q);
+				Enqueue(Q, W);
 			}
 	}
 }
