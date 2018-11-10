@@ -1,5 +1,5 @@
 /**
- * Matrix Graph implementaion 
+ * Graph adjacency matrix implementation:
  */ 
 
 #define MaxVertexNum 10

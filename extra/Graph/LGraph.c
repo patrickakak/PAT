@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+/**
+ * Graph adjacency list implementation:
+ */
 
 typedef int Vertex; 	/* Using the index of vertex to represent a vertex */
 typedef int WeightType;
@@ -32,20 +33,10 @@ struct ENode {
 };
 typedef PtrToENode Edge;
 
-LGraph CreateGraph( int VertexNum );
-void InsertEdge( LGraph Graph, Edge E );
-LGraph BuildGraph();
 
-int main()
-{
-	LGraph Graph;
+/* Functions: */
 
-	Graph = BuildGraph();
-
-	return 0;
-}
-
-LGraph CreateGraph( int VertexNum )
+LGraph CreatGraph(int VertexNum)
 {
 	LGraph Graph;
 	Vertex V;
@@ -56,12 +47,12 @@ LGraph CreateGraph( int VertexNum )
 
 	/* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
 	for (V = 0; V < Graph->Nv; V++)
-		Graph->G[V].FirstEdge = NULL;	    // Or INFINITY
+		Graph->G[V].FirstEdge = NULL;
 
 	return Graph;
 }
 
-void InsertEdge( LGraph Graph, Edge E )
+void InsertEdge(LGraph Graph, Edge E)
 {
 	PtrToAdjVNode NewNode;
 
@@ -94,7 +85,7 @@ LGraph BuildGraph()
 	int Nv, i;
 
 	scanf("%d", &Nv);
-	Graph = CreateGraph(Nv);
+	Graph = CreatGraph(Nv);
 	scanf("%d", &Graph->Ne);
 	if (Graph->Ne) {
 		E = (Edge) malloc(sizeof(struct ENode));
