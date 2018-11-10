@@ -119,7 +119,8 @@ int DFS(int curVertIndex, Vertex Crocs[], int N, float D, bool visited[])
 	Vertex W;
 
 	visited[curVertIndex] = true;
-	if (IsSafe(Crocs[curVertIndex], D)) answer = YES;
+	if (IsSafe(Crocs[curVertIndex], D))
+		answer = YES;
 	else
 		for (i = 0; i < N; i++) {
 			W = Crocs[i];
