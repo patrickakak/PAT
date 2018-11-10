@@ -53,7 +53,7 @@ void Save007(Vertex Crocs[], int N, float D);
 bool FirstJump(float D, Vertex V);
 bool IsSafe(Vertex V, float D);
 int DFS(int curVert, Vertex Crocs[], int N, float D, bool visited[]);
-int Jump(Vertex cur, Vertex nearby, float D);
+bool Jump(Vertex cur, Vertex nearby, float D);
 void InitVisited(bool visited[], int N);
 
 int main()
@@ -145,7 +145,7 @@ bool IsSafe(Vertex V, float D)
 
 /* Whether there's a change to jump onto another crocdile? */
 
-int Jump(Vertex V, Vertex W, float D)
+bool Jump(Vertex V, Vertex W, float D)
 {
 	return D*D >= (V.x - W.x)*(V.x - W.x) + (V.y - W.y)*(V.y - W.y);
 }
