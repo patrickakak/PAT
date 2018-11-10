@@ -1,10 +1,44 @@
+/**
+ * Graph is just a tool to facilitate problem-solving, don't bother to use
+ * adjacency matrix or list implementation eclusively!
+ */
+
+/**
+ * Sample Input1:
+ * 14 20
+ * 25 -15
+ * -25 28
+ * 8 49
+ * 29 15
+ * -35 -2
+ * 5 28
+ * 27 -29
+ * -8 -28
+ * -20 -35
+ * -25 -20
+ * -13 29
+ * -30 15
+ * -35 40
+ * 12 12
+ * Sample Output1:
+ * Yes
+ * ---------------
+ * Sample Input2:
+ * 4 13
+ * -12 12
+ * 12 12
+ * -12 -12
+ * 12 -12
+ * Sample Output2:
+ * No
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define RoI 15	/* Radius of central island */
-#define D2B 50	/* Distance from coordinate origin to bank */
+#define Diameter 15		/* Diameter of central island disk */
+#define O2B 50	/* Distance from coordinate origin to bank */
 #define MaxCrocs 100	/* Maximun number of crocdiles */
 
 #define YES 1
@@ -12,44 +46,57 @@
 
 typedef struct coordinate_st Vertex;
 struct coordinate_st {
-	int x, y;
+	float x, y;
 };
 
-void Save007(Vertex Crocs[], int N, int step);
-int FirstJump(int step, Vertex V);
-int IsSafe(Vertex V, int step);
-int DFS(int curVert, Vertex Crocs[], int N, int step, bool visited[]);
-int Jump(Vertex cur, Vertex nearby, int step);
+void Save007(Vertex Crocs[], int N, float D);
+bool FirstJump(float D, Vertex V);
+bool IsSafe(Vertex V, float D);
+int DFS(int curVert, Vertex Crocs[], int N, float D, bool visited[]);
+int Jump(Vertex cur, Vertex nearby, float D);
+void InitVisited(bool visited[], int N);
 
 int main()
 {
-	int N, step, i;
+	int N, i;
+	float D;	/* One step wide of James */
 	Vertex Crocs[MaxCrocs];
 
-	scanf("%d %d", &N, &step);
+	scanf("%d %f", &N, &D);
 
-	if (step+RoI >= D2B) {	/* Can reach bank directly */
+	if (D + Diameter/2 >= O2B) {	/* Can reach bank directly */
 		printf("Yes\n");
 		exit(EXIT_SUCCESS);
 	}
 	for (i = 0; i < N; i++)
-		scanf("%d %d", &Crocs[i].x, &Crocs[i].y);
+		scanf("%f %f", &Crocs[i].x, &Crocs[i].y);
 
-	Save007(Crocs, N, step);
+	Save007(Crocs, N, D);
 	return 0;
 }
 
+void InitVisited(bool visited[], int N)
+{
+	int i;
+
+	for (i = 0; i < N; i++)
+		visited[i] = false;
+}
+
 /* List components in the graph */
-void Save007(Vertex Crocs[], int N, int step)
+
+void Save007(Vertex Crocs[], int N, float D)
 {
 	int i, answer = NO;
 	bool visited[MaxCrocs];
 
-	memset(visited, false, sizeof(visited));
+	InitVisited(visited, N);
+
 	/* Traverse all the crocs that can be jumped onto from the island */
+	
 	for (i = 0; i < N; i++)
-		if (!visited[i] && FirstJump(step, Crocs[i])) {
-			answer = DFS(i, Crocs, N, step, visited);
+		if (!visited[i] && FirstJump(D, Crocs[i])) {
+			answer = DFS(i, Crocs, N, D, visited);
 			if (answer == YES) break;
 		}
 
@@ -58,24 +105,26 @@ void Save007(Vertex Crocs[], int N, int step)
 }
 
 /* Whether James can jump onto a crocdile's head in one step from the island? */
-int FirstJump(int step, Vertex V)
+
+bool FirstJump(float D, Vertex V)
 {
-	return (RoI + step)*(RoI + step) >= (V.x * V.x)+(V.y * V.y);
+	return (Diameter+D) * (Diameter+D) >= V.x*V.x + V.y*V.y;
 }
 
 /* Depth first seaching recursively, return YES if the path is found */
-int DFS(int curVertIndex, Vertex Crocs[], int N, int step, bool visited[])
+
+int DFS(int curVertIndex, Vertex Crocs[], int N, float D, bool visited[])
 {
 	int i, answer = NO;
 	Vertex W;
 
 	visited[curVertIndex] = true;
-	if (IsSafe(Crocs[curVertIndex], step)) answer = YES;
+	if (IsSafe(Crocs[curVertIndex], D)) answer = YES;
 	else
 		for (i = 0; i < N; i++) {
 			W = Crocs[i];
-			if (!visited[i] && Jump(Crocs[curVertIndex], W, step)) {
-				answer = DFS(i, Crocs, N, step, visited);
+			if (!visited[i] && Jump(Crocs[curVertIndex], W, D)) {
+				answer = DFS(i, Crocs, N, D, visited);
 				if (answer == YES) break;
 			}
 		}
@@ -83,20 +132,21 @@ int DFS(int curVertIndex, Vertex Crocs[], int N, int step, bool visited[])
 }
 
 /* If James can jump to bank in current position? */
-int IsSafe(Vertex V, int step)
+
+bool IsSafe(Vertex V, float D)
 {
 	int AbsX, AbsY;
 
 	AbsX = V.x > 0 ? V.x : -V.x;
 	AbsY = V.y > 0 ? V.y : -V.y;
 
-	return AbsX+step >= D2B || AbsY+step >= D2B;
+	return AbsX+D >= O2B || AbsY+D >= O2B;
 }
 
 /* Whether there's a change to jump onto another crocdile? */
-int Jump(Vertex cur, Vertex nearby, int step)
+
+int Jump(Vertex V, Vertex W, float D)
 {
-	return step*step >= (cur.x - nearby.x)*(cur.x - nearby.x) 
-		+ (cur.y - nearby.y)*(cur.y - nearby.y);
+	return D*D >= (V.x - W.x)*(V.x - W.x) + (V.y - W.y)*(V.y - W.y);
 }
 
