@@ -1,6 +1,6 @@
 /**
  * Depth First Search (pseudocode): 
- *   Adjacency list: T = O(N+E), Adjacenct matrix: T = O(N^2)
+ *   Adjacency list: T = O(N+E), Adjacency matrix: T = O(N^2)
  *   (N/E is the number of vertex/edge respectively)
  */
 void DFS(Vertex V)
@@ -88,7 +88,7 @@ void BFS_m(MGraph Graph, Vertex V)
 /**
  * Graph adjacency list implememtation (directed graph): 
  * T = O(N+E): Same as DBS_l
- * */
+ */
 void BFS_l(LGraph Graph, Vertex V)
 {
 	Vertex W;
