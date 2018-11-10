@@ -1,8 +1,9 @@
-/* Depth First Search (pseudocode): 
- *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2)
+/**
+ * Depth First Search (pseudocode): 
+ *   Adjacency list: T = O(N+E), Adjacenct matrix: T = O(N^2)
  *   (N/E is the number of vertex/edge respectively)
  */
-void DFS( Vertex V )
+void DFS(Vertex V)
 {
 	visited[V] = true;
 
@@ -11,10 +12,11 @@ void DFS( Vertex V )
 			DFS(W);
 }
 
-/* Matrix implememtation (directed graph): 
+/**
+ * Graph adjacency matrix implementation (directed graph): 
  * T = O(N^2), traverse every node and its neighbor 
  */
-void DFS_m( MGraph Graph, Vertex V )
+void DFS_m(MGraph Graph, Vertex V)
 {
 	Vertex W;
 	visited[V] = true;
@@ -24,10 +26,11 @@ void DFS_m( MGraph Graph, Vertex V )
 			DFS_m(Graph, W);
 }
 
-/* List implememtation (directed graph): 
+/**
+ * Graph adjacency list implementation (directed graph): 
  * T = O(N+E), traverse every vertex and edge 
  */
-void DFS_l( LGraph Graph, Vertex V )
+void DFS_l(LGraph Graph, Vertex V)
 {
 	Vertex W;
 	PtrToAdjVNode Tmp;
@@ -42,11 +45,12 @@ void DFS_l( LGraph Graph, Vertex V )
 	}
 }
 
-/* Breadth First Search (pseudocode): 
- *   Adjacent List: T = O(N+E), Adjacent Matrix: T = O(N^2) 
+/**
+ * Breadth First Search (pseudocode): 
+ *   Adjacency list: T = O(N+E), Adjacency matrix: T = O(N^2) 
  *   (N/E is the number of vertex/edge respectively)
  */
-void BFS( Vertex V )
+void BFS(Vertex V)
 {
 	visited[V] = true;
 
@@ -61,10 +65,11 @@ void BFS( Vertex V )
 	}
 }
 
-/* Matrix implememtation (directed graph): 
+/**
+ * Graph adjacency matrix implementation (directed graph): 
  * T = O(N^2): Same as DFS_m
  */
-void BFS_m( MGraph Graph, Vertex V )
+void BFS_m(MGraph Graph, Vertex V)
 {
 	Vertex W;
 	visited[V] = true;
@@ -80,10 +85,11 @@ void BFS_m( MGraph Graph, Vertex V )
 	}
 }
 
-/* List implememtation (directed graph): 
+/**
+ * Graph adjacency list implememtation (directed graph): 
  * T = O(N+E): Same as DBS_l
  * */
-void BFS_l( LGraph Graph, Vertex V )
+void BFS_l(LGraph Graph, Vertex V)
 {
 	Vertex W;
 	PtrToAdjVNode Tmp;
@@ -107,6 +113,6 @@ void ListComponents(Graph G)
 {
 	for (each V in G)
 		if (!visited[V])
-			DFS(V);		// or BFS(V)
+			DFS(V); 	/* or BFS(V) */
 }
 
