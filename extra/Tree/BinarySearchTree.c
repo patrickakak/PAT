@@ -1,11 +1,11 @@
-/* Operation set of Binary Search Tree (BST) 
+/**
+ * Operation set of Binary Search Tree (BST) 
  *
  * So how to determine if a tree is a BST or not?, we can use inorder 
  * traversal to help us, set a last variable to store the last element (L) 
  * popped out stack and compare it with the current element (X) popped out, 
- * if X is lesser than L, then an error occured */
-#include <stdio.h>
-#include <stdlib.h>
+ * if X is lesser than L, then an error occured 
+ */
 
 #define EMPTY NULL
 #define SIZE 5
@@ -18,27 +18,7 @@ struct TreeNode {
 	ElementType Data;
 };
 
-Position Find(BinTree BST, ElementType X);	/* Tail recursion */
-Position IterFind(BinTree BST, ElementType X);	/* Iteration */
-Position FindMin(BinTree BST);
-Position FindMax(BinTree BST);
-BinTree Insert(BinTree BST, ElementType X);
-BinTree Delete(BinTree BST, ElementType X);
-
-int main()
-{
-	int i;
-	BinTree BST;
-	ElementType Arr[SIZE] = {4, 5, 2, 1, 7};
-
-	for (BST=NULL, i=0; i < SIZE; i++)
-		BST = Insert(BST, Arr[i]);
-
-	for (i=SIZE-1; i >= 0; i--)
-		BST = Delete(BST, Arr[i]);
-
-	return 0;
-}
+/* Main functions: */
 
 Position Find(BinTree BST, ElementType X) 	/* Tail recursion */
 {
@@ -51,7 +31,7 @@ Position Find(BinTree BST, ElementType X) 	/* Tail recursion */
 		return BST; 	/* Seeking done, return the position */
 }
 
-/* Tail recursion can always be transformed into loop way */
+/* Tail recursion can always be translated into loop way */
 Position IterFind(BinTree BST, ElementType X)	/* Iteration */
 {
 	while (BST)
