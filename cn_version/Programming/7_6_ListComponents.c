@@ -113,7 +113,7 @@ void ListComponents(Graph graph,
 	Vertex V;
 
 	ResetVisited();
-	for (V=0; V<graph->Nv; V++)
+	for (V = 0; V < graph->Nv; V++)
 		if (!visited[V]) {
 			printf("{ ");
 			Traverse(graph, V, Visit);
@@ -134,7 +134,7 @@ void DFS(Graph graph, Vertex V, void (*Visit)(Vertex))
 	Visit(V);
 	visited[V] = true;
 
-	for (W=0; W < graph->Nv; W++)
+	for (W = 0; W < graph->Nv; W++)
 		if (!visited[W] && graph->G[V][W] != INFINITY)
 			DFS(graph, W, Visit);
 }
@@ -157,7 +157,7 @@ void BFS(Graph graph, Vertex S, void (*Visit)(Vertex))
 
 	while (!IsEmptyQ(Q)) {
 		V = Dequeue(Q);
-		for (W=0; W<graph->Nv; W++)
+		for (W = 0; W < graph->Nv; W++)
 			if (!visited[W] && IsEdge(graph, V, W)) {
 				Visit(W);
 				visited[W] = true;
@@ -176,8 +176,8 @@ Graph CreatGraph(int MaxVertex)
 	graph->Nv = MaxVertex;
 	graph->Ne = 0;
 
-	for (V=0; V<graph->Nv; V++)
-		for (W=0; W<graph->Nv; W++)
+	for (V = 0; V < graph->Nv; V++)
+		for (W = 0; W < graph->Nv; W++)
 			graph->G[V][W] = INFINITY;
 	return graph;
 }
@@ -193,7 +193,7 @@ Graph BuildGraph()
 	scanf("%d", &graph->Ne);
 	if (graph->Ne > 0) {
 		E = (Edge) malloc(sizeof(*E));
-		for (i=0; i < graph->Ne; i++) {
+		for (i = 0; i < graph->Ne; i++) {
 			scanf("%d %d", &E->V1, &E->V2);
 			InsertEdge(graph, E);
 		}
@@ -222,7 +222,7 @@ void DestroyQ(Queue Q)
 Queue CreatQ(int QSize)
 {
 	Queue Q = (Queue) malloc(sizeof(*Q));
-	Q->Data = (ElemType *) malloc(QSize*sizeof(ElemType));
+	Q->Data = (ElemType *) malloc(QSize * sizeof(ElemType));
 	Q->Front = Q->Rear = 0;
 	Q->MaxQSize = MaxVertexNum;
 	return Q;
@@ -244,7 +244,7 @@ bool Enqueue(Queue Q, ElemType X)
 		puts("Full queue");
 		return false;
 	}
-	Q->Rear = (Q->Rear+1)%Q->MaxQSize;
+	Q->Rear = (Q->Rear+1) % Q->MaxQSize;
 	Q->Data[Q->Rear] = X;
 	return true;
 }
@@ -255,7 +255,7 @@ ElemType Dequeue(Queue Q)
 		puts("Empty queue");
 		return ERROR;
 	}
-	Q->Front = (Q->Front+1)%Q->MaxQSize;
+	Q->Front = (Q->Front+1) % Q->MaxQSize;
 	return Q->Data[Q->Front];
 }
 
