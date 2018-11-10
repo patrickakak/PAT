@@ -42,7 +42,7 @@ int main()
 /* List components in the graph */
 void Save007(Vertex Crocs[], int N, int step)
 {
-	int i, answer;
+	int i, answer = NO;
 	bool visited[MaxCrocs];
 
 	memset(visited, false, sizeof(visited));
