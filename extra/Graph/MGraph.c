@@ -1,5 +1,5 @@
 /**
- * Graph adjacency matrix implementation:
+ * Graph adjacency matrix implementation (suit for dense graph):
  */ 
 
 #define MaxVertexNum 10

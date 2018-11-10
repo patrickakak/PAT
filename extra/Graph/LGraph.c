@@ -1,5 +1,5 @@
 /**
- * Graph adjacency list implementation:
+ * Graph adjacency list implementation (suit for sparse graph):
  */
 
 typedef int Vertex; 	/* Using the index of vertex to represent a vertex */
@@ -11,7 +11,7 @@ struct AdjVNode {
 	PtrToAdjVNode Next;
 };
 
-#define MaxVertexNum 10
+#define MaxVertexNum 100
 typedef char DataType;
 typedef struct VNode {
 	PtrToAdjVNode FirstEdge;
@@ -93,11 +93,17 @@ LGraph BuildGraph()
 			scanf("%d %d %d", &E->V1, &E->V2, &E->Weight);
 			InsertEdge(Graph, E);
 		}
+		free(E);
 	}
 	/* If there's a need to read the data of vertex */
 	for (V = 0; V < Graph->Nv; V++)
 		scanf(" %c", &Graph->G[V].Data);
 
 	return Graph;
+}
+
+void DestroyGraph(MGraph Graph)
+{
+	free(G);
 }
 
