@@ -12,29 +12,33 @@ void DFS(Vertex V)
 			DFS(W);
 }
 
+void Visit(Vertex V)
+{
+	printf("Visiting vertex#%d\n", V);
+}
+
 /**
  * Graph adjacency matrix implementation (directed graph): 
  * T = O(N^2), traverse every node and its neighbor 
  */
-void DFS_m(MGraph Graph, Vertex V)
+
+/* visited[] is a global array, initialized to be false */
+void DFS_m(MGraph Graph, Vertex V, void (*Visit)(Vertex))
 {
 	Vertex W;
+
+	Visit(V);
 	visited[V] = true;
 
 	for (W = 0; W < Graph->Nv; W++)
-		if (!visited[W] && Graph->G[V][W])
-			DFS_m(Graph, W);
+		if (!visited[W] && Graph->G[V][W] != INFINITY)
+			DFS_m(Graph, W, Visit);
 }
 
 /**
  * Graph adjacency list implementation (directed graph): 
  * T = O(N+E), traverse every vertex and edge 
  */
-
-void Visit(Vertex V)
-{
-	printf("Visiting vertex#%d\n", V);
-}
 
 void DFS_l(LGraph Graph, Vertex V, void (*Visit)(Vertex))
 {
@@ -45,7 +49,7 @@ void DFS_l(LGraph Graph, Vertex V, void (*Visit)(Vertex))
 	
 	for (W = Graph->G[V].FirstEdge; W; W = W->Next)
 		if (!Visited[W->AdjV])
-			DFS(Graph, W->AdjV, Visit);		/* Visit it recursively */
+			DFS_l(Graph, W->AdjV, Visit);		/* Visit it recursively */
 }
 
 /**
@@ -74,7 +78,7 @@ void BFS(Vertex V)
  */
 
 /* IsEdge() to check whether edge<V, W> is one of the edges of Graph or not. 
- * In this case, a non-exsistent edge is marked as INFINITY: */
+ * In this case, a inexistent edge is marked as INFINITY when initialized: */
 bool IsEdge(Mgraph Graph, Vertex V, Vertex W)
 {
 	return Graph->G[V][W] < INFINITY ? true : false;
@@ -88,8 +92,8 @@ void BFS_m(MGraph Graph, Vertex S, void (*Visit)(Vertex))
 
 	Q = CreatQueue(MaxSize);	/* Create a empty queue with size of MaxSize */
 	Visit(S);	/* Do something with vertex S */
-	visited[V] = true;
-	Enqueue(Q, V);
+	visited[S] = true;
+	Enqueue(Q, S);
 
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
@@ -101,29 +105,37 @@ void BFS_m(MGraph Graph, Vertex S, void (*Visit)(Vertex))
 				Enqueue(Q, W);
 			}
 	}
+	DestroyQueue(Q);
 }
 
 /**
  * Graph adjacency list implememtation (directed graph): 
  * T = O(N+E): Same as DBS_l
  */
-void BFS_l(LGraph Graph, Vertex V)
-{
-	Vertex W;
-	PtrToAdjVNode Tmp;
 
-	visited[V] = true;
-	Enqueue(V, Q);
+void BFS_l(MGraph Graph, Vertex S, void (*Visit)(Vertex))
+{
+	Queue Q;
+	Vertex V, W;
+	PtrToAdjVNode T;
+
+	Q = CreatQueue(MaxSize);
+	Visit(S);
+	visited[S] = true;
+	Enqueue(Q, S);
+
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
-		for (Tmp = Graph->G[V].FirstEdge; Tmp; Tmp = Tmp->Next) {
-			W = Tmp->AdjV;
+		for (T = Graph->G[V].FirstEdge; T; T = T->Next) {
+			W = T->AdjV;
 			if (!visited[W]) {
+				Visit(W);
 				visited[W] = true;
-				Enqueue(W, Q);
+				Enqueue(Q, W);
 			}
 		}
 	}
+	DestroyQueue(Q);
 }
 
 /* List all components in a graph wheather it's strongly connected or not */
