@@ -66,7 +66,7 @@ int FirstJump(int step, Vertex V)
 /* Depth first seaching recursively, return YES if the path is found */
 int DFS(int curVertIndex, Vertex Crocs[], int N, int step, bool visited[])
 {
-	int answer, i;
+	int i, answer = NO;
 	Vertex W;
 
 	visited[curVertIndex] = true;
