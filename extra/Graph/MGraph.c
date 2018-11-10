@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+/**
+ * Matrix Graph implementaion 
+ */ 
 
 #define MaxVertexNum 10
 
@@ -22,19 +23,9 @@ struct ENode {
 };
 typedef PtrToENode Edge;
 
-MGraph CreateGraph(int VertexNum);
-void InsertEdge(MGraph Graph, Edge E);
-MGraph BuildGraph();
-
-int main()
-{
-	MGraph Graph;
-
-	Graph = BuildGraph();
-
-	return 0;
-}
-
+/**
+ * Functions 
+ */
 MGraph CreateGraph(int VertexNum)
 {
 	Vertex V, W;
