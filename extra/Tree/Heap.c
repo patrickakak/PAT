@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
+/**
+ * Heap implementation: 
+ */
 
 typedef int ElementType;
 typedef struct HeapStruct *Heap;	/* Definition of heap */
@@ -15,24 +15,8 @@ typedef Heap MinHeap;
 #define MaxData 10000	/* Should be larger than every possible elements */
 #define ERROR -1
 
-MaxHeap Create(int MaxSize);
-void PercolateUp(int p, MaxHeap H);
-void PercolateDown(int p, MaxHeap H);
-bool Insert(MaxHeap H, ElementType item);
-bool IsFull(MaxHeap H);
-bool IsEmpty(MaxHeap H);
-MaxHeap BuildHeap(int N);	/* T = O(N) */
 
-int main()
-{
-	int N;
-	MaxHeap H;
-
-	scanf("%d", &N);
-	H = BuildHeap(N);
-	
-	return 0;
-}
+/* Main functions: */
 
 /* Create a heap of MaxSize capacity */
 MaxHeap Create(int MaxSize)
@@ -85,8 +69,10 @@ bool IsEmpty(MaxHeap H)
 	return H->Size == 0;
 }
 
-/* We can get T = O(N) rather by using Insert function to get T = O(NlogN)
- * Prerequisite: Knowing the number of input beforehand */
+/**
+ * We can get T = O(N) rather by using Insert function to get T = O(NlogN)
+ * Prerequisite: Knowing the number of input beforehand 
+ */
 MaxHeap BuildHeap(int N)
 {
 	int i;
