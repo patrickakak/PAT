@@ -1,5 +1,5 @@
 /**
- * Adjacency matrix: All pairs shortest paths problem (APSP)
+ * Adjacency matrix: All pairs shortest path problem (APSP)
  *
  * [Sparse Graph algorithm]:
  * ---- Method 1 (same as V size the single source shortest path problem) ----
