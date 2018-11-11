@@ -113,7 +113,7 @@ void BFS_m(MGraph Graph, Vertex S, void (*Visit)(Vertex))
  * T = O(N+E): Same as DBS_l
  */
 
-void BFS_l(MGraph Graph, Vertex S, void (*Visit)(Vertex))
+void BFS_l(LGraph Graph, Vertex S, void (*Visit)(Vertex))
 {
 	Queue Q;
 	Vertex V, W;
