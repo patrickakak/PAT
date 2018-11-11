@@ -116,8 +116,8 @@ void BFS_m(MGraph Graph, Vertex S, void (*Visit)(Vertex))
 void BFS_l(LGraph Graph, Vertex S, void (*Visit)(Vertex))
 {
 	Queue Q;
-	Vertex V, W;
-	PtrToAdjVNode T;
+	Vertex V;
+	PtrToAdjVNode W;
 
 	Q = CreatQueue(MaxSize);
 	Visit(S);
@@ -126,14 +126,12 @@ void BFS_l(LGraph Graph, Vertex S, void (*Visit)(Vertex))
 
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
-		for (T = Graph->G[V].FirstEdge; T; T = T->Next) {
-			W = T->AdjV;
-			if (!visited[W]) {
-				Visit(W);
-				visited[W] = true;
-				Enqueue(Q, W);
+		for (W = Graph->G[V].FirstEdge; W; W = W->Next)
+			if (!visited[W->AdjV]) {
+				Visit(W->AdjV);
+				visited[W->AdjV] = true;
+				Enqueue(Q, W->AdjV);
 			}
-		}
 	}
 	DestroyQueue(Q);
 }
