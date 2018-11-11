@@ -32,9 +32,10 @@ bool Floyd(MGraph Graph, WeightType D[][MaxNv], Vertex path[][MaxNv])
 			for (j = 0; j < Graph->Nv; j++)
 				if (D[i][k] + D[k][j] < D[i][j]) {
 					D[i][j] = D[i][k] + D[k][j];
-					/* Negative-cost cycle is found */
+					/* Negative-cost cycle is found, can't handle it properly */
 					if (i == j && D[i][j] < 0)
-						return false;	/* Can't handle properly */
+						return false;
+					/* Use recursion to print path: i->k + k + k->j */
 					path[i][j] = k;
 				}
 	return true;	/* Execute the algorithm properly */
