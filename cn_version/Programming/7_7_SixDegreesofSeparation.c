@@ -100,7 +100,7 @@ int main()
 	LGraph graph;
 
 	graph = BuildGraph();
-	SDS(graph);
+	SDS(graph); 	/* Six degrees of separation algorithm */
 	DestroyGraph(graph);
 
 	return 0;
