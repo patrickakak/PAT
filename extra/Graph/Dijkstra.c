@@ -1,4 +1,24 @@
 /**
+ * Psudocode for dijkstra's algoritm: 
+ * (could not tackle the problem with negative-cost cycle)
+ */
+void Dijkstra(Vertex s)
+{
+	while (1) {
+		V = the minimum dist among the uncollected vertices;
+		if (No such V)
+			break;
+		colloected[V] = true;
+		for (W: each node next to V)
+			if (collected[W] == false)
+				if (dist[V]+E<v, w> < dist[W]) {
+					dist[W] = dist[V] + E<v, w>;
+					path[W] = V;
+				}
+	}
+}
+
+/**
  * Adjacency matrix: weighted single source shortest path problem 
  *
  * Return the minimum element of array dist (among uncollected vertices)
