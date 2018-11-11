@@ -94,7 +94,7 @@ bool visited[MaxVertexNum];		/* Global array to help BFS algorithm */
 int main()
 {
 	/**
-	 * In this case: MAXN = 10000, so (N + 2*2E <= N^2 - N),
+	 * In this case: MAXN = 10000, so (N + 2*2E <= N^2), 
 	 * we use graph adjacency list implementation instead 
 	 */
 	LGraph graph;
