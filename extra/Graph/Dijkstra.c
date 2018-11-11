@@ -1,16 +1,21 @@
 /**
+ * Weighted single source shortest path problem: 
+ * (with adjacency matrix in a connected graph)
+ *
  * Psudocode for dijkstra's algorithm: 
  * (could not tackle the problem with negative-cost cycle)
  */
 void Dijkstra(Vertex s)
 {
 	while (1) {
+		/* Time complexity Ta: One can use MinHeap for sparse graph */
 		V = vertex with the minimum distance among those uncollected vertices;
 		if (No such V)
 			break;
 		colloected[V] = true;
 		for (W: each node next to V)
 			if (collected[W] == false)
+				/* Time complexity Tb: visit all the edges inside graph */
 				if (dist[V]+E<v, w> < dist[W]) {
 					dist[W] = dist[V] + E<v, w>;
 					path[W] = V;
@@ -19,19 +24,17 @@ void Dijkstra(Vertex s)
 }
 
 /**
- * Adjacency matrix: weighted single source shortest path problem 
- *
  * Return the minimum element of array dist (among uncollected vertices)
  *
  * Critical implementatons:
- *     a. To get minimun dist value among the uncollected 
- *     b. Update dist[w] (w is a vertex affected by v)
+ *     a. To get minimum dist value among the uncollected 
+ *     b. Update dist[w] (w is an adjacent vertex infected by v)
  * ----------------------- Method 1 ------------------------------------------
- *   Scan all the uncollected vertices, in this way, Ta=O(|V|^2), Tb=O(|E|), 
+ *   Scan all the uncollected vertices, in this case, Ta=O(|V|^2), Tb=O(|E|), 
  *   suit for dense graph (i.e. E = O(|V|^2)). Total T = O(|V|^2 + |E|)
  *
  * ----------------------- Method 2 ------------------------------------------
- *   Also, one can implement function FindMinDist() by using MinHeap, 
+ *   Also, one can implement function FindMinDist() by using minmum heap,
  *   Ta=O(|V|log|V|), Tb=O(|E|log|V|), suit for sparse graph, 
  *   Total T = O((|V|+|E|)log|V|) ~ O(|E|log|V|) 
  */
