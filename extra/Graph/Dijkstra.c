@@ -1,6 +1,7 @@
-/* Adjacency matrix: weighted single source shortest path problem */
-
-/* Return the minimum element of array dist (among uncollected vertices)
+/**
+ * Adjacency matrix: weighted single source shortest path problem 
+ *
+ * Return the minimum element of array dist (among uncollected vertices)
  *
  * Critical implementatons:
  *     a. To get minimun dist value among the uncollected 
@@ -12,7 +13,8 @@
  * ----------------------- Method 2 ------------------------------------------
  *   Also, one can implement function FindMinDist() by using MinHeap, 
  *   Ta=O(|V|log|V|), Tb=O(|E|log|V|), suit for sparse graph, 
- *   Total T = O((|V|+|E|)log|V|) ~ O(|E|log|V|) */
+ *   Total T = O((|V|+|E|)log|V|) ~ O(|E|log|V|) 
+ */
 Vertex FindMinDist(MGraph Graph, int dist[], bool collected[])
 {
 	Vertex MinV, V;
@@ -26,11 +28,14 @@ Vertex FindMinDist(MGraph Graph, int dist[], bool collected[])
 		}
 	if (MinDist < INFINITY)		/* Find the minimum dist */
 		return MinV;	/* Return the index of the vertex */
-	else return ERROR;	/* If no such vertex, return ERROR */
+	else
+		return ERROR;	/* If no such vertex, return ERROR */
 }
 
-/* Dijkstra's algorithm solves the single-source shortest path problem 
- * with non-negative edge weight. */
+/**
+ * Dijkstra's algorithm solves the single-source shortest path problem 
+ * with non-negative edge weight. 
+ */
 bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 {
 	bool collected[MaxVertexNum];
@@ -53,14 +58,16 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 		V = FindMinDist(Graph, dist, collected);
 		if (V == ERROR) break;	/* If no such V, end algorithm */
 		collected[V] = true;	/* To collect V */
+
 		for (W = 0; W < Graph->Nv; W++)		/* For each W in graph */
 			/* If W is a vertex next to V and which is uncollected */
 			if (collected[W] == false && Graph->G[V][W] < INFINITY) {
-				if (Graph->G[V][W] < 0)		/* If a negative weighted edge is found */
-					return false;		/* Can't handle it properly, return error */
+				/* If a negative weighted edge is found */
+				if (Graph->G[V][W] < 0)
+					return false;	/* Can't handle it properly, return error */
 				/* If colloecting V can diminish dist[W] */
 				if (dist[V]+Graph->G[V][W] < dist[W]) {
-					dist[W] = dist[V] + Graph->G[V][W];		/* Update dist[W] */
+					dist[W] = dist[V]+Graph->G[V][W];	/* Update dist[W] */
 					path[W] = V;	/* Update path of S to W */
 				}
 			}
