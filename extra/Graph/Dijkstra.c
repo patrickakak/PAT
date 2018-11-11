@@ -51,9 +51,8 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 			path[V] = -1;
 		collected[V] = false;
 	}
-	/* To collect source firstly */
 	dist[S] = 0;
-	collected[S] = true;
+	collected[S] = true; 	/* Collect source vertex firstly */
 	while (1) {
 		V = FindMinDist(Graph, dist, collected);
 		if (V == ERROR) break;	/* If no such V, end algorithm */
