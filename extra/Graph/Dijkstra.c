@@ -5,7 +5,7 @@
 void Dijkstra(Vertex s)
 {
 	while (1) {
-		V = the minimum dist among the uncollected vertices;
+		V = vertex with the minimum dist among the uncollected vertices;
 		if (No such V)
 			break;
 		colloected[V] = true;
