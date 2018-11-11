@@ -141,12 +141,8 @@ int BFS(Graph graph, Vertex S)
 				tail = W;
 			}
 		}
-		if (V == last) {
-			level++;
-			last = tail;
-		}
-		if (level == 6)
-			break;
+		if (V == last) { level++; last = tail; }
+		if (level == 6) break;
 	}
 	DestroyQ(Q);
 	return count;
