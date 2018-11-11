@@ -15,7 +15,9 @@ void Dijkstra(Vertex s)
 		colloected[V] = true;
 		for (W: each node next to V)
 			if (collected[W] == false)
-				/* Time complexity Tb: visit all the edges inside graph */
+				/* Time complexity Tb: visit all the edges inside graph:
+				 * (when using MinHeap, don't forget to insert the updated 
+				 * dist[W] back into heap) */
 				if (dist[V]+E<v, w> < dist[W]) {
 					dist[W] = dist[V] + E<v, w>;
 					path[W] = V;
