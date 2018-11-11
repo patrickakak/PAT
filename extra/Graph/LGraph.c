@@ -1,5 +1,6 @@
 /**
  * Graph adjacency list implementation (suit for sparse graph):
+ * Time complexity: T = O(N+E)
  */
 
 typedef int Vertex; 	/* Using the index of vertex to represent a vertex */
