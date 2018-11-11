@@ -1,4 +1,7 @@
-/* Adjacency list: unweighted single-source shortest path problem (SSSP) */
+/**
+ * Adjacency list: unweighted single-source shortest path problem (SSSP) 
+ * (quite resembles breadth first search algorithm)
+ */
 
 /* Initialize array dist[] and path[] as -1 firstly */
 void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
@@ -14,7 +17,8 @@ void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
 		V = Dequeue(Q);
 		for (W = Graph->G[V].FirstEdge; W; W = W->Next)
 			if (dist[W->AdjV] == -1) {	/* If W->AdjV has not been visited */
-				dist[W->AdjV] = dist[V] + 1;	/* Update the distance from W->AdjV to S */
+				/* Update the distance from W->AdjV to S */
+				dist[W->AdjV] = dist[V] + 1;
 				path[W->AdjV] = V;	/* Record V in path of S to W->AdjV */
 				Enqueue(Q, W->AdjV);
 			}
