@@ -1,5 +1,6 @@
 /**
  * Graph adjacency matrix implementation (suit for dense graph):
+ * Time complexity: T = O(N^2)
  */ 
 
 #define MaxVertexNum 10
