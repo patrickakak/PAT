@@ -1,5 +1,5 @@
 /**
- * Psudocode for dijkstra's algoritm: 
+ * Psudocode for dijkstra's algorithm: 
  * (could not tackle the problem with negative-cost cycle)
  */
 void Dijkstra(Vertex s)
