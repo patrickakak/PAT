@@ -1,22 +1,19 @@
 /**
  * Adjacency matrix: All pairs shortest paths problem (APSP)
  *
- * Critical implementatons (same as V * single source shortest path problem):
- *     a. To get minimun dist value among the uncollected 
- *     b. Update dist[w] (w is a vertex affected by v)
- * ----------------------- Method 1 ------------------------------------------
+ * [Sparse Graph algorithm]:
+ * -------- Method 1 (same as V size the single source shortest path problem) ------
+ *   One can implement function FindMinDist() by using MinHeap, 
+ * Ta=O(|V|^2 * log|V|), Tb=O(|V||E|log|V|), Total T = O(|V|*(|V|+|E|)log|V|) 
+ *
+ * [Dense Graph algorithms] (i.e. E = O(|V|^2)):
+ * -------- Method 2 (same as V size the single source shortest path problem) ------
  *   Scan all the uncollected vertices, in this way, Ta=O(|V|^3), Tb=O(|E||V|), 
- * suit for sparse graph (i.e. E = O(|V|^2)). Total T = O(|V|^3 + |E||V|)
+ * Total T = Ta + Tb = O(|V|^3 + |E||V|)
  *
- * ----------------------- Method 2 ------------------------------------------
- *   Also, one can implement function FindMinDist() by using MinHeap, 
- * Ta=O(|V|^2 * log|V|), Tb=O(|V||E|log|V|), suit for sparse graph, 
- * Total T = O(|V|*(|V|+|E|)log|V|) 
- *
- * ----------------------- Method 3 ------------------------------------------
- * Floyd algorithm with elegancy, suit for dense graph, and T = O(|V|^3)
- * Initiaization: for (each v in G) ,set D[v][v] = 0, D[i][j] = INFINITY 
- * if there's no path from i to j;
+ * ------------------------ Method 3 (exactly T=O(|V|^3)) --------------------------
+ *   Floyd algorithm with elegancy, 
+ * Initiaization: for (each v in G), set D[v][v] = 0, D[i][j] = INFINITY 
  */
 bool Floyd(MGraph Graph, WeightType D[][MaxNv], Vertex path[][MaxNv])
 {
