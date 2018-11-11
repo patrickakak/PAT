@@ -1,4 +1,4 @@
-/* Adjacency list: unweighted single-source shortest path problem */
+/* Adjacency list: unweighted single-source shortest path problem (SSSP) */
 
 /* Initialize array dist[] and path[] as -1 firstly */
 void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
