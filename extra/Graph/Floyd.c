@@ -1,4 +1,5 @@
-/* Adjacency matrix: All pairs shortest paths problem (APSP)
+/**
+ * Adjacency matrix: All pairs shortest paths problem (APSP)
  *
  * Critical implementatons (same as V * single source shortest path problem):
  *     a. To get minimun dist value among the uncollected 
@@ -15,9 +16,9 @@
  * ----------------------- Method 3 ------------------------------------------
  * Floyd algorithm with elegancy, suit for dense graph, and T = O(|V|^3)
  * Initiaization: for (each v in G) ,set D[v][v] = 0, D[i][j] = INFINITY 
- * if there's no path between i->j;
+ * if there's no path from i to j;
  */
-bool Floyd(MGraph Graph, WeightType D[][MaxVertexNum], Vertex path[][MaxVertexNum])
+bool Floyd(MGraph Graph, WeightType D[][MaxNv], Vertex path[][MaxNv])
 {
 	Vertex i, j, k;
 
@@ -33,10 +34,11 @@ bool Floyd(MGraph Graph, WeightType D[][MaxVertexNum], Vertex path[][MaxVertexNu
 			for (j = 0; j < Graph->Nv; j++)
 				if (D[i][k] + D[k][j] < D[i][j]) {
 					D[i][j] = D[i][k] + D[k][j];
-					if (i == j && D[i][j] < 0)	/* Negative-cost cycle is found */
-						return false;	/* Can't handle properly, return error */
+					/* Negative-cost cycle is found */
+					if (i == j && D[i][j] < 0)
+						return false;	/* Can't handle properly */
 					path[i][j] = k;
 				}
-	return true;	/* Execute the algorithm properly, return true */
+	return true;	/* Execute the algorithm properly */
 }
 
