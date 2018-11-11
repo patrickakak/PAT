@@ -141,6 +141,8 @@ int BFS(Graph graph, Vertex S)
 				tail = W;
 			}
 		}
+		/* V equals to last to indidate vertices in last level 
+		 * has been already handled */
 		if (V == last) { level++; last = tail; }
 		if (level == 6) break;
 	}
