@@ -90,9 +90,7 @@ void Save007(int N, int D)
 	Vertex V;
 
 	InitVisited(N);
-
 	/* Traverse all the crocs that can be jumped onto from the island */
-	
 	for (V = 0; V < N; V++)
 		if (FirstJump(D, V)) {
 			answer = DFS(V, N, D);
