@@ -95,7 +95,7 @@ void Save007(Vertex Crocs[], int N, float D)
 	/* Traverse all the crocs that can be jumped onto from the island */
 	
 	for (i = 0; i < N; i++)
-		if (!visited[i] && FirstJump(D, Crocs[i])) {
+		if (FirstJump(D, Crocs[i])) {
 			answer = DFS(i, Crocs, N, D, visited);
 			if (answer == YES) break;
 		}
