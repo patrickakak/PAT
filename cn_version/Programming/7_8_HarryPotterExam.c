@@ -37,12 +37,20 @@ struct ENode {
 };
 typedef PtrToENode Edge;
 
-MGraph CreateGraph(int VertexNum);
+/**
+ * Graph related functions:
+ * */
+MGraph CreatGraph(int VertexNum);
+void DestroyGraph(MGraph Graph);
 void InsertEdge(MGraph Graph, Edge E);
 MGraph BuildGraph();
-void FindAnimal(MGraph Graph);
-WeightType FindMaxDist(WeightType D[][MaxVertexNum], Vertex i, int N);
+
+/**
+ * Core functions:
+ * */
 void Floyd(MGraph Graph, WeightType D[][MaxVertexNum]);
+WeightType FindMaxDist(WeightType D[][MaxVertexNum], Vertex i, int N);
+void FindAnimal(MGraph Graph);
 
 int main()
 {
@@ -50,24 +58,32 @@ int main()
 
 	G = BuildGraph();
 	FindAnimal(G);
+	DestroyGraph(G);
 
 	return 0;
 }
 
-MGraph CreateGraph(int VertexNum)
+MGraph CreatGraph(int VertexNum)
 {
 	Vertex V, W;
 	MGraph Graph;
 
-	Graph = (MGraph) malloc(sizeof(struct GNode));
+	Graph = (MGraph) malloc(sizeof(*Graph));
 	Graph->Nv = VertexNum;
 	Graph->Ne = 0;
+
+	/* Begins with index 0 b default */
 
 	for (V = 0; V < Graph->Nv; V++)
 		for (W = 0; W < Graph->Nv; W++)
 			Graph->G[V][W] = INFINITY;
 
 	return Graph;
+}
+
+void DestroyGraph(MGraph Graph)
+{
+	free(Graph);
 }
 
 void InsertEdge(MGraph Graph, Edge E)
@@ -83,7 +99,7 @@ MGraph BuildGraph()
 	int Nv, i;
 
 	scanf("%d", &Nv);
-	Graph = CreateGraph(Nv);
+	Graph = CreatGraph(Nv);
 
 	scanf("%d", &Graph->Ne);
 	if (Graph->Ne) {
@@ -93,6 +109,7 @@ MGraph BuildGraph()
 			E->V1--; E->V2--;
 			InsertEdge(Graph, E);
 		}
+		free(E);
 	}
 	return Graph;
 }
@@ -107,8 +124,10 @@ void FindAnimal(MGraph Graph)
 	MinDist = INFINITY;
 	for (i = 0; i < Graph->Nv; i++) {
 		MaxDist = FindMaxDist(D, i, Graph->Nv);
+		
+		/* For the case that graph is not connected */
 		if (MaxDist == INFINITY) {
-			printf("0\n");
+			puts("0");
 			return;
 		}
 		if (MinDist > MaxDist) {
@@ -126,7 +145,10 @@ void Floyd(MGraph Graph, WeightType D[][MaxVertexNum])
 	/* Initialization */
 	for (i = 0; i < Graph->Nv; i++)
 		for (j = 0; j < Graph->Nv; j++)
-			D[i][j] = Graph->G[i][j];
+			if (i == j)
+				D[i][j] = 0;
+			else
+				D[i][j] = Graph->G[i][j];
 
 	for (k = 0; k < Graph->Nv; k++)
 		for (i = 0; i < Graph->Nv; i++)
@@ -142,7 +164,7 @@ WeightType FindMaxDist(WeightType D[][MaxVertexNum], Vertex i, int N)
 
 	MaxDist = 0;
 	for (j = 0; j < N; j++)
-		if (i != j && D[i][j] > MaxDist)
+		if (D[i][j] > MaxDist)
 			MaxDist = D[i][j];
 	return MaxDist;
 }
