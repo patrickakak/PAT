@@ -50,7 +50,7 @@ void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
 void Unweighted(MGraph Graph, int dist[], int path[], Vertex S)
 {
 	Queue Q;
-	Vertex V;
+	Vertex V, W;
 
 	Q = CreateQueue(Graph->Nv);
 	dist[S] = 0;	/* Initialize source */
