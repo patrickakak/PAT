@@ -111,7 +111,8 @@ bool FirstJump(float D, Vertex V)
 	return (Diameter+D) * (Diameter+D) >= V.x*V.x + V.y*V.y;
 }
 
-/* Depth first seaching recursively, return YES if the path is found */
+/* Depth first seaching recursively, return YES if the path is found
+ * (Unlike BFS, DFS to offer only special solution to the question) */
 
 int DFS(int curVertIndex, Vertex Crocs[], int N, float D, bool visited[])
 {
