@@ -1,3 +1,21 @@
+/**
+ * Sample Input:
+ * 6 11
+ * 3 4 70
+ * 1 2 1
+ * 5 4 50
+ * 2 6 50
+ * 5 6 60
+ * 1 3 70
+ * 4 6 60
+ * 3 6 80
+ * 5 1 100
+ * 2 4 60
+ * 5 2 80
+ * --------------
+ * Sample Output:
+ * 4 70
+ * */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -45,7 +63,6 @@ MGraph CreateGraph(int VertexNum)
 	Graph->Nv = VertexNum;
 	Graph->Ne = 0;
 
-	/* Notes: the index of vertex from 0 To (Graph->Nv-1) by default */
 	for (V = 0; V < Graph->Nv; V++)
 		for (W = 0; W < Graph->Nv; W++)
 			Graph->G[V][W] = INFINITY;
@@ -73,8 +90,7 @@ MGraph BuildGraph()
 		E = (Edge) malloc(sizeof(struct ENode));
 		for (i = 0; i < Graph->Ne; i++) {
 			scanf("%d %d %d", &E->V1, &E->V2, &E->Weight);
-			E->V1--;
-			E->V2--;
+			E->V1--; E->V2--;
 			InsertEdge(Graph, E);
 		}
 	}
