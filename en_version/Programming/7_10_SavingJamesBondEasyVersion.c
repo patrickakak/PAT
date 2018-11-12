@@ -108,7 +108,7 @@ void Save007(int N, int D)
  */
 bool FirstJump(int D, Vertex V)
 {
-	return ((float)D+Diameter/2)*((float)D+Diameter/2) 
+	return ((float)D + Diameter/2) * ((float)D + Diameter/2) 
 		>= Crocs[V].x*Crocs[V].x + Crocs[V].y*Crocs[V].y;
 }
 
@@ -152,7 +152,7 @@ bool IsSafe(Vertex V, int D)
  */
 bool Jump(Vertex V, Vertex W, int D)
 {
-	return D*D >= (Crocs[V].x-Crocs[W].x)*(Crocs[V].x-Crocs[W].x) 
-		+ (Crocs[V].y-Crocs[W].y)*(Crocs[V].y-Crocs[W].y);
+	return D*D >= (Crocs[V].x - Crocs[W].x)*(Crocs[V].x - Crocs[W].x) 
+		+ (Crocs[V].y - Crocs[W].y)*(Crocs[V].y - Crocs[W].y);
 }
 
