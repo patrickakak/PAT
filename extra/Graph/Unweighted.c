@@ -12,8 +12,8 @@ void Unweighted(Vertex S)
 		V = Dequeue(Q);
 		for (W: each adjacent node of V)
 			if (W: has not been visited (i.e. dist[W] == -1)) {
-				dist[W] = dist[V]+1;
-				path[W] = V;
+				Update dist[W] into dist[V]+1;
+				Update path[W] to V;
 				Enqueue(W, Q);
 			}
 	}
