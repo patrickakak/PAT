@@ -2,8 +2,8 @@
  * Weighted single source shortest path problem: 
  * (with adjacency matrix in a connected graph)
  *
- * Psudocode for dijkstra's algorithm: 
- * (could not tackle the problem with negative-weighted edge and negative-cost cycle)
+ * Psudocode for dijkstra's algorithm: (could not tackle the problem with 
+ * negative-weighted edge and negative-cost cycle)
  */
 void Dijkstra(Vertex s)
 {
