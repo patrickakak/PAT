@@ -57,13 +57,12 @@ void Unweighted(MGraph Graph, int dist[], int path[], Vertex S)
 	Enqueue(Q, S);
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);
-		for (W = 0; W < Graph->Nv; W++) {
+		for (W = 0; W < Graph->Nv; W++)
 			if (Graph->G[V][W] < INFINITY && dist[W] == -1) {
 				dist[W] = dist[V] + 1;
 				path[W] = V;
 				Enqueue(Q, W);
 			}
-		}
 	}
 }
 
