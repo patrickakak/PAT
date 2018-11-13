@@ -216,6 +216,7 @@ void Save007(MGraph MG)
 
 	pair.Start = pair.End = -1;
 	Jar = CreatStack();
+	/* Find those vertices that can reach bank directly */
 	for (V = 0; V < MG->Nv; V++)
 		if (IsSafe(V, D))
 			Push(Jar, V);
@@ -228,6 +229,11 @@ void Save007(MGraph MG)
 			 * minimal dist[] of a (connected or not) graph (SSSP problem) 
 			 */
 			Unweighted(MG, V);
+			/**
+			 * To see whether we can reach those vertices in Jar container,
+			 * if so, then we find a shotest way out, don't forget to update 
+			 * until we find the path with minimal-wide first step 
+			 */
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
 				if (dist[W] < INFINITY)
