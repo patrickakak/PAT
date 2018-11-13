@@ -120,12 +120,10 @@ void UpdatePair(Pair *pPiar, Vertex V, Vertex W, int *pMinDist);
 /**
  * Global variables:
  */
-int N, D;
+int N, D, dist[MAXN], ShotestDist[MAXN];
 Coordinates Crocs[MAXN];
 MGraph MG;
 Vertex path[MAXN], ShotestPath[MAXN];
-int dist[MAXN], ShotestDist[MAXN];
-bool collected[MAXN];
 
 int main()
 {
