@@ -1,3 +1,38 @@
+/**
+ * Sample Input1:
+ * 17 15
+ * 10 -21
+ * 10 21
+ * -40 10
+ * 30 -50
+ * 20 40
+ * 35 10
+ * 0 -10
+ * -25 22
+ * 40 -40
+ * -30 30
+ * -10 22
+ * 0 11
+ * 25 21
+ * 25 10
+ * 10 10
+ * 10 35
+ * -30 10
+ * Sample Output1:
+ * 4
+ * 0 11
+ * 10 21
+ * 10 35
+ * --------------
+ * Sample Input2:
+ * 4 13
+ * -12 12
+ * 12 12
+ * -12 -12
+ * 12 -12
+ * Sample Output2:
+ * 0
+ *  */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -39,6 +74,10 @@ struct SNode {
 };
 typedef PtrToSNode Stack;
 
+typedef struct {
+	Vertex Start, End;
+} Pair;
+
 /**
  * Graph related functions:
  */
@@ -76,6 +115,7 @@ void InitPath(int N);
 void InitDist(int N);
 void Unweighted(MGraph MG, Vertex S);
 void PrintPath(Vertex Path[], Vertex V);
+void UpdatePair(Pair *pPiar, Vertex V, Vertex W, int *pMinDist);
 
 /**
  * Global variables:
@@ -83,15 +123,14 @@ void PrintPath(Vertex Path[], Vertex V);
 int N, D;
 Coordinates Crocs[MAXN];
 MGraph MG;
-Vertex path[MAXN+1], ShotestPath[MAXN+1];
-int dist[MAXN+1], ShotestDist[MAXN+1];
+Vertex path[MAXN], ShotestPath[MAXN];
+int dist[MAXN], ShotestDist[MAXN];
 bool collected[MAXN];
 
 int main()
 {
 	Vertex V;
 
-	freopen("data.txt", "r", stdin);
 	scanf("%d %d", &N, &D);
 
 	if (R + D >= HalfSquareSide) {
@@ -102,7 +141,7 @@ int main()
 	for (V = 0; V < N; V++)
 		scanf("%d %d", &Crocs[V].x, &Crocs[V].y);
 
-	MG = BuildGraph();
+	MG = BuildGraph();	/* Build a unweighted and undirected graph */
 
 	Save007(MG);
 
@@ -144,12 +183,40 @@ void PrintPath(Vertex Path[], Vertex V)
 	printf("%d %d\n", Crocs[V].x, Crocs[V].y);
 }
 
+/* Update first vertex V and the last vertex W of the shotest path */
+
+void UpdatePair(Pair *pPair, Vertex V, Vertex W, int *pMinDist)
+{
+	if (*pMinDist > dist[W]) {
+		*pMinDist = dist[W];
+		pPair->Start = V; pPair->End = W;
+
+		/* Save path[], dist[] array and current W 
+		 * (parameter three is of type size_t) */
+		
+		memcpy(ShotestPath, path, MG->Nv*sizeof(int));
+		memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
+	}
+	/* Same shotest length path is found */
+	else if (*pMinDist == dist[W] && 
+			Crocs[V].x * Crocs[V].x + Crocs[V].y * Crocs[V].y 
+			< Crocs[pPair->Start].x * Crocs[pPair->Start].x
+			+ Crocs[pPair->Start].y * Crocs[pPair->Start].y) {
+		pPair->Start = V;
+		pPair->End = W;
+		memcpy(ShotestPath, path, MG->Nv*sizeof(int));
+		memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
+	}
+}
+
 void Save007(MGraph MG)
 {
-	Vertex V, W, Start = -1, End = -1;
+	Vertex V, W;
 	Stack Jar;
 	int i, MinDist = INFINITY;
+	Pair pair;
 
+	pair.Start = pair.End = -1;
 	Jar = CreatStack();
 	for (V = 0; V < MG->Nv; V++)
 		if (IsSafe(V, D))
@@ -158,57 +225,23 @@ void Save007(MGraph MG)
 	for (V = 0; V < MG->Nv; V++)
 		if (FirstJump(V, D)) {
 			InitPath(MG->Nv); InitDist(MG->Nv);
-			Unweighted(MG, V);
+			Unweighted(MG, V);	/* If vertex V can be firstjumped, then use 
+								   BFS algorithm to get minimal dist[] of 
+								   a (connected or not) graph (SSSP problem) */
+
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
-				if (dist[W] < INFINITY) {
-					if (MinDist > dist[W]) {
-						MinDist = dist[W];
-						Start = V;
-						// SavePathAndDistAndCurrentW();
-						/*
-						memcpy(ShotestPath, path, MAXN);
-						memcpy(ShotestDist, dist, MAXN);
-						*/
-						memcpy(ShotestPath, path, MG->Nv*sizeof(int));
-						memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
-						End = W;
-					} else if (MinDist == dist[W] && 
-							Crocs[V].x*Crocs[V].x+Crocs[V].y*Crocs[V].y 
-							< Crocs[Start].x*Crocs[Start].x
-							+ Crocs[Start].y*Crocs[Start].y) {
-						// SavePathAndDistAndCurrentW();
-						Start = V;
-						// parameter three is of type size_t
-						memcpy(ShotestPath, path, MG->Nv*sizeof(int));
-						memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
-						End = W;
-					}
-				}
+				if (dist[W] < INFINITY)
+					UpdatePair(&pair, V, W, &MinDist);
 			}
 		}
 	DestroyStack(Jar);
-	/*
-	///////////////////////////
-	int v;
-	printf("dist:");
-	for (v=0; v<MG->Nv; v++)
-		if (ShotestDist[v] == INFINITY) printf("  ∞");
-		else printf(" %2d", ShotestDist[v]);
-	putchar('\n');
-	///////////////////////////
-	///////////////////////////
-	printf("path:");
-	for (v=0; v<MG->Nv; v++)
-		printf(" %2d", ShotestPath[v]);
-	putchar('\n');
-	///////////////////////////
-	*/
-	if (Start == -1)
+	if (pair.Start == -1)
 		puts("0");
 	else {
-		printf("%d\n", ShotestDist[End]+2);
-		PrintPath(ShotestPath, End);
+		printf("%d\n", ShotestDist[pair.End]+2);	/* Plus two steps of first 
+													   and last jump */
+		PrintPath(ShotestPath, pair.End);
 	}
 }
 
