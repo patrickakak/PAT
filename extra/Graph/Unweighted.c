@@ -45,7 +45,7 @@ void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
 }
 
 /**
- * Adjacency matrix implementation:
+ * Adjacency matrix implementation (T = O(|V|^2)):
  */
 void Unweighted(MGraph Graph, int dist[], int path[], Vertex S)
 {
