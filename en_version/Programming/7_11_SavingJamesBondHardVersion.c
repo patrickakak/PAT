@@ -39,17 +39,27 @@ struct SNode {
 };
 typedef PtrToSNode Stack;
 
-// Functions:
+/**
+ * Graph related functions:
+ */
 MGraph CreatGraph(int VertexNum);
 void DestroyGraph(MGraph MG);
 bool Jump(Vertex V, Vertex W, int D);
 MGraph BuildGraph();
+
+/**
+ * Queue related functions:
+ */
 Queue CreatQueue();
 void DestroyQueue(Queue Q);
 bool IsFullQ(Queue Q);
 bool IsEmptyQ(Queue Q);
 bool Enqueue(Queue Q, ElemType X);
 ElemType Dequeue(Queue Q);
+
+/**
+ * Stack related functions:
+ */
 Stack CreatStack();
 void DestroyStack(Stack S);
 bool IsFullS(Stack S);
@@ -57,6 +67,9 @@ bool IsEmptyS(Stack S);
 bool Push(Stack S, ElemType X);
 ElemType Pop(Stack S);
 
+/**
+ * Core functions:
+ */
 bool IsSafe(Vertex V, int D);
 void Save007(MGraph MG);
 void InitPath(int N);
@@ -64,7 +77,9 @@ void InitDist(int N);
 void Unweighted(MGraph MG, Vertex S);
 void PrintPath(Vertex Path[], Vertex V);
 
-// Global variables:
+/**
+ * Global variables:
+ */
 int N, D;
 Coordinates Crocs[MAXN];
 MGraph MG;
@@ -74,31 +89,23 @@ bool collected[MAXN];
 
 int main()
 {
-	int i;
+	Vertex V;
 
-	// freopen("data.txt", "r", stdin);
+	freopen("data.txt", "r", stdin);
 	scanf("%d %d", &N, &D);
 
 	if (R + D >= HalfSquareSide) {
-		printf("1\n");
+		puts("1");
 		return 0;
 	}
 
-	for (i = 0; i < N; i++)
-		scanf("%d %d", &Crocs[i].x, &Crocs[i].y);
+	for (V = 0; V < N; V++)
+		scanf("%d %d", &Crocs[V].x, &Crocs[V].y);
+
 	MG = BuildGraph();
-	/*
-	//-------------------------
-	int v, w;
-	for (v=0; v<MG->Nv; v++) {
-		for (w=0; w<MG->Nv; w++)
-			if (MG->G[v][w] == INFINITY) printf(" ∞");
-			else printf(" %d", MG->G[v][w]);
-		putchar('\n');
-	}
-	//-------------------------
-	*/
+
 	Save007(MG);
+	
 	DestroyGraph(MG);
 
 	return 0;
@@ -120,69 +127,39 @@ void Unweighted(MGraph MG, Vertex S)
 
 	while (!IsEmptyQ(Q)) {
 		V = Dequeue(Q);
-		for (W = 0; W<MG->Nv; W++) {
-			if (MG->G[V][W] < INFINITY) {
-				if (dist[W] == INFINITY) { // Unvisited
+		for (W = 0; W<MG->Nv; W++)
+			if (MG->G[V][W] < INFINITY)
+				if (dist[W] == INFINITY) {	/* Unvisited */
 					dist[W] = dist[V]+1;
 					path[W] = V;
 					Enqueue(Q, W);
 				}
-			}
-		}
 	}
 	DestroyQueue(Q);
 }
 
 void PrintPath(Vertex Path[], Vertex V)
 {
-	if (Path[V] == -1) {
-		printf("%d %d\n", Crocs[V].x, Crocs[V].y);
-	} else {
+	if (Path[V] != -1)
 		PrintPath(Path, Path[V]);
-		printf("%d %d\n", Crocs[V].x, Crocs[V].y);
-	}
+	printf("%d %d\n", Crocs[V].x, Crocs[V].y);
 }
 
 void Save007(MGraph MG)
 {
-	Vertex V, W;
+	Vertex V, W, Start = -1, End = -1;
 	Stack Jar;
 	int i, MinDist = INFINITY;
-	Vertex Start = -1, End = -1;
 
 	Jar = CreatStack();
 	for (V = 0; V < MG->Nv; V++)
 		if (IsSafe(V, D))
 			Push(Jar, V);
-	//////////////////
-	/*
-	   int k;
-	   for (k=0; k<=Jar->Top; k++) {
-	   printf("Jar->Elems[%d]=%d\n", k, Jar->Elems[k]);
-	   }
-	   */
-	//////////////////
+
 	for (V = 0; V < MG->Nv; V++) {
 		if (FirstJump(V, D)) {
-			/////////////////////////
-			// printf("1stV=%d\n", V);
-			////////////////////////
 			InitPath(MG->Nv); InitDist(MG->Nv);
 			Unweighted(MG, V);
-			/*
-			/////////////////////////
-			int k;
-			printf("dist:");
-			for (k=0; k<MG->Nv; k++)
-				if (dist[k] < INFINITY) printf(" %2d", dist[k]);
-				else printf("  ∞");
-			putchar('\n');
-			printf("path:");
-			for (k=0; k<MG->Nv; k++)
-				printf(" %2d", path[k]);
-			putchar('\n');
-			////////////////////////
-			*/
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
 				if (dist[W] < INFINITY) {
@@ -193,26 +170,24 @@ void Save007(MGraph MG)
 						memcpy(ShotestPath, path, MAXN);
 						memcpy(ShotestDist, dist, MAXN);
 						End = W;
-					} else if (MinDist == dist[W]) {
-						// If Firstep(CurV) < Firstep(Start)
-						if (Crocs[V].x*Crocs[V].x + Crocs[V].y*Crocs[V].y 
-								< Crocs[Start].x*Crocs[Start].x 
-								+ Crocs[Start].y*Crocs[Start].y) {
-							Start = V;
+					} else if (MinDist == dist[W] && 
+							Crocs[V].x*Crocs[V].x+Crocs[V].y*Crocs[V].y 
+							< Crocs[Start].x*Crocs[Start].x
+							+ Crocs[Start].y*Crocs[Start].y) {
 							// SavePathAndDistAndCurrentW();
+							Start = V;
 							memcpy(ShotestPath, path, MAXN);
 							memcpy(ShotestDist, dist, MAXN);
 							End = W;
-						}
 					}
 				}
 			}
 		}
 	}
 	DestroyStack(Jar);
-	if (Start == -1) {
-		printf("0\n");
-	} else {
+	if (Start == -1)
+		puts("0");
+	else {
 		printf("%d\n", ShotestDist[End]+2);
 		PrintPath(ShotestPath, End);
 	}
@@ -227,11 +202,9 @@ MGraph CreatGraph(int VertexNum)
 	MG->Nv = VertexNum;
 	MG->Ne = 0;
 
-	for (V = 0; V < MG->Nv; V++) {
-		for (W = 0; W < MG->Nv; W++) {
+	for (V = 0; V < MG->Nv; V++)
+		for (W = 0; W < MG->Nv; W++)
 			MG->G[V][W] = INFINITY;
-		}
-	}
 	return MG;
 }
 
@@ -252,14 +225,12 @@ MGraph BuildGraph()
 	Vertex V, W;
 
 	MG = CreatGraph(N);
-	for (V = 0; V < MG->Nv; V++) {
-		for (W = 0; W != V && W < MG->Nv; W++) {
+	for (V = 0; V < MG->Nv; V++)
+		for (W = 0; W != V && W < MG->Nv; W++)
 			if (Jump(V, W, D)) {
 				MG->G[V][W] = TAKEN;
 				MG->G[W][V] = TAKEN;
 			}
-		}
-	}
 	return MG;
 }
 
