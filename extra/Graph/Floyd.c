@@ -12,7 +12,7 @@
  *
  * [Dense Graph algorithms] (i.e. E = O(|V|^2)):
  * ------------------------ Method 3 (exactly T=O(|V|^3)) --------------------
- *   Floyd algorithm with elegancy, could handle with negative-weighted side, 
+ *   Floyd algorithm with elegancy, could handle with negative-weighted edge, 
  * but couldn't tackle negative-cost cycle also.
  *
  * Initiaization: for (each v in G), set D[v][v] = 0, D[i][j] = G[i][j]
