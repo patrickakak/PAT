@@ -17,8 +17,7 @@
  *
  * Initiaization: for (each v in G), set D[v][v] = 0, D[i][j] = G[i][j]
  */
-bool Floyd(MGraph Graph, WeightType D[][MaxVertexNum], 
-		Vertex path[][MaxVertexNum])
+bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 {
 	Vertex i, j, k;		/* k: the time of matrix transform */
 
