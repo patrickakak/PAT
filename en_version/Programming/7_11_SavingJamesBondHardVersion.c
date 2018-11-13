@@ -133,7 +133,7 @@ int main()
 
 	scanf("%d %d", &N, &D);
 
-	if (R + D >= HalfSquareSide) {
+	if (R + D >= HalfSquareSide) {	/* Can reach bank directly */
 		puts("1");
 		return 0;
 	}
@@ -225,9 +225,11 @@ void Save007(MGraph MG)
 	for (V = 0; V < MG->Nv; V++)
 		if (FirstJump(V, D)) {
 			InitPath(MG->Nv); InitDist(MG->Nv);
-			Unweighted(MG, V);	/* If vertex V can be firstjumped, then use 
-								   BFS algorithm to get minimal dist[] of 
-								   a (connected or not) graph (SSSP problem) */
+			/**
+			 * If vertex V can be firstjumped, then use BFS algorithm to get 
+			 * minimal dist[] of a (connected or not) graph (SSSP problem) 
+			 */
+			Unweighted(MG, V);
 
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
@@ -239,8 +241,8 @@ void Save007(MGraph MG)
 	if (pair.Start == -1)
 		puts("0");
 	else {
-		printf("%d\n", ShotestDist[pair.End]+2);	/* Plus two steps of first 
-													   and last jump */
+		/* Plus two steps of first and last jump */
+		printf("%d\n", ShotestDist[pair.End]+2);
 		PrintPath(ShotestPath, pair.End);
 	}
 }
