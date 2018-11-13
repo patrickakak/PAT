@@ -1,6 +1,6 @@
 /**
  * Unweighted single-source shortest path problem (SSSP)
- * (quite resembles breadth first search algorithm), T = O(|V|+|E|)
+ * (quite resembles breadth first search algorithm)
  *
  * Psudocode for SSSP problem:
  * Initialize array dist[] and path[] as -1 firstly 
@@ -20,7 +20,7 @@ void Unweighted(Vertex S)
 }
 
 /**
- * Adjacency list implementation:
+ * Adjacency list implementation (T = O(|V|+|E|)):
  */
 void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
 {
@@ -32,14 +32,14 @@ void Unweighted(LGraph Graph, int dist[], int path[], Vertex S)
 	dist[S] = 0;	/* Initialize source */
 	Enqueue(Q, S);
 	while (!IsEmpty(Q)) {
-		V = Dequeue(Q);
-		for (W = Graph->G[V].FirstEdge; W; W = W->Next)
+		V = Dequeue(Q); 	/* T = O(|V|) */
+		for (W = Graph->G[V].FirstEdge; W; W = W->Next) 	/* T = O(|E|) */
 			/* If the adjacent vertex has not been visited */
 			if (dist[W->AdjV] == -1) {
 				/* Update the distance from W->AdjV to S */
 				dist[W->AdjV] = dist[V] + 1;
 				path[W->AdjV] = V;	/* Record V in the path of S to W->AdjV */
-				Enqueue(Q, W->AdjV);
+				Enqueue(Q, W->AdjV); 	/* T = O(|V|) */
 			}
 	}
 }
