@@ -156,7 +156,7 @@ void Save007(MGraph MG)
 		if (IsSafe(V, D))
 			Push(Jar, V);
 
-	for (V = 0; V < MG->Nv; V++) {
+	for (V = 0; V < MG->Nv; V++)
 		if (FirstJump(V, D)) {
 			InitPath(MG->Nv); InitDist(MG->Nv);
 			Unweighted(MG, V);
@@ -183,7 +183,6 @@ void Save007(MGraph MG)
 				}
 			}
 		}
-	}
 	DestroyStack(Jar);
 	if (Start == -1)
 		puts("0");
