@@ -166,9 +166,9 @@ void Unweighted(MGraph MG, Vertex S)
 		V = Dequeue(Q);
 		for (W = 0; W < MG->Nv; W++)
 			if (MG->G[V][W] < INFINITY && dist[W] == INFINITY) {
-					dist[W] = dist[V]+1;
-					path[W] = V;
-					Enqueue(Q, W);
+				dist[W] = dist[V]+1;
+				path[W] = V;
+				Enqueue(Q, W);
 			}
 	}
 	DestroyQueue(Q);
@@ -191,7 +191,7 @@ void UpdatePair(Pair *pPair, Vertex V, Vertex W, int *pMinDist)
 
 		/* Save path[], dist[] array and current W 
 		 * (parameter three is of type size_t) */
-		
+
 		memcpy(ShotestPath, path, MG->Nv*sizeof(int));
 		memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
 	}
