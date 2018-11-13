@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define R 7.5
-#define MAXN 100
+#define MAXN 1000
 #define TAKEN 1
 #define INFINITY 65535
 #define HalfSquareSide 50
