@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define R 7.5
-#define MAXN 1000
+#define MAXN 100
 #define TAKEN 1
 #define INFINITY 65535
 #define HalfSquareSide 50
@@ -83,8 +83,8 @@ void PrintPath(Vertex Path[], Vertex V);
 int N, D;
 Coordinates Crocs[MAXN];
 MGraph MG;
-Vertex path[MAXN], ShotestPath[MAXN];
-int dist[MAXN], ShotestDist[MAXN];
+Vertex path[MAXN+1], ShotestPath[MAXN+1];
+int dist[MAXN+1], ShotestDist[MAXN+1];
 bool collected[MAXN];
 
 int main()
@@ -127,13 +127,12 @@ void Unweighted(MGraph MG, Vertex S)
 
 	while (!IsEmptyQ(Q)) {
 		V = Dequeue(Q);
-		for (W = 0; W<MG->Nv; W++)
-			if (MG->G[V][W] < INFINITY)
-				if (dist[W] == INFINITY) {	/* Unvisited */
+		for (W = 0; W < MG->Nv; W++)
+			if (MG->G[V][W] < INFINITY && dist[W] == INFINITY) {
 					dist[W] = dist[V]+1;
 					path[W] = V;
 					Enqueue(Q, W);
-				}
+			}
 	}
 	DestroyQueue(Q);
 }
@@ -167,8 +166,12 @@ void Save007(MGraph MG)
 						MinDist = dist[W];
 						Start = V;
 						// SavePathAndDistAndCurrentW();
+						/*
 						memcpy(ShotestPath, path, MAXN);
 						memcpy(ShotestDist, dist, MAXN);
+						*/
+						memcpy(ShotestPath, path, MG->Nv*sizeof(int));
+						memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
 						End = W;
 					} else if (MinDist == dist[W] && 
 							Crocs[V].x*Crocs[V].x+Crocs[V].y*Crocs[V].y 
@@ -176,14 +179,31 @@ void Save007(MGraph MG)
 							+ Crocs[Start].y*Crocs[Start].y) {
 						// SavePathAndDistAndCurrentW();
 						Start = V;
-						memcpy(ShotestPath, path, MAXN);
-						memcpy(ShotestDist, dist, MAXN);
+						// parameter three is of type size_t
+						memcpy(ShotestPath, path, MG->Nv*sizeof(int));
+						memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
 						End = W;
 					}
 				}
 			}
 		}
 	DestroyStack(Jar);
+	/*
+	///////////////////////////
+	int v;
+	printf("dist:");
+	for (v=0; v<MG->Nv; v++)
+		if (ShotestDist[v] == INFINITY) printf("  ∞");
+		else printf(" %2d", ShotestDist[v]);
+	putchar('\n');
+	///////////////////////////
+	///////////////////////////
+	printf("path:");
+	for (v=0; v<MG->Nv; v++)
+		printf(" %2d", ShotestPath[v]);
+	putchar('\n');
+	///////////////////////////
+	*/
 	if (Start == -1)
 		puts("0");
 	else {
