@@ -228,7 +228,6 @@ void Save007(MGraph MG)
 			 * minimal dist[] of a (connected or not) graph (SSSP problem) 
 			 */
 			Unweighted(MG, V);
-
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
 				if (dist[W] < INFINITY)
