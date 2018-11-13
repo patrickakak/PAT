@@ -105,7 +105,7 @@ int main()
 	MG = BuildGraph();
 
 	Save007(MG);
-	
+
 	DestroyGraph(MG);
 
 	return 0;
@@ -174,11 +174,11 @@ void Save007(MGraph MG)
 							Crocs[V].x*Crocs[V].x+Crocs[V].y*Crocs[V].y 
 							< Crocs[Start].x*Crocs[Start].x
 							+ Crocs[Start].y*Crocs[Start].y) {
-							// SavePathAndDistAndCurrentW();
-							Start = V;
-							memcpy(ShotestPath, path, MAXN);
-							memcpy(ShotestDist, dist, MAXN);
-							End = W;
+						// SavePathAndDistAndCurrentW();
+						Start = V;
+						memcpy(ShotestPath, path, MAXN);
+						memcpy(ShotestDist, dist, MAXN);
+						End = W;
 					}
 				}
 			}
