@@ -80,18 +80,19 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	collected[S] = true; 	/* Collect source vertex firstly */
 	while (1) {
 		V = FindMinDist(Graph, dist, collected);
-		if (V == ERROR) break;	/* If no such V, end algorithm */
+		if (V == ERROR) 	/* If no such V, end algorithm */
+			break;
 		collected[V] = true;	/* To collect V */
 
-		for (W = 0; W < Graph->Nv; W++)		/* For each W in graph */
-			/* If W is a vertex next to V and which is uncollected */
+		for (W = 0; W < Graph->Nv; W++)
+			/* If W is a vertex next to V and uncollected */
 			if (collected[W] == false && Graph->G[V][W] < INFINITY) {
 				/* If a negative weighted edge is found */
 				if (Graph->G[V][W] < 0)
 					return false;	/* Can't handle it properly, return error */
 				/* If colloecting V can diminish dist[W] */
-				if (dist[V]+Graph->G[V][W] < dist[W]) {
-					dist[W] = dist[V]+Graph->G[V][W];	/* Update dist[W] */
+				if (dist[V] + Graph->G[V][W] < dist[W]) {
+					dist[W] = dist[V] + Graph->G[V][W];	/* Update dist[W] */
 					path[W] = V;	/* Update path of S to W */
 				}
 			}
