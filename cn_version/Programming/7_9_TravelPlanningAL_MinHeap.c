@@ -92,7 +92,7 @@ int main()
 	LG = BuildGraph(&S, &D);
 
 	TravelPlan(LG, S, D);
-	
+
 	DestroyGraph(LG);
 
 	return 0;
@@ -166,7 +166,7 @@ bool IsEmptyH(Heap H)
 
 bool IsFullH(Heap H)
 {
-	return H->Size == 10000;
+	return H->Size+1 == MaxHeapSize;
 }
 
 void PercDown(MinHeap H, int p)
