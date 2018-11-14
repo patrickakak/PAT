@@ -205,24 +205,23 @@ void Dijkstra(LGraph LG, int dist[], int cost[], Vertex S)
 	pair.v = S; pair.dist = dist[S];
 	InsertHeap(H, pair);
 
+	/**
+	 * Distance is used as first item of pair as first item is by default 
+	 * used to compare two pairs, second item v is used to indicate visitation.
+	 *
+	 * If dist[v] > dist[u]+weight(u, v), update cost[w] and dist[w] in 
+	 * MinHeap heap, because of we insert a pair insted of a vertex, we can 
+	 * insert v into the MinHeap (Even if v is already there)
+	 */
 	while (!IsEmptyH(H)) {
+
 		V = DeleteMin(H).v;
-		/**
-		 * Distance is used as first item  of pair as first 
-		 * item is by default used to compare two pairs 
-		 */
-		if (collected[V])
-			continue;
+		if (collected[V]) continue;
 		collected[V] = true;
 
 		for (W = LG->G[V].FirstEdge; W; W = W->Next)
 			if (!collected[W->AdjV]) {
 				if (dist[W->AdjV] > dist[V] + W->Weight.dist) {
-					/**
-					 * Update cost[w] and dist[w] in MinHeap heap, because of 
-					 * we insert a pair insted of a vertex, we can insert v 
-					 * into the MinHeap (Even if v is already there 
-					 */
 					dist[W->AdjV] = dist[V] + W->Weight.dist;
 					cost[W->AdjV] = cost[V] + W->Weight.cost;
 					pair.v = W->AdjV; pair.dist = dist[W->AdjV];
