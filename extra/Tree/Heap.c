@@ -79,9 +79,12 @@ MaxHeap BuildHeap(int N)
 	MaxHeap H;
 
 	H = Create(N);
-	for (i = 1; i <= N; i++) { scanf("%d", &H->Elements[i]); H->Size++; }
-
-	/* Build a MaxHeap in this way, in the worst case, the time that we need 
+	for (i = 1; i <= N; i++) {
+		scanf("%d", &H->Elements[i]);
+		H->Size++;
+	}
+	/**
+	 * Build a MaxHeap in this way, in the worst case, the time that we need 
 	 * to move elements of Heap equals to the sum of every node heights:
 	 *     eg. X = [logN], (full binary tree)
 	 *     2^0*X + 2^1*(X-1) + 2^2*(X-2) + ... + 2^(X-1) * (X-(X-1))
