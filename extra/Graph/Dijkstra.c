@@ -66,8 +66,8 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	bool collected[MaxVertexNum];
 	Vertex V, W;
 
-	/* Initialization: assume that inexistent edges are represented 
-	 * as INFINITY in adjacency matrix */
+	/* Initialization: assume that inexistent edges are 
+	 * represented as INFINITY in adjacency matrix */
 	for (V = 0; V < Graph->Nv; V++) {
 		dist[V] = Graph->G[S][V];
 		if (dist[V] < INFINITY)
@@ -80,7 +80,7 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	collected[S] = true; 	/* Collect source vertex firstly */
 	while (1) {
 		V = FindMinDist(Graph, dist, collected);
-		if (V == ERROR) 	/* If no such V, end algorithm */
+		if (V == ERROR) 	/* No such V, end algorithm */
 			break;
 		collected[V] = true;	/* To collect V */
 
@@ -89,10 +89,10 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 			if (collected[W] == false && Graph->G[V][W] < INFINITY) {
 				/* If a negative weighted edge is found */
 				if (Graph->G[V][W] < 0)
-					return false;	/* Can't handle it properly, return error */
+					return false;	/* Can't handle it properly */
 				/* If colloecting V can diminish dist[W] */
 				if (dist[V] + Graph->G[V][W] < dist[W]) {
-					dist[W] = dist[V] + Graph->G[V][W];	/* Update dist[W] */
+					dist[W] = dist[V] + Graph->G[V][W];		/* Update dist[W] */
 					path[W] = V;	/* Update path of S to W */
 				}
 			}
