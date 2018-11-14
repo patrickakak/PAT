@@ -220,20 +220,18 @@ void Save007(MGraph MG)
 	for (V = 0; V < MG->Nv; V++)
 		if (IsSafe(V, D))
 			Push(Jar, V);
-
+	/**
+	 * Unweighted(): If vertex V can be firstjumped, then use BFS algorithm 
+	 * to get minimal dist[] of a (connected or not) graph (SSSP problem) 
+	 *
+	 * Jar loop: To see whether we can reach those vertices in Jar container,
+	 * if so, then we find a shotest way out, don't forget to update 
+	 * until we find the path with minimal-wide first step 
+	 */
 	for (V = 0; V < MG->Nv; V++)
 		if (FirstJump(V, D)) {
 			InitPath(MG->Nv); InitDist(MG->Nv);
-			/**
-			 * If vertex V can be firstjumped, then use BFS algorithm to get 
-			 * minimal dist[] of a (connected or not) graph (SSSP problem) 
-			 */
 			Unweighted(MG, V);
-			/**
-			 * To see whether we can reach those vertices in Jar container,
-			 * if so, then we find a shotest way out, don't forget to update 
-			 * until we find the path with minimal-wide first step 
-			 */
 			for (i = 0; i <= Jar->Top; i++) {
 				W = Jar->Elems[i];
 				if (dist[W] < INFINITY)
