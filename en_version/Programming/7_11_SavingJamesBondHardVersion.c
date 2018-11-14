@@ -190,7 +190,7 @@ void UpdatePair(Pair *pPair, Vertex V, Vertex W, int *pMinDist)
 		pPair->Start = V; pPair->End = W;
 
 		/* Save path[], dist[] array and current W 
-		 * (parameter three is of type size_t) */
+		 * (parameter three of memcpy() is of type size_t) */
 
 		memcpy(ShotestPath, path, MG->Nv*sizeof(int));
 		memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
