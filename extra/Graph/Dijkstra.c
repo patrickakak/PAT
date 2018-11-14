@@ -36,9 +36,9 @@ void Dijkstra(Vertex s)
  *   suit for dense graph (i.e. E = O(|V|^2)). Total T = O(|V|^2 + |E|)
  *
  * ----------------------- Method 2 ------------------------------------------
- *   Also, one can implement function FindMinDist() by using minmum heap,
+ *   Also, one can implement function FindMinDist() by using minheap,
  *   Ta=O(|V|log|V|), Tb=O(|E|log|V|), suit for sparse graph, 
- *   Total T = O((|V|+|E|)log|V|) ~ O(|E|log|V|) 
+ *   Total T = O((|V|+|E|)log|V|)
  */
 Vertex FindMinDist(MGraph Graph, int dist[], bool collected[])
 {
