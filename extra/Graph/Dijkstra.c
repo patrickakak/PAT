@@ -1,6 +1,6 @@
 /**
  * Weighted single source shortest path problem: 
- * (with adjacency matrix in a connected graph)
+ * (with adjacency matrix in a connected or unconncected graph)
  *
  * Psudocode for dijkstra's algorithm: (could not tackle the problem with 
  * negative-weighted edge and negative-cost cycle)
