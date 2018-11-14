@@ -176,7 +176,7 @@ void PercDown(MinHeap H, int p)
 
 	for (Parent = p; 2*Parent <= H->Size; Parent = Child) {
 		Child = 2 * Parent;
-		if (Child != H->Size && H->Elems[Child+1].dist < H->Elems[Child].dist)
+		if (Child!=H->Size && H->Elems[Child+1].dist<H->Elems[Child].dist)
 			Child++;
 		if (Tmp.dist <= H->Elems[Child].dist)
 			break;
@@ -221,13 +221,13 @@ void Dijkstra(LGraph LG, int dist[], int cost[], Vertex S)
 
 		for (W = LG->G[V].FirstEdge; W; W = W->Next)
 			if (!collected[W->AdjV]) {
-				if (dist[W->AdjV] > dist[V] + W->Weight.dist) {
-					dist[W->AdjV] = dist[V] + W->Weight.dist;
-					cost[W->AdjV] = cost[V] + W->Weight.cost;
+				if (dist[W->AdjV] > dist[V]+W->Weight.dist) {
+					dist[W->AdjV] = dist[V]+W->Weight.dist;
+					cost[W->AdjV] = cost[V]+W->Weight.cost;
 					pair.v = W->AdjV; pair.dist = dist[W->AdjV];
 					InsertHeap(H, pair);
-				} else if (dist[W->AdjV] == dist[V] + W->Weight.dist 
-						&& cost[W->AdjV] > cost[V] + W->Weight.cost)
+				} else if (dist[W->AdjV] == dist[V]+W->Weight.dist 
+						&& cost[W->AdjV] > cost[V]+W->Weight.cost)
 					cost[W->AdjV] = cost[V] + W->Weight.cost;
 			}
 	}
