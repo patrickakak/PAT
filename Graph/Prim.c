@@ -1,5 +1,8 @@
-/* Adjacency matrix implementation: 
- *   Prim minimum spanning tree algorithm (suit for dense graph, T=O(|V|^2)) */
+/**
+ * Adjacency matrix implementation: 
+ *   Prim minimum spanning tree algorithm 
+ * (suit for dense graph, headless search: T=O(|V|^2)) 
+ */
 
 /* Return the vertex of minimum dist[V] among uncollected vertices */
 Vertex FindMinDist(MGraph Graph, WeightType dist[])
