@@ -1,6 +1,9 @@
-/* Adjacency list implementation: TopSort algorithm */
+/**
+ * Adjacency list implementation: TopSort algorithm 
+ * (could be used to dectect DAG(i.e. directed acyclic graph))
+ */
 
-/* TopSort graph, the index of vertices will be stored into TopOrader[] array */
+/* TopSort graph, indexes of vertices will be stored into TopOrader[] array */
 bool TopSort(LGraph Graph, Vertex TopOrder[])
 {
 	int Indegree[MaxVertexNum], cnt;
@@ -8,22 +11,18 @@ bool TopSort(LGraph Graph, Vertex TopOrder[])
 	PtrToAdjVNode W;
 	Queue Q = CreateQueue(Graph->Nv);
 
-	/* Initialize Indegree[] */
-	for (V = 0; V < Graph->Nv; V++)
+	for (V = 0; V < Graph->Nv; V++)		/* Initialize Indegree[] */
 		Indegree[V] = 0;
 
-	/* Traverse graph to get Indegree[] */
-	for (V = 0; V < Graph->Nv; V++)
+	for (V = 0; V < Graph->Nv; V++)		/* Traverse graph to get Indegree[] */
 		for (W = Graph->G[V].FirstEdge; W; W = W->Next)
 			Indegree[W->AdjV]++;
 
-	/* Enqueue vertices with 0 indegree */
-	for (V = 0; V < Graph->Nv; V++)
+	for (V = 0; V < Graph->Nv; V++)		/* Enqueue vertices with 0 indegree */
 		if (Indegree[V] == 0)
 			Enqueue(Q, V);
 
-	/* TopSort begins */
-	cnt = 0; 
+	cnt = 0;	/* TopSort begins */
 	while (!IsEmpty(Q)) {
 		V = Dequeue(Q);		/* Dequeue a vertex with 0 indegree */
 		TopOrder[cnt++] = V;	/* Store it in TopOrder[] array */
@@ -33,7 +32,7 @@ bool TopSort(LGraph Graph, Vertex TopOrder[])
 				Enqueue(Q, W->AdjV);
 	}
 
-	if (cnt != Graph->Nv) return false;	/* There's a cycle in graph */ 
+	if (cnt != Graph->Nv) return false;		/* There's a cycle in graph */
 	else return true;
 }
 
