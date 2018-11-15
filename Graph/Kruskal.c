@@ -1,5 +1,7 @@
-/* Adjacency list implementaton: T=O(|E|log|E|)
- *   Kruskal to generate minimum spinning tree (suit for sparse graph )*/
+/**
+ * Adjacency list implementaton: T = O(|E|log|E|)
+ *   Kruskal to generate minimum spinning tree (suit for sparse graph )
+ */
 
 /*---------- Union-Find (or disjoint-set data structure) definition --------*/
 typedef Vertex ElementType;
@@ -21,7 +23,7 @@ void Union(SetType S, SetName Root1, SetName Root2)
 	if (S[Root2] < S[Root1]) {	/* If Set2 is larger */
 		S[Root2] += S[Root1];	/* Merge Set1 into Set2 */
 		S[Root1] = Root2;
-	} else {	/* If set1 is larger */
+	} else {
 		S[Root1] += S[Root2];	/* Merge Set2 into Set1 */
 		S[Root2] = Root1;
 	}
@@ -32,8 +34,8 @@ SetName Find(SetType S, ElementType X)
 {
 	if (S[X] < 0)	/* Find the root of Set */
 		return X;
-	else
-		return S[X] = Find(S, S[X]);	/* Path compression */
+	else	/* Path compression technique */
+		return S[X] = Find(S, S[X]);
 }
 
 /* To check the edge <V1, V2> can form a cycle in current MST */
@@ -44,10 +46,10 @@ bool CheckCycle(SetType VSet, Vertex V1, Vertex V2)
 	Root1 = Find(VSet, V1);		/* Get the root of set of V1 */
 	Root2 = Find(VSet, V2);		/* Get the root of set of V2 */
 
-	/* If V1 and V2 are in one Set already, discard <V1, V2> */
+	/* If V1 and V2 are already in same Set, discard E<v1, v2> */
 	if (Root1 == Root2)
 		return false;
-	else {	/* If the edge is collectable, merge the sets of V1 and V2 */
+	else {	/* Ddge is collectable, merge the sets of V1 and V2 */
 		Union(VSet, Root1, Root2);
 		return true;
 	}
@@ -66,14 +68,15 @@ void PercDown(Edge ESet, int p, int N)
 		Child = Parent * 2 + 1;
 		if ((Child != N-1) && (ESet[Child].Weight > ESet[Child+1].Weight))
 			Child++;	/* Child to point to the smaller one */
-		if (X.Weight <= ESet[Child].Weight) break;	/* Find the right place */
+		if (X.Weight <= ESet[Child].Weight)
+			break;	/* Find the right place */
 		else	/* Percolate X down */
 			ESet[Parent] = ESet[Child];
 	}
 	ESet[Parent] = X;
 }
 
-/* Recruit edges into ESet array and initialize it as Min-heap */
+/* Recruit edges into ESet array and initialize it as MinHeap */
 void InitializeESet(LGraph Graph, Edge ESet)
 {
 	Vertex V;
@@ -95,14 +98,14 @@ void InitializeESet(LGraph Graph, Edge ESet)
 		PercDown(ESet, ECount, Graph->Ne);
 }
 
-/* Given current size of Min-heap, get the edge with smallest weight and 
- * rearrange it */
+/* Given current size of Min-heap, get the edge with smallest 
+ * weight and rearrange it */
 int GetEdge(Edge ESet, int CurrentSize)
 {
 	Swap(&ESet[0], &ESet[CurrentSize-1]);
 	PercDown(ESet, 0, CurrentSize-1);
 
-	return CurrentSize-1;	/* Return the positon of minimum edge */
+	return CurrentSize-1;	/* Return the position of minimum edge in ESet */
 }
 /*-------------------- MinHeap of edges definition --------------------*/
 
@@ -115,25 +118,27 @@ int Kruskal(LGraph Graph, LGraph MST)
 	SetType VSet;	/* Vertices array */
 	Edge ESet;	/* Edges array */
 
-	InitializeVSet(VSet, Graph->Nv);	/* Initialize vertices Union-Find set */
+	InitializeVSet(VSet, Graph->Nv);	/* Initialize vertices set */
 	ESet = (Edge) malloc(sizeof(struct ENode) * Graph->Ne);
 	InitializeESet(Graph, ESet);	/* Initialize the Min-heap of edges */
 
-	/* Creata a graph with all vertices but no edges (by using adjacency list 
-	 * to generate MST) */
+	/* Creata a graph with all vertices but no edges (by using 
+	 * adjacency list to generate MST) */
 	MST = CreateGraph(Graph->Nv);
 	TotalWeight = 0;
 	ECount = 0;
 
-	NextEdge = Graph->Ne;	/* The original scale of edges Set */
-	/* When edges collected are not enough to from a tree */
+	NextEdge = Graph->Ne;	/* The original scale of ESet */
+	/* When edges collected are not enough to form a tree */
 	while (ECount < Graph->Nv-1) {
 		/* To get the position of minimum edge from ESet */
 		NextEdge = GetEdge(ESet, NextEdge);
-		if (NextEdge < 0) break;	/* Empty edge set */
-
-		/* If no cycle is formed when this edge is added (i.e. they don't 
-		 * belong to the same Set) */
+		if (NextEdge < 0)
+			break;	/* Empty edge set */
+		/**
+		 * If no cycle is formed when this edge is added 
+		 * (i.e. they don't belong to the same Set) 
+		 */
 		if (CheckCycle(VSet, ESet[NextEdge].V1, ESet[NextEdge].V2) == true) {
 			InsertEdge(MST, ESet+NextEdge);		/* Insert such edge into MST */
 			TotalWeight += ESet[NextEdge].Weight;	/* Total weight */
@@ -142,7 +147,6 @@ int Kruskal(LGraph Graph, LGraph MST)
 	}
 	if (ECount < Graph->Nv-1)
 		TotalWeight = -1;	/* Error mark to indicate no such spinning tree */
-
 	return TotalWeight;
 }
 
