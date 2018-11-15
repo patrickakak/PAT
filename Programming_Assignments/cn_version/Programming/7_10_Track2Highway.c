@@ -1,3 +1,24 @@
+/**
+ * Sample Input:
+ * 6 15
+ * 1 2 5
+ * 1 3 3
+ * 1 4 7
+ * 1 5 4
+ * 1 6 2
+ * 2 3 4
+ * 2 4 6
+ * 2 5 2
+ * 2 6 6
+ * 3 4 6
+ * 3 5 1
+ * 3 6 1
+ * 4 5 10
+ * 4 6 8
+ * 5 6 3
+ * Sample Output:
+ * 12
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -187,15 +208,6 @@ WeightType Kruskal(LGraph Graph, LGraph *pMST)
 	InitializeVSet(VSet, Graph->Nv);
 	ESet = (Edge) malloc((Graph->Ne+1) * sizeof(struct ENode));
 	InitializeESet(ESet, Graph);
-	/*
-	//-------------------------
-	int v;
-	for (v=1; v<=Graph->Ne; v++) {
-		printf(" (%2d,%2d)", ESet[v].V1, ESet[v].V2);
-		putchar('\n');
-	}
-	//-------------------------
-	*/
 
 	*pMST = CreatGraph(Graph->Nv);
 	TotalWeight = 0;
