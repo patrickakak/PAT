@@ -99,7 +99,7 @@ void InitializeESet(LGraph Graph, Edge ESet)
 }
 
 /* Given current size of Min-heap, get the edge with smallest 
- * weight and rearrange it */
+ * weight and rearrange the Min-heap */
 int GetEdge(Edge ESet, int CurrentSize)
 {
 	Swap(&ESet[0], &ESet[CurrentSize-1]);
