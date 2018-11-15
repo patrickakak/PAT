@@ -56,7 +56,8 @@ int Prim(MGraph Graph, LGraph MST)
 		if (V == ERROR)
 			break;	/* V doesn't exist */
 
-		/* Recruit V and insert E<parent[V], V> into MST */
+		/* Recruit V and insert E<parent[V], V> into MST, (Don't bother 
+		 * to consider whether there's a cycle when inserting an edge) */
 		E->V1 = parent[V];
 		E->V2 = V;
 		E->Weight = dist[V];
