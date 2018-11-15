@@ -64,7 +64,7 @@ void PercDown(Edge ESet, int p, int N)
 	struct ENode X;
 
 	X = ESet[p];	/* Get the value stored in root */
-	for (Parent=p; (Parent*2+1) < N; Parent=Child) {
+	for (Parent = p; (Parent*2+1) < N; Parent = Child) {
 		Child = Parent * 2 + 1;
 		if ((Child != N-1) && (ESet[Child].Weight > ESet[Child+1].Weight))
 			Child++;	/* Child to point to the smaller one */
@@ -86,7 +86,7 @@ void InitializeESet(LGraph Graph, Edge ESet)
 	/* Recruit edges into ESet */
 	ECount = 0;
 	for (V = 0; V < Graph->Nv; V++)
-		for (W = Graph->G[V].FirstEdge; W; W=W->Next)
+		for (W = Graph->G[V].FirstEdge; W; W = W->Next)
 			/* To avoid recruiting repeatedly, recruit edge with V1<V2 only */
 			if (V < W->AdjV) {
 				ESet[ECount].V1 = V;
