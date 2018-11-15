@@ -1,5 +1,6 @@
 /**
- * Adjacency list implementation: TopSort algorithm for directed graph
+ * Adjacency list implementation:
+ * TopSort algorithm for AOV(i.e. Activity On Vertex)
  * (could be used to dectect DAG(i.e. directed acyclic graph))
  */
 
