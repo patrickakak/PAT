@@ -189,6 +189,7 @@ void DestroyGraph(LGraph Graph)
 	}
 	free(Graph);
 }
+
 void InsertEdge(LGraph Graph, Edge E)
 {
 	PtrToAdjVNode NewNode;
@@ -240,3 +241,4 @@ ElemType Dequeue(Queue Q)
 	Q->Front = (Q->Front+1)%MAXN;
 	return Q->Elems[Q->Front];
 }
+
