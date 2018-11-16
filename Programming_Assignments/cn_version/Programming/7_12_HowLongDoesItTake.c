@@ -90,6 +90,7 @@ int main()
 
 	Graph = BuildGraph();
 	
+	/* To check if the scheduling is possible(i.e. is it a DAG?) */
 	if (TopSort(Graph) == false)
 		puts("Impossible");
 	else {
