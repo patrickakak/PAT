@@ -186,6 +186,7 @@ void DestroyGraph(LGraph Graph)
 			T = t;
 		}
 	}
+	free(Graph);
 }
 void InsertEdge(LGraph Graph, Edge E)
 {
