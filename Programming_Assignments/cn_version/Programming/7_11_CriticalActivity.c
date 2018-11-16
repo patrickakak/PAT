@@ -157,6 +157,7 @@ void LatestTime(MGraph MG, Vertex Endchkpoint)
 					Enqueue(Q, V);
 			}
 	}
+	DestroyQueue(Q);
 }
 
 bool EarliestTime(MGraph MG)
