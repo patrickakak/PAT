@@ -99,7 +99,6 @@ int main()
 				Max = Graph->G[V].Earliest;
 		printf("%d\n", Max);
 	}
-
 	DestroyGraph(Graph);
 	return 0;
 }
