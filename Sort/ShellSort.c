@@ -1,5 +1,7 @@
 /**
- * Shell sort: (using Sedgewick incremental sequence)
+ * Shell sort (unstable):
+ *
+ * In this case, we use Sedgewick incremental sequence,
  * Worst(unproved): Tw = Θ(N^4/3)
  */
 void ShellSort(ElementType A[], int N)
@@ -9,8 +11,10 @@ void ShellSort(ElementType A[], int N)
 	/* Only a small part of the increments */
 	int Sedgewick[] = {929, 505, 209, 109, 41, 19, 5, 1, 0};
 
-	/* The initial increment(i.e. Sedgewick[Si]) can't exceed the lenght of 
-	 * the unsorted sequence */
+	/**
+	 * The initial increment(i.e. Sedgewick[Si]) can't exceed the lenght 
+	 * of the unsorted sequence 
+	 */
 	for (Si = 0; Sedgewick[Si] >= N; Si++) ;
 
 	for (D = Sedgewick[Si]; D > 0; D = Sedgewick[++Si])
