@@ -1,10 +1,9 @@
 /**
  * Merge sort (stable):
- * Worst: Tw = O(NlogN)
+ * Worst: Tw = O(NlogN), usually be used as a way of external sort
  *
- * length equals to the length of the current ordered subsequence 
- *
- * Merge the adjacent two subsequences
+ * function: merge the adjacent two subsequences
+ * length: equals to the length of the current ordered subsequence 
  */
 void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 {
