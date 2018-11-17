@@ -18,7 +18,7 @@ void PercDown(ElementType A[], int p, int N)
 	ElementType X;
 
 	X = A[p];	/* Fetch the value from root */
-	for (Parent = p; (Parent*2+1) < N; Parent=Child) {
+	for (Parent = p; (Parent*2+1) < N; Parent = Child) {
 		Child = 2*Parent + 1;
 		if ((Child != N-1) && (A[Child] < A[Child+1]) )
 			Child++;	/* Child points to the larger one */
