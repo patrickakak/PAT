@@ -1,14 +1,16 @@
-/* Merge sort - loop method */
-
-/* length = the length of the current ordered sub-sequence 
+/**
+ * Merge sort (stable):
+ * Worst: Tw = O(NlogN)
  *
- * Merge the adjacent two sub-sequences
+ * length equals to the length of the current ordered subsequence 
+ *
+ * Merge the adjacent two subsequences
  */
 void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 {
 	int i, j;
 
-	for (i=0; i <= N-2*length; i += 2*length)
+	for (i = 0; i <= N-2*length; i += 2*length)
 		Merge(A, TmpA, i, i+length, i+2*length-1);
 	if (i+length < N)	/* Merge the last 2 sub-sequences */
 		Merge(A, TmpA, i, i+length, N-1);
@@ -21,9 +23,12 @@ void Merge_Sort(ElementType A[], int N)
 	int length; 
 	ElementType *TmpA;
 
-	length = 1;		/* Initialize the length of sub-sequence */
+	length = 1;		/* Initialize the length of subsequence */
 	TmpA = (ElementType *) malloc(N * sizeof(ElementType));
-	if (TmpA != NULL) {
+
+	if (TmpA == NULL)
+		printf("No enough space!\n");
+	else {
 		while (length < N) {
 			Merge_pass(A, TmpA, N, length);
 			length *= 2;
@@ -31,7 +36,6 @@ void Merge_Sort(ElementType A[], int N)
 			length *= 2;
 		}
 		free(TmpA);
-	} else
-		printf("No enough space!\n");
+	}
 }
 
