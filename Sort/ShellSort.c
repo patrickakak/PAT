@@ -1,5 +1,5 @@
 /**
- * Shell sort: (using Sedgewick increment sequence)
+ * Shell sort: (using Sedgewick incremental sequence)
  * Worst(unproved): Tw=Θ(N^4/3)
  */
 void ShellSort(ElementType A[], int N)
