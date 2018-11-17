@@ -20,7 +20,7 @@ void ShellSort(ElementType A[], int N)
 	for (D = Sedgewick[Si]; D > 0; D = Sedgewick[++Si])
 		for (P = D; P < N; P++) {	/* Insertion sort */
 			Tmp = A[P];
-			for (i = P; i >= 0 && A[i-D] > Tmp; i -= D)
+			for (i = P; i >= D && A[i-D] > Tmp; i -= D)
 				A[i] = A[i-D];
 			A[i] = Tmp;
 		}
