@@ -1,6 +1,6 @@
 /**
  * Shell sort: (using Sedgewick incremental sequence)
- * Worst(unproved): Tw=Θ(N^4/3)
+ * Worst(unproved): Tw = Θ(N^4/3)
  */
 void ShellSort(ElementType A[], int N)
 {
@@ -22,7 +22,7 @@ void ShellSort(ElementType A[], int N)
 		}
 	/**
 	 * Original Shell sort: (increments may be not coprime(e.g. 8-4-2-1)) 
-	 * Worst: T = Θ(N^2), one can use other different incremental seqeunce to 
+	 * Worst: Tw=Θ(N^2), one can use other different incremental seqeunce to 
 	 * solve it (e.g. Hibboard(unproved: Tw=O(N^3/2)) or Sedgewick sequence)
 	 */
 	/*
