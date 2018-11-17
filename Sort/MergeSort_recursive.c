@@ -1,9 +1,11 @@
-/* Merge sort - recursive method */
-
-/* L = the starting index of left part, * R = the starting index of right part, 
- * RightEnd = the end index of the left part
+/**
+ * Merge sort (stable): 
  *
- * Merge Sort well-ordered A[L]~A[R-1] and A[R]~A[RightEnd] out into an ordered sequence
+ * Recursive version: L equals to the starting index of left part, R equals to 
+ * the starting index of right part, RightEnd = the end index of the left part
+ *
+ * Merge Sort well-ordered A[L]~A[R-1] and A[R]~A[RightEnd] out into 
+ * an ordered sequence
  */
 void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 {
@@ -16,9 +18,9 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 
 	while (L <= LeftEnd && R <= RightEnd) {
 		if (A[L] <= A[R])
-			TmpA[Tmp++] = A[L++];	/* Copy the element in left part into TmpA */
+			TmpA[Tmp++] = A[L++];	/* Copy elements in left part into TmpA */
 		else
-			TmpA[Tmp++] = A[R++];	/* Copy the element in right part to TmpA */
+			TmpA[Tmp++] = A[R++];	/* Copy elements in right part into TmpA */
 	}
 
 	while (L <= LeftEnd)
@@ -26,8 +28,9 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 	while (R <= RightEnd)
 		TmpA[Tmp++] = A[R++];	/* Copy the leftover of right part */
 
+	/* Copy ordered sequence from TmpA[] to A[] */
 	for (i = 0; i < NumElements; i++, RightEnd--)
-		A[RightEnd] = TmpA[RightEnd];	/* Copy ordered sequence from TmpA[] to A[] */
+		A[RightEnd] = TmpA[RightEnd];
 }
 
 /* The core merge sort function */
@@ -38,8 +41,8 @@ void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 	if (L < RightEnd) {
 		Center = (L+RightEnd) / 2;
 		Msort(A, TmpA, L, Center);	/* Handle the left part recursively */ 
-		Msort(A, TmpA, Center+1, RightEnd);		/* Handle the right part recursively */  
-		Merge(A, TmpA, L, Center+1, RightEnd);	/* Merge the two ordered sequences */ 
+		Msort(A, TmpA, Center+1, RightEnd);		/* Handle the right part */
+		Merge(A, TmpA, L, Center+1, RightEnd);	/* Merge two sequences */ 
 	}
 }
 
