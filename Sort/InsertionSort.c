@@ -1,6 +1,7 @@
 /**
  * Insertioin sort (stable):
  * Best: T=O(N), Wrost: T=O(N^2)
+ * Actually: T(N,I) = O(N+I) (I for inversion(s))
  */
 void InsertionSort(ElementType A[], int N)
 {
