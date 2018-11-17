@@ -1,6 +1,6 @@
 /**
  * Bubble sort (stable):
- * Best: T=O(N), Worst: T=O(N^2), could hadle linkedlist 
+ * Best: T=O(N), Worst: T=O(N^2), could handle linkedlist 
  */
 void BubbleSort(ElementType A[], int N)
 {
