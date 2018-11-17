@@ -51,6 +51,8 @@ void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 void MergeSort(ElementType A[], int N)
 {
 	ElementType *TmpA;
+
+	/* To avoid malloc and free repeatedly */
 	TmpA = (ElementType *) malloc(N * sizeof(ElementType));
 
 	if (TmpA != NULL) {
