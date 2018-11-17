@@ -31,8 +31,7 @@ void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 {
 	int i, j;
 
-	/**
-	 * When parameter length is an odd number, the last pair may be in 
+	/* When parameter length is an odd number, the last pair may be in 
 	 * different size, 'i<=N-2*length' means to merge until we meet the last 
 	 * but one subsequence
 	 */ 
