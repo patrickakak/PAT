@@ -10,7 +10,7 @@ void Swap(ElementType *a, ElementType *b)
 	ElementType t = *a; *a = *b; *b = t;
 }
 
-/* Re-organize N elements in array A[] to be a MaxHeap (A[p] as root)*/
+/* Re-organize N elements in array A[] to be a MaxHeap(A[p] as root) */
 void PercDown(ElementType A[], int p, int N)
 {
 	int Parent, Child;
@@ -32,7 +32,7 @@ void HeapSort(ElementType A[], int N)
 {
 	int i;
 
-	for (i = N/2-1; i >= 0; i--)	/* Build MaxHeap */
+	for (i = N/2-1; i >= 0; i--)	/* Build MaxHeap to avoid extra space */
 		PercDown(A, i, N);
 
 	for (i = N-1; i > 0; i--) {
