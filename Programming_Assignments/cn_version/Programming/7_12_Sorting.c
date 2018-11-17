@@ -46,8 +46,7 @@ int main()
 
 void ShellSort(ElementType A[], long N)
 {
-	int Si;
-	long D, i, P;
+	long Si, D, i, P;
 	ElementType Tmp;
 	long Sedgewick[] = {64769, 36289, 16001, 8929, 3905, 
 		2161, 929, 505, 209, 109, 41, 19, 5, 1, 0};
@@ -161,7 +160,7 @@ void ReadInput(ElementType A[], long N)
 
 void Output(ElementType A[], long N)
 {
-	int i, flag = 0;
+	long i, flag = 0;
 
 	for (i = 0; i < N; i++) {
 		if (!flag) flag = 1;
