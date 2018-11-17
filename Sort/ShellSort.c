@@ -26,7 +26,7 @@ void ShellSort(ElementType A[], int N)
 		}
 	/**
 	 * Original Shell sort: (increments may be not coprime(e.g. 8-4-2-1)) 
-	 * Worst: Tw=Θ(N^2), one can use other different incremental seqeunce to 
+	 * Worst: Tw=Θ(N^2), one can use other different incremental seqeunces to 
 	 * solve it (e.g. Hibboard(unproved: Tw=O(N^3/2)) or Sedgewick sequence)
 	 */
 	/*
