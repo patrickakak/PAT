@@ -1,8 +1,9 @@
 /**
- * Heap sort:
+ * Heap sort (unstable):
  * Wrost: Tw = 2NlogN - O(NloglogN) (better than NlogN)
- * but in fact, it's not that useful, Sedgewick sequence Shell sort 
- * normally is better.
+ * 
+ * Note: but in fact, it's not that useful, Sedgewick sequence 
+ * Shell sort normally is better.
  */
 void Swap(ElementType *a, ElementType *b)
 {
