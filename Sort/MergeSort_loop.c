@@ -56,6 +56,7 @@ void Merge_Sort(ElementType A[], int N)
 	if (TmpA == NULL)
 		printf("No enough space!\n");
 	else {
+		/* Two step merge to guarantee the result array will be store in A */
 		while (length < N) {
 			Merge_pass(A, TmpA, N, length);
 			length *= 2;
