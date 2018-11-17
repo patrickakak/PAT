@@ -4,7 +4,7 @@
  */
 void BubbleSort(ElementType A[], int N)
 {
-	int P, i, flag;
+	int P, i, flag;		/* flag: to indicate a already ordered sequence */
 
 	for (P = N-1; P >= 0; P--) {
 		flag = 0;
