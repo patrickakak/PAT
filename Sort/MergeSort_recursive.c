@@ -10,8 +10,7 @@
  */
 void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 {
-	int LeftEnd, NumElements, Tmp;
-	int i;
+	int LeftEnd, NumElements, Tmp, i;
 
 	LeftEnd = R - 1;	/* The end position of left part */
 	Tmp = L;	/* The starting position of ordered sequence */
