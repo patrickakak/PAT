@@ -1,3 +1,9 @@
+/**
+ * Heap sort:
+ * Wrost: Tw = 2NlogN - O(NloglogN) (better than NlogN)
+ * but in fact, it's not that useful, Sedgewick sequence Shell sort 
+ * normally is better.
+ */
 void Swap(ElementType *a, ElementType *b)
 {
 	ElementType t = *a; *a = *b; *b = t;
@@ -29,8 +35,7 @@ void HeapSort(ElementType A[], int N)
 		PercDown(A, i, N);
 
 	for (i = N-1; i > 0; i--) {
-		/* Delete the top element from MaxHeap */
-		Swap(&A[0], &A[i]);
+		Swap(&A[0], &A[i]);		/* Delete the top element from MaxHeap */
 		PercDown(A, 0, i);
 	}
 }
