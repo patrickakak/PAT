@@ -12,7 +12,7 @@ void ShellSort(ElementType A[], int N)
 	int Sedgewick[] = {929, 505, 209, 109, 41, 19, 5, 1, 0};
 
 	/**
-	 * The initial increment(i.e. Sedgewick[Si]) can't exceed the lenght 
+	 * The initial increment(i.e. Sedgewick[Si]) can't exceed the length 
 	 * of the unsorted sequence 
 	 */
 	for (Si = 0; Sedgewick[Si] >= N; Si++) ;
