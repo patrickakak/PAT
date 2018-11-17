@@ -95,7 +95,7 @@ int main()
 		/**
 		 * Get latest time of every vertex:
 		 * (Note: there could be multiple end check-points, so we pass 
-		 * Endchkpoint as paremter to set every end check point)
+		 * Endchkpoint as parameter to set every end check point)
 		 * */
 		LatestTime(MG, Endchkpoint);
 		PrintCritical(MG);
@@ -112,7 +112,7 @@ void PrintCritical(MGraph MG)
 		if (MG->Data[V].Earliest != MG->Data[V].Latest)
 			continue;
 		/**
-		 * When there are more than one critical activity start from the same
+		 * When there're more than one critical activities start from the same
 		 * vertex (i.e. check-point), output the inversed sequence of input 
 		 */
 		for (W = MG->Nv-1; W >= 0; W--)
@@ -142,10 +142,10 @@ void LatestTime(MGraph MG, Vertex Endchkpoint)
 			Enqueue(Q, V);
 		}
 	/**
-	 * Update V.Latest = W.Latest - E<v,w>.duration when encounter smaller 
-	 * latest time and E<v,w>.mobility = V.Latest - V.Earliest;
+	 * Update V.Latest = W.Latest-E<v,w>.duration when encountering 
+	 * smaller latest time and E<v,w>.mobility = V.Latest - V.Earliest;
 	 */
-	while (!IsEmptyQ(Q)) {	/* Set lastest time from end to start */
+	while (!IsEmptyQ(Q)) { 	/* Inversed topsort(from end to start) */
 		W = Dequeue(Q);
 		for (V = 0; V < MG->Nv; V++)
 			if (MG->G[V][W].duration != INFINITY) {
