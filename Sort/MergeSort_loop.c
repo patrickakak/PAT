@@ -39,6 +39,7 @@ void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 		for (j = i; j < N; j++) TmpA[j] = A[j];
 }
 
+/* Unified interface */
 void Merge_Sort(ElementType A[], int N)
 { 
 	int length; 
