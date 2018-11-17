@@ -31,8 +31,14 @@ void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 {
 	int i, j;
 
+	/**
+	 * When parameter length is an odd number, the last pair may be in 
+	 * different size, 'i<=N-2*length' means to merge until we meet the last 
+	 * but one subsequence
+	 */ 
 	for (i = 0; i <= N-2*length; i += 2*length)
 		Merge1(A, TmpA, i, i+length, i+2*length-1);
+
 	if (i+length < N)	/* Merge the last 2 sub-sequences */
 		Merge1(A, TmpA, i, i+length, N-1);
 	else	/* There's only 1 sub-sequence left */
