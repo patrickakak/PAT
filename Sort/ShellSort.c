@@ -1,4 +1,7 @@
-/* Shell sort using Sedgewick increment sequence */
+/**
+ * Shell sort: (using Sedgewick increment sequence)
+ * Worst: T=Θ(N^2), Best: T=O()
+ */
 void ShellSort(ElementType A[], int N)
 {
 	int Si, D, P, i;
@@ -17,5 +20,16 @@ void ShellSort(ElementType A[], int N)
 				A[i] = A[i-D];
 			A[i] = Tmp;
 		}
+
+	/* Original Shell sort: (increments may be not coprime(e.g. 8-4-2-1)) */
+	/*
+	for (D = N/2; D > 0; D /= 2)
+		for (P = D; P < N; P++) {
+			Tmp = A[P];
+			for (i = P; i>=D && A[i-D]>Tmp; i-=D)
+				A[i] = A[i-D];
+			A[i] = Tmp;
+		}
+	*/
 }
 
