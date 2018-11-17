@@ -1,7 +1,10 @@
 /**
  * Insertioin sort (stable):
  * Best: T=O(N), Wrost: T=O(N^2)
- * Actually: T(N,I) = O(N+I) (I for inversion(s))
+ *
+ * Actually: T(N,I) = O(N+I) (I for inversion(s)),
+ * average number of inversions in N different elements: N*(N-1)/4, 
+ * so average time complexity: T=Ω(N^2)
  */
 void InsertionSort(ElementType A[], int N)
 {
