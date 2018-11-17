@@ -20,11 +20,10 @@ void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 /* Don't need to copy ordered sequence from TmpA[] to A[] */
 void Merge1(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 {
-	int LeftEnd, NumElements, Tmp, i;
+	int LeftEnd, Tmp, i;
 
 	LeftEnd = R - 1;	/* The end position of left part */
 	Tmp = L;	/* The starting position of ordered sequence */
-	NumElements = RightEnd - L + 1;
 
 	while (L <= LeftEnd && R <= RightEnd)
 		if (A[L] <= A[R])
