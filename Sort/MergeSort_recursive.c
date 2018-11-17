@@ -17,12 +17,11 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 	Tmp = L;	/* The starting position of ordered sequence */
 	NumElements = RightEnd - L + 1;
 
-	while (L <= LeftEnd && R <= RightEnd) {
+	while (L <= LeftEnd && R <= RightEnd)
 		if (A[L] <= A[R])
 			TmpA[Tmp++] = A[L++];	/* Copy elements in left part into TmpA */
 		else
 			TmpA[Tmp++] = A[R++];	/* Copy elements in right part into TmpA */
-	}
 
 	while (L <= LeftEnd)
 		TmpA[Tmp++] = A[L++];	/* Copy the leftover of left part */
