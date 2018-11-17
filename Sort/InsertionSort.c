@@ -1,6 +1,7 @@
 /**
- * Insertioin sort:
- * */
+ * Insertioin sort (stable):
+ * Best: T=O(N), Wrost: T=O(N^2)
+ */
 void InsertionSort(ElementType A[], int N)
 {
 	int P, i;
