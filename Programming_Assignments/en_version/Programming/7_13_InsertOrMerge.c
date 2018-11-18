@@ -26,7 +26,7 @@ void Merge(ElemType A[], ElemType TmpA[], int L, int R, int RightEnd);
 void ReadInput(ElemType A[], int N);
 void Output(ElemType A[], int N);
 int IsInsertSort(ElemType A[], ElemType B[], int N);
-int FindMaxMergeGap(ElemType A[], int N);
+int GetMaxMergeGap(ElemType A[], int N);
 
 void InsertionSort(ElemType A[], int p, int N);
 void MergeSort(ElemType A[], int N);
@@ -93,7 +93,7 @@ void MergeSort(ElemType A[], int N)
 	if (TmpA == NULL)
 		puts("Not enough memory!");
 	else {
-		gap = FindMaxMergeGap(A, N);
+		gap = GetMaxMergeGap(A, N);
 		if (gap < N)
 			Merge_pass(A, TmpA, N, gap);
 		free(TmpA);
@@ -101,7 +101,7 @@ void MergeSort(ElemType A[], int N)
 }
 
 /* Find out the minimum merge gap of current A[] */
-int FindMaxMergeGap(ElemType A[], int N)
+int GetMaxMergeGap(ElemType A[], int N)
 {
 	int i, gap, flag = 0;
 
