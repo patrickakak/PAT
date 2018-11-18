@@ -95,7 +95,7 @@ int main()
 		puts("Impossible");
 	else {
 		for (Max = 0, V = 0; V < Graph->Nv; V++)	/* Multiple ends */
-			if (Max  < Graph->G[V].Earliest)
+			if (Max < Graph->G[V].Earliest)
 				Max = Graph->G[V].Earliest;
 		printf("%d\n", Max);
 	}
