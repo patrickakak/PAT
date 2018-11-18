@@ -43,9 +43,11 @@ int main()
 
 	pos = IsInsertSort(A, B, N);
 	if (pos != -1) {
+		/* Execute insertion sort one iteration forward */
 		puts("Insertion Sort");
 		InsertionSort(B, pos, N);
 	} else {
+		/* Execute merge sort one iteration forward */
 		puts("Merge Sort");
 		MergeSort(B, N);
 	}
@@ -104,10 +106,10 @@ int FindMaxMergeGap(ElemType A[], int N)
 	int i, gap, flag = 0;
 
 	for (gap = 2; gap <= N; gap*=2) {
-		for (i = 0; i <= N-2*gap; i+=2*gap)
+		for (i = 0; i <= N-2*gap; i+=2*gap)		/* Same as merge procedure */
 			if (A[i+gap-1] > A[i+gap])
 				flag = 1;
-		if (flag == 1) break;
+		if (flag) break;
 	}
 	return gap;
 }
