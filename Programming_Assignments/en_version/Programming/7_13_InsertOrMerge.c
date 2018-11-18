@@ -39,7 +39,8 @@ int main()
 
 	scanf("%d", &N);
 
-	ReadInput(A, N); ReadInput(B, N);
+	ReadInput(A, N);
+	ReadInput(B, N);
 
 	pos = IsInsertSort(A, B, N);
 	if (pos != -1) {
@@ -51,8 +52,8 @@ int main()
 		puts("Merge Sort");
 		MergeSort(B, N);
 	}
-	Output(B, N); putchar('\n');
-
+	Output(B, N);
+	putchar('\n');
 	return 0;
 }
 
