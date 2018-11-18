@@ -14,6 +14,7 @@ ElementType Median3(ElementType A[], int Left, int Right)
 		Swap( &A[Centre], &A[Right]);
 	/* A[Left] <= A[Centre] <= A[Right] */
 	Swap(&A[Centre], &A[Right-1]);	/* Hide Pivot into A[Right-1] */
+
 	/* Only need to consider A[Left+1] ... A[Right-2] */
 	return A[Right-1];	/* Return Pivot */
 }
