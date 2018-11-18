@@ -44,12 +44,10 @@ int main()
 
 	pos = IsInsertSort(A, B, N);
 	if (pos != -1) {
-		/* Execute insertion sort one iteration forward */
-		puts("Insertion Sort");
+		puts("Insertion Sort");		/* Insertion sort one iteration forward */
 		InsertionSort(B, pos, N);
 	} else {
-		/* Execute merge sort one iteration forward */
-		puts("Merge Sort");
+		puts("Merge Sort");		/* Merge sort one iteration forward */
 		MergeSort(B, N);
 	}
 	Output(B, N);
