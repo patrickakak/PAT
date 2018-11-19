@@ -51,7 +51,8 @@ void LSDRadixSort(ElementType A[], int N)
 	}
 	/* Start to sort: process every digit of data in a loop */ 
 	for (D = 1; D <= MaxDigit; D++) {
-		p = List;	/* Distribution process */
+		/* Distribution process */
+		p = List;
 		while (p) {
 			/* Get the current digit of the current element */
 			Di = GetDigit(p->key, D);
