@@ -147,8 +147,10 @@ void InitUsers(Users users, int N, int K)
 
 int compar(const void *a, const void *b)
 {
-	struct UNode u1 = *(struct UNode *)a;
-	struct UNode u2 = *(struct UNode *)b;
+	struct UNode u1, u2;
+	
+	u1 = *(struct UNode *)a;
+	u2 = *(struct UNode *)b;
 
 	if (u1.total > u2.total)
 		return -1;
