@@ -1,4 +1,8 @@
-/* Radix sort - least significant digit first */
+/**
+ * Radix sort:
+ * Worst: Tw = O(P*(N+B))
+ * least significant digit first 
+ */
 
 /* Assume that there are MaxDigit key and the radix is same */
 #define MaxDigit 4
@@ -36,24 +40,23 @@ void LSDRadixSort(ElementType A[], int N)
 	Bucket B;
 	PtrToNode tmp, p, List = NULL; 
 
-	for (i = 0; i < Radix; i++)		/* Initialize every bucket as a empty list */
+	for (i = 0; i < Radix; i++)		/* Init every bucket as a empty list */
 		B[i].head = B[i].tail = NULL;
-	for (i = 0; i < N; i++) {	/* Store the original sequence into the initilized List in reversed order */
+	/* Store the original sequence into lists in reversed order */
+	for (i = 0; i < N; i++) {
 		tmp = (PtrToNode) malloc(sizeof(struct Node));
 		tmp->key = A[i];
 		tmp->next = List;
 		List = tmp;
 	}
-	/* Start to sort */ 
-	for (D = 1; D <= MaxDigit; D++) {	/* Process every digit of data in a loop */
-		/* Distribution process */
-		p = List;
+	/* Start to sort: process every digit of data in a loop */ 
+	for (D = 1; D <= MaxDigit; D++) {
+		p = List;	/* Distribution process */
 		while (p) {
-			Di = GetDigit(p->key, D);	/* Get the current digit of the current element */
-			/* Remove from List */
-			tmp = p; p = p->next;
-			/* Insert into the tail of B[Di] bucket */
-			tmp->next = NULL;
+			/* Get the current digit of the current element */
+			Di = GetDigit(p->key, D);
+			tmp = p; p = p->next;	/* Remove from List */
+			tmp->next = NULL;	/* Insert into the tail of B[Di] bucket */
 			if (B[Di].head == NULL)
 				B[Di].head = B[Di].tail = tmp;
 			else {
@@ -63,7 +66,8 @@ void LSDRadixSort(ElementType A[], int N)
 		}
 		/* Collecting process */
 		List = NULL; 
-		for (Di = Radix-1; Di >= 0; Di--)	/* Collect elements in every bucket into List in order */
+		/* Collect elements in every bucket into list in order */
+		for (Di = Radix-1; Di >= 0; Di--)
 			if (B[Di].head) {	/* If the bucket is not empty */
 				/* Insert the whole bucket into the head of List */
 				B[Di].tail->next = List;
