@@ -26,8 +26,9 @@ void Qsort(ElementType A[], int Left, int Right)
 {
 	int Pivot, Cutoff, Low, High;
 
-	/* If elements in sequence is quite enough, use quick sort, otherwise
-	 * use insertion sort (cause recursion need OS to allocate extra space to finish it) 
+	/* If elements in sequence is quite enough, use quick sort, 
+	 * otherwise use insertion sort (cause recursion need OS to allocate 
+	 * extra space to finish it) 
 	 */
 	if (Cutoff <= Right-Left) {
 		Pivot = Median3(A, Left, Right);	/* Pick a pivot */ 
