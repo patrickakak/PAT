@@ -1,6 +1,6 @@
 /**
  * Quick sort (unstable):
- * Average: Ta = O(NlogN), Worst: Tw = O(N^2)
+ * Average: Ta=O(NlogN), Worst: Tw=O(N^2), extra S=O(logN)
  * Note: It's important to pick up the pivot.
  */
 ElementType Median3(ElementType A[], int Left, int Right)
