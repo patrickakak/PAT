@@ -34,7 +34,7 @@ void Qsort(ElementType A[], int Left, int Right)
 		Pivot = Median3(A, Left, Right);	/* Pick a pivot */ 
 		Low = Left; High = Right-1;
 		/* Move elements less than pivot to left part, others right part */
-		while (1) {
+		for ( ; ; ) {
 			while (A[++Low] < Pivot) ;
 			while (A[--High] > Pivot) ;
 			if (Low < High)
