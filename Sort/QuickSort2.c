@@ -31,7 +31,7 @@ void Qsort(ElementType A[], int Left, int Right)
 	 * extra space to finish it) choose your own Cufoff.
 	 */
 	Cutoff = 50;
-	if (Cutoff <= Right-Left) {
+	if (Cutoff < Right-Left) {
 		Pivot = Median3(A, Left, Right);	/* Pick a pivot */ 
 		Low = Left; High = Right-1;
 		/* Move elements less than pivot to left part, others right part */
