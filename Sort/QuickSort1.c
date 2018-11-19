@@ -1,5 +1,7 @@
-/* Quick sort - call library function version */
-
+/**
+ * Quick sort (unstable):
+ * Call library function directly version 
+ */
 #include <stdlib.h>
 
 /*--------------- Simple integer sort --------------------*/
@@ -17,11 +19,12 @@ struct Node {
 	int key1, key2;
 } A[MAXN];
 
-/* Compare 2 keys: non-ascending order of key1; if key1s are equal, sort in 
- * non-descending order of key2 */
+/* Compare 2 keys: non-ascending order of key1; if key1s are equal, 
+ * sort in non-descending order of key2 */
 int compare2keys(const void *a, const void *b)
 {
 	int k;
+
 	if (((const struct Node*)a)->key1 < ((const struct Node*)b)->key1)
 		k = 1;
 	else if (((const struct Node*)a)->key1 > ((const struct Node*)b)->key1)
@@ -29,8 +32,7 @@ int compare2keys(const void *a, const void *b)
 	else {	/* If key1s are the same */
 		if (((const struct Node*)a)->key2 < ((const struct Node*)b)->key2)
 			k = -1;
-		else
-			k = 1;
+		else k = 1;
 	}
 	return k;
 }
