@@ -30,7 +30,7 @@ void Qsort(ElementType A[], int Left, int Right)
 	 * otherwise use insertion sort (cause recursion need OS to allocate 
 	 * extra space to finish it) choose your own Cufoff.
 	 */
-	Cutoff = 50;
+	Cutoff = 50; 	/* Cutoff should be positive */
 	if (Cutoff < Right-Left) {
 		Pivot = Median3(A, Left, Right);	/* Pick a pivot */ 
 		Low = Left; High = Right-1;
