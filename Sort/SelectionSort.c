@@ -1,6 +1,7 @@
 /**
  * Selection sort:
  * Wrost: Tw = O(N^2) when using simple traverse search
+ * extra S = O(1)
  * can be optimised by using minheap technique(Tw=N*logN)
  */
 void SelectionSort(ElementType A[], int N)
