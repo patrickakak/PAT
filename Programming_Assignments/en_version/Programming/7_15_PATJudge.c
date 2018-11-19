@@ -25,8 +25,7 @@ int main()
 {
 	int N, K, M, s[MAXK];
 	Users users;
-
-	freopen("data.txt", "r", stdin);
+	
 	scanf("%d %d %d", &N, &K, &M);
 
 	RdKthFullMark(s, K);
