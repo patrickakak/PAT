@@ -1,6 +1,6 @@
 /**
  * Radix sort (stable):
- * Worst: Tw = O(P*(N+B))
+ * Worst: Tw = O(P*(N+B)), extra S = O(N+B)
  * least significant digit first 
  */
 
