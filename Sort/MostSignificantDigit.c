@@ -52,7 +52,8 @@ void MSD(ElementType A[], int L, int R, int D)
 		tmp->next = List;
 		List = tmp;
 	}
-	p = List; 	/* Distribution process */
+	/* Distribution process */
+	p = List;
 	while (p) {
 		/* Get the current digit of the current element */
 		Di = GetDigit(p->key, D);
