@@ -40,7 +40,7 @@ void LSDRadixSort(ElementType A[], int N)
 	Bucket B;
 	PtrToNode tmp, p, List = NULL; 
 
-	for (i = 0; i < Radix; i++)		/* Init every bucket as a empty list */
+	for (i = 0; i < Radix; i++)		/* Init every bucket as an empty list */
 		B[i].head = B[i].tail = NULL;
 	/* Store the original sequence into lists in reversed order */
 	for (i = 0; i < N; i++) {
