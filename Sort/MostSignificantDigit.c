@@ -1,4 +1,8 @@
-/* Radix sort - Most significant digit first */
+/**
+ * Radix sort (stable):
+ * Worst: Tw = O(P*(N+B))
+ * Most significant digit first 
+ */
 
 /* Assume that there are MaxDigit key and the radix is same */
 #define MaxDigit 4
