@@ -38,11 +38,13 @@ void MSD(ElementType A[], int L, int R, int D)
 {
 	int Di, i, j;
 	Bucket B;
-	PtrToNode tmp, p, List = NULL; 
+	PtrToNode tmp, p, List = NULL;
+	
 	if (D == 0) return;		/* Termination condition */
 
 	for (i = 0; i < Radix; i++)		/* Init every bucket as an empty list */
 		B[i].head = B[i].tail = NULL;
+	
 	/* Store the original sequence into List in reversed order */
 	for (i = L; i <= R; i++) {
 		tmp = (PtrToNode) malloc(sizeof(struct Node));
@@ -50,8 +52,7 @@ void MSD(ElementType A[], int L, int R, int D)
 		tmp->next = List;
 		List = tmp;
 	}
-	/* Distribution process */
-	p = List;
+	p = List; 	/* Distribution process */
 	while (p) {
 		/* Get the current digit of the current element */
 		Di = GetDigit(p->key, D);
