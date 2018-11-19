@@ -1,6 +1,6 @@
 /**
  * Merge sort (stable): 
- * Worst: Tw = O(NlogN)
+ * Worst: Tw = O(NlogN), extra S = O(N)
  *
  * Recursive version: L equals to the starting index of left part, R equals to 
  * the starting index of right part, RightEnd = the end index of the left part
