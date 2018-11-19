@@ -1,6 +1,7 @@
 /**
  * Merge sort (stable):
  * Worst: Tw = O(NlogN), usually be used as a way of external sort
+ * extra S = O(N)
  */
 
 /* Don't need to copy ordered sequence from TmpA[] to A[] */
