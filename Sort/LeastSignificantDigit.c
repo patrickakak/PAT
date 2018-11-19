@@ -33,7 +33,7 @@ int GetDigit(int X, int D)
 	return d;
 }
 
-/* Radix sort - LSD first */
+/* Radix sort - least significant digit first */
 void LSDRadixSort(ElementType A[], int N)
 {
 	int D, Di, i;
