@@ -77,7 +77,7 @@ void MSD(ElementType A[], int L, int R, int D)
 			}
 			/* Sort the data in bucket recursively, digit minus 1 */
 			MSD(A, i, j-1, D-1);
-			i = j;	/* The left boundary of A[] of next bucket */
+			i = j;	/* j: the left boundary of A[] points to the next bucket */
 		} 
 }
 
