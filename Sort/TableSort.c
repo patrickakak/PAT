@@ -21,6 +21,6 @@ void TableSort(ElementType A[], int N)
 		Tbl[i] = Tmp;
 	}
 	/* Use table */
-	free(table);
+	free(Tbl);
 }
 
