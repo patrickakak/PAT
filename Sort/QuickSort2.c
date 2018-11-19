@@ -1,6 +1,6 @@
 /**
  * Quick sort (unstable):
- * Average: Ta = O(NlogN), Wrost: Tw = O(N^2)
+ * Average: Ta = O(NlogN), Worst: Tw = O(N^2)
  * Note: It's important to pick up the pivot.
  */
 ElementType Median3(ElementType A[], int Left, int Right)
@@ -26,8 +26,8 @@ void Qsort(ElementType A[], int Left, int Right)
 {
 	int Pivot, Cutoff, Low, High;
 
-	/* If elements in sequence is quite enough, use quick sort, (cause 
-	 * recursion need OS to allocate extra space to finish it) 
+	/* If elements in sequence is quite enough, use quick sort, otherwise
+	 * use insertion sort (cause recursion need OS to allocate extra space to finish it) 
 	 */
 	if (Cutoff <= Right-Left) {
 		Pivot = Median3(A, Left, Right);	/* Pick a pivot */ 
