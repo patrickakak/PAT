@@ -2,7 +2,7 @@
  * Shell sort (unstable):
  *
  * In this case, we use Sedgewick's gap sequence,
- * Worst(unproved): Tw = Θ(N^4/3)
+ * Worst(unproved): Tw = Θ(N^4/3), extra S = O(1)
  */
 void ShellSort(ElementType A[], int N)
 {
