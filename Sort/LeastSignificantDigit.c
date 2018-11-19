@@ -1,5 +1,5 @@
 /**
- * Radix sort:
+ * Radix sort (stable):
  * Worst: Tw = O(P*(N+B))
  * least significant digit first 
  */
