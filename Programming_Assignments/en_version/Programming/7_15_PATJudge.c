@@ -1,35 +1,3 @@
-/**
- * Sample Input:
- * 7 4 20
- * 20 25 25 30
- * 00002 2 12
- * 00007 4 17
- * 00005 1 19
- * 00007 2 25
- * 00005 1 20
- * 00002 2 2
- * 00005 1 15
- * 00001 1 18
- * 00004 3 25
- * 00002 2 25
- * 00005 3 22
- * 00006 4 -1
- * 00001 2 18
- * 00002 1 20
- * 00004 1 15
- * 00002 4 18
- * 00001 3 4
- * 00001 4 2
- * 00005 2 -1
- * 00004 2 0
- * ---------------------
- * Sample Output:
- * 1 00002 63 20 25 - 18
- * 2 00005 42 20 0 22 -
- * 2 00007 42 - 25 - 17
- * 2 00001 42 18 18 4 2
- * 5 00004 40 15 0 25 -
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -58,6 +26,7 @@ int main()
 	int N, K, M, s[MAXK];
 	Users users;
 
+	freopen("data.txt", "r", stdin);
 	scanf("%d %d %d", &N, &K, &M);
 
 	RdKthFullMark(s, K);
@@ -96,11 +65,13 @@ void RdSubmissions(Users users, int s[], int M)
 		switch (score) {
 		case -1:
 			/* If it's not the first time to meet users[uid] */
-			if (users[uid].total != 0)
+			if (users[uid].total != -1)
 				users[uid].visited = true;
 			break;
 		default:
 			users[uid].visited = true;
+			if (users[uid].total == -1)
+				users[uid].total = 0;
 			if (score > users[uid].scores[pid]) {	/* Update score */
 				users[uid].total += score-users[uid].scores[pid];
 				users[uid].scores[pid] = score;
@@ -137,7 +108,7 @@ void InitUsers(Users users, int N, int K)
 
 	for (i = 0; i < N; i++) {
 		users[i].uid = MAXN;	/* Some students may get 0 */
-		users[i].total = 0;
+		users[i].total = -1;
 		users[i].solve = 0;
 		users[i].visited = false;
 		for (j = 0; j < K; j++)
