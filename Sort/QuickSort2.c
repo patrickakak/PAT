@@ -1,5 +1,7 @@
 /**
- * Quick sort 
+ * Quick sort (unstable):
+ * Average: Ta = O(NlogN), Wrost: Tw = O(N^2)
+ * Note: It's important to pick up the pivot.
  */
 ElementType Median3(ElementType A[], int Left, int Right)
 { 
