@@ -3,7 +3,7 @@
  */
 ElementType Median3(ElementType A[], int Left, int Right)
 { 
-	int Centre = (Left+Right) / 2;
+	int Centre = (Left + Right)/2;
 	if (A[Left] > A[Centre])
 		Swap(&A[Left], &A[Centre]);
 	if (A[Left] > A[Right])
@@ -31,7 +31,6 @@ void Qsort(ElementType A[], int Left, int Right)
 		while (1) {
 			while (A[++Low] < Pivot) ;
 			while (A[--High] > Pivot) ;
-
 			if (Low < High)
 				Swap(&A[Low], &A[High]);
 			else break;
