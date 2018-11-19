@@ -1,5 +1,6 @@
 /**
  * Quick sort (unstable):
+ * Average Ta=O(NlogN), Worst: T=O(N^2), extra S=O(logN)
  * Call library function directly version 
  */
 #include <stdlib.h>
