@@ -1,6 +1,7 @@
 /**
  * Heap sort (unstable):
  * Wrost: Tw = 2NlogN - O(NloglogN) (better than NlogN)
+ * extra S = O(1)
  * suit for top K minimum or maximum elements selection
  * 
  * Note: but in fact, it's not that useful, Sedgewick sequence 
