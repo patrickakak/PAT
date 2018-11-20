@@ -83,11 +83,11 @@ Tree NewNode(ElementType V)
 Tree Insert(Tree T, ElementType V)
 {
 	if (!T) T = NewNode(V);
-	else
+	else {
 		if (V > T->v)
 			T->Right = Insert(T->Right, V);
-		else
-			T->Left = Insert(T->Left, V);
+		else T->Left = Insert(T->Left, V);
+	}
 	return T;
 }
 
@@ -97,16 +97,20 @@ Tree Insert(Tree T, ElementType V)
  * whether T is NULL or not */
 static int check(Tree T, ElementType V)
 {
-	if (T->flag)
-		if (V < T->v) return check(T->Left, V);
-		else if (V > T->v) return check(T->Right, V);
-		else return 0;
-	else
+	if (T->flag) {
+		if (V < T->v)
+			return check(T->Left, V);
+		else if (V > T->v)
+			return check(T->Right, V);
+		else
+			return 0;
+	} else {
 		if (V == T->v) { 	/* If v has just been visited, set flag=1 */
 			T->flag = 1;
 			return 1;
 		} else 	/* If the last node of v is unvisited, return 0 */
 			return 0;
+	}
 }
 
 int Judge(Tree T, int N)
