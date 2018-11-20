@@ -51,14 +51,12 @@ int main()
 				A[j] = j;	/* Put the right number in position */
 				Next = T[j]; T[j] = j; j = Next;
 				count++;	/* To count how many swap in a circle */
-
 				if (T[j] == j)	/* To indicate a loop is over */
 					break;
 			}
 			if (CircleWithZero == true)
 				Total += count-1;
-			else
-				Total += count+1;
+			else Total += count+1;
 		}
 	}
 	printf("%d\n", Total);
