@@ -1,7 +1,7 @@
 #define MAXTABLESIZE 100000 	/* Maximum hashtable size */
-typedef int ElementType;
-typedef int Index; 		/* The element type of hash table address */
-typedef Index Position;
+typedef int ElementType;	/* Keyword type */
+typedef int Index; 		/* Element type of hash table address */
+typedef Index Position;		/* The type of position of data is same as Index */
 typedef enum { Legitimate, Empty, Deleted } EntryType; 	/* Cell status type */
 
 typedef struct HashEntry Cell;
@@ -23,9 +23,10 @@ int NextPrime(int N)
 
 	while (p <= MAXTABLESIZE) {
 		for (i = (int)sqrt(p); i > 2; i--)
-			if (!(p%i)) break;	/* If p is not a prime */
+			if (!(p%i))		/* If p is not a prime */
+				break;
 		if (i == 2) break;	/* for loop ends normally, p is a prime */
-		else  p += 2;	/* If not, try next odd */
+		else p += 2;	/* If not, try next odd */
 	}
 	return p;
 }
