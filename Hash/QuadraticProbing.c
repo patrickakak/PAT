@@ -32,7 +32,7 @@ Position Find(HashTable H, ElementType Key)
 		if (++CNum%2) { 	/* An odd time collision */
 			/* Increment: +[(CNum+1)/2]^2 */
 			NewPos = CurrentPos + (CNum+1)*(CNum+1)/4;
-			if (NewPos >= H->TableSize)		/* Adjust to legitimate address */
+			if (NewPos >= H->TableSize) 	/* Adjust to legitimate address */
 				NewPos = NewPos % H->TableSize;
 		} else {	/* An even time collision */
 			NewPos = CurrentPos - CNum*CNum/4;	/* Increment: -(CNum/2)^2 */
