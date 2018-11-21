@@ -101,6 +101,7 @@ int Hash(int Key, int P)
 	return Key % P;
 }
 
+/* Quadratic probing (with positive increments only) */
 Position Find(HashTable H, ElementType Key)
 {
 	int i, j;
