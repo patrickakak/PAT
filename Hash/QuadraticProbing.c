@@ -12,9 +12,9 @@ Position Find(HashTable H, ElementType Key)
 
 	/* The initial hash position */
 	NewPos = CurrentPos = Hash(Key, H->TableSize);
-	/* When collision happens: */
+	/* When collision happens: If the keyword is a string type, 
+	 * use strcmp function instead */
 	while (H->Cells[NewPos].Info!=Empty && H->Cells[NewPos].Data!=Key) {
-		/* If the keyword is a string type, use strcmp function instead */
 		/* One collision occured, and to decide the parity of this time */
 		if (++CNum%2) { 	/* An odd time collision */
 			/* Increment: +[(CNum+1)/2]^2 */
