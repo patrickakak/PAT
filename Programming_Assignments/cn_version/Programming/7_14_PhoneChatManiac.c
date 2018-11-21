@@ -13,7 +13,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
 
 #define KEYLENGTH 11	/* Length of phone number */
 #define MAXTABLESIZE 1000000
@@ -94,12 +93,15 @@ void ScanAndOutput(HashTable H)
 
 int NextPrime(int N)
 {
-	int i, p = (N%2) ? N+2 : N+1;
-	
-	while (p <= MAXTABLESIZE) {
-		for (i = (int)sqrt(p); i > 2; i--)
+	int i, p;
+
+	if (N == 2 || N == 1) return 2;
+
+	p = (N%2) ? N : N+1;
+	while (1) {
+		for (i = 3; i*i <= p; i++)
 			if (!(p%i)) break;
-		if (i == 2) break;
+		if (i*i > p) break;
 		else p += 2;
 	}
 	return p;
