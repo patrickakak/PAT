@@ -4,6 +4,10 @@
  * Quadratic Probing: there's a theorem that if the size of hash table is 
  * 4k+3,(k is a positive integer, 4k+3 is also a prime), then quadratic 
  * probing can detect every cell of hash table
+ *
+ * Double Hashing: like quadratic probling, when we choose function 
+ * h2(key) = p-(key mod p) (p<TableSize, p and TableSize are both prime), it
+ * can detect every cell
  */
 Position Find(HashTable H, ElementType Key)
 {
