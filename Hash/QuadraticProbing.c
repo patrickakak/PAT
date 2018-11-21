@@ -9,9 +9,9 @@
  * h2(key) = p-(key mod p) (p<TableSize, p and TableSize are both prime), it
  * can detect every cell
  *
- *     / 1/(1-α) (ASLu and insertion)
- * p = 
- *     \ -1/α * ln(1-α) (ASLs)
+ *                           / 1/(1-α) (ASLu and insertion)
+ * p (i.e. Expected value) = 
+ *                           \ -1/α * ln(1-α) (ASLs)
  */
 Position Find(HashTable H, ElementType Key)
 {
