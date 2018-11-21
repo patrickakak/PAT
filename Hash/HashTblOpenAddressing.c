@@ -19,17 +19,19 @@ struct TblNode {
 	Cell *Cells;	/* The array to store hash ceil */
 };
 
-/* Return a prime that is great than N and less than MAXTABLESIZE */
+/* Return a prime that is great than or equal to N */
 int NextPrime(int N)
 {
-	int i, p = (N%2)? N+2 : N+1; 	/* Start from an odd great than N */
+	int i, p;
 
-	while (p <= MAXTABLESIZE) {
-		for (i = (int)sqrt(p); i > 2; i--)
-			if (!(p%i))		/* If p is not a prime */
-				break;
-		if (i == 2) break;	/* for loop ends normally, p is a prime */
-		else p += 2;	/* If not, try next odd */
+	if (N == 2 || N == 1) return 2;
+
+	p = (N%2) ? N : N+1;
+	while (1) {
+		for (i = 3; i*i <= p; i++)
+			if (!(p%i)) break;
+		if (i*i > p) break;
+		else p += 2;
 	}
 	return p;
 }
