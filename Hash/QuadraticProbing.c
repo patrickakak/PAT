@@ -17,7 +17,7 @@ Position Find(HashTable H, ElementType Key)
 	while (H->Cells[NewPos].Info!=Empty && H->Cells[NewPos].Data!=Key) {
 		/**
 		 * One collision occured, and to decide the parity of this time
-		 * -------------------------------------------------
+		 * ------------------- Map di into CNum -----------------------
 		 * di:   +1^2  -1^2  +2^2  -2^2  +3^2  -3^2...
 		 * CNum:   1     2     3     4     5     6 ...
 		 */
