@@ -44,7 +44,6 @@ Position Find(HashTable H, ElementType Key);
 bool Insert(HashTable H, ElementType Key);
 void DestroyTable(HashTable H);
 
-/* Compile it with -lm (i.e. library math) */
 int main()
 {
 	int N, i;
