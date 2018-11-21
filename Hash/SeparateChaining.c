@@ -1,8 +1,8 @@
 /**
  * Separate chaining:
- *     / α + e^-α (ASLu and insertion)
- * p = 
- *     \ 1 + α/2 (ASLs)
+ *                           / α + e^-α (ASLu and insertion)
+ * p (i.e. Expected value) = 
+ *                           \ 1 + α/2 (ASLs)
  */
 #define KEYLENGTH 15	/* The maximum length of the keyword string */
 typedef char ElementType[KEYLENGTH+1];
