@@ -1,3 +1,6 @@
+/**
+ * Create a hash table based on open addressing method 
+ */
 #define MAXTABLESIZE 100000 	/* Maximum hashtable size */
 typedef int ElementType;	/* Keyword type */
 typedef int Index; 		/* Element type of hash table address */
