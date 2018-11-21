@@ -1,6 +1,10 @@
-#define KEYLENGTH 15 	/* The maximum length of the keyword string */
+/**
+ * Separate chaining:
+ */
+#define KEYLENGTH 15	/* The maximum length of the keyword string */
 typedef char ElementType[KEYLENGTH+1];
-typedef int Index; 	/* The address type of hash */
+typedef int Index;	/* The address type of hash */
+
 /******** Definition of single list ********/
 typedef struct LNode *PtrToLNode;
 struct LNode {
@@ -27,8 +31,7 @@ HashTable CreateTable(int TableSize)
 
 	/* List head array */
 	H->Heads = (List) malloc(H->TableSize * sizeof(struct LNode));
-	/* Initialize the head nodes */
-	for (i = 0; i < H->TableSize; i++) {
+	for (i = 0; i < H->TableSize; i++) {	/* Initialize the head nodes */
 		H->Heads[i].Data[0] = '\0';
 		H->Heads[i].Next = NULL;
 	}
@@ -40,11 +43,10 @@ Position Find(HashTable H, ElementType Key)
 	Position P;
 	Index Pos;
 
-	Pos = Hash(Key, H->TableSize); 	/* The initial hash position */
-	P = H->Heads[Pos].Next; 	/* Start from the first node of current list */
-	/* Have not reached the end and find the Key yet */ 
+	Pos = Hash(Key, H->TableSize);	/* The initial hash position */
+	P = H->Heads[Pos].Next;		/* Start from the first node of current list */
 	while (P && strcmp(P->Data, Key))
-		P = P->Next;
+		P = P->Next;	/* Have not reached the end and find the Key yet */ 
 
 	return P; 	/* P points to the spotted node or NULL */
 }
@@ -74,8 +76,7 @@ void DestroyTable(HashTable H)
 	int i;
 	Position P, Tmp;
 
-	/* Free every node of every list */
-	for (i = 0; i < H->TableSize; i++) {
+	for (i = 0; i < H->TableSize; i++) {	/* Free every node of every list */
 		P = H->Heads[i].Next;
 		while (P) {
 			Tmp = P->Next;
@@ -83,7 +84,7 @@ void DestroyTable(HashTable H)
 			P = Tmp;
 		}
 	}
-	free(H->Heads); 	/* Free the array of head nodes */
+	free(H->Heads);		/* Free the array of head nodes */
 	free(H); 	/* Free hash node */
 }
 
