@@ -15,9 +15,9 @@
 #include <stdbool.h>
 #include <math.h>
 
-#define KEYLENGTH 11
+#define KEYLENGTH 11	/* Length of phone number */
 #define MAXTABLESIZE 1000000
-#define MAXD 5
+#define MAXD 5	/* Effective numbers in phone number */
 
 typedef char ElementType[KEYLENGTH+1];
 typedef int Index;
@@ -26,7 +26,7 @@ typedef struct LNode *PtrToLNode;
 struct LNode {
 	ElementType Data;
 	PtrToLNode Next;
-	int Count;
+	int Count;	/* Phone number frequency counter */
 };
 typedef PtrToLNode Position;
 typedef PtrToLNode List;
@@ -45,7 +45,7 @@ Position Find(HashTable H, ElementType Key);
 bool Insert(HashTable H, ElementType Key);
 void DestroyTable(HashTable H);
 
-/* Compile it with -lm(library math) */
+/* Compile it with -lm (i.e. library math) */
 int main()
 {
 	int N, i;
@@ -59,7 +59,9 @@ int main()
 		scanf("%s", Key); Insert(H, Key);
 	}
 	ScanAndOutput(H);
+
 	DestroyTable(H);
+	
 	return 0;
 }
 
@@ -68,8 +70,8 @@ void ScanAndOutput(HashTable H)
 	int i, MaxCnt = 0, PCnt = 0;
 	ElementType MinPhone;
 	List Ptr;
-	MinPhone[0] = '\0';
 
+	MinPhone[0] = '\0';
 	for (i = 0; i < H->TableSize; i++) {
 		Ptr = H->Heads[i].Next;
 		while (Ptr) {
@@ -86,7 +88,7 @@ void ScanAndOutput(HashTable H)
 		}
 	}
 	printf("%s %d", MinPhone, MaxCnt);
-	if (PCnt > 1) printf(" %d", PCnt);
+	if (PCnt > 1) printf(" %d", PCnt);	/* Not only one maniac */
 	putchar('\n');
 }
 
@@ -129,6 +131,7 @@ Position Find(HashTable H, ElementType Key)
 	Position P;
 	Index Pos;
 
+	/* Use effective 5 numbers */
 	Pos = Hash(atoi(Key+KEYLENGTH-MAXD), H->TableSize);
 
 	P = H->Heads[Pos].Next;
