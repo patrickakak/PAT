@@ -8,16 +8,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
 
 typedef int ElementType;
 typedef int Index;
 typedef Index Position;
-typedef enum { Legitimate, Empty, Deleted } EntryType;
+typedef enum { Empty, Taken } EntryType;
 
 typedef struct HashEntry Cell;
 struct HashEntry {
-	ElementType Data;
 	EntryType Info;
 };
 
@@ -28,7 +26,6 @@ struct TblNode {
 };
 
 #define MAXN 100000
-bool visited[MAXN];
 
 int NextPrime(int N);
 HashTable CreateTable(int TableSize);
@@ -43,48 +40,49 @@ int main()
 	HashTable H;
 	ElementType Key;
 
-	freopen("data.txt", "r", stdin);
-	scanf("%d %d", &M, &N);		// M<=10000, N<=M
+	scanf("%d %d", &M, &N);		/* M<=10000, N<=M */
 
 	H = CreateTable(M);
 	for (i = 0; i < N; i++) {
 		scanf("%d", &Key);
 		Pos = Insert(H, Key);
+
 		if (!flag) flag = 1;
 		else printf(" ");
-		if (Pos >= 0)
-			printf("%d", Pos);
-		else printf("-");
+
+		if (Pos >= 0) printf("%d", Pos);
+		else putchar('-');
 	}
 	putchar('\n');
+
 	DestroyTable(H);
+
 	return 0;
 }
 
-HashTable CreateTable(int TableSize)
+HashTable CreateTable(int TblSize)
 {
 	HashTable H;
 	int i;
 
 	H = (HashTable) malloc(sizeof(struct TblNode));
-	H->TableSize = NextPrime(TableSize);
+	H->TableSize = NextPrime(TblSize);
 	H->Cells = (Cell *) malloc(sizeof(Cell) * H->TableSize);
 
-	for (i = 0; i < H->TableSize; i++) {
-		H->Cells[i].Data = 0;
+	for (i = 0; i < H->TableSize; i++)
 		H->Cells[i].Info = Empty;
-	}
 	return H;
 }
 
 int NextPrime(int N)
 {
-	int i, p = (N%2) ? N+2 : N+1;
+	int i, p;
 
-	if (N == 1) return 2;
+	if (N == 2 || N == 1) return 2;
 
+	p = (N%2) ? N : N+1;
 	while (1) {
-		for (i = 3; i*i <= p; i+=2)
+		for (i = 3; i*i <= p; i++)
 			if (!(p%i)) break;
 		if (i*i > p) break;
 		else p += 2;
@@ -105,20 +103,22 @@ int Hash(int Key, int P)
 
 Position Find(HashTable H, ElementType Key)
 {
+	int i, j;
 	Position CurrentPos, NewPos;
-	int i, CNum = 1;
+	bool visited[MAXN];
 
 	for (i = 0; i < H->TableSize; i++)
 		visited[i] = false;
+
 	NewPos = CurrentPos = Hash(Key, H->TableSize);
-	while (H->Cells[NewPos].Info!=Empty && H->Cells[NewPos].Data!=Key) {
-		NewPos = CurrentPos + (CNum)*(CNum);
+	for (j = 1; H->Cells[NewPos].Info != Empty; j++) {
+		NewPos = CurrentPos + j*j;
 		if (NewPos >= H->TableSize)
 			NewPos = NewPos % H->TableSize;
-		if (!visited[NewPos])
+
+		if (!visited[NewPos])   /* It's impossible to insert the number */
 			visited[NewPos] = true;
 		else return -1;
-		++CNum;
 	}
 	return NewPos;
 }
@@ -128,12 +128,8 @@ Position Insert(HashTable H, ElementType Key)
 	Position Pos;
 
 	Pos = Find(H, Key);
-	if (Pos == -1)
-		return -1;
-	else {
-		H->Cells[Pos].Info = Legitimate;
-		H->Cells[Pos].Data = Key;
-		return Pos;
-	}
+	if (Pos >= 0)
+		H->Cells[Pos].Info = Taken;
+	return Pos;
 }
 
