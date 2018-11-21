@@ -42,10 +42,10 @@ HashTable CreateTable(int TableSize)
 	H = (HashTable) malloc(sizeof(struct TblNode));
 	/* To make sure that the tablesize if a prime */
 	H->TableSize = NextPrime(TableSize);
-	/* Declaration of a ceil array */
+	/* Declaration of a cell array */
 	H->Cells = (Cell *) malloc(H->TableSize * sizeof(Cell));
 	for (i = 0; i < H->TableSize; i++)
-		H->Cells[i].Info = Empty;	/* Initialize ceils to empty status */
+		H->Cells[i].Info = Empty;	/* Initialize cells to empty status */
 
 	return H;
 }
