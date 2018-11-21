@@ -2,7 +2,7 @@
 typedef int ElementType;
 typedef int Index; 		/* The element type of hash table address */
 typedef Index Position;
-typedef enum { Legitimate, Empty, Deleted } EntryType; 	/* Hash ceil status type */
+typedef enum { Legitimate, Empty, Deleted } EntryType; 	/* Cell status type */
 
 typedef struct HashEntry Cell;
 struct HashEntry {
@@ -12,8 +12,8 @@ struct HashEntry {
 
 typedef struct TblNode *HashTable;
 struct TblNode {
-	int TableSize; 	/* The maximum size of table */
-	Cell *Cells; 	/* The array to store hash ceil */
+	int TableSize;	/* The maximum size of table */
+	Cell *Cells;	/* The array to store hash ceil */
 };
 
 /* Return a prime that is great than N and less than MAXTABLESIZE */
@@ -23,9 +23,9 @@ int NextPrime(int N)
 
 	while (p <= MAXTABLESIZE) {
 		for (i = (int)sqrt(p); i > 2; i--)
-			if (!(p%i)) break; 	/* If p is not a prime */
-		if (i == 2) break; 	/* for loop ends normally, p is a prime */
-		else  p += 2; /* If not, try next odd */
+			if (!(p%i)) break;	/* If p is not a prime */
+		if (i == 2) break;	/* for loop ends normally, p is a prime */
+		else  p += 2;	/* If not, try next odd */
 	}
 	return p;
 }
@@ -40,9 +40,8 @@ HashTable CreateTable(int TableSize)
 	H->TableSize = NextPrime(TableSize);
 	/* Declaration of a ceil array */
 	H->Cells = (Cell *) malloc(H->TableSize * sizeof(Cell));
-	/* Initialize ceils to empty status */
 	for (i = 0; i < H->TableSize; i++)
-		H->Cells[i].Info = Empty;
+		H->Cells[i].Info = Empty;	/* Initialize ceils to empty status */
 
 	return H;
 }
