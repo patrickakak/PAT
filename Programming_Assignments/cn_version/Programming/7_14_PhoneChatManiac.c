@@ -53,7 +53,7 @@ int main()
 	HashTable H;
 
 	scanf("%d", &N);
-	H = CreateTable(N*2);
+	H = CreateTable(N);
 	for (i = 0; i < N; i++) {
 		scanf("%s", Key); Insert(H, Key);
 		scanf("%s", Key); Insert(H, Key);
