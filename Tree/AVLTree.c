@@ -51,20 +51,22 @@ AVLTree Insert(AVLTree T, ElementType X)
 		/* Insert it into left subtree of T */
 		T->Left = Insert(T->Left, X);
 		/* Need left rotation? */
-		if (GetHeight(T->Left)-GetHeight(T->Right) == 2)
+		if (GetHeight(T->Left)-GetHeight(T->Right) == 2) {
 			if (X < T->Left->Data) 
 				T = SingleLeftRotation(T);
-			else 
+			else
 				T = DoubleLeftRightRotation(T);
+		}
 	} else if (X > T->Data) {
 		/* Insert it into right subtree of T */
 		T->Right = Insert(T->Right, X);
 		/* Need right rotation? */
-		if (GetHeight(T->Left)-GetHeight(T->Right) == -2)
+		if (GetHeight(T->Left)-GetHeight(T->Right) == -2) {
 			if (X > T->Right->Data)
 				T = SingleRightRotation(T);
 			else 
 				T = DoubleRightLeftRotation(T);
+		}
 	}
 	/* else X == T->Data, no need do insertion */
 
