@@ -22,7 +22,7 @@
 #define KEYLENGTH 10
 #define PWLENGTH 16
 
-typedef int Index;
+typedef unsigned int Index;
 typedef char KeyType[KEYLENGTH+1];
 typedef char PWType[PWLENGTH+1];
 typedef struct LNode *PtrToLNode;
@@ -57,14 +57,18 @@ int main()
 	PWType PW;
 	HashTable H;
 
-	freopen("data.txt", "r", stdin);
+	// freopen("data.txt", "r", stdin);
 	scanf("%d\n", &N);
 	H = CreateTable(N);
 	for (i = 0; i < N; i++) {
 		scanf("%c %s %s\n", &Op, Key, PW);
 		switch (Op) {
-		case 'L': Login(H, Key, PW); break;
-		case 'N': Apply(H, Key, PW); break;
+		case 'L':
+			Login(H, Key, PW);
+			break;
+		case 'N':
+			Apply(H, Key, PW);
+			break;
 		}
 	}
 	DestroyTable(H);
@@ -119,8 +123,8 @@ Index Hash(KeyType Key, int Size)
 	int i;
 	Index Pos = 0;
 
-	for (i = 0; i <= 3; i++)
-		Pos = (Pos << 5) + Key[i];
+	for (i = 0; Key[i]; i++)
+		Pos = (Pos<<4) + Key[i];
 	return Pos % Size;
 }
 
