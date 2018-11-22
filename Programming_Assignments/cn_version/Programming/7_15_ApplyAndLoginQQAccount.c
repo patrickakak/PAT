@@ -57,9 +57,9 @@ int main()
 	PWType PW;
 	HashTable H;
 
-	// freopen("data.txt", "r", stdin);
 	scanf("%d\n", &N);
 	H = CreateTable(N);
+	
 	for (i = 0; i < N; i++) {
 		scanf("%c %s %s\n", &Op, Key, PW);
 		switch (Op) {
@@ -72,7 +72,6 @@ int main()
 		}
 	}
 	DestroyTable(H);
-
 	return 0;
 }
 
