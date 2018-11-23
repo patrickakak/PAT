@@ -11,6 +11,9 @@
 
 #define MAXN 1000
 
+typedef int Index;
+typedef int KeyType;
+
 typedef int Vertex;
 typedef struct ENode *PtrToENode;
 struct ENode {
@@ -33,15 +36,13 @@ struct GNode {
 };
 typedef PtrToGNode LGraph;
 
-typedef int Index;
-typedef int KeyType;
-
 #define MinData -1000
 typedef struct {
 	Vertex V;
-	int Value;
+	KeyType Value;
 } Pair;
 typedef Pair ElementType;
+
 typedef struct HeapStruct *MinHeap;
 struct HeapStruct {
 	ElementType Elems[MAXN+1];
@@ -52,6 +53,7 @@ struct HeapStruct {
  * Adjacent List Graph related functions: 
  */
 LGraph CreateGraph(int VertexNum);
+LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N);
 void DestroyGraph(LGraph LG);
 void InsertEdge(LGraph LG, Edge E);
 
@@ -66,49 +68,81 @@ void PercUp(MinHeap H, int p);
 void PercDown(MinHeap H, int p);
 bool IsEmptyHeap(MinHeap H);
 
-// global variables:
-KeyType A[MAXN];
-
+void ReadInput(KeyType A[], int N);
+void InitIndegreeArr(int Indegree[], int N);
+int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[]);
+void Output(KeyType TopOrder[], int N);
 Index Hash(KeyType Key, int N);
 
 int main()
 {
-	int N, i, j;
-	Index Pos, ActualPos;
-	//KeyType Key;
-	int Indegree[MAXN];
+	KeyType A[MAXN];
+	int N, count, Indegree[MAXN];
+	KeyType TopOrder[MAXN];
 	LGraph LG;
-	MinHeap Hp;
+	MinHeap H;
+
+	scanf("%d", &N);	/* N > 0 */
+
+	ReadInput(A, N);	/* Read input */
+
+	InitIndegreeArr(Indegree, N);	/* Init indegree array */
+
+	H = CreateHeap();
+
+	LG = BuildGraph(A, H, Indegree, N);
+
+	count = TopSort(LG, H, Indegree, A, TopOrder);
+
+	Output(TopOrder, count);
+
+	// DestroyGraph(LG);
+
+	// DestroyHeap(H);
+	
+	return 0;
+}
+
+void ReadInput(KeyType A[], int N)
+{
+	int i;
+
+	for (i = 0; i < N; i++)
+		scanf("%d", &A[i]);
+}
+
+void InitIndegreeArr(int Indegree[], int N)
+{
+	int i;
+
+	for (i = 0; i < N; i++)
+		Indegree[i] = 0;
+}
+
+LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
+{
+	LGraph LG;
+	int i, j;
+	Index Pos, ActualPos;
 	Edge E;
 	Pair pair;
 
-	freopen("data.txt", "r", stdin);
-	scanf("%d", &N);
-
-	// Read input
-	for (i = 0; i < N; i++) {
-		scanf("%d", &A[i]);
-	}
-	// Init indegree array
-	for (i = 0; i < N; i++) {
-		Indegree[i] = 0;
-	}
-
-	Hp = CreateHeap();
 	LG = CreateGraph(N);
+
 	for (i = 0; i < N; i++) {
 		if (A[i] == -1)
 			continue;
 		Pos = Hash(A[i], N);
-		if (i == Pos) {
+		if (Pos == i) {
 			pair.Value = A[i];
 			pair.V = i;
-			InsertMinHeap(Hp, pair);
+			InsertMinHeap(H, pair);
 		} else {
-			if (Pos > i) ActualPos = i + N;
+			if (Pos > i)
+				ActualPos = i + N;
 			else ActualPos = i;
-			// InsertEdge
-			E = (Edge) malloc(sizeof(*E));
+
+			E = (Edge) malloc(sizeof(*E));	/* Insert an edge */
 			for (j = Pos; j < ActualPos; j++) {
 				E->V1 = j%N;
 				E->V2 = i;
@@ -118,52 +152,39 @@ int main()
 			free(E);
 		}
 	}
+	return LG;
+}
+
+int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[])
+{
 	Vertex V;
 	PtrToAdjVNode W;
-	int TopOrder[MAXN];
 	Pair Out, In;
-	int cnt = 0;
-	while (!IsEmptyHeap(Hp)) {
-		Out = DeleteMin(Hp);
+	int cnt;
+
+	cnt = 0;
+	while (!IsEmptyHeap(H)) {
+		Out = DeleteMin(H);
 		V = Out.V;
 		TopOrder[cnt++] = Out.Value;
-		for (W = LG->G[V].FirstEdge; W; W = W->Next) {
-			if (--Indegree[W->AdjV] == 0) {
+		for (W = LG->G[V].FirstEdge; W; W = W->Next)
+			if (--Ind[W->AdjV] == 0) {
 				In.V = W->AdjV;
 				In.Value = A[W->AdjV];
-				InsertMinHeap(Hp, In);
+				InsertMinHeap(H, In);
 			}
-		}
 	}
+	return cnt;
+}
+
+void Output(KeyType TopOrder[], int N)
+{
+	int i;
+
 	printf("%d", TopOrder[0]);
-	for (i = 1; i < cnt; i++) {
+	for (i = 1; i < N; i++)
 		printf(" %d", TopOrder[i]);
-	}
 	putchar('\n');
-	/*
-	//------------------
-	int v;
-	for (v=0; v<LG->Nv; v++) {
-		printf("Indegree[%d]=%d\n", v, Indegree[v]);
-	}
-	//------------------
-	*/
-	/*
-	//---------------------
-	int v;
-	PtrToAdjVNode w;
-	for (v=0; v<LG->Nv; v++) {
-		w = LG->G[v].FirstEdge;
-		while (w) {
-			printf(" #V%d->#V%d, (%d->%d)", v, w->AdjV, A[v], A[w->AdjV]);
-			w = w->Next;
-		}
-		putchar('\n');
-	}
-	//---------------------
-	*/
-	DestroyGraph(LG);
-	return 0;
 }
 
 Index Hash(KeyType Key, int N)
@@ -198,6 +219,7 @@ void DestroyGraph(LGraph LG)
 			T = t;
 		}
 	}
+	free(LG);
 }
 
 void InsertEdge(LGraph LG, Edge E)
@@ -230,22 +252,22 @@ void DestroyHeap(MinHeap H)
 	free(H);
 }
 
-void InsertMinHeap(MinHeap Hp, ElementType X)
+void InsertMinHeap(MinHeap H, ElementType X)
 {
 	int p;
 
-	p = ++Hp->Size;
-	Hp->Elems[p] = X;
-	PercUp(Hp, p);
+	p = ++H->Size;
+	H->Elems[p] = X;
+	PercUp(H, p);
 }
 
-ElementType DeleteMin(MinHeap Hp)
+ElementType DeleteMin(MinHeap H)
 {
 	ElementType MinItem;
 
-	MinItem = Hp->Elems[1];
-	Hp->Elems[1] = Hp->Elems[Hp->Size--];
-	PercDown(Hp, 1);
+	MinItem = H->Elems[1];
+	H->Elems[1] = H->Elems[H->Size--];
+	PercDown(H, 1);
 
 	return MinItem;
 }
