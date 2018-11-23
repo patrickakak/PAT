@@ -27,23 +27,26 @@ void BuildMatch(char *pattern, int *match)
 	}
 }
 
+/* Tw = O(n+m) */
 Position KMP(char *string, char *pattern)
 {
-	int n = strlen(string);
-	int m = strlen(pattern);
+	int n = strlen(string); 	/* T = O(n) */
+	int m = strlen(pattern); 	/* T = O(m) */
 	Position s, p, *match;
 
 	if (n < m) return NotFound;
+	
 	match = (Position *) malloc(sizeof(Position) * m);
-	BuildMatch(pattern, match);
+	BuildMatch(pattern, match); 	/* T = O(m) */
 	s = p = 0;
-	while (s<n && p<m) {
+	while (s<n && p<m) { 	/* T = O(n) */
 		if (string[s] == pattern[p]) {
 			s++; p++;
 		} else if (p > 0)
 			p = match[p-1]+1;
 		else s++;
 	}
+	free(match);
 	return (p == m) ? (s-m) : NotFound;
 }
 
