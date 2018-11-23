@@ -73,7 +73,7 @@ bool IsEmptyHeap(MinHeap H);
  */
 void ReadInput(KeyType A[], int N);
 void InitIndegreeArr(int Indegree[], int N);
-int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[]);
+int TopSort(LGraph LG, MinHeap H, int Indeg[], KeyType A[], KeyType TopOrder[]);
 void Output(KeyType TopOrder[], int N);
 Index Hash(KeyType Key, int N);
 
@@ -84,9 +84,10 @@ int main()
 	KeyType TopOrder[MAXN];
 	LGraph LG;
 	MinHeap H;
-
+ 
 	scanf("%d", &N);	/* N > 0 */
 	ReadInput(A, N);	/* Read input */
+	
 	InitIndegreeArr(Indegree, N);	/* Init indegree array */
 	
 	H = CreateHeap();
@@ -95,8 +96,8 @@ int main()
 	count = TopSort(LG, H, Indegree, A, TopOrder);
 	Output(TopOrder, count);
 
-	// DestroyGraph(LG);
-	// DestroyHeap(H);
+	DestroyGraph(LG); DestroyHeap(H);
+
 	return 0;
 }
 
@@ -126,7 +127,7 @@ LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
 
 	LG = CreateGraph(N);
 	for (i = 0; i < N; i++) {
-		if (A[i] == -1)
+		if (A[i] < 0)
 			continue;
 		Pos = Hash(A[i], N);
 		if (Pos == i) {
@@ -147,7 +148,7 @@ LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
 	return LG;
 }
 
-int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[])
+int TopSort(LGraph LG, MinHeap H, int Indeg[], KeyType A[], KeyType TopOrder[])
 {
 	Vertex V;
 	PtrToAdjVNode W;
@@ -159,7 +160,7 @@ int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[])
 		V = Out.V;
 		TopOrder[cnt++] = Out.Value;
 		for (W = LG->G[V].FirstEdge; W; W = W->Next)
-			if (--Ind[W->AdjV] == 0) {
+			if (--Indeg[W->AdjV] == 0) {
 				In.V = W->AdjV;
 				In.Value = A[W->AdjV];
 				InsertMinHeap(H, In);
