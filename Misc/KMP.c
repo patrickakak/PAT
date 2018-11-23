@@ -11,6 +11,24 @@
 typedef int Position;
 #define NotFound -1
 
+void BuildMatch(char *pattern, int *match);
+/* Tw = O(n+m) */
+Position KMP(char *string, char *pattern);
+
+int main()
+{
+	char string[] = "This is a simple example.";
+	char pattern[] = "simple";
+
+	Position p = KMP(string, pattern);
+	if (p == NotFound)
+		printf("Not Found.\n");
+	else
+		printf("%s\n", string+p);
+
+	return 0;  
+}
+
 void BuildMatch(char *pattern, int *match)
 {
 	Position i, j;
@@ -27,7 +45,6 @@ void BuildMatch(char *pattern, int *match)
 	}
 }
 
-/* Tw = O(n+m) */
 Position KMP(char *string, char *pattern)
 {
 	int n = strlen(string); 	/* T = O(n) */
@@ -49,18 +66,3 @@ Position KMP(char *string, char *pattern)
 	free(match);
 	return (p == m) ? (s-m) : NotFound;
 }
-
-int main()
-{
-	char string[] = "This is a simple example.";
-	char pattern[] = "simple";
-
-	Position p = KMP(string, pattern);
-	if (p == NotFound)
-		printf("Not Found.\n");
-	else
-		printf("%s\n", string+p);
-
-	return 0;  
-}
-
