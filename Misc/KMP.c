@@ -1,3 +1,8 @@
+/**
+ * Knuth–Morris–Pratt algorithm:
+ * A string searching algorithm (or KMP algorithm) searches for occurrences 
+ * of a "word" W within a main "text string" S
+ */
 #include <stdio.h>
 #include <string.h> 
 #include <stdlib.h>
@@ -32,9 +37,9 @@ Position KMP(char *string, char *pattern)
 	BuildMatch(pattern, match);
 	s = p = 0;
 	while (s<n && p<m) {
-		if (string[s] == pattern[p])
+		if (string[s] == pattern[p]) {
 			s++; p++;
-		else if (p > 0)
+		} else if (p > 0)
 			p = match[p-1]+1;
 		else s++;
 	}
