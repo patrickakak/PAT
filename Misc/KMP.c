@@ -15,8 +15,8 @@ void BuildMatch(char *pattern, int *match)
 {
 	Position i, j;
 	int m = strlen(pattern);
+	
 	match[0] = -1;
-
 	for (j = 1; j < m; j++) {
 		i = match[j-1];
 		while ((i >= 0) && (pattern[i+1] != pattern[j]))
