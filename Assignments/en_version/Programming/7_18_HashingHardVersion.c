@@ -68,6 +68,9 @@ void PercUp(MinHeap H, int p);
 void PercDown(MinHeap H, int p);
 bool IsEmptyHeap(MinHeap H);
 
+/**
+ * Core functions:
+ */
 void ReadInput(KeyType A[], int N);
 void InitIndegreeArr(int Indegree[], int N);
 int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[]);
@@ -85,8 +88,10 @@ int main()
 	scanf("%d", &N);	/* N > 0 */
 	ReadInput(A, N);	/* Read input */
 	InitIndegreeArr(Indegree, N);	/* Init indegree array */
+	
 	H = CreateHeap();
 	LG = BuildGraph(A, H, Indegree, N);
+	
 	count = TopSort(LG, H, Indegree, A, TopOrder);
 	Output(TopOrder, count);
 
@@ -120,7 +125,6 @@ LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
 	Pair pair;
 
 	LG = CreateGraph(N);
-
 	for (i = 0; i < N; i++) {
 		if (A[i] == -1)
 			continue;
@@ -188,7 +192,6 @@ LGraph CreateGraph(int VertexNum)
 	LG = (LGraph) malloc(sizeof(*LG));
 	LG->Nv = VertexNum;
 	LG->Ne = 0;
-
 	for (V = 0; V < LG->Nv; V++)
 		LG->G[V].FirstEdge = NULL;
 	return LG;
