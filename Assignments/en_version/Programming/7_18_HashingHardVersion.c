@@ -83,23 +83,15 @@ int main()
 	MinHeap H;
 
 	scanf("%d", &N);	/* N > 0 */
-
 	ReadInput(A, N);	/* Read input */
-
 	InitIndegreeArr(Indegree, N);	/* Init indegree array */
-
 	H = CreateHeap();
-
 	LG = BuildGraph(A, H, Indegree, N);
-
 	count = TopSort(LG, H, Indegree, A, TopOrder);
-
 	Output(TopOrder, count);
 
 	// DestroyGraph(LG);
-
 	// DestroyHeap(H);
-	
 	return 0;
 }
 
@@ -134,18 +126,14 @@ LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
 			continue;
 		Pos = Hash(A[i], N);
 		if (Pos == i) {
-			pair.Value = A[i];
-			pair.V = i;
+			pair.Value = A[i]; pair.V = i;
 			InsertMinHeap(H, pair);
 		} else {
-			if (Pos > i)
-				ActualPos = i + N;
+			if (Pos > i) ActualPos = i + N;
 			else ActualPos = i;
-
 			E = (Edge) malloc(sizeof(*E));	/* Insert an edge */
 			for (j = Pos; j < ActualPos; j++) {
-				E->V1 = j%N;
-				E->V2 = i;
+				E->V1 = j%N; E->V2 = i;
 				InsertEdge(LG, E);
 				Indegree[i]++;
 			}
