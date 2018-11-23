@@ -1,5 +1,6 @@
 /**
  * Knuth–Morris–Pratt algorithm:
+ * Worst: Tw = O(n+m)
  * A string searching algorithm (or KMP algorithm) searches for occurrences 
  * of a "word" W within a main "text string" S
  */
