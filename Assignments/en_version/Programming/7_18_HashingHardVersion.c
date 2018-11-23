@@ -152,9 +152,8 @@ int TopSort(LGraph LG, MinHeap H, int Ind[], KeyType A[], KeyType TopOrder[])
 	Vertex V;
 	PtrToAdjVNode W;
 	Pair Out, In;
-	int cnt;
+	int cnt = 0;
 
-	cnt = 0;
 	while (!IsEmptyHeap(H)) {
 		Out = DeleteMin(H);
 		V = Out.V;
@@ -283,8 +282,7 @@ void PercDown(MinHeap H, int p)
 		if ((Child != H->Size) && 
 				(H->Elems[Child].Value > H->Elems[Child+1].Value))
 			Child++;
-		if (Tmp.Value <= H->Elems[Child].Value)
-			break;
+		if (Tmp.Value <= H->Elems[Child].Value) break;
 		else H->Elems[Parent] = H->Elems[Child];
 	}
 	H->Elems[Parent] = Tmp;
