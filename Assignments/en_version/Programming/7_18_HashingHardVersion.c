@@ -79,9 +79,8 @@ Index Hash(KeyType Key, int N);
 
 int main()
 {
-	KeyType A[MAXN];
+	KeyType A[MAXN], TopOrder[MAXN];
 	int N, count, Indegree[MAXN];
-	KeyType TopOrder[MAXN];
 	LGraph LG;
 	MinHeap H;
  
