@@ -126,8 +126,7 @@ LGraph BuildGraph(KeyType A[], MinHeap H, int Indegree[], int N)
 
 	LG = CreateGraph(N);
 	for (i = 0; i < N; i++) {
-		if (A[i] < 0)
-			continue;
+		if (A[i] < 0) continue;
 		Pos = Hash(A[i], N);
 		if (Pos == i) {
 			pair.Value = A[i]; pair.V = i;
