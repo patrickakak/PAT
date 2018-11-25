@@ -85,20 +85,16 @@ int main()
 	MinHeap H;
  
 	scanf("%d", &N);	/* N > 0 */
-	
 	ReadInput(A, N);	/* Read input */
 	
 	InitIndegreeArr(Indegree, N);	/* Init indegree array */
-	
 	H = CreateHeap();
 	LG = BuildGraph(A, H, Indegree, N);
 	
 	count = TopSort(LG, H, Indegree, A, TopOrder);
-	
 	Output(TopOrder, count);
 
 	DestroyGraph(LG);
-	
 	DestroyHeap(H);
 
 	return 0;
