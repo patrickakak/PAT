@@ -197,7 +197,7 @@ void UpdatePair(Pair *pPair, Vertex V, Vertex W, int *pMinDist)
 	}
 	/* Same shotest length path is found */
 	else if (*pMinDist == dist[W] && 
-			Crocs[V].x * Crocs[V].x + Crocs[V].y * Crocs[V].y 
+			Crocs[V].x*Crocs[V].x + Crocs[V].y*Crocs[V].y 
 			< Crocs[pPair->Start].x * Crocs[pPair->Start].x
 			+ Crocs[pPair->Start].y * Crocs[pPair->Start].y) {
 		pPair->Start = V;
