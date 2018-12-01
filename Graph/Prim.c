@@ -79,6 +79,7 @@ int Prim(MGraph Graph, LGraph MST)
 	}
 	if (VCount < Graph->Nv)		/* Vertices in MST is less than V */
 		TotalWeight = ERROR;
-	return TotalWeight; 	/* End of Prim, return minimum total wieght or error */
+	/* End of Prim, return minimum total wieght or error */
+	return TotalWeight;
 }
 
