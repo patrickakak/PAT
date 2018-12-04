@@ -1,23 +1,24 @@
 /* Your function will be put here */
-static PtrToNode MakeNode(int Coef, int Exp)
+static PtrToNode MakeNode()
 {
-	PtrToNode pNewNode;
+	PtrToNode NewNode;
 
-	pNewNode = (PtrToNode) malloc(sizeof(struct Node));
-	pNewNode->Coefficient = Coef;
-	pNewNode->Exponent = Exp;
-	pNewNode->Next = NULL;
+	NewNode = (PtrToNode) malloc(sizeof(struct Node));
+	NewNode->Next = NULL;
 	
-	return pNewNode;
+	return NewNode;
 }
 
 static void Attach(int Coef, int Exp, Polynomial *pRear)
 {
-	PtrToNode pNewNode;
+	PtrToNode NewNode;
 
-	pNewNode = MakeNode(Coef, Exp);
-	(*pRear)->Next = pNewNode;
-	(*pRear) = pNewNode;
+	NewNode = MakeNode();
+	NewNode->Coefficient = Coef;
+	NewNode->Exponent = Exp;
+	
+	(*pRear)->Next = NewNode;
+	(*pRear) = NewNode;
 }
 
 static int Compare(int a, int b)
@@ -31,8 +32,7 @@ Polynomial Add(Polynomial a, Polynomial b)
 	PtrToNode P1, P2;
 	int sum;
 
-	rear = (Polynomial) malloc(sizeof(struct Node));	/* Sum Polynomial */
-	rear->Next = NULL;
+	rear = MakeNode(); 	/* Sum Polynomial */
 	front = rear;
 	P1 = a->Next; P2 = b->Next;
 	while (P1 && P2)
