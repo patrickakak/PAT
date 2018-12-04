@@ -1,11 +1,15 @@
 /* Your function will be put here */
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+
 #define ERROR NULL
 typedef enum { false, true } bool;
 typedef struct StackRecord *PtrToStack;
 typedef PtrToStack Stack;
 struct StackRecord {
 	ElementType Data[Max_Expr];
-	int         Top;
+	int Top;
 };
 
 Stack CreateStack()
@@ -15,14 +19,16 @@ Stack CreateStack()
 	S = (Stack) malloc(sizeof(struct StackRecord));
 	if (!S) return ERROR;
 	S->Top = -1;
+	
 	return S;
 }
 
 bool Push( Stack S, ElementType X )
 {
 	if (S->Top == Max_Expr-1) return false;
-
+	
 	S->Data[++S->Top] = X;
+	
 	return true;
 }
 
