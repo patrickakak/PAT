@@ -1,5 +1,20 @@
-/* Your function will be put here */
-void PercolateUp( int p, PriorityQueue H )
+/**
+ * Sample Input:
+ * 9
+ * 1 10
+ * 1 5
+ * 1 2
+ * 0
+ * 1 9
+ * 1 1
+ * 1 4
+ * 0
+ * 0
+ * Sample Output:
+ * 2 1 4 
+ * Inside H: 5 10 9
+ */
+void PercolateUp(int p, PriorityQueue H)
 {
 	int i;
 	ElementType Tmp;
@@ -9,7 +24,7 @@ void PercolateUp( int p, PriorityQueue H )
 	H->Elements[i] = Tmp;
 }
 
-void PercolateDown( int p, PriorityQueue H )
+void PercolateDown(int p, PriorityQueue H)
 {
 	ElementType Tmp = H->Elements[p];
 	int Parent, Child;
@@ -18,8 +33,10 @@ void PercolateDown( int p, PriorityQueue H )
 		Child = Parent * 2;
 		if ((Child != H->Size) && (H->Elements[Child] > H->Elements[Child+1]))
 			Child++;
-		if (Tmp <= H->Elements[Child]) break;
-		else H->Elements[Parent] = H->Elements[Child];
+		if (Tmp <= H->Elements[Child])
+			break;
+		else
+			H->Elements[Parent] = H->Elements[Child];
 	}
 	H->Elements[Parent] = Tmp;
 }
