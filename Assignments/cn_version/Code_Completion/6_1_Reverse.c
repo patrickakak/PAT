@@ -13,7 +13,7 @@
  */
 List Reverse(List L)
 {
-	PtrToNode RemainL = NULL, NewL = NULL;
+	PtrToNode RemainL, NewL = NULL;
 
 	while (L) {
 		RemainL = L->Next;
