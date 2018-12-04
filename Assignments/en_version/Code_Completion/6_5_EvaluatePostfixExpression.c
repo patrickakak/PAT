@@ -1,4 +1,19 @@
-/* Your function will be put here */
+/**
+ * Sample Input1:
+ * 11 -2 5.5 * + 23 7 / -
+ * Sample Output1:
+ * -3.285714
+ * -----------------------
+ * Sample Input2:
+ * 11 -2 5.5 * + 23 0 / -
+ * Sample Output2:
+ * ERROR
+ * -----------------------
+ * Sample Input3:
+ * 11 -2 5.5 * + 23 7 / - *
+ * Sample Output3:
+ * ERROR
+ */
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
