@@ -21,15 +21,15 @@
  * Pop from Stack 1: 1
  * Pop from Stack 2: 13 12 11
  */
-Stack CreateStack(int MaxSize)
+Stack CreateStack(int StackSize)
 {
 	Stack S;
 
 	S = (Stack) malloc(sizeof(struct SNode));
-	S->Data = (ElementType *) malloc(MaxSize * sizeof(ElementType));
+	S->Data = (ElementType *) malloc(StackSize * sizeof(ElementType));
 	S->Top1 = -1;
-	S->Top2 = MaxSize;
-	S->MaxSize = MaxSize;
+	S->Top2 = StackSize;
+	S->MaxSize = StackSize;
 	return S;
 }
 
