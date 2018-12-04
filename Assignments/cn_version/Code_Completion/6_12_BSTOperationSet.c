@@ -65,8 +65,6 @@ BinTree Delete(BinTree BST, ElementType X)
 			BST = BST->Right;
 		else if (!BST->Right)
 			BST = BST->Left;
-		else
-			BST = NULL;
 		free(Tmp);
 	}
 	return BST;
