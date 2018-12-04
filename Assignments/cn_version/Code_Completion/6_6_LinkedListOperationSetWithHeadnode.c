@@ -54,7 +54,7 @@ bool Insert(List L, ElementType X, Position P)
 		free(PNewNode); 
 		printf("Wrong Position for Insertion\n");
 		return false;
-   	}
+	}
 }
 
 bool Delete(List L, Position P)
