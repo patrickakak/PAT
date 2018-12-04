@@ -22,13 +22,12 @@ Position BinarySearch(List L, ElementType X)
 	right = L->Last;
 	while (left <= right) {
 		mid = (left + right)/2;
-		if (X == L->Data[mid])
-			return mid;
-		else if (X < L->Data[mid])
+		if (X < L->Data[mid])
 			right = mid - 1;
-		else
+		else if (X > L->Data[mid])
 			left = mid + 1;
+		else
+		  return mid;
 	}
 	return NotFound;
 }
-
