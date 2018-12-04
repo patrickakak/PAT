@@ -1,4 +1,24 @@
-/* Your function will be put here */
+/**
+ * Sample Input:
+ * 5
+ * Push 1 1
+ * Pop 2
+ * Push 2 11
+ * Push 1 2
+ * Push 2 12
+ * Pop 1
+ * Push 2 13
+ * Push 2 14
+ * Push 1 3
+ * Pop 2
+ * End
+ * --------------
+ * Sample Output:
+ * Stack 2 is Empty!
+ * Stack 1 is Full!
+ * Pop from Stack 1: 1
+ * Pop from Stack 2: 13 12 11
+ */
 Stack CreateStack(int MaxElements)
 {
 	Stack S;
