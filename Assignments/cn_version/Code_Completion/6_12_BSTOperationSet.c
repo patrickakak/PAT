@@ -61,7 +61,7 @@ BinTree Delete(BinTree BST, ElementType X)
 		BST->Left = Delete(BST->Left, BST->Data);
 	} else {
 		Tmp = BST;
-		if (!BST->Left)
+		if (!BST->Left) 	/* Including leave node */
 			BST = BST->Right;
 		else if (!BST->Right)
 			BST = BST->Left;
