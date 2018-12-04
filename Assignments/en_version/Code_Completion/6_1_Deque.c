@@ -1,4 +1,20 @@
-/* Your function will be put here */
+/**
+ * Sample Input:
+ * Pop
+ * Inject 1
+ * Pop
+ * Eject
+ * Push 1
+ * Push 2
+ * Eject
+ * Inject 3
+ * End
+ * -----------------
+ * Sample Output:
+ * Deque is Empty!
+ * Deque is Empty!
+ * Inside Deque: 2 3
+ */
 PtrToNode MakeNode()
 {
 	PtrToNode P;
