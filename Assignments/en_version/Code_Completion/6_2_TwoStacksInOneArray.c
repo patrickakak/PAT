@@ -14,10 +14,11 @@ Stack CreateStack(int MaxElements)
 
 int IsEmpty(Stack S, int Stacknum)
 {
-	if (Stacknum == 1) {
+	switch (Stacknum) {
+	case 1:
 		if (S->Top1 == -1) return 1;
 		else return 0;
-	} else {
+	default:
 		if (S->Top2 == S->Capacity) return 1;
 		else return 0;
 	}
