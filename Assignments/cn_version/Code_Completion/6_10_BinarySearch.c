@@ -1,9 +1,11 @@
-/* Sample input #1:
+/**
+ * Sample input #1:
  * 5
  * 12 31 55 89 101
  * 31
  * Sample output #1:
  * 2
+ * -----------------
  * Sample input #2:
  * 3
  * 26 78 233
