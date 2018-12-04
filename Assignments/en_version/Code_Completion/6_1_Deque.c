@@ -30,7 +30,6 @@ int Push(ElementType X, Deque D)
 	P->Element = X;
 	P->Last = D->Front;
 	P->Next = D->Front->Next;
-
 	/* Only need 1 time Rear adjustment for push operation */
 	if (D->Front == D->Rear)
 		D->Rear = P;
