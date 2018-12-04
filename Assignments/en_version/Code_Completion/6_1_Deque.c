@@ -1,13 +1,11 @@
 /* Your function will be put here */
-PtrToNode MakeNode(ElementType X)
+PtrToNode MakeNode()
 {
 	PtrToNode P;
 
 	P = (PtrToNode) malloc(sizeof(struct Node));
-	if (!P)
-		return NULL;
-	
-	P->Element = X;
+	if (!P) return NULL;
+	P->Element = ERROR;
 	P->Last = P->Next = NULL;
 	return P;
 }
@@ -18,9 +16,8 @@ Deque CreateDeque()
 
 	/* Create a dummy header */
 	D = (Deque) malloc(sizeof(struct DequeRecord));
-	D->Front = (PtrToNode) malloc(sizeof(struct Node));
+	D->Front = MakeNode();
 	D->Rear = D->Front;
-	D->Front->Last = D->Front->Next = NULL;
 	return D;
 }
 
@@ -28,9 +25,8 @@ int Push(ElementType X, Deque D)
 {
 	PtrToNode P;
 
-	if (!(P = MakeNode(X)))
-		return 0;
-
+	P = MakeNode();
+	P->Element = X;
 	P->Next = D->Front->Next;
 
 	/* Special handling of header */
@@ -71,11 +67,8 @@ int Inject(ElementType X, Deque D)
 {
 	PtrToNode P;
 
-	P = (PtrToNode) malloc(sizeof(struct Node));
-	if (!P)
-		return 0;
+	P = MakeNode();
 	P->Element = X;
-	P->Next = P->Last = NULL;
 	
 	/* Linking doubly list */
 	D->Rear->Next = P;
