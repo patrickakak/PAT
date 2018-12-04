@@ -26,8 +26,7 @@ Position BinarySearch(List L, ElementType X)
 			right = mid - 1;
 		else if (X > L->Data[mid])
 			left = mid + 1;
-		else
-		  return mid;
+		else return mid;
 	}
 	return NotFound;
 }
