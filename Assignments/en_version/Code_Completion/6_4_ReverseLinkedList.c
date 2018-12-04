@@ -8,15 +8,15 @@
  */
 List Reverse(List L)
 {
-	List R, S, T, ReversedL = NULL;
+	List R, T, ReversedL = NULL;
 
 	/* Start to reverse the list without head node */
 	T = L->Next;
 	while (T) {
-		R = T->Next;
-		T->Next = ReversedL;
-		ReversedL = T;
-		T = R;
+		R = T->Next; 	/* Remaining nodes */
+		T->Next = ReversedL; 	/* Build new linked list */
+		ReversedL = T; 	/* New linked list grows */
+		T = R; 	/* Traverse */
 	}
 	L->Next = ReversedL;	/* Add dummy head node */
 	return L;
