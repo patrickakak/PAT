@@ -62,7 +62,7 @@ List Delete(List L, Position P)
 	/* If P is NULL or list is empty, return ERROR */
 	if (!P || !L) return ERROR;
 
-	/* If P points to the header node */
+	/* If P points to the head node */
 	if (L == P) {
 		tmp = L; L = L->Next; free(tmp);
 		return L;
@@ -71,7 +71,6 @@ List Delete(List L, Position P)
 	T = L;
 	while (T && P != T->Next)
 		T = T->Next;
-
 	/* If T != NULL, then P is valid, and T points to the previous node of P */
 	if (T) {
 		tmp = P; T->Next = tmp->Next; free(tmp);
