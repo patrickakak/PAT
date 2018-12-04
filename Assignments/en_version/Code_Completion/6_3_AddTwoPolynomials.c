@@ -20,9 +20,9 @@ static void Attach(int Coef, int Exp, Polynomial *pRear)
 	(*pRear) = pNewNode;
 }
 
-static int Compare(Polynomial a, Polynomial b)
+static int Compare(int a, int b)
 {
-	return a->Exponent > b->Exponent ? 1 : a->Exponent == b->Exponent ? 0 : -1;
+	return a > b ? 1 : a == b ? 0 : -1;
 }
 
 Polynomial Add(Polynomial a, Polynomial b)
@@ -37,7 +37,7 @@ Polynomial Add(Polynomial a, Polynomial b)
 	P1 = a->Next;
 	P2 = b->Next;
 	while (P1 && P2)
-		switch (Compare(P1, P2)) {
+		switch (Compare(P1->Exponent, P2->Exponent)) {
 		case 1:
 			Attach(P1->Coefficient, P1->Exponent, &rear);
 			P1 = P1->Next;
