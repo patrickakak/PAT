@@ -26,8 +26,9 @@ List MakeEmpty()
 
 Position Find(List L, ElementType X)
 {
-	PtrToLNode T = L->Next;
-
+	PtrToLNode T;
+	
+	T = L->Next;
 	while (T && T->Data != X)
 		T = T->Next;
 
