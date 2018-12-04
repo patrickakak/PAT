@@ -22,9 +22,7 @@ static void Attach(int Coef, int Exp, Polynomial *pRear)
 
 static int Compare(Polynomial a, Polynomial b)
 {
-	int ExpA = a->Exponent;
-	int ExpB = b->Exponent;
-	return ExpA > ExpB ? 1 : ExpA == ExpB ? 0 : -1;
+	return a->Exponent > b->Exponent ? 1 : a->Exponent == b->Exponent ? 0 : -1;
 }
 
 Polynomial Add(Polynomial a, Polynomial b)
