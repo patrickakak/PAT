@@ -68,9 +68,7 @@ bool Delete(List L, Position P)
 	T = L;
 	while (T && T->Next != P)
 		T = T->Next;
-
-	/* If P is valid */
-	if (T) {
+	if (T) { 	/* P is valid */
 		T->Next = P->Next; free(P); 
 		return true;
 	} else {
