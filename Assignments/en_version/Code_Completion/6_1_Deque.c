@@ -5,6 +5,7 @@ PtrToNode MakeNode()
 
 	P = (PtrToNode) malloc(sizeof(struct Node));
 	if (!P) return NULL;
+	
 	P->Element = ERROR;
 	P->Last = P->Next = NULL;
 	return P;
@@ -25,7 +26,7 @@ int Push(ElementType X, Deque D)
 {
 	PtrToNode P;
 
-	P = MakeNode();
+	if (!(P = MakeNode())) return 0;
 	P->Element = X;
 	P->Next = D->Front->Next;
 
@@ -67,7 +68,7 @@ int Inject(ElementType X, Deque D)
 {
 	PtrToNode P;
 
-	P = MakeNode();
+	if (!(P = MakeNode())) return 0;
 	P->Element = X;
 	
 	/* Linking doubly list */
