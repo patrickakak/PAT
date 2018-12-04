@@ -7,6 +7,7 @@
  *           D  F  G  I
  *             /    \
  *            E      H
+ * ------------------------------
  * Sample Output:
  * Inorder: D B E F A G H C I
  * Preorder: A B D F E C G H I
