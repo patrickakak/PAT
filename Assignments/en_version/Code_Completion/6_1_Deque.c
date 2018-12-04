@@ -28,19 +28,15 @@ int Push(ElementType X, Deque D)
 
 	if (!(P = MakeNode())) return 0;
 	P->Element = X;
-	P->Next = D->Front->Next;
-
-	/* Special handling of header */
-	if (D->Front->Next)
-		D->Front->Next->Last = P;
-
-	D->Front->Next = P;
 	P->Last = D->Front;
+	P->Next = D->Front->Next;
 
 	/* Only need 1 time Rear adjustment for push operation */
 	if (D->Front == D->Rear)
 		D->Rear = P;
-
+	else
+		D->Front->Next->Last = P;
+	D->Front->Next = P;
 	return 1;
 }
 
