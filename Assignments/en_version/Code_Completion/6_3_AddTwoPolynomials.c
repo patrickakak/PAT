@@ -31,11 +31,10 @@ Polynomial Add(Polynomial a, Polynomial b)
 	PtrToNode P1, P2;
 	int sum;
 
-	rear = (Polynomial) malloc(sizeof(struct Node));
+	rear = (Polynomial) malloc(sizeof(struct Node));	/* Sum Polynomial */
 	rear->Next = NULL;
 	front = rear;
-	P1 = a->Next;
-	P2 = b->Next;
+	P1 = a->Next; P2 = b->Next;
 	while (P1 && P2)
 		switch (Compare(P1->Exponent, P2->Exponent)) {
 		case 1:
@@ -45,8 +44,7 @@ Polynomial Add(Polynomial a, Polynomial b)
 		case 0:
 			sum = P1->Coefficient + P2->Coefficient;
 			if (sum) Attach(sum, P1->Exponent, &rear);
-			P1 = P1->Next;
-			P2 = P2->Next;
+			P1 = P1->Next; P2 = P2->Next;
 			break;
 		case -1:
 			Attach(P2->Coefficient, P2->Exponent, &rear);
