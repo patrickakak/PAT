@@ -1,4 +1,11 @@
-/* Your function will be put here */
+/**
+ * Sample Input:
+ * 5
+ * 1 3 4 5 2
+ * Sample Output:
+ * 2 5 4 3 1
+ * 2 5 4 3 1
+ */
 
 /* The function Reverse is supposed to return the reverse linked list of L,
  * with a dummy header. 
