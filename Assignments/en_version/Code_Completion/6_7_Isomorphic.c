@@ -1,16 +1,16 @@
 /**
- *        A          A              A          A
- *       / \        / \            / \        / \
- *      B   C      C   B          B   C      B   C
- *     / \  /     /   / \        / \  /     /   / \
- *    D  E  G    G   E   D      D  E  G    G   D   E
- *      /  /      \ /             /   /     \  /
- *     F   H      H F            F    H     H F
- *          Figure 1                  Figure 2
- * -------------------------------------------------
+ *        A          A                A          A
+ *       / \        / \              / \        / \
+ *      B   C      C   B            B   C      B   C
+ *     / \  /     /   / \          / \  /     /   / \
+ *    D  E  G    G   E   D        D  E  G    G   D   E
+ *      /  /      \ /               /   /     \  /
+ *     F   H      H F              F    H     H F
+ *          Figure 1                   Figure 2
+ * ----------------------------------------------------
  * Sample Output1 (for the trees shown in Figure 1):
  * 1
- * -------------------------------------------------
+ * ----------------------------------------------------
  * Sample Output2 (for the trees shown in Figure 2):
  * 0
  */
