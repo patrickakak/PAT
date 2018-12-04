@@ -15,7 +15,7 @@ Deque CreateDeque()
 {
 	Deque D;
 
-	/* Create a dummy header */
+	/* Better to have a dummy header */
 	D = (Deque) malloc(sizeof(struct DequeRecord));
 	D->Front = MakeNode();
 	D->Rear = D->Front;
@@ -30,10 +30,11 @@ int Push(ElementType X, Deque D)
 	P->Element = X;
 	P->Last = D->Front;
 	P->Next = D->Front->Next;
+	
 	/* Only need 1 time Rear adjustment for push operation */
 	if (D->Front == D->Rear)
 		D->Rear = P;
-	else
+	else 	/* Hard to notice */
 		D->Front->Next->Last = P;
 	D->Front->Next = P;
 	return 1;
@@ -66,10 +67,11 @@ int Inject(ElementType X, Deque D)
 	if (!(P = MakeNode())) return 0;
 	P->Element = X;
 	
-	/* Linking doubly list */
-	D->Rear->Next = P;
+	/* Linking doubly linked list */
 	P->Last = D->Rear;
+	D->Rear->Next = P;
 	D->Rear = P;
+	
 	return 1;
 }
 
