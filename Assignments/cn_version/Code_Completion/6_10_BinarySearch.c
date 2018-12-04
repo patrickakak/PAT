@@ -18,8 +18,7 @@ Position BinarySearch(List L, ElementType X)
 {
 	int left, right, mid;
 
-	left = 1;
-	right = L->Last;
+	left = 1; right = L->Last;
 	while (left <= right) {
 		mid = (left + right)/2;
 		if (X < L->Data[mid])
