@@ -1,4 +1,13 @@
-/* Your function will be put here */
+/**
+ * Sample Input:
+ * 4
+ * 3 4 -5 2 6 1 -2 0
+ * 3
+ * 5 20 -7 4 3 1
+ * -----------------------
+ * Sample Output:
+ * 5 20 -4 4 -5 2 9 1 -2 0
+ */
 static PtrToNode MakeNode()
 {
 	PtrToNode NewNode;
