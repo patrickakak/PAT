@@ -1,4 +1,5 @@
-/* Sample Input:
+/**
+ * Sample Input:
  * 10
  * 5 8 6 2 4 1 0 10 9 7
  * 5
@@ -37,7 +38,8 @@ BinTree Delete(BinTree BST, ElementType X)
 {
 	Position Tmp;
 
-	if (!BST) printf("Not Found\n");
+	if (!BST)
+		printf("Not Found\n");
 	else if (X < BST->Data)
 		BST->Left = Delete(BST->Left, X);
 	else if (X > BST->Data)
@@ -84,7 +86,8 @@ Position FindMin(BinTree BST)
 Position FindMax(BinTree BST)
 {
 	if (BST)
-		while (BST->Right) BST = BST->Right;
+		while (BST->Right)
+			BST = BST->Right;
 	return BST;
 }
 
