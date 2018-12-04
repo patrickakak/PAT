@@ -11,7 +11,7 @@ static PtrToNode MakeNode(int Coef, int Exp)
 	return pNewNode;
 }
 
-static void Attach( int Coef, int Exp, Polynomial *pRear )
+static void Attach(int Coef, int Exp, Polynomial *pRear)
 {
 	PtrToNode pNewNode;
 
@@ -20,14 +20,14 @@ static void Attach( int Coef, int Exp, Polynomial *pRear )
 	(*pRear) = pNewNode;
 }
 
-static int Compare( Polynomial a, Polynomial b )
+static int Compare(Polynomial a, Polynomial b)
 {
 	int ExpA = a->Exponent;
 	int ExpB = b->Exponent;
 	return ExpA > ExpB ? 1 : ExpA == ExpB ? 0 : -1;
 }
 
-Polynomial Add( Polynomial a, Polynomial b )
+Polynomial Add(Polynomial a, Polynomial b)
 {
 	Polynomial front, rear;
 	PtrToNode P1, P2;
@@ -47,7 +47,6 @@ Polynomial Add( Polynomial a, Polynomial b )
 		case 0:
 			sum = P1->Coefficient + P2->Coefficient;
 			if (sum) Attach(sum, P1->Exponent, &rear);
-
 			P1 = P1->Next;
 			P2 = P2->Next;
 			break;
