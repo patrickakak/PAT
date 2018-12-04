@@ -7,18 +7,19 @@ Stack CreateStack(int MaxElements)
 	S->Capacity = MaxElements;
 	S->Top1 = -1;
 	S->Top2 = MaxElements;
-	S->Array = (ElementType *) malloc(MaxElements * sizeof(ElementType));
+	S->Array = (ElementType *) malloc(S->Capacity * sizeof(ElementType));
 	
 	return S;
 }
 
+/* Stacknum is the index of a stack which is either 1 or 2 */
 int IsEmpty(Stack S, int Stacknum)
 {
 	switch (Stacknum) {
 	case 1:
 		if (S->Top1 == -1) return 1;
 		else return 0;
-	default:
+	case 2:
 		if (S->Top2 == S->Capacity) return 1;
 		else return 0;
 	}
@@ -43,6 +44,7 @@ int Push(ElementType X, Stack S, int Stacknum)
 	return 1;
 }
 
+/* Top_Pop must return ERROR which is defined by the judge program */
 ElementType Top_Pop(Stack S, int Stacknum)
 {
 	ElementType RetElem;
