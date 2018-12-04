@@ -42,7 +42,7 @@ Position Find(List L, ElementType X)
 
 bool Insert(List L, ElementType X, Position P)
 {
-	int i = 0;
+	int i;
 
 	if (L->Last == MAXSIZE-1) {
 		printf("FULL");
