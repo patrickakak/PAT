@@ -29,6 +29,7 @@
  */
 #define EMPTY NULL
 
+/* Insert tree node recursively */
 BinTree Insert(BinTree BST, ElementType X)
 {
 	if (!BST) {
