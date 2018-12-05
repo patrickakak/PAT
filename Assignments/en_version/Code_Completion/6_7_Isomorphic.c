@@ -1,4 +1,6 @@
 /**
+ * 6-7: Two trees, T1 and T2, are isomorphic if T1 can be transformed into 
+ * T2 by swapping left and right children of (some of the) nodes in T1.
  *        A          A                A          A
  *       / \        / \              / \        / \
  *      B   C      C   B            B   C      B   C
