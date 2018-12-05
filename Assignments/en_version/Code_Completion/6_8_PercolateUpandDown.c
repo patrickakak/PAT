@@ -1,4 +1,7 @@
 /**
+ * 6-8: Write the routines to do a "percolate up" and a "percolate down" 
+ * in a binary min-heap.
+ *
  * Sample Input:
  * 9
  * 1 10
