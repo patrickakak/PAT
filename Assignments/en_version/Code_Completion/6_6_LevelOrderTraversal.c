@@ -71,7 +71,7 @@ void Level_order(Tree T, void (*visit)(Tree ThisNode))
 	DataType X;
 
 	if (!T) return;
-	Q = CreateQueue(32);
+	Q = CreateQueue(MaxTree);
 	Enqueue(Q, T);
 	while (!IsEmptyQ(Q)) {
 		X = Dequeue(Q);
