@@ -20,12 +20,13 @@
 /* Parameter int p is the position of the element */
 void PercolateUp(int p, PriorityQueue H)
 {
-	int i;
-	ElementType Tmp;
+	int pos;
+	ElementType tmp;
 
-	for (i=p, Tmp=H->Elements[p]; H->Elements[i/2] > Tmp; i /= 2)
-		H->Elements[i] = H->Elements[i/2];
-	H->Elements[i] = Tmp;
+	tmp = H->Elements[p];
+	for (pos = p; H->Elements[pos/2] > tmp; pos /= 2)
+		H->Elements[pos] = H->Elements[pos/2];
+	H->Elements[pos] = tmp;
 }
 
 void PercolateDown(int p, PriorityQueue H)
