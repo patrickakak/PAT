@@ -37,3 +37,34 @@ int Isomorphic(Tree T1, Tree T2)
 				&& Isomorphic(T1->Right, T2->Left));
 }
 
+/*
+int Isomorphic(Tree T1, Tree T2)
+{
+	if (!T1 && !T2)
+		return 1;
+	if ((!T1 && T2) || (T1 && !T2))
+		return 0;
+	// T1 and T2 are both not empty
+	if (T1->Element != T2->Element)
+		return 0;
+	// T1 and T2 are both not empty and root element is same
+	if (!T1->Left && !T2->Left && !T1->Right && !T2->Right)
+		return 1;
+	else if (!T1->Left && !T2->Left)
+		return Isomorphic(T1->Right, T2->Right);
+	else if (!T1->Left && !T2->Right)
+		return Isomorphic(T1->Right, T2->Left);
+	else if (!T1->Right && !T2->Left)
+		return Isomorphic(T1->Left, T2->Right);
+	else if (!T1->Right && !T2->Right)
+		return Isomorphic(T1->Left, T2->Left);
+	else if (T1->Left && T1->Right && T2->Left && T2->Right)
+		return ((Isomorphic(T1->Left, T2->Left) 
+					&& Isomorphic(T1->Right, T2->Right))
+				|| (Isomorphic(T1->Left, T2->Right) 
+					&& Isomorphic(T1->Right, T2->Left)));
+	else
+		return 0;
+}
+*/
+
