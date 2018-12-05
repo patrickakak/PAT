@@ -48,12 +48,10 @@ bool IsFullS(Stack S)
 	return S->Top == Max_Expr-1;
 }
 
-bool Push( Stack S, ElementType X )
+bool Push(Stack S, ElementType X)
 {
 	if (IsFullS(S)) return false;
-
 	S->Data[++S->Top] = X;
-
 	return true;
 }
 
@@ -64,8 +62,7 @@ bool IsEmptyS(Stack S)
 
 ElementType Pop( Stack S )
 {
-	if (IsEmptyS(S))
-		return err;
+	if (IsEmptyS(S)) return err;
 	return S->Data[S->Top--];
 }
 
@@ -88,6 +85,7 @@ type GetOperandOrOperator(char *expr, char s[Max_Expr])
 		typ = operand;
 	else
 		typ = operator;
+
 	return typ;
 }
 
@@ -112,22 +110,19 @@ ElementType EvalPostfix(char *expr)
 			switch (s[0]) {
 			case '+':
 				v = v1 + v2;
-				Push(S, v);
 				break;
 			case '-':
 				v = v1 - v2;
-				Push(S, v);
 				break;
 			case '*':
 				v = v1 * v2;
-				Push(S, v);
 				break;
 			case '/':
 				if (v2 == 0.0f) return Infinity;
 				v = v1 / v2;
-				Push(S, v);
 				break;
 			}
+			Push(S, v);
 		}
 	}
 	v  = Pop(S);
