@@ -17,6 +17,7 @@
  * 2 1 4 
  * Inside H: 5 10 9
  */
+/* Parameter int p is the position of the element */
 void PercolateUp(int p, PriorityQueue H)
 {
 	int i;
