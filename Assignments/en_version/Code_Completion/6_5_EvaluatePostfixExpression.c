@@ -97,6 +97,7 @@ ElementType EvalPostfix(char *expr)
 	S = CreateStack();
 	while (*expr) {
 		tp = GetOperandOrOperator(expr, s);
+		/* Special handling of *expr equals to null character */
 		expr += strlen(s);
 		if (*expr) expr += 1;
 		
@@ -105,6 +106,7 @@ ElementType EvalPostfix(char *expr)
 		else {
 			v2 = Pop(S); v1 = Pop(S);
 			if (v2 == err || v1 == err) return Infinity;
+
 			switch (s[0]) {
 			case '+': v = v1 + v2; break;
 			case '-': v = v1 - v2; break;
