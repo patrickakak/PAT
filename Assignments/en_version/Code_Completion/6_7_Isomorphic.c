@@ -18,12 +18,21 @@
  */
 int Isomorphic(Tree T1, Tree T2)
 {
+	/*********************************/
+	/* About the root node jugement: */
+	/*********************************/
+	
 	if ((T1 == NULL) && (T2 == NULL))	/* Both empty */
 		return 1;
 	if (((T1 == NULL) && (T2 != NULL)) || ((T2 == NULL) && (T1 != NULL)))
 		return 0;	/* One of them is empty */
 	if (T1->Element != T2->Element)
 		return 0;	/* Roots are different */
+	
+	/***********************************/
+	/* About the child nodes jugement: */
+	/***********************************/
+	
 	/* Both have no left subtree */
 	if ((T1->Left == NULL) && (T2->Left == NULL))
 		return Isomorphic(T1->Right, T2->Right);
