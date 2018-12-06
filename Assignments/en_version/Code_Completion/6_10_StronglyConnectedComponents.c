@@ -39,6 +39,7 @@ Stack CreateStack(int Size)
 
 void DestroyStack(Stack S)
 {
+	free(S->Data);
 	free(S);
 }
 
@@ -75,7 +76,7 @@ int Min(int a, int b)
 	return a < b ? a : b;
 }
 
-void DFS(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
+void Tarjan(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 		int low[], int *ptrId, void (*visit)(Vertex V))
 {
 	PtrToVNode W;
@@ -87,7 +88,7 @@ void DFS(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 
 	for (W = G->Array[V]; W; W = W->Next) {
 		if (ids[W->Vert] == -1)
-			DFS(G, W->Vert, S, onStack, ids, low, ptrId, visit);
+			Tarjan(G, W->Vert, S, onStack, ids, low, ptrId, visit);
 		if (onStack[W->Vert])
 			low[V] = Min(low[V], low[W->Vert]);
 	}
@@ -105,22 +106,23 @@ void DFS(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 
 void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 {
-	int i, ids[MaxVertices], low[MaxVertices];
+	int ids[MaxVertices], low[MaxVertices];
+	Vertex V;
 	bool onStack[MaxVertices];
 	Stack S = CreateStack(G->NumOfVertices);
 	int id = 0;
 
-	// Init visited[], ids[], low[], onStack[]
-	for (i = 0; i < G->NumOfVertices; i++) {
-		ids[i] = -1; low[i] = -1;
-		onStack[i] = false;
+	/* Init visited[], ids[], low[], onStack[] */
+	for (V = 0; V < G->NumOfVertices; V++) {
+		ids[V] = -1; low[V] = -1;
+		onStack[V] = false;
 	}
 
-	for (i = 0; i < G->NumOfVertices; i++) {
-		// If vertex i is unvisited
-		if (ids[i] == -1) {
-			DFS(G, i, S, onStack, ids, low, &id, visit);
-		}
-	}
+	/* For adjacent nodes, if vertex i is unvisited */
+	for (V = 0; V < G->NumOfVertices; V++)
+		if (ids[V] == -1)
+			Tarjan(G, V, S, onStack, ids, low, &id, visit);
+
+	DestroyStack(S);
 }
 
