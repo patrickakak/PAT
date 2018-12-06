@@ -100,6 +100,7 @@ void Tarjan(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 			low[V] = Min(low[V], low[W->Vert]);
 	}
 
+	/* Print nodes belong to the same SCCs group */
 	if (ids[V] == low[V]) {
 		while (1) {
 			X = Pop(S);
