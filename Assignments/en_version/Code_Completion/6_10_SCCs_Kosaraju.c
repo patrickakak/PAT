@@ -1,7 +1,7 @@
 /**
  * 6-10: Find the strongly connected components in a digraph (Kosaraju's algo)
  * (Note: Worst time complexity: T = O(V+E))
- *
+ * ---------------------------------------------------------------------------
  * Sample Input:
  * 4 5
  * 0 1
