@@ -1,5 +1,6 @@
 /**
  * 6-10: Find the strongly connected components in a digraph (Kosaraju's algo)
+ * (Note: Worst time complexity: T = O(V+E))
  *
  * Sample Input:
  * 4 5
@@ -170,9 +171,14 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 		if (!visited[V])
 			DFS(G, V, S, visited);
 
+	/* Reverse directions of all arcs to obtain the transpose graph */
 	TG = TransposeGraph(G);
 	InitVisited(visited, TG->NumOfVertices);
-	
+
+	/* One by one pop a vertex from S while S is not empty. Let the popped 
+	 * vertex be 'v'. Take v as source and do DFS (call DFSUtil(v)). The DFS 
+	 * starting from v prints strongly connected component of v.
+	 */
 	while (!IsEmptyS(S)) {
 		X = Pop(S);
 		if (!visited[X]) {
