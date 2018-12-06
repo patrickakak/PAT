@@ -119,16 +119,16 @@ Graph TransposeGraph(Graph G)
 {
 	Graph TG;
 	Edge E;
-	Vertex V;                                    // Transpose Graph:
-	PtrToVNode W;                                //   --------
-                                                 // 0 |  2   |->||
-	TG = CreateGraph(G->NumOfVertices);          //   --------  -------
-	TG->NumOfEdges = G->NumOfEdges;              // 1 |  0   |->|  3  |->||
-	E = (Edge) malloc(sizeof(struct ENode));     //   --------  -------
-	for (V = 0; V < G->NumOfVertices; V++) {     // 2 |  1   |->|  3  |->||
-		W = G->Array[V];                         //   --------  -------
-		while (W) {                              // 3 | null |
-			E->V1 = W->Vert; E->V2 = V;          //   --------
+	Vertex V;
+	PtrToVNode W;
+
+	TG = CreateGraph(G->NumOfVertices);
+	TG->NumOfEdges = G->NumOfEdges;
+	E = (Edge) malloc(sizeof(struct ENode));
+	for (V = 0; V < G->NumOfVertices; V++) {
+		W = G->Array[V];
+		while (W) {
+			E->V1 = W->Vert; E->V2 = V;
 			InsertEdge(TG, E);
 			W = W->Next;
 		}
@@ -171,7 +171,18 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 		if (!visited[V])
 			DFS(G, V, S, visited);
 
-	/* Reverse directions of all arcs to obtain the transpose graph */
+	/* Reverse directions of all arcs to obtain the transpose graph
+	 *  Original Graph:               Transpose Graph:
+	 *   --------                        --------
+	 * 0 |  1   |->||                  0 |  2   |->||
+	 *   --------                        --------  -------
+	 * 1 |  2   |->||                  1 |  0   |->|  3  |->||
+	 *   --------                        --------  -------
+	 * 2 |  0   |->||                  2 |  1   |->|  3  |->||
+	 *   --------  --------              --------  -------
+	 * 3 |  1   |->|  2   |->||        3 | null |
+	 *   --------  --------              --------
+	 */
 	TG = TransposeGraph(G);
 	InitVisited(visited, TG->NumOfVertices);
 
