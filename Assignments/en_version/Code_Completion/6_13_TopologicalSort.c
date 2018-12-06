@@ -114,7 +114,7 @@ bool TopSort(LGraph Graph, Vertex TopOrder[])
 			if (--Indegree[W->AdjV] == 0)
 				Enqueue(Q, W->AdjV);
 	}
-
+	DestroyQueue(Q);
 	if (cnt != Graph->Nv) return false;
 	else return true;
 }
