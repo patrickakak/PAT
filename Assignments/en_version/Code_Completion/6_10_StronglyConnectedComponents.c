@@ -77,18 +77,18 @@ int Min(int a, int b)
 }
 
 void Tarjan(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
-		int low[], int *ptrId, void (*visit)(Vertex V))
+		int low[], int *id, void (*visit)(Vertex V))
 {
 	PtrToVNode W;
 	Vertex X;
 
 	Push(S, V);
 	onStack[V] = true;
-	ids[V] = low[V] = (*ptrId)++;
+	ids[V] = low[V] = (*id)++;
 
 	for (W = G->Array[V]; W; W = W->Next) {
 		if (ids[W->Vert] == -1)
-			Tarjan(G, W->Vert, S, onStack, ids, low, ptrId, visit);
+			Tarjan(G, W->Vert, S, onStack, ids, low, id, visit);
 		if (onStack[W->Vert])
 			low[V] = Min(low[V], low[W->Vert]);
 	}
@@ -112,14 +112,15 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 	int ids[MaxVertices], low[MaxVertices], id = 0;
 
 	S = CreateStack(G->NumOfVertices);
-	/* Init visited[], ids[], low[], onStack[] */
+	
+	/* Initialize ids[], low[], onStack[] */
 	for (V = 0; V < G->NumOfVertices; V++) {
 		ids[V] = -1;
 		low[V] = -1;
 		onStack[V] = false;
 	}
 
-	/* For adjacent nodes, if vertex i is unvisited */
+	/* For adjacent nodes, if vertex V is unvisited, do Tarjan's algo */
 	for (V = 0; V < G->NumOfVertices; V++)
 		if (ids[V] == -1)
 			Tarjan(G, V, S, onStack, ids, low, &id, visit);
