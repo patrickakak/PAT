@@ -116,6 +116,8 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 	Vertex V;
 	Stack S;
 	bool onStack[MaxVertices];
+	/* ids[]: timestamp of DFS visiting sequence, begin with id=0.
+	 * low[]: the most dist ancestor's timestamp */
 	int ids[MaxVertices], low[MaxVertices], id = 0;
 
 	S = CreateStack(G->NumOfVertices);
