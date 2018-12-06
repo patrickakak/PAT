@@ -1,4 +1,6 @@
 /**
+ * 6-10: Find the strongly connected components in a digraph (Kosaraju's algo)
+ *
  * Sample Input:
  * 4 5
  * 0 1
@@ -95,8 +97,7 @@ Graph CreateGraph(int VertexNum)
 	gr = (Graph) malloc(sizeof(struct GNode));
 	gr->NumOfVertices = VertexNum;
 	gr->NumOfEdges = 0;
-	gr->Array = (PtrToVNode *) malloc(gr->NumOfVertices*sizeof(PtrToVNode));
-
+	gr->Array = (PtrToVNode *) malloc(gr->NumOfVertices * sizeof(PtrToVNode));
 	for (V = 0; V < gr->NumOfVertices; V++)
 		gr->Array[V] = NULL;
 
@@ -135,15 +136,15 @@ Graph TransposeGraph(Graph G)
 	return TG;
 }
 
-void printSCCs(Graph TG, Vertex X, bool visited[])
+void printSCCs(Graph TG, Vertex X, bool visited[], void (*visit)(Vertex V))
 {
 	PtrToVNode W;
 
 	visited[X] = true;
-	printf("%d ", X);
+	(*visit)(X);
 	for (W = TG->Array[X]; W; W = W->Next)
 		if (!visited[W->Vert])
-			printSCCs(TG, W->Vert, visited);
+			printSCCs(TG, W->Vert, visited, visit);
 }
 
 void InitVisited(bool visited[], int N)
@@ -164,33 +165,15 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 	S = CreateStack(G->NumOfVertices);
 	InitVisited(visited, G->NumOfVertices);
 	for (V = 0; V < G->NumOfVertices; V++)
-	// for (V = G->NumOfVertices-1; V >= 0; V--)
 		if (!visited[V])
 			DFS(G, V, S, visited);
 
 	TG = TransposeGraph(G);
-	// ********** test ********************
-	/*
-	   int v;
-	   PtrToVNode w;
-	   printf("TG->Ne=%d, TG->Nv=%d\n", TG->NumOfEdges, TG->NumOfVertices);
-	   for (v=0; v<TG->NumOfVertices; v++) {
-	   w = TG->Array[v]->Next;
-	   while (w) {
-	   printf(" (%d,%d)", v, w->Vert);
-	   w = w->Next;
-	   }
-	   putchar('\n');
-	   }
-	   */
-	// ********** test ********************
-	// printf("S->Top=%d\n", S->Top);
 	InitVisited(visited, TG->NumOfVertices);
 	while (!IsEmptyS(S)) {
 		X = Pop(S);
-		// printf("X=%d\n", X);
 		if (!visited[X]) {
-			printSCCs(TG, X, visited);
+			printSCCs(TG, X, visited, visit);
 			putchar('\n');
 		}
 	}

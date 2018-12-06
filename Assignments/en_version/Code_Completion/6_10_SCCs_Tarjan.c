@@ -1,5 +1,5 @@
 /**
- * 6-10: Write a program to find the strongly connected components in a digraph
+ * 6-10: Find the strongly connected components in a digraph (Tarjan's algo)
  *
  * Sample Input:
  * 4 5
