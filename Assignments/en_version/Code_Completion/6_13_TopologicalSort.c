@@ -87,6 +87,7 @@ ElementType Dequeue(Queue Q)
 	}
 }
 
+/* Prepare a rather large queue space, it can get tricky */
 bool TopSort(LGraph Graph, Vertex TopOrder[])
 {
 	int Indegree[MaxVertexNum], cnt;
