@@ -1,7 +1,7 @@
 /**
  * 6-10: Find the strongly connected components in a digraph (Tarjan's algo)
  * (Note: Wrost T = O(V+E))
- *
+ * -------------------------------------------------------------------------
  * Sample Input:
  * 4 5
  * 0 1
