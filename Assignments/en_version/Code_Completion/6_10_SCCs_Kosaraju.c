@@ -173,15 +173,14 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 
 	/* Reverse directions of all arcs to obtain the transpose graph
 	 *  Original Graph:   --------->    Transpose Graph:
-	 *   --------                        --------
+	 *   ________                        ________
 	 * 0 |  1   |->||                  0 |  2   |->||
-	 *   --------                        --------  -------
+	 *   ________                        ________  _______
 	 * 1 |  2   |->||                  1 |  0   |->|  3  |->||
-	 *   --------                        --------  -------
+	 *   ________                        ________  _______
 	 * 2 |  0   |->||                  2 |  1   |->|  3  |->||
-	 *   --------  --------              --------  -------
+	 *   ________  ________              ________
 	 * 3 |  1   |->|  2   |->||        3 | null |
-	 *   --------  --------              --------
 	 */
 	TG = TransposeGraph(G);
 	InitVisited(visited, TG->NumOfVertices);
