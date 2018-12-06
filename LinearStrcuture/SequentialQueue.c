@@ -47,7 +47,7 @@ ElementType Dequeue(Queue Q)
 	if (IsEmpty(Q)) { 
 		printf("Empty queue");
 		return ERROR;
-	} else  {
+	} else {
 		Q->Front = (Q->Front+1)%Q->MaxSize;
 		return Q->Data[Q->Front];
 	}
