@@ -1,5 +1,6 @@
 /**
  * 6-10: Find the strongly connected components in a digraph (Tarjan's algo)
+ * (Note: Wrost T = O(V+E))
  *
  * Sample Input:
  * 4 5
@@ -78,6 +79,10 @@ int Min(int a, int b)
 	return a < b ? a : b;
 }
 
+/* DFS search produces a DFS tree/forest, a depth-first search begins from an 
+ * arbitrary start node (and subsequent depth-first searches are conducted on 
+ * any nodes that have not yet been found) 
+ */
 void Tarjan(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 		int low[], int *id, void (*visit)(Vertex V))
 {
