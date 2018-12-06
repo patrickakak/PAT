@@ -53,8 +53,8 @@ void ShortestDist(MGraph Graph, int dist[], Vertex S)
 		collected[V] = true;
 
 		for (W = 0; W < Graph->Nv; W++)
-			if (collected[W] == false && Graph->G[V][W] < INFINITY)
-				if (dist[V] + Graph->G[V][W] < dist[W])
+			if (!collected[W] && Graph->G[V][W] < INFINITY)
+				if (dist[W] > dist[V] + Graph->G[V][W])
 					dist[W] = dist[V] + Graph->G[V][W];
 	}
 	/* The shortest distance from V to the source S is supposed to be stored 
