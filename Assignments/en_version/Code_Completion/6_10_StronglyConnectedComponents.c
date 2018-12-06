@@ -106,15 +106,16 @@ void Tarjan(Graph G, Vertex V, Stack S, bool onStack[], int ids[],
 
 void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 {
-	int ids[MaxVertices], low[MaxVertices];
 	Vertex V;
+	Stack S;
 	bool onStack[MaxVertices];
-	Stack S = CreateStack(G->NumOfVertices);
-	int id = 0;
+	int ids[MaxVertices], low[MaxVertices], id = 0;
 
+	S = CreateStack(G->NumOfVertices);
 	/* Init visited[], ids[], low[], onStack[] */
 	for (V = 0; V < G->NumOfVertices; V++) {
-		ids[V] = -1; low[V] = -1;
+		ids[V] = -1;
+		low[V] = -1;
 		onStack[V] = false;
 	}
 
