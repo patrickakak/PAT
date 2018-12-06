@@ -140,7 +140,7 @@ Graph TransposeGraph(Graph G)
 void printSCCs(Graph TG, Vertex X, bool visited[], void (*visit)(Vertex V))
 {
 	PtrToVNode W;
-
+	
 	visited[X] = true;
 	(*visit)(X);
 	for (W = TG->Array[X]; W; W = W->Next)
