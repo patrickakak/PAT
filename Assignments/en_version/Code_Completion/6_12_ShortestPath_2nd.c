@@ -2,7 +2,7 @@
  * 6-12: Find the weighted shortest distances from any vertex to a 
  * given source vertex in a digraph. It is guaranteed that all the 
  * weights are positive.
- *
+ * ---------------------------------------------------------------
  * Sample Input:
  * 7 9
  * 0 1 1
