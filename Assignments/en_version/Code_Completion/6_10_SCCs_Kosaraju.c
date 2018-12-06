@@ -164,12 +164,15 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 
 	S = CreateStack(G->NumOfVertices);
 	InitVisited(visited, G->NumOfVertices);
+	
+	/* Push nodes into stack in DFS sequence: make timestamp */
 	for (V = 0; V < G->NumOfVertices; V++)
 		if (!visited[V])
 			DFS(G, V, S, visited);
 
 	TG = TransposeGraph(G);
 	InitVisited(visited, TG->NumOfVertices);
+	
 	while (!IsEmptyS(S)) {
 		X = Pop(S);
 		if (!visited[X]) {
@@ -177,5 +180,6 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 			putchar('\n');
 		}
 	}
+	DestroyStack(S);
 }
 
