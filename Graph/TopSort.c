@@ -4,13 +4,15 @@
  * (could be used to dectect DAG(i.e. directed acyclic graph))
  */
 
-/* TopSort graph, indexes of vertices will be stored into TopOrader[] array */
+/* TopSort graph, indexes of vertices will be stored into TopOrader[] array 
+ * (Note: Prepare a rather large queue space, it can get tricky)
+ */
 bool TopSort(LGraph Graph, Vertex TopOrder[])
 {
 	int Indegree[MaxVertexNum], cnt;
 	Vertex V;
 	PtrToAdjVNode W;
-	Queue Q = CreateQueue(Graph->Nv);
+	Queue Q = CreateQueue(MaxVertexNum);
 
 	for (V = 0; V < Graph->Nv; V++)		/* Initialize Indegree[] */
 		Indegree[V] = 0;
