@@ -172,7 +172,7 @@ void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V))
 			DFS(G, V, S, visited);
 
 	/* Reverse directions of all arcs to obtain the transpose graph
-	 *  Original Graph:               Transpose Graph:
+	 *  Original Graph:   --------->    Transpose Graph:
 	 *   --------                        --------
 	 * 0 |  1   |->||                  0 |  2   |->||
 	 *   --------                        --------  -------
