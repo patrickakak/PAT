@@ -142,11 +142,11 @@ void Dijkstra(MGraph Graph, int dist[], int cost[], Vertex S)
 		collected[V] = true;
 		for (W = 0; W < Graph->Nv; W++)
 			if (collected[W] == false && Graph->G[V][W].dist < INFINITY) {
-				if (dist[V]+Graph->G[V][W].dist < dist[W]) {
+				if (dist[V] + Graph->G[V][W].dist < dist[W]) {
 					dist[W] = dist[V] + Graph->G[V][W].dist;
 					cost[W] = cost[V] + Graph->G[V][W].cost;
-				} else if ((dist[V]+Graph->G[V][W].dist == dist[W]) 
-						&& (cost[V]+Graph->G[V][W].cost < cost[W]))
+				} else if ((dist[V] + Graph->G[V][W].dist == dist[W]) 
+						&& (cost[V] + Graph->G[V][W].cost < cost[W]))
 					cost[W] = cost[V] + Graph->G[V][W].cost;
 			}
 	}
