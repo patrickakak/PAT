@@ -53,8 +53,7 @@ Vertex FindMinDist(MGraph Graph, int dist[], bool collected[])
 		}
 	if (MinDist < INFINITY)		/* Find the minimum dist */
 		return MinV;	/* Return the index of the vertex */
-	else
-		return ERROR;	/* If no such vertex, return ERROR */
+	else return ERROR;	/* If no such vertex, return ERROR */
 }
 
 /**
