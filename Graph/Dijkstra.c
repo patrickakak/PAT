@@ -66,8 +66,12 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	bool collected[MaxVertexNum];
 	Vertex V, W;
 
-	/* Initialization: assume that inexistent edges are 
-	 * represented as INFINITY in adjacency matrix 
+	/* Initialization: assume that inexistent edges are represented as 
+	 * INFINITY in adjacency matrix
+	 *
+	 * When using min-heap and insert source vertex into it first, then we
+	 * should initialize dist[] as INFINITY, otherwise 
+	 * "dist[W] > dist[V]+weight<v,w>" will be skipped.
 	 */
 	for (V = 0; V < Graph->Nv; V++) {
 		dist[V] = Graph->G[S][V];
