@@ -62,12 +62,11 @@ void ShortestDist(MGraph Graph, int dist[], int path[], Vertex S)
 		collected[V] = true;
 
 		for (W = 0; W < Graph->Nv; W++)
-			if (!collected[W] && Graph->G[V][W] < INFINITY) {
+			if (!collected[W] && Graph->G[V][W] < INFINITY)
 				if (dist[W] > dist[V] + Graph->G[V][W]) {
 					dist[W] = dist[V] + Graph->G[V][W];
 					path[W] = V;
 				}
-			}
 	}
 	for (V = 0; V < Graph->Nv; V++)
 		if (dist[V] == INFINITY) dist[V] = -1;
