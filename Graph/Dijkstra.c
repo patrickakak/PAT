@@ -67,7 +67,8 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 	Vertex V, W;
 
 	/* Initialization: assume that inexistent edges are 
-	 * represented as INFINITY in adjacency matrix */
+	 * represented as INFINITY in adjacency matrix 
+	 */
 	for (V = 0; V < Graph->Nv; V++) {
 		dist[V] = Graph->G[S][V];
 		if (dist[V] < INFINITY)
@@ -92,9 +93,9 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 			if (collected[W] == false && Graph->G[V][W] < INFINITY) {
 				if (Graph->G[V][W] < 0)
 					return false;	/* Can't handle it properly */
-				/* If colloecting V can diminish dist[W] */
+				/* If colloecting V can decrease dist[W] */
 				if (dist[V] + Graph->G[V][W] < dist[W]) {
-					dist[W] = dist[V] + Graph->G[V][W];		/* Update dist[W] */
+					dist[W] = dist[V] + Graph->G[V][W];
 					path[W] = V;	/* Update path of S to W */
 				}
 			}
