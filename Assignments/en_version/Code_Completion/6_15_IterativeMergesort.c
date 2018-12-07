@@ -37,7 +37,7 @@ void Merge1(ElementType A[], ElementType sorted[], int L, int R, int RightEnd)
 
 void merge_pass(ElementType list[], ElementType sorted[], int N, int length)
 {
-    int i, j;
+	int i, j;
 
 	for (i = 0; i <= N-2*length; i += 2*length)
 		Merge1(list, sorted, i, i+length, i+2*length-1);
