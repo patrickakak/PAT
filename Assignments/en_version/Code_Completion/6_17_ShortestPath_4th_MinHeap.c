@@ -126,6 +126,10 @@ void ShortestDist(MGraph Graph, int dist[], int path[], Vertex S)
 	MinHeap H;
 	Pair pair;
 
+	/* When using min-heap and insert source vertex into it first, then we
+	 * should initialize dist[] as INFINITY, otherwise 
+	 * "dist[W] > dist[V]+weight<v,w>" will be skipped.
+	 */
 	for (V = 0; V < Graph->Nv; V++) {
 		collected[V] = false;
 		dist[V] = INFINITY;
