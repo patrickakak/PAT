@@ -84,10 +84,12 @@ bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
 			break;
 		collected[V] = true;	/* To collect V */
 
+		/* If W is a vertex next to V and uncollected, check if there's a 
+		 * negative weighted edge, if so, return error, otherwise to check 
+		 * if there's a need to store new path.
+		 */
 		for (W = 0; W < Graph->Nv; W++)
-			/* If W is a vertex next to V and uncollected */
 			if (collected[W] == false && Graph->G[V][W] < INFINITY) {
-				/* If a negative weighted edge is found */
 				if (Graph->G[V][W] < 0)
 					return false;	/* Can't handle it properly */
 				/* If colloecting V can diminish dist[W] */
