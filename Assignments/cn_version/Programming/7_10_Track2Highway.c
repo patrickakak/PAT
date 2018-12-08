@@ -94,7 +94,9 @@ int main()
 	TotalWeight = Kruskal(Graph, &MST);
 	printf("%d\n", TotalWeight);
 
-	DestroyGraph(Graph); DestroyGraph(MST);
+	DestroyGraph(Graph);
+	DestroyGraph(MST);
+	
 	return 0;
 }
 
