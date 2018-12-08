@@ -92,10 +92,7 @@ int main()
 	Graph = BuildGraph(&N, &M);
 
 	TotalWeight = Kruskal(Graph, &MST);
-	if (TotalWeight == -1)
-		printf("-1\n");
-	else
-		printf("%d\n", TotalWeight);
+	printf("%d\n", TotalWeight);
 
 	DestroyGraph(Graph); DestroyGraph(MST);
 	return 0;
