@@ -19,25 +19,28 @@
  */
 bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 {
-	Vertex i, j, k;		/* k: the time of matrix transform */
+	/* k: the time of matrix transform */
+	Vertex i, j, k;
 
-	for (i = 0; i < Graph->Nv; i++)		/* Initialization */
+	/* Initialization */
+	for (i = 0; i < Graph->Nv; i++)
 		for (j = 0; j < Graph->Nv; j++) {
 			D[i][j] = Graph->G[i][j];
 			path[i][j] = -1;
 		}
-
+	/* Negative-cost cycle is found, can't handle it properly 
+	 * Use recursion to print path: i->k + k + k->j
+	 */
 	for (k = 0; k < Graph->Nv; k++)
 		for (i = 0; i < Graph->Nv; i++)
 			for (j = 0; j < Graph->Nv; j++)
 				if (D[i][k] + D[k][j] < D[i][j]) {
 					D[i][j] = D[i][k] + D[k][j];
-					/* Negative-cost cycle is found, can't handle it properly */
 					if (i == j && D[i][j] < 0)
 						return false;
-					/* Use recursion to print path: i->k + k + k->j */
 					path[i][j] = k;
 				}
-	return true;	/* Execute the algorithm properly */
+	/* Execute the algorithm properly */
+	return true;
 }
 
