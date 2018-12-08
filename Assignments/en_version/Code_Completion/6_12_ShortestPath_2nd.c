@@ -45,7 +45,6 @@ void ShortestDist(MGraph Graph, int dist[], Vertex S)
 		dist[V] = INFINITY;
 		collected[V] = false;
 	}
-
 	dist[S] = 0;
 	while (1) {
 		V = FindMinDist(Graph, dist, collected);
