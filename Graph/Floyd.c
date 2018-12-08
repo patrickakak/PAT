@@ -19,8 +19,7 @@
  */
 bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 {
-	/* k: the time of matrix transform */
-	Vertex i, j, k;
+	Vertex i, j, k; 	/* k: the time of matrix transform */
 
 	/* Initialization */
 	for (i = 0; i < Graph->Nv; i++)
