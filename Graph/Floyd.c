@@ -21,7 +21,7 @@ bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 {
 	Vertex i, j, k; 	/* k: the time of matrix transform */
 
-	/* Initialization */
+	/* Initializa D[][], assume graph is initialized as INFINITY at first */
 	for (i = 0; i < Graph->Nv; i++)
 		for (j = 0; j < Graph->Nv; j++) {
 			D[i][j] = Graph->G[i][j];
