@@ -42,11 +42,11 @@ void ShortestDist(MGraph Graph, int dist[], Vertex S)
 	Vertex V, W;
 
 	for (V = 0; V < Graph->Nv; V++) {
-		dist[V] = Graph->G[S][V];
+		dist[V] = INFINITY;
 		collected[V] = false;
 	}
 
-	dist[S] = 0; collected[S] = true;
+	dist[S] = 0;
 	while (1) {
 		V = FindMinDist(Graph, dist, collected);
 		if (V == ERROR) break;
