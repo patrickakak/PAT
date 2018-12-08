@@ -28,8 +28,8 @@ bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 			D[i][j] = Graph->G[i][j];
 			path[i][j] = -1;
 		}
-	/* Negative-cost cycle is found, can't handle it properly 
-	 * Use recursion to print path: i->k + k + k->j
+	/* Negative-cost cycle is found, can't handle it properly
+	 * And, use recursion to print path: (i->k + k + k->j)
 	 */
 	for (k = 0; k < Graph->Nv; k++)
 		for (i = 0; i < Graph->Nv; i++)
@@ -40,7 +40,6 @@ bool Floyd(MGraph Graph, WeightType D[][MaxNVertex], Vertex path[][MaxNVertex])
 						return false;
 					path[i][j] = k;
 				}
-	/* Execute the algorithm properly */
-	return true;
+	return true; 	/* Execute the algorithm properly */
 }
 
