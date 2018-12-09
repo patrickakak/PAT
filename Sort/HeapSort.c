@@ -1,6 +1,6 @@
 /**
  * Heap sort (unstable):
- * Wrost: Tw = 2NlogN - O(NloglogN) (better than NlogN)
+ * Worst: Tw = 2NlogN - O(NloglogN) (better than NlogN)
  * extra S = O(1)
  * suit for top K minimum or maximum elements selection
  * 
