@@ -1,6 +1,6 @@
 /**
  * Insertioin sort (stable):
- * Best: T=O(N), Wrost: T=O(N^2), extra S = O(1)
+ * Best: T=O(N), Worst: T=O(N^2), extra S = O(1)
  *
  * Actually: T(N,I) = O(N+I) (I for inversion(s)),
  * average number of inversions in N different elements: N*(N-1)/4, 
