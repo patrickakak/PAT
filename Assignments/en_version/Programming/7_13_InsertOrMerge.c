@@ -76,7 +76,7 @@ void InsertionSort(ElemType A[], int p, int N)
 	ElemType Tmp;
 
 	Tmp = A[p];
-	for (i = p; i>0 && A[i-1]>Tmp; i--)
+	for (i = p; i>=1 && A[i-1]>Tmp; i--)
 		A[i] = A[i-1];
 	A[i] = Tmp;
 }
