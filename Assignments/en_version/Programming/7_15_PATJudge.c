@@ -127,7 +127,8 @@ void Output(Users users, int N, int K)
 		for (j = 0; j < K; j++)
 			if (users[i].scores[j] == -1)
 				printf(" -");
-			else printf(" %d", users[i].scores[j]);
+			else
+				printf(" %d", users[i].scores[j]);
 		putchar('\n');
 		cnt++;
 	}
@@ -166,7 +167,8 @@ int compar(const void *a, const void *b)
 		else {
 			if (u1.uid < u2.uid)
 				return -1;
-			else return 1;
+			else
+				return 1;
 		}
 	}
 }
