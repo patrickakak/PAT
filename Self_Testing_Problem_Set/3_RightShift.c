@@ -57,10 +57,9 @@ void Swap(int *a, int *b)
 
 void Mirror(ElementType A[], int L, int R)
 {
-	int i, j, Centre;
+	int i, j;
 
-	Centre = (L + R)/2;
-	for (i=L, j=R; i <= Centre; i++, j--)
+	for (i=L, j=R; i < j; i++, j--)
 		Swap(&A[i], &A[j]);
 }
 
