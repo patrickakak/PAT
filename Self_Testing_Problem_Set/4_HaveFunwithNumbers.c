@@ -5,17 +5,19 @@
 
 int main()
 {
-	char oristr[MaxDigitNum+1];
-	char dblstr[MaxDigitNum+2] = "";
+	char oristr[MaxDigitNum+1];		/* Original numbers in string */
+	char dblstr[MaxDigitNum+2];		/* Double numbers in string  */
 	int OriCnt[10+1] = {0};
 	int DblCnt[10+1] = {0};
 
 	scanf("%s", oristr);
 
 	/* Cin: carryin, R: remainder */
-	int i, A, B, R, Cin, flag = 1;
+	int i, A, B, R, orilen, Cin, flag = 1;
 
-	for (Cin=0, i=strlen(oristr)-1; i >= 0; i--) {
+	orilen = strlen(oristr);
+	dblstr[orilen] = '\0';
+	for (Cin=0, i=orilen-1; i >= 0; i--) {
 		A = oristr[i] - '0';
 		OriCnt[A]++;
 		B = 2 * A + Cin;
