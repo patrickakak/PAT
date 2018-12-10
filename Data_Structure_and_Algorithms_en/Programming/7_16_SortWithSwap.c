@@ -56,7 +56,8 @@ int main()
 			}
 			if (CircleWithZero == true)
 				Total += count-1;
-			else Total += count+1;
+			else
+				Total += count+1;
 		}
 	}
 	printf("%d\n", Total);
