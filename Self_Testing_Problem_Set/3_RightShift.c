@@ -6,7 +6,6 @@
  * 5 6 1 2 3 4
  */
 #include <stdio.h>
-#include <stdbool.h>
 
 #define MAXN 100
 typedef int ElementType;
