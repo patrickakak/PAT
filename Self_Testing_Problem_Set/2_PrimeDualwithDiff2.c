@@ -35,6 +35,7 @@ bool IsPrime(int N)
 		if (!(N%i)) break;
 	if (i*i > N)
 		return true;
-	else return false;
+	else
+		return false;
 }
 
