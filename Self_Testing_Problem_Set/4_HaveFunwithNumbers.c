@@ -7,8 +7,8 @@ int main()
 {
 	char oristr[MaxDigitNum+1];		/* Original numbers in string */
 	char dblstr[MaxDigitNum+2];		/* Double numbers in string  */
-	int OriCnt[10+1] = {0};
-	int DblCnt[10+1] = {0};
+	int OriCnt[10] = {0};
+	int DblCnt[10] = {0};
 
 	scanf("%s", oristr);
 
@@ -30,6 +30,8 @@ int main()
 	if (Cin > 0)
 		flag = 0;
 
+	/* Check if doubling the input number gives a number that consists of 
+	 * only a permutation of the digits in the original number */
 	if (flag)
 		for (i = 0; i < 10; i++)
 			if (OriCnt[i] != DblCnt[i]) {
