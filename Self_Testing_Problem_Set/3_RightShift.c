@@ -25,7 +25,15 @@ int main()
 	for (i = 0; i < N; i++)
 		scanf("%d", &A[i]);
 
-	/* Chirality */
+	/* Chirality:
+	 *
+	 * Divide N elements into two parts: 0~N-M-1 and N-M~N-1.
+	 *
+	 * Elements in the same part, they go through twice mirror change, so 
+	 * their relative position is unchanged. However, if you see the two 
+	 * parts as two huge elements, both of them have only mirroed once, so 
+	 * the order of those two is reversed.
+	 */
 	Mirror(A, 0, N-M-1);
 	Mirror(A, N-M, N-1);
 	Mirror(A, 0, N-1);
