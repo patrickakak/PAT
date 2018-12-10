@@ -29,8 +29,8 @@ int main()
 	Mirror(A, 0, N-M-1);
 	Mirror(A, N-M, N-1);
 	Mirror(A, 0, N-1);
-	flag = 0;
-	for (i = 0; i < N; i++) {
+	
+	for (flag = 0, i = 0; i < N; i++) {
 		if (!flag)
 			flag = 1;
 		else
