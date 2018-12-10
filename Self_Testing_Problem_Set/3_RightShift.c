@@ -59,7 +59,7 @@ void Mirror(ElementType A[], int L, int R)
 {
 	int i, j;
 
-	for (i=L, j=R; i < j; i++, j--)
+	for (i = L, j = R; i < j; i++, j--)
 		Swap(&A[i], &A[j]);
 }
 
