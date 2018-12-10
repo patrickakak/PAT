@@ -11,7 +11,7 @@
 #define MAXN 100
 typedef int ElementType;
 
-/* You can get something's dual by go through a mirror change */
+/* You can get something's chiral dual by go through a mirror change */
 void Mirror(ElementType A[], int L, int R);
 void Swap(ElementType *a, ElementType *b);
 
