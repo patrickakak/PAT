@@ -20,11 +20,11 @@ int main()
 	int N, M, i, A[MAXN], flag;
 
 	scanf("%d %d", &N, &M);
-	/* M can be larger than N */
-	M %= N;
 	for (i = 0; i < N; i++)
 		scanf("%d", &A[i]);
 
+	/* M can be larger than N */
+	M %= N;
 	RightShift(A, N, M);
 	
 	for (flag = 0, i = 0; i < N; i++) {
