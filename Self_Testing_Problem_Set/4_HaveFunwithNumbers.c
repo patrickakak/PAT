@@ -1,3 +1,10 @@
+/**
+ * Sample Input:
+ * 1234567899
+ * Sample Ouput:
+ * Yes
+ * 2469135798
+ */
 #include <stdio.h>
 #include <string.h>
 
