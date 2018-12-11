@@ -40,7 +40,8 @@ void BuildMatch(char *pattern, int *match)
 			i = match[i];
 		if (pattern[i+1] == pattern[j])
 			match[j] = i+1;
-		else match[j] = -1;
+		else
+			match[j] = -1;
 	}
 }
 
@@ -50,17 +51,20 @@ Position KMP(char *string, char *pattern)
 	int m = strlen(pattern); 	/* T = O(m) */
 	Position s, p, *match;
 
-	if (n < m) return NotFound;
+	if (n < m)
+		return NotFound;
 	
 	match = (Position *) malloc(sizeof(Position) * m);
 	BuildMatch(pattern, match); 	/* T = O(m) */
 	s = p = 0;
 	while (s<n && p<m) { 	/* T = O(n) */
 		if (string[s] == pattern[p]) {
-			s++; p++;
+			s++;
+			p++;
 		} else if (p > 0)
 			p = match[p-1]+1;
-		else s++;
+		else
+			s++;
 	}
 	free(match);
 	return (p == m) ? (s-m) : NotFound;
