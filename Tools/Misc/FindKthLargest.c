@@ -9,7 +9,7 @@ void Swap(ElementType *X, ElementType *Y)
 	tmp = *X; *X = *Y; *Y = tmp;
 }
 
-/* Find Kth in S[Left]~S[Right]: (0 < K <= Right-Left+1) 
+/* Find Kth in S[Left]~S[Right]: (0 < K <= Right-Left+1), (Left <= Right)
  *
  * Select the first element in S[] as e (benchmark number)
  * Divide elements into two parts: {S1}, {S2} 
@@ -22,9 +22,10 @@ ElementType FindKthLargest(ElementType S[], int K, int Left, int Right)
 	int L = Left, R = Right;
 
 	while (1) {
-		while (Left <= Right && e <= S[Left])
+		while ((Left <= Right) && (e <= S[Left]))
 			Left++;
-		while (Left < Right && e > S[Right])
+		/* If Left >= Right, then there's no data left to be processed */
+		while ((Left < Right) && (e > S[Right]))
 			Right--;
 		if (Left < Right)
 			Swap(&S[Left], &S[Right]);
