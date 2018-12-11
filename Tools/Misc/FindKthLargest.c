@@ -26,6 +26,7 @@ ElementType FindKthLargest(ElementType S[], int K, int Left, int Right)
 			break;
 	}
 	Swap(&S[Left-1], &S[L]);
+	/* Number of elements in {S1} equals to Len(S[L]~S[Left-1])-1 */
 	if (Left-L-1 >= K)
 		return FindKthLargest(S, K, L, Left-2);
 	else if (Left-L-1 < K-1)
