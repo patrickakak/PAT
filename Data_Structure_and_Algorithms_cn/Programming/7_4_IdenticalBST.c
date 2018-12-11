@@ -46,8 +46,10 @@ int main()
 		scanf("%d", &L);
 		T = MakeTree(N); 	/* Make the benchmark tree */
 		for (i = 0; i < L; i++) {
-			if (Judge(T, N)) printf("Yes\n");
-			else printf("No\n");
+			if (Judge(T, N))
+				printf("Yes\n");
+			else
+				printf("No\n");
 			ResetT(T); 	/* Clear out all the flags */
 		}
 		FreeTree(T);
@@ -82,11 +84,13 @@ Tree NewNode(ElementType V)
 
 Tree Insert(Tree T, ElementType V)
 {
-	if (!T) T = NewNode(V);
+	if (!T)
+		T = NewNode(V);
 	else {
 		if (V > T->v)
 			T->Right = Insert(T->Right, V);
-		else T->Left = Insert(T->Left, V);
+		else
+			T->Left = Insert(T->Left, V);
 	}
 	return T;
 }
@@ -119,29 +123,38 @@ int Judge(Tree T, int N)
 	ElementType V;
 
 	scanf("%d", &V);
-	if (V != T->v) flag = 1; 	/* flag=1 to indicate follwing invalid readin */
+	if (V != T->v)
+		flag = 1; 	/* flag=1 to indicate follwing invalid readin */
 	/* T->flag=1 to indicate we've already check the validity of root */
-	else T->flag = 1;
+	else
+		T->flag = 1;
 	for (i = 1; i < N; i++) {
 		scanf("%d", &V);
 		/* If flag=1, don't bother to check, read the rest */
-		if ((!flag) && (!check(T, V))) flag = 1;
+		if ((!flag) && (!check(T, V)))
+			flag = 1;
 	}
-	if (flag) return 0;
-	else return 1;
+	if (flag)
+		return 0;
+	else
+		return 1;
 }
 
 void ResetT(Tree T)
 {
-	if (T->Left) ResetT(T->Left);
-	if (T->Right) ResetT(T->Right);
+	if (T->Left)
+		ResetT(T->Left);
+	if (T->Right)
+		ResetT(T->Right);
 	T->flag = 0;
 }
 
 void FreeTree(Tree T)
 {
-	if (T->Left) FreeTree(T->Left);
-	if (T->Right) FreeTree(T->Right);
+	if (T->Left)
+		FreeTree(T->Left);
+	if (T->Right)
+		FreeTree(T->Right);
 	free(T);
 }
 
