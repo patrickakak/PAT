@@ -9,7 +9,7 @@ void Swap(ElementType *X, ElementType *Y)
 	tmp = *X; *X = *Y; *Y = tmp;
 }
 
-/* Left and Right are side ends: Left <= K <= Right */
+/* Find Kth in S[Left]~S[Right]: (Left<=K<=Right) */
 ElementType FindKthLargest(ElementType S[], int K, int Left, int Right)
 {
 	ElementType e = S[Left];
