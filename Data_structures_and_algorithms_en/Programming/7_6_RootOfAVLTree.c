@@ -48,7 +48,8 @@ int main()
 
 AVLTree InsertAVL(AVLTree T, ElemType V)
 {
-	if (!T) T = NewNode(V);
+	if (!T)
+		T = NewNode(V);
 	else if (V < T->v) {
 		T->Left = InsertAVL(T->Left, V);
 
@@ -89,8 +90,10 @@ AVLTree NewNode(ElemType V)
 
 int GetHeight(AVLTree A)
 {
-	if (!A) return 0;
-	else return A->Height;
+	if (!A)
+		return 0;
+	else
+		return A->Height;
 }
 
 int Max(int a, int b)
