@@ -50,8 +50,8 @@ int main()
 	scanf("%d", &N);
 	if (!N) return 0;
 
-	/* Given the preorder and inorder of a binary tree, generate the postorder 
-	 * traversal sequence of this tree */
+	/* Given the preorder and inorder of a binary tree, generate 
+	 * the postorder traversal sequence of this tree */
 	S = CreatS(MAXSIZE);
 	PostOrderTraversal(S, N);
 	DestroyS(S);
@@ -86,7 +86,8 @@ bool IsFullS(Stack S)
 
 bool Push(Stack S, DataType item)
 {
-	if (IsFullS(S)) return false;
+	if (IsFullS(S))
+		return false;
 	S->pData[++S->Top] = item;
 	return true;
 }
@@ -94,9 +95,12 @@ bool Push(Stack S, DataType item)
 DataType Pop(Stack S)
 {
 	DataType ERROR;
+	
 	ERROR.Elem = ERROR.Nv = -1;
-	if (IsEmptyS(S)) return ERROR;
-	else return S->pData[S->Top--];
+	if (IsEmptyS(S))
+		return ERROR;
+	else
+		return S->pData[S->Top--];
 }
 
 void PostOrderTraversal(Stack S, int N)
@@ -117,13 +121,15 @@ void PostOrderTraversal(Stack S, int N)
 			 * pop it out (it will be in postorder naturally) */
 			while (!IsEmptyS(S) && ++S->pData[S->Top].Nv==3) {
 				t = Pop(S);
-				if (!flag) flag = 1; else putchar(' ');
+				if (!flag) flag = 1;
+				else putchar(' ');
 				printf("%d", t.Elem);
 			}
 	}
 	while (!IsEmptyS(S)) { 	/* Pop out those remaining elements */
 		t = Pop(S);
-		if (!flag) flag = 1; else putchar(' ');
+		if (!flag) flag = 1;
+		else putchar(' ');
 		printf("%d", t.Elem);
 	}
 }
