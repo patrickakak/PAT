@@ -13,15 +13,18 @@ void MySort(ElementType A[], int N)
 	int i, u, v, w;
 
 	u = v = w = 0;
-	for (i = 0; i < N; i++) {
+	for (i = 0; i < N; i++)
 		switch (A[i]) {
 		case true : u++; break;
 		case false: v++; break;
 		case maybe: w++; break;
 		}
-	}
-	for (i = 0; i < v; i++) A[i] = false;
-	for (i = 0; i < w; i++) A[i+v] = maybe;
-	for (i = 0; i < u; i++) A[i+v+w] = true;
+
+	for (i = 0; i < v; i++)
+		A[i] = false;
+	for (i = 0; i < w; i++)
+		A[i+v] = maybe;
+	for (i = 0; i < u; i++)
+		A[i+v+w] = true;
 }
 
