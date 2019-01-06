@@ -157,6 +157,7 @@ void ShortestDist(MGraph Graph, int dist[], int path[], Vertex S)
 	}
 	DestroyHeap(H);
 	for (V = 0; V < Graph->Nv; V++)
-		if (dist[V] == INFINITY) dist[V] = -1;
+		if (dist[V] == INFINITY)
+			dist[V] = -1;
 }
 
