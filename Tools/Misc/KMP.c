@@ -57,7 +57,7 @@ Position KMP(char *string, char *pattern)
 	match = (Position *) malloc(sizeof(Position) * m);
 	BuildMatch(pattern, match); 	/* T = O(m) */
 	s = p = 0;
-	while (s<n && p<m) { 	/* T = O(n) */
+	while (s<n && p<m) 	/* T = O(n) */
 		if (string[s] == pattern[p]) {
 			s++;
 			p++;
@@ -65,7 +65,6 @@ Position KMP(char *string, char *pattern)
 			p = match[p-1]+1;
 		else
 			s++;
-	}
 	free(match);
 	return (p == m) ? (s-m) : NotFound;
 }
