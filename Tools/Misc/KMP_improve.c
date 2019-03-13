@@ -6,7 +6,7 @@ typedef int Position;
 #define NotFound -1
 
 void BuildMatch(char *pattern, int *match);
-Position KMP(char *string, char *pattern);	/* Tw = O(n+m) */
+Position KMP(char *string, char *pattern);
 
 int main()
 {
@@ -55,7 +55,6 @@ void BuildMatch(char *pattern, int *match)
 			match[i] = j+1;
 			j++;
 		} else {
-			//j = match[j-1];
 			while ((j>0) && (pattern[j]!=pattern[i]))
 				j = match[j-1];
 			if (pattern[j] == pattern[i]) {
