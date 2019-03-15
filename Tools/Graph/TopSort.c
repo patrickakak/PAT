@@ -1,5 +1,5 @@
 /**
- * Adjacency list implementation:
+ * Adjacency list implementation: T = O(N+E)
  * TopSort algorithm for AOV(i.e. Activity On Vertex) of directed graph.
  * (could be used to dectect DAG(i.e. directed acyclic graph))
  */
