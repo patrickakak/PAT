@@ -4,9 +4,9 @@
  * improve insertion sort by finding the position to insert more effeciently
  */
 
-int findPlace(int A[], int tmp, int low, int high)
+int findPlace(int A[], int tmp, int high)
 {
-	int mid;
+	int mid, low = 0;
 
 	while (low <= high) {
 		mid = (low + high)/2;
@@ -25,12 +25,11 @@ void BinaryInsertionSort(int A[], int n)
 
 	for (high=0, i=1; i < n; i++) {
 		tmp = A[i];
-		p = findPlace(A, tmp, 0, high);
+		p = findPlace(A, tmp, high);
 		for (j = high; j >= p; j--)
 			A[j+1] = A[j];
 		A[p] = tmp;
 		high += 1;
 	}
 }
-
 
