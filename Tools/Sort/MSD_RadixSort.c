@@ -1,6 +1,7 @@
 /**
  * Radix sort (stable):
  * Worst: Tw = O(P*(N+B)), extra S = O(N+B)
+ * (N: # of unsorted elements,  B: # of buckets)
  * Most significant digit first 
  */
 
