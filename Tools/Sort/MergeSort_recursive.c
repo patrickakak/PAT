@@ -35,13 +35,13 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 /* The core merge sort function */
 void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 {
-	int Center;
+	int Centre;
 
 	if (L < RightEnd) {
-		Center = (L+RightEnd) / 2;
-		Msort(A, TmpA, L, Center);	/* Handle the left part recursively */ 
-		Msort(A, TmpA, Center+1, RightEnd);		/* Handle the right part */
-		Merge(A, TmpA, L, Center+1, RightEnd);	/* Merge two sequences */ 
+		Centre = (L + RightEnd)/2;
+		Msort(A, TmpA, L, Centre);	/* Handle the left part recursively */ 
+		Msort(A, TmpA, Centre+1, RightEnd);		/* Handle the right part */
+		Merge(A, TmpA, L, Centre+1, RightEnd);	/* Merge two sequences */ 
 	}
 }
 
