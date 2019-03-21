@@ -19,8 +19,8 @@ AVLTree SingleLeftRotation(AVLTree A)
 	AVLTree B = A->Left;
 	A->Left = B->Right;
 	B->Right = A;
-	A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
-	B->Height = Max(GetHeight(B->Left), A->Height) + 1;
+	A->Height = 1 + Max(GetHeight(A->Left), GetHeight(A->Right));
+	B->Height = 1 + Max(GetHeight(B->Left), A->Height);
 	return B;
 }
 
@@ -70,7 +70,7 @@ AVLTree Insert(AVLTree T, ElementType X)
 	/* else X == T->Data, no need do insertion */
 
 	/* Update height of AVL tree */
-	T->Height = Max(GetHeight(T->Left), GetHeight(T->Right)) + 1;
+	T->Height = 1 + Max(GetHeight(T->Left), GetHeight(T->Right));
 
 	return T;
 }
