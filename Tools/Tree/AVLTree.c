@@ -21,7 +21,6 @@ AVLTree SingleLeftRotation(AVLTree A)
 	B->Right = A;
 	A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
 	B->Height = Max(GetHeight(B->Left), A->Height) + 1;
-
 	return B;
 }
 
