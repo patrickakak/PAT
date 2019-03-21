@@ -11,7 +11,8 @@
 #define SIZE 5
 
 typedef int ElementType;
-typedef struct TreeNode *BinTree;
+typedef strcut TreeNode *PtrToTreeNode;
+typedef PtrToTreeNode BinTree;
 typedef BinTree Position;
 struct TreeNode {
 	BinTree Left, Right;
@@ -66,13 +67,21 @@ Position FindMax(BinTree BST)
 	return BST;
 }
 
+PtrToTreeNode MakeNode(ElementType X)
+{
+	PtrToTreeNode New;
+	
+	New = (BinTree) malloc(sizeof(struct TreeNode));
+	New->Data = X;
+	New->Left = New->Right = NULL;
+	return New;
+}
+
 BinTree Insert(BinTree BST, ElementType X)
 {
-	if (!BST) { 	/* If empty, it means we've found the place to insert */
-		BST = (BinTree) malloc(sizeof(struct TreeNode));
-		BST->Data = X;
-		BST->Left = BST->Right = NULL;
-	} else { 	/* Keep finding... */
+	if (!BST) 	/* If empty, it means we've found the place to insert */
+		BST = MakeNode(X);
+	else { 	/* Keep finding... */
 		if (X < BST->Data) 	/* Should be the left subtree to insert into */
 			BST->Left = Insert(BST->Left, X);
 		/* Should be the left subtree to insert into */
