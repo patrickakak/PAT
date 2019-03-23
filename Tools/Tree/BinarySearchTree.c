@@ -106,26 +106,24 @@ BinTree Delete(BinTree BST, ElementType X)
 		BST->Left = Delete(BST->Left, X);
 	else if (X > BST->Data)		/* Deletion happends in left subtree */
 		BST->Right = Delete(BST->Right, X);
-	else { 	/* Find it */
+	else if (BST->Count > 1) 	/* Find it and #node>1 */
+		BST->Count--;
+	else {
 		/* Special handling of the node has two children by convert it into 
 		 * a node with only a child or a leave node */
-		if (BST->Count > 1)
-			BST->Count--;
-		else {
-			if (BST->Left && BST->Right) {
-				/* Or you can FindMin(BST->Right), try not to 
-				 * change the feature of BST anyway */
-				Tmp = FindMax(BST->Left);
-				BST->Data = Tmp->Data;
-				BST->Left = Delete(BST->Left, BST->Data);
-			} else {	/* Handling of node with one or no child */
-				Tmp = BST;
-				if (!BST->Left)
-					BST = BST->Right;
-				else if (!BST->Right)
-					BST = BST->Left;
-				free(Tmp);
-			}
+		if (BST->Left && BST->Right) {
+			/* Or you can FindMin(BST->Right), try not to 
+			 * change the feature of BST anyway */
+			Tmp = FindMax(BST->Left);
+			BST->Data = Tmp->Data;
+			BST->Left = Delete(BST->Left, BST->Data);
+		} else {	/* Handling of node with one or no child */
+			Tmp = BST;
+			if (!BST->Left)
+				BST = BST->Right;
+			else if (!BST->Right)
+				BST = BST->Left;
+			free(Tmp);
 		}
 	}
 	return BST;
