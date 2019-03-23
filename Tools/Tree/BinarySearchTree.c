@@ -108,7 +108,7 @@ BinTree Delete(BinTree BST, ElementType X)
 		BST->Right = Delete(BST->Right, X);
 	else if (BST->Count > 1) 	/* Find it and #node>1 */
 		BST->Count--;
-	else {
+	else { 	/* #node == 1 */
 		/* Special handling of the node has two children by convert it into 
 		 * a node with only a child or a leave node */
 		if (BST->Left && BST->Right) {
