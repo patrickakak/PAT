@@ -91,7 +91,7 @@ BinTree Insert(BinTree BST, ElementType X)
 			BST->Right = Insert(BST->Right, X);
 		else
 			BST->Count++;
-		/* Otherwise X already exists, do nothing */
+		/* Otherwise X already exists, #node plus one */
 	}
 	return BST;
 }
