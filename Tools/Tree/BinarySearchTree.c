@@ -17,6 +17,7 @@ typedef BinTree Position;
 struct TreeNode {
 	BinTree Left, Right;
 	ElementType Data;
+	int Count;
 };
 
 /* Main functions: */
@@ -73,6 +74,7 @@ PtrToTreeNode MakeNode(ElementType X)
 	
 	New = (BinTree) malloc(sizeof(struct TreeNode));
 	New->Data = X;
+	New->Count = 1;
 	New->Left = New->Right = NULL;
 	return New;
 }
@@ -87,6 +89,8 @@ BinTree Insert(BinTree BST, ElementType X)
 		/* Should be the left subtree to insert into */
 		else if (X > BST->Data)
 			BST->Right = Insert(BST->Right, X);
+		else
+			BST->Count++;
 		/* Otherwise X already exists, do nothing */
 	}
 	return BST;
@@ -105,19 +109,23 @@ BinTree Delete(BinTree BST, ElementType X)
 	else { 	/* Find it */
 		/* Special handling of the node has two children by convert it into 
 		 * a node with only a child or a leave node */
-		if (BST->Left && BST->Right) {
-			/* Or you can FindMin(BST->Right), try not to 
-			 * change the feature of BST anyway */
-			Tmp = FindMax(BST->Left);
-			BST->Data = Tmp->Data;
-			BST->Left = Delete(BST->Left, BST->Data);
-		} else {	/* Handling of node with one or no child */
-			Tmp = BST;
-			if (!BST->Left)
-				BST = BST->Right;
-			else if (!BST->Right)
-				BST = BST->Left;
-			free(Tmp);
+		if (BST->Count > 1)
+			BST->Count--;
+		else {
+			if (BST->Left && BST->Right) {
+				/* Or you can FindMin(BST->Right), try not to 
+				 * change the feature of BST anyway */
+				Tmp = FindMax(BST->Left);
+				BST->Data = Tmp->Data;
+				BST->Left = Delete(BST->Left, BST->Data);
+			} else {	/* Handling of node with one or no child */
+				Tmp = BST;
+				if (!BST->Left)
+					BST = BST->Right;
+				else if (!BST->Right)
+					BST = BST->Left;
+				free(Tmp);
+			}
 		}
 	}
 	return BST;
