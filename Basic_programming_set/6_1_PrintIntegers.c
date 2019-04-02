@@ -6,7 +6,7 @@
  * 2
  * 3
  */
-void PrintN (int N)
+void PrintN(int N)
 {
 	int i;
 
