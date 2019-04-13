@@ -145,7 +145,6 @@ void ShortestDist(MGraph Graph, int dist[], int path[], Vertex S)
 		V = DeleteMin(H).v;
 		if (collected[V]) continue;
 		collected[V] = true;
-
 		for (W = 0; W < Graph->Nv; W++)
 			if (!collected[W] && Graph->G[V][W] < INFINITY)
 				if (dist[W] > dist[V] + Graph->G[V][W]) {
