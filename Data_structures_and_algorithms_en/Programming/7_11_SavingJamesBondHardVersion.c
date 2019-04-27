@@ -130,21 +130,17 @@ int main()
 	Vertex V;
 
 	scanf("%d %d", &N, &D);
-
 	if (R + D >= HalfSquareSide) {	/* Can reach bank directly */
 		puts("1");
 		return 0;
 	}
-
 	for (V = 0; V < N; V++)
 		scanf("%d %d", &Crocs[V].x, &Crocs[V].y);
 
 	MG = BuildGraph();	/* Build a unweighted and undirected graph */
-
 	Save007(MG);
-
+	
 	DestroyGraph(MG);
-
 	return 0;
 }
 
@@ -188,10 +184,8 @@ void UpdatePair(Pair *pPair, Vertex V, Vertex W, int *pMinDist)
 	if (*pMinDist > dist[W]) {
 		*pMinDist = dist[W];
 		pPair->Start = V; pPair->End = W;
-
 		/* Save path[], dist[] array and current W 
 		 * (parameter three of memcpy() is of type size_t) */
-
 		memcpy(ShotestPath, path, MG->Nv*sizeof(int));
 		memcpy(ShotestDist, dist, MG->Nv*sizeof(int));
 	}
