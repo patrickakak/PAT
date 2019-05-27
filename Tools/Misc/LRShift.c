@@ -1,3 +1,7 @@
+/***************************************************
+ * Left or Right Shift in a confined array space.
+ ***************************************************/
+
 /**
  * Chirality:
  *
@@ -41,3 +45,4 @@ void RightShift(ElementType S[], int N, int M)
 	
 	LeftShift(S, N, N-M);
 }
+
