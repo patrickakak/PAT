@@ -9,13 +9,13 @@
  *
  * Elements in the same part, they go through twice mirror change, so
  * their relative position is unchanged. However, if you see the two
- * parts as two huge elements, both of them have only mirroed once, so
- * the order of those two is reversed.
+ * parts as two huge elements, both of them have only mirrored once, so
+ * the order of those two is reversed for sure.
  */
 void Swap(ElementType *X, ElementType *Y)
 {
 	ElementType tmp;
-
+	
 	tmp = *X; *X = *Y; *Y = tmp;
 }
 
