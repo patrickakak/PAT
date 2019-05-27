@@ -18,11 +18,10 @@ int main()
 		printf("Not Found.\n");
 	else
 		printf("%s\n", p+string);
-
 	return 0;
 }
 
-/* To improve next[] */
+/* Improve next[] to be nextVal[] */
 void BuildNextVal(char *pattern, int *nextVal, int *next)
 {
 	Position i, j;
@@ -92,3 +91,4 @@ Position KMP(char *string, char *pattern)
 	free(nextVal);
 	return (p == m) ? (s-m) : NotFound;
 }
+
