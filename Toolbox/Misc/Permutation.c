@@ -8,8 +8,10 @@ void swap(char *a, char *b)
 }
 
 /* k as the index of the last letter in string, thus 
- * k=0 means there's only one letter.
- * eg. string="abc", then k=2
+ * k=0 means this time, one perticular permutation is done
+ * 
+ * A problem of length n, swap the first and the last char,
+ * then it becomes a problem of length n-1
  */
 void permutation(char str[], int k)
 {
@@ -28,11 +30,10 @@ void permutation(char str[], int k)
 int main()
 {
 	char expr[100] = "abcdefg";
-	int k, n;
+	int k;
 
-	n = strlen(expr);
-	k = n-1;
-	permutation(expr, k);
+	k = strlen(expr);
+	permutation(expr, k-1);
 	return 0;
 }
 
