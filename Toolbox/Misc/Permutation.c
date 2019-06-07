@@ -11,7 +11,8 @@ void swap(char *a, char *b)
  * k=0 means this time, one perticular permutation is done
  * 
  * A problem of length n, swap the first and the last char,
- * then it becomes a problem of length n-1
+ * then it becomes a problem of length n-1, don't forget to
+ * swap the two back later
  */
 void permutation(char str[], int k)
 {
