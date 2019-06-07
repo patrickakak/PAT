@@ -10,7 +10,7 @@ void swap(char *a, char *b)
 /* k as the index of the last letter in string, thus 
  * k=0 means there's only one letter
  */
-void permutation(char str[], int k, int n)
+void permutation(char str[], int k)
 {
 	int i;
 	
@@ -19,7 +19,7 @@ void permutation(char str[], int k, int n)
 	else
 		for (i = 0; i <= k; ++i) {
 			swap(&str[i], &str[k]);
-			permutation(str, k-1, n);
+			permutation(str, k-1);
 			swap(&str[i], &str[k]);
 		}
 }
@@ -31,7 +31,7 @@ int main()
 
 	n = strlen(expr);
 	k = n-1;
-	permutation(expr, k, n);
+	permutation(expr, k);
 	return 0;
 }
 
