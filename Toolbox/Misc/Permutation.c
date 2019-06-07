@@ -11,11 +11,9 @@ void permutation(char str[], int k, int n)
 {
 	int i, j;
 
-	if (k == 0) {
-		for (j = 0; j < n; ++j)
-			printf("%c", str[j]);
-		printf("\n");
-	} else
+	if (k == 0)
+		printf("%s\n", str);
+	else
 		for (i = 0; i <= k; ++i) {
 			swap(&str[i], &str[k]);
 			permutation(str, k-1, n);
