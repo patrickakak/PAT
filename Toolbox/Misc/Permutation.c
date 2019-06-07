@@ -9,7 +9,7 @@ void swap(char *a, char *b)
 
 void permutation(char str[], int k, int n)
 {
-	int i, j;
+	int i;
 
 	if (k == 0)
 		printf("%s\n", str);
