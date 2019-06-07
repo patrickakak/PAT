@@ -7,10 +7,13 @@ void swap(char *a, char *b)
 	tmp = *a; *a = *b; *b = tmp;
 }
 
+/* k as the index of the last letter in string, thus 
+ * k=0 means there's only one letter
+ */
 void permutation(char str[], int k, int n)
 {
 	int i;
-
+	
 	if (k == 0)
 		printf("%s\n", str);
 	else
