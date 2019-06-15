@@ -37,12 +37,10 @@ void BuildNextVal(char *pattern, int *nextVal, int *next)
 			j = next[j-1];
 		if (j == 0)
 			nextVal[i] = 0;
-		else {
-			if (j == next[i-1])
-				nextVal[i] = next[i];
-			else
-				nextVal[i] = j;
-		}
+		else if (j == next[i-1])
+			nextVal[i] = next[i];
+		else
+			nextVal[i] = j;
 	}
 }
 
