@@ -13,7 +13,7 @@ struct TBTNode {
 	TBTree lchild, rchild;
 };
 
-TBTree CBtree(int a[], int b[], int L1, int R1, int L2, int R2);
+TBTree CreatBT(int pre[], int in[], int L1, int R1, int L2, int R2);
 void inThread(TBTree p, TBTree *pre);
 void preThread(TBTree p, TBTree *pre);
 void postThread(TBTree p, TBTree *pre);
@@ -24,20 +24,19 @@ TBTree First(TBTree p);
 TBTree Next(TBTree p);
 void visit(TBTree p);
 
-
 int main()
 {
 	TBTree root;
-	int a[5] = {1, 2, 3, 5, 4};
-	int b[5] = {3, 2, 5, 1, 4};
+	int pre[7] = {3, 2, 1, 6, 5, 4, 7};
+	int in[7] = {1, 2, 3, 4, 5, 6, 7};
 
-	root = CBtree(a, b, 0, 4, 0, 4);
+	root = CreatBT(pre, in, 0, 6, 0, 6);
 	creatThreadBTree(root, IN_THREAD);
 	inOrder(root);
 	return 0;
 }
 
-TBTree CBtree(int a[], int b[], int L1, int R1, int L2, int R2)
+TBTree CreatBT(int pre[], int in[], int L1, int R1, int L2, int R2)
 {
 	int k;
 
@@ -46,14 +45,34 @@ TBTree CBtree(int a[], int b[], int L1, int R1, int L2, int R2)
 	else {
 		TBTree t = (TBTree) malloc(sizeof(struct TBTNode));
 		t->ltag = t->rtag = 0;
-		t->data = a[L1];
+		t->lchild = t->rchild = NULL;
+		t->data = pre[L1];
 		for (k = L2; k <= R2; ++k)
-			if (a[L1] == b[k])
+			if (pre[L1] == in[k])
 				break;
-		t->lchild = CBtree(a, b, L1+1, L1+k-L2, L2, k-1);
-		t->rchild = CBtree(a, b, L1+k-L2+1, R1, k+1, R2);
+		t->lchild = CreatBT(pre, in, L1+1, L1+k-L2, L2, k-1);
+		t->rchild = CreatBT(pre, in, L1+k-L2+1, R1, k+1, R2);
 		return t;
 	}
+}
+
+void preThread(TBTree p, TBTree *pre)
+{
+	if (p == NULL)
+		return;
+	if (p->lchild == NULL) {
+		p->lchild = (*pre);
+		p->ltag = 1;
+	}
+	if (*pre != NULL && (*pre)->rchild == NULL) {
+		(*pre)->rchild = p;
+		(*pre)->rtag = 1;
+	}
+	(*pre) = p;
+	if (p->ltag == 0)
+		preThread(p->lchild, pre);
+	if (p->rtag == 0)
+		preThread(p->rchild, pre);
 }
 
 void inThread(TBTree p, TBTree *pre)
@@ -90,25 +109,6 @@ void postThread(TBTree p, TBTree *pre)
 	(*pre) = p;
 }
 
-void preThread(TBTree p, TBTree *pre)
-{
-	if (p == NULL)
-		return;
-	if (p->lchild == NULL) {
-		p->lchild = (*pre);
-		p->ltag = 1;
-	}
-	if (*pre != NULL && (*pre)->rchild == NULL) {
-		(*pre)->rchild = p;
-		(*pre)->rtag = 1;
-	}
-	(*pre) = p;
-	if (p->ltag == 0)
-		preThread(p->lchild, pre);
-	if (p->rtag == 0)
-		preThread(p->rchild, pre);
-}
-
 void creatThreadBTree(TBTree r, int flag)
 {
 	TBTree p = NULL;
@@ -129,21 +129,6 @@ void creatThreadBTree(TBTree r, int flag)
 	}
 	(*pre)->rchild = NULL;
 	(*pre)->rtag = 1;
-}
-
-void preOrder(TBTree root)
-{
-	if (root == NULL)
-		return;
-	TBTree p = root;
-	while (p != NULL) {
-		while (p->ltag == 0) {
-			visit(p);
-			p = p->lchild;
-		}
-		visit(p);
-		p = p->rchild;
-	}
 }
 
 TBTree First(TBTree p)
@@ -172,5 +157,20 @@ void inOrder(TBTree root)
 
 	for (p = First(root); p != NULL; p = Next(p))
 		visit(p);
+}
+
+void preOrder(TBTree root)
+{
+	if (root == NULL)
+		return;
+	TBTree p = root;
+	while (p != NULL) {
+		while (p->ltag == 0) {
+			visit(p);
+			p = p->lchild;
+		}
+		visit(p);
+		p = p->rchild;
+	}
 }
 
