@@ -1,17 +1,16 @@
 /***************************************************
- *          Implementaton of AVLTree
+ *          IMPLEMENTATION OF AVL-TREE
  **************************************************/
 
 typedef struct AVLNode *Position;
 typedef Position AVLTree;
-typedef AVLTree BTree;
+typedef AVLTree BinTree;
 struct AVLNode {
 	ElementType Data;
 	AVLTree Left; 	/* Point to left subtree */
 	AVLTree Right; 	/* Point to right subtree */
 	int Height; 	/* Height of tree */
 };
-
 
 int Max(int a, int b)
 {
@@ -60,7 +59,6 @@ AVLTree RL_Rotation(AVLTree A)
 	return RR_Rotation(A);
 }
 
-
 /* Insert X into AVL tree and return the re-arranged AVL tree */
 AVLTree Insert(AVLTree T, ElementType X)
 {
@@ -92,7 +90,7 @@ AVLTree Insert(AVLTree T, ElementType X)
 	return T;
 }
 
-int GetHeight(BTree BT)
+int GetHeight(BinTree BT)
 {
 	int HL, HR, MaxH;
 
@@ -105,7 +103,7 @@ int GetHeight(BTree BT)
 		return 0;	/* Empty subtree is height of 0 */
 }
 
-Position FindMax(BTree BST)
+Position FindMax(BinTree BST)
 {
 	/* Keep seeking the rightest leaf node */
 	if (BST)
