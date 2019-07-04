@@ -1,18 +1,17 @@
 /*****************************************************
  *       IMPLEMENTATION OF B-TREE
  ****************************************************/
-
 #define M 3
-
 typedef int keyType;
 typedef struct node *ptrToNode;
 struct node {
 	int n; 	/* n < M No. of keys in node will always less than order of B tree */
-	keyType keys[M-1]; 	/*array of keys*/
+	keyType keys[M-1]; 	/* array of keys */
 	struct node *p[M]; 	/* (n+1 pointers will be in use) */
 } *root = NULL;
 
 enum KeyStatus { Duplicate, SearchFailure, Success, InsertIt, LessKeys };
+
 
 void insert(int key)
 {
@@ -25,7 +24,7 @@ void insert(int key)
 		printf("Key already available\n");
 	if (value == InsertIt) {
 		struct node *uproot = root;
-		root=malloc(sizeof(struct node));
+		root = malloc(sizeof(struct node));
 		root->n = 1;
 		root->keys[0] = upKey;
 		root->p[0] = uproot;
@@ -33,10 +32,10 @@ void insert(int key)
 	}
 }
 
-enum KeyStatus ins( struct node *ptr, int key, int *upKey, struct node **newnode)
+enum KeyStatus ins(struct node *ptr, int key, int *upKey, struct node **newnode)
 {
 	struct node *newPtr, *lastPtr;
-	int pos, i, n,splitPos;
+	int pos, i, n, splitPos;
 	int newKey, lastKey;
 	enum KeyStatus value;
 
@@ -70,8 +69,9 @@ enum KeyStatus ins( struct node *ptr, int key, int *upKey, struct node **newnode
 	if (pos == M - 1) {
 		lastKey = newKey;
 		lastPtr = newPtr;
-	} else {
+	}
 	/* If keys in node are maximum and position of node to be inserted is not last */
+	else {
 		lastKey = ptr->keys[M-2];
 		lastPtr = ptr->p[M-1];
 		for (i = M-2; i > pos; i--) {
@@ -81,16 +81,14 @@ enum KeyStatus ins( struct node *ptr, int key, int *upKey, struct node **newnode
 		ptr->keys[pos] = newKey;
 		ptr->p[pos+1] = newPtr;
 	}
-	// splitPos = (M - 1)/2;
 	splitPos = M / 2;
 	(*upKey) = ptr->keys[splitPos];
-
 	(*newnode) = malloc(sizeof(struct node)); 	/* Right node after split */
-	ptr->n = splitPos; /*No. of keys for left splitted node*/
+	ptr->n = splitPos; 	/* No. of keys for left splitted node */
 	(*newnode)->n = M-1-splitPos; 	/* No. of keys for right splitted node */
 	for (i = 0; i < (*newnode)->n; i++) {
 		(*newnode)->p[i] = ptr->p[i + splitPos + 1];
-		if (i < (*newnode)->n - 1)
+		if (i < (*newnode)->n-1)
 			(*newnode)->keys[i] = ptr->keys[i + splitPos + 1];
 		else
 			(*newnode)->keys[i] = lastKey;
@@ -209,7 +207,6 @@ enum KeyStatus del(struct node *ptr, int key)
 		key_arr[pivot] = lptr->keys[--lptr->n];
 		return Success;
 	}
-	// if (posn > min)
 	if (pos < n && p[pos + 1]->n > min) {
 		pivot = pos; 	/* pivot for left and right node */
 		lptr = p[pivot];
@@ -243,7 +240,7 @@ enum KeyStatus del(struct node *ptr, int key)
 		lptr->p[lptr->n + 2 + i] = rptr->p[i+1];
 	}
 	lptr->n = lptr->n + rptr->n +1;
-	free(rptr); /*Remove right node*/
+	free(rptr); 	/*Remove right node*/
 	for (i = pos+1; i < n; i++) {
 		key_arr[i-1] = key_arr[i];
 		p[i] = p[i+1];
