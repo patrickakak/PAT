@@ -7,34 +7,35 @@ void swap(char *a, char *b)
 	tmp = *a; *a = *b; *b = tmp;
 }
 
-/* k as the index of the last letter in string, thus 
- * k=0 means this time, one perticular permutation is done
- * 
+/* n as the number of characters in string, thus
+ * n=1 means this time, one perticular permutation is done
+ *
  * A problem of length n, swap the first and the last char,
  * then it becomes a problem of length n-1, don't forget to
- * swap the two back later
+ * swap back later
  */
-void permutation(char str[], int k)
+void permutation(char s[], int n)
 {
 	int i;
-	
-	if (k == 0)
-		printf("%s\n", str);
+
+	if (n == 1)
+		printf("%s\n", s);
 	else
-		for (i = 0; i <= k; ++i) {
-			swap(&str[i], &str[k]);
-			permutation(str, k-1);
-			swap(&str[i], &str[k]);
+		for (i = 0; i < n; ++i) {
+			swap(&s[i], &s[n-1]);
+			permutation(s, n-1);
+			swap(&s[i], &s[n-1]);
 		}
 }
 
 int main()
 {
-	char expr[100] = "abcdefg";
-	int k;
+	char s[100] = "abc";
+	int n;
 
-	k = strlen(expr);
-	permutation(expr, k-1);
+	n = strlen(s);
+	permutation(s, n);
+
 	return 0;
 }
 
