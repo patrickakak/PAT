@@ -24,9 +24,9 @@ int main()
 
 	// data set1
 	/*
-	   int pre[7] = {3, 2, 1, 6, 5, 4, 7};
-	   int in[7] = {1, 2, 3, 4, 5, 6, 7};
-	   root = CreatBT(pre, in, 0, 6, 0, 6);
+	   int pre[10] = {7,2,6,4,1,3,8,9,10,5};
+	   int in[10] = {2,1,3,4,6,8,7,10,5,9};
+	   root = CreatBT(pre, in, 0, 9, 0, 9);
 	   */
 
 	// data set2
@@ -95,8 +95,8 @@ void creatThreadBTree(TBTree r)
 
 	postThread(r, pre);
 
-	// (*pre)->rchild = NULL; 	// Comment out for postOrder
-	// (*pre)->rtag = 1; 	// Comment out for data set2
+	// (*pre)->rchild = NULL; // Comment out
+	// (*pre)->rtag = 1;
 }
 
 TBTree First(TBTree p)
@@ -126,16 +126,17 @@ void postOrder(TBTree r)
 		else {
 			visit(p);
 			tmp = p->parent;
-			if (tmp->ltag == 1)
-				p = tmp;
-			else if (tmp->ltag == 0 && tmp->lchild == p) {
-				if (tmp == r && (tmp->rtag==1 || tmp->rchild==NULL))
-					break;
-				if (tmp->rtag == 0) {
-					t = tmp->rchild;
-					while (t->lchild != p)
-						t = t->lchild;
-					p = t;
+			if (tmp->lchild == p) {
+				if (tmp->ltag == 1)
+					p = tmp;
+				else {
+					if (tmp->rtag == 0 && tmp->rchild) {
+						t = tmp->rchild;
+						while (t->lchild != p)
+							t = t->lchild;
+						p = t;
+					} else
+						p = tmp;
 				}
 			} else
 				p = tmp;
