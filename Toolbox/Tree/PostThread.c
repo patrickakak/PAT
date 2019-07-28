@@ -95,8 +95,8 @@ void creatThreadBTree(TBTree r)
 
 	postThread(r, pre);
 
-	// (*pre)->rchild = NULL; // Comment out
-	// (*pre)->rtag = 1;
+	// (*pre)->rchild = NULL; 	// Comment out for postOrder
+	// (*pre)->rtag = 1; 	// Comment out for data set2
 }
 
 TBTree First(TBTree p)
