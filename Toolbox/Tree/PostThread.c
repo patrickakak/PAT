@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h> /* Sleep(1000); */
+#include <windows.h> 	// Sleep(1000)
 
 typedef struct TBTNode *PtrToTBTNode;
 typedef PtrToTBTNode TBTree;
@@ -22,21 +22,21 @@ int main()
 {
 	TBTree root;
 
-	/* data set1 */
+	// data set1
 	/*
 	   int pre[7] = {3, 2, 1, 6, 5, 4, 7};
 	   int in[7] = {1, 2, 3, 4, 5, 6, 7};
 	   root = CreatBT(pre, in, 0, 6, 0, 6);
 	   */
 
-	/* data set2 */
+	// data set2
 	/*
 	   int pre[5] = {1,2,3,5,4};
 	   int in[5] = {3,2,5,1,4};
 	   root = CreatBT(pre, in, 0, 4, 0, 4);
 	   */
 
-	/* data set 3 */
+	// data set 3
 	int pre[5] = {3,1,2,4,5};
 	int in[5] = {1,4,2,5,3};
 	root = CreatBT(pre, in, 0, 4, 0, 4);
