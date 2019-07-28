@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PRE_THREAD 0
-#define IN_THREAD 1
-#define POST_THREAD 2
-
 typedef struct TBTNode *PtrToTBTNode;
 typedef PtrToTBTNode TBTree;
 struct TBTNode {
@@ -15,10 +11,7 @@ struct TBTNode {
 
 TBTree CreatBT(int pre[], int in[], int L1, int R1, int L2, int R2);
 void inThread(TBTree p, TBTree *pre);
-void preThread(TBTree p, TBTree *pre);
-void postThread(TBTree p, TBTree *pre);
-void creatThreadBTree(TBTree r, int flag);
-void preOrder(TBTree root);
+void creatThreadBTree(TBTree r);
 void inOrder(TBTree root);
 TBTree First(TBTree p);
 TBTree Next(TBTree p);
@@ -27,12 +20,16 @@ void visit(TBTree p);
 int main()
 {
 	TBTree root;
+
 	int pre[7] = {3, 2, 1, 6, 5, 4, 7};
 	int in[7] = {1, 2, 3, 4, 5, 6, 7};
 
 	root = CreatBT(pre, in, 0, 6, 0, 6);
-	creatThreadBTree(root, IN_THREAD);
+
+	creatThreadBTree(root);
+	
 	inOrder(root);
+	
 	return 0;
 }
 
@@ -54,25 +51,6 @@ TBTree CreatBT(int pre[], int in[], int L1, int R1, int L2, int R2)
 		t->rchild = CreatBT(pre, in, L1+k-L2+1, R1, k+1, R2);
 		return t;
 	}
-}
-
-void preThread(TBTree p, TBTree *pre)
-{
-	if (p == NULL)
-		return;
-	if (p->lchild == NULL) {
-		p->lchild = (*pre);
-		p->ltag = 1;
-	}
-	if (*pre != NULL && (*pre)->rchild == NULL) {
-		(*pre)->rchild = p;
-		(*pre)->rtag = 1;
-	}
-	(*pre) = p;
-	if (p->ltag == 0)
-		preThread(p->lchild, pre);
-	if (p->rtag == 0)
-		preThread(p->rchild, pre);
 }
 
 void inThread(TBTree p, TBTree *pre)
@@ -109,24 +87,15 @@ void postThread(TBTree p, TBTree *pre)
 	(*pre) = p;
 }
 
-void creatThreadBTree(TBTree r, int flag)
+void creatThreadBTree(TBTree r)
 {
 	TBTree p = NULL;
 	TBTree *pre = &p;
 
-	if (!r) return;
+	if (!r)
+		return;
 
-	switch (flag) {
-	case PRE_THREAD:
-		preThread(r, pre);
-		break;
-	case IN_THREAD:
-		inThread(r, pre);
-		break;
-	case POST_THREAD:
-		postThread(r, pre);
-		break;
-	}
+	inThread(r, pre);
 	(*pre)->rchild = NULL;
 	(*pre)->rtag = 1;
 }
@@ -157,20 +126,5 @@ void inOrder(TBTree root)
 
 	for (p = First(root); p != NULL; p = Next(p))
 		visit(p);
-}
-
-void preOrder(TBTree root)
-{
-	if (root == NULL)
-		return;
-	TBTree p = root;
-	while (p != NULL) {
-		while (p->ltag == 0) {
-			visit(p);
-			p = p->lchild;
-		}
-		visit(p);
-		p = p->rchild;
-	}
 }
 
