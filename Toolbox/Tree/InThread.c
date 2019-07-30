@@ -70,23 +70,6 @@ void inThread(TBTree p, TBTree *pre)
 	inThread(p->rchild, pre);
 }
 
-void postThread(TBTree p, TBTree *pre)
-{
-	if (p == NULL)
-		return;
-	postThread(p->lchild, pre);
-	postThread(p->rchild, pre);
-	if (p->lchild == NULL) {
-		p->lchild = (*pre);
-		p->ltag = 1;
-	}
-	if (*pre != NULL && (*pre)->rchild == NULL) {
-		(*pre)->rchild = p;
-		(*pre)->rtag = 1;
-	}
-	(*pre) = p;
-}
-
 void creatThreadBTree(TBTree r)
 {
 	TBTree p = NULL;
