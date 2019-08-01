@@ -17,12 +17,11 @@ int main()
 		if (n % 2 == 1)
 			n = (3*n + 1)/2;
 		else
-			n/=2;
+			n /= 2;
 		count++;
 	}
 	printf("%d\n", count);
 
 	return 0;
 }
-
 
