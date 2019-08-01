@@ -21,7 +21,7 @@ int main()
 	// freopen("test.txt", "r", stdin);
 	int N, i;
 	int no, score;
-	int index = 0, total=0;
+	int index = -1, total = -1;
 
 	scanf("%d", &N);
 	for (i = 0; i < N; i++) {
