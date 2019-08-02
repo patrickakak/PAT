@@ -14,13 +14,13 @@
 int main()
 {
 	// freopen("test.txt", "r", stdin);
-	int N, i, A1=0, A2=0, A3=0, A4=0, A5=0;
-	int tmp, flag=1, flag2=0, cnt=0, arrow;
+	int N, i, A1 = 0, A2 = 0, A3 = 0, A4 = 0, A5 = 0;
+	int tmp, flag = 1, flag2 = 0, cnt = 0, arrow;
 
 	scanf("%d", &N);
-	for (i=0; i<N; i++) {
+	for (i = 0; i < N; i++) {
 		scanf("%d", &tmp);
-		arrow = tmp%5;
+		arrow = tmp % 5;
 		switch (arrow) {
 		case 0:
 			if (tmp%2 == 0)
