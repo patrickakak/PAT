@@ -20,9 +20,8 @@ void swap(int *a, int *b)
 void reverse(int A[], int l, int r)
 {
 	int i, j;
-	for (i=l, j=r; i < j; i++, j--) {
+	for (i=l, j=r; i < j; i++, j--)
 		swap(&A[i], &A[j]);
-	}
 }
 
 void shiftRight(int A[], int N, int M)
