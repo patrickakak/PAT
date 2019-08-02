@@ -27,7 +27,7 @@ int main()
 				A1 += tmp;
 			break;
 		case 1:
-			flag2 = 1;
+			flag2 = 1; 	// in case n1-n2+...=0
 			if (flag == 1) {
 				A2 += tmp;
 				flag = 0;
