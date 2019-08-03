@@ -15,7 +15,7 @@ double p[max_n] = {};
 int main()
 {
 	// freopen("test.txt", "r", stdin);
-	int k, n, i, count=0;
+	int k, n, i, count = 0;
 	double a;
 
 	scanf("%d", &k);
@@ -24,7 +24,7 @@ int main()
 		p[n] += a;
 	}
 	scanf("%d", &k);
-	for (i = 0; i< k; i++) {
+	for (i = 0; i < k; i++) {
 		scanf("%d %lf", &n, &a);
 		p[n] += a;
 	}
