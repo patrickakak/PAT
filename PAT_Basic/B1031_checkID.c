@@ -19,12 +19,12 @@
  */
 #include <stdio.h>
 
-int weight[17] = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
-char Z2M[11] = {'1','0','X','9','8','7','6','5','4','3','2'};
+int weight[17] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+char Z2M[11] = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
 
 int main()
 {
-	//freopen("test.txt", "r", stdin);
+	// freopen("test.txt", "r", stdin);
 	int N, i, j, sum, Z, count=0;
 	char id[20];
 
