@@ -31,21 +31,21 @@ void init()
 bool less(time t1, time t2)
 {
 	if (t1.hh != t2.hh)
-		return t1.hh <= t2.hh;
+		return t1.hh < t2.hh;
 	else if (t1.mm != t2.mm)
-		return t1.mm <= t2.mm;
+		return t1.mm < t2.mm;
 	else
-		return t1.ss <= t2.ss;
+		return t1.ss < t2.ss;
 }
 
 bool more(time t1, time t2)
 {
 	if (t1.hh != t2.hh)
-		return t1.hh >= t2.hh;
+		return t1.hh > t2.hh;
 	else if (t1.mm != t2.mm)
-		return t1.mm >= t2.mm;
+		return t1.mm > t2.mm;
 	else
-		return t1.ss >= t2.ss;
+		return t1.ss > t2.ss;
 }
 
 int main()
