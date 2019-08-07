@@ -35,12 +35,12 @@ int main()
 	while (left + 4 <= right)	// left and right points to the same section
 		right -= 4;             // which is four-digit long
 	while (left < len) {
-		flag = false;	// To indicate there is no accumulated 0
-		isPrint = false;	// false represents no printing in this section
+		flag = false;			// To indicate there is no accumulated 0
+		isPrint = false;		// false represents no printing in this section
 		while (left <= right) {
 			if (left > 0 && str[left] == '0')
 				flag = true;
-			else {
+			else {				// eg. 8008
 				if (flag == true) {
 					printf(" ling");
 					flag = false;
@@ -55,7 +55,7 @@ int main()
 			left++;
 		}
 		if (isPrint == true && right != len-1)
-			printf(" %s", wei[(len-1-right)/4+2]);
+			printf(" %s", wei[(len-1-right)/4 + 2]);
 		right += 4;
 	}
 	return 0;
