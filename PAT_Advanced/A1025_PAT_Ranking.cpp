@@ -47,8 +47,7 @@ bool cmp(Student a, Student b)
 
 int main()
 {
-	//freopen("tst.txt", "r", stdin);
-
+	// freopen("tst.txt", "r", stdin);
 	int n, k, num = 0;
 
 	scanf("%d", &n);
