@@ -67,7 +67,7 @@ int main()
 			M--;
 		} else if (stu[i].de >= H && stu[i].cai >= H)
 			stu[i].flag = 1;
-		else if (stu[i].de >= H && stu[i].cai < H)
+		else if (stu[i].de >= H)
 			stu[i].flag = 2;
 		else if (stu[i].de >= stu[i].cai)
 			stu[i].flag = 3;
