@@ -66,7 +66,7 @@ int main()
 			printf("N/A\n");
 		else {
 			int k = 0;
-			for (int j = 0; j < 4; j++)
+			for (int j = 1; j < 4; j++)
 				if (Rank[query][j] < Rank[query][k])
 					k = j;
 			printf("%d %c\n", Rank[query][k], course[k]);
