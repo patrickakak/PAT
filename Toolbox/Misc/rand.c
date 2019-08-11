@@ -11,8 +11,9 @@ int main()
     
     // Generate number in interval [10000, 60000]
 	for (i = 0; i < 10; i++)
-		printf("%d ", (int)(round(1.0*rand()/RAND_MAX*50000 +10000)));
+		printf("%d ", (int)(round(1.0*rand()/RAND_MAX*50000 + 10000)));
 	putchar('\n');
 
 	return 0;
 }
+
