@@ -35,18 +35,20 @@ struct NODE {
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	for (int i = 0; i < maxn; i++)
-		node[i].flag = false;
-	int s1, s2, n;
-	scanf("%d%d%d", &s1, &s2, &n);
+	int s1, s2, n, p;
 	int address, next;
 	char data;
+	
+	for (int i = 0; i < maxn; i++)
+		node[i].flag = false;
+	
+	scanf("%d%d%d", &s1, &s2, &n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d %c %d", &address, &data, &next);
 		node[address].data = data;
 		node[address].next = next;
 	}
-	int p;
+	
 	for (p = s1; p != -1; p = node[p].next)
 		node[p].flag = true;
 
