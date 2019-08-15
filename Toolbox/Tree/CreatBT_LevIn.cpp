@@ -27,8 +27,12 @@ BinTree CreatBT(int *level, int *in, int N)
 		Lin[cnt] = in[i];
 	for (int cnt=0, i=pos+1; i < N; i++, cnt++)
 		Rin[cnt] = in[i];
-	for (int cnt=0, i=1; i < N; i++)
-		for (int j = 0; j < pos; j++)
+
+	/* Do not use two pointers since in level order, elements might
+	 * interwined with each other.
+	  */
+	for (int cnt=0, i=1; i < N; i++)	// Traverse level sequence
+		for (int j = 0; j < pos; j++)	// Traverse inorder sequence
 			if (level[i] == in[j])
 				Llev[cnt++] = level[i];
 	for (int cnt=0, i=1; i < N; i++)
