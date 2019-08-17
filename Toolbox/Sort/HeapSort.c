@@ -24,8 +24,7 @@ void PercDown(ElementType A[], int p, int N)
 		if ((Child != N-1) && (A[Child] < A[Child+1]))
 			Child++;	/* Child points to the larger one */
 		if (X >= A[Child]) break;	/* Spot the right place */
-		else	/* Percolate X down */
-			A[Parent] = A[Child];
+		else A[Parent] = A[Child]; 	/* Percolate X down */
 	}
 	A[Parent] = X;
 }
@@ -36,7 +35,7 @@ void HeapSort(ElementType A[], int N)
 
 	for (i = N/2-1; i >= 0; i--)	/* Build MaxHeap to avoid extra space */
 		PercDown(A, i, N);
-
+	
 	for (i = N-1; i > 0; i--) {
 		Swap(&A[0], &A[i]);		/* Delete the top element from MaxHeap */
 		PercDown(A, 0, i);
