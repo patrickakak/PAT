@@ -34,6 +34,7 @@ int BFS(int s, int L)
 	int numForward = 0;
 	queue<Node> q;
 	Node start;
+	
 	start.id = s;
 	start.layer = 0;
 	q.push(start);
@@ -60,6 +61,7 @@ int main()
 	// freopen("tst.txt", "r", stdin);
 	Node user;
 	int n, L, numFollow, idFollow;
+	
 	scanf("%d%d", &n, &L);
 	for (int i = 1; i <= n; i++) {
 		user.id = i;
