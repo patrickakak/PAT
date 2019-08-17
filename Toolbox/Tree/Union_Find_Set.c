@@ -1,3 +1,6 @@
+/**
+ * IMPLIMENTATION OF UNION-FIND-SET
+ */
 #define MAXN 1000	/* Maxmum number of set */
 typedef int ElementType;	/* Non-negative integer to present normal element */
 typedef int SetName;	/* Use index of root as the name of set */
