@@ -1,5 +1,6 @@
 /**
  * Bellman-Ford algorithm to handle negative-cycle
+ * T = O(VE)
  */
 
 struct Node {
