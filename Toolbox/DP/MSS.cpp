@@ -13,8 +13,8 @@ int main()
 {
 	// 6
 	// -2 11 -4 13 -5 -2
-	int n;
-
+	int n, k;
+	
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++)
 		scanf("%d", &A[i]);
@@ -23,7 +23,7 @@ int main()
 	for (int i = 1; i < n; i++)
 		dp[i] = max(A[i], dp[i-1]+A[i]);
 
-	int k = 0;
+	k = 0;
 	for (int i = 1; i < n; i++)
 		if (dp[i] > dp[k])
 			k = i;
