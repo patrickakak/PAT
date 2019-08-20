@@ -7,6 +7,7 @@
 using namespace std;
 
 const int maxn = 10010;
+// dp[i] is the MSS with the i-th element as the end
 int A[maxn], dp[maxn];
 
 int main()
