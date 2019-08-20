@@ -30,6 +30,7 @@ int main()
 				dp[i] = dp[j] + 1;
 		ans = max(ans, dp[i]);
 	}
+	// {1, 2, 3, 3, 9, 11}
 	printf("%d\n", ans);
 	return 0;
 }
