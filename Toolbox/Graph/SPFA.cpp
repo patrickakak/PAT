@@ -1,7 +1,12 @@
 /**
- * Shortest Path Faster Algorithm
+ * Shortest Path Faster Algorithm (BFS version)
  * better than Bellman Ford algo
  *  T = O(kE)
+ *
+ * Variations:
+ *------------------------------------------------
+ * V1: Queue can be replaced by stack (DFS version)
+ * V2: More efficient by using priority_queue or deque to speed up
  */
 
 struct Node {
