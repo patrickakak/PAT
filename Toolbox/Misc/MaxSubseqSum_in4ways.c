@@ -9,10 +9,10 @@
 static int DivideAndConquer(int A[], int left, int right);
 static int Max3(int A, int B, int C);
 
-int MaxSubseqSum1(int A[], int N);	/* MaxSubseqSum1: T(N^3) */
-int MaxSubseqSum2(int A[], int N);	/* MaxSubseqSum2: T(N^2) */
-int MaxSubseqSum3(int A[], int N);	/* MaxSubseqSum2: T(NlogN) */
-int MaxSubseqSum4(int A[], int N);	/* MaxSubseqSum2: T(N) */
+int MaxSubseqSum1(int A[], int N);	/* MaxSubseqSum1: T=O(N^3) */
+int MaxSubseqSum2(int A[], int N);	/* MaxSubseqSum2: T=O(N^2) */
+int MaxSubseqSum3(int A[], int N);	/* MaxSubseqSum2: T=O(NlogN) */
+int MaxSubseqSum4(int A[], int N);	/* MaxSubseqSum2: T=O(N) */
 
 int main(void)
 {
@@ -58,7 +58,6 @@ int MaxSubseqSum2(int A[], int N)
 				MaxSum = ThisSum;
 		}
 	}
-
 	return MaxSum;
 }
 
@@ -78,12 +77,9 @@ int MaxSubseqSum4(int A[], int N)
 	ThisSum = 0;
 	for (i = 0; i < N; i++) {
 		ThisSum += A[i];
-		if (ThisSum > MaxSum)
-			MaxSum = ThisSum;
-		if (ThisSum < 0)
-			ThisSum = 0;
+		if (ThisSum > MaxSum) MaxSum = ThisSum;
+		if (ThisSum < 0) ThisSum = 0;
 	}
-	
 	return MaxSum;
 }
 
@@ -95,12 +91,9 @@ static int DivideAndConquer(int A[], int left, int right)
 	int centre, i;
 
 	if (left == right) {	/* Condition to quit */
-		if (A[left] > 0)
-			return A[left];
-		else
-			return 0;
+		if (A[left] > 0) return A[left];
+		else return 0;
 	}
-
 	/* Divide procedure */
 	centre = (left + right) / 2;	/* To find the centre */
 	/* To get maximum of each part recursively */
