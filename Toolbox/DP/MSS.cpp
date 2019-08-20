@@ -1,5 +1,6 @@
 /**
  * Maximum Subsequence Sum
+ * (T = O(N) by using dynamic programming)
  */
 #include <cstdio>
 #include <algorithm>
