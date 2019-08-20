@@ -1,6 +1,7 @@
 /**
  * Shortest Path Faster Algorithm
- * T = O(kE)
+ * better than Bellman Ford algo
+ *  T = O(kE)
  */
 
 struct Node {
@@ -17,6 +18,7 @@ bool SPFA(int s)
 	memset(num, 0, sizeof(num));
 	fill(d, d+MAXV, INF);
 	queue<int> Q;
+	
 	Q.push(s);
 	inq[s] = true;
 	num[s]++;
