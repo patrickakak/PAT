@@ -30,6 +30,7 @@ int main()
 	for (int i = 1; i < n; i++)
 		if (dp[i] > dp[k])
 			k = i;
+	// {-2, 11, -4, 13, -5, -2}
 	printf("%d\n", dp[k]);
 
 	return 0;
