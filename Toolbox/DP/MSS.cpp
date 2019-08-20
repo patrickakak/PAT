@@ -21,6 +21,7 @@ int main()
 		scanf("%d", &A[i]);
 
 	// the state transfer equation must be without aftereffect
+	// dp[i] = max{ A[i], dp[i-1]+A[i] }
 	dp[0] = A[0];
 	for (int i = 1; i < n; i++)
 		dp[i] = max(A[i], dp[i-1]+A[i]);
