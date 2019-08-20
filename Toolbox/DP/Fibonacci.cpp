@@ -1,5 +1,6 @@
 /**
- * Dynamic Programming
+ * Dynamic Programming:
+ * (to solve overlapping subproblems...)
  */
 #include <cstdio>
 #include <cstring>
