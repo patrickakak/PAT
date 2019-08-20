@@ -1,5 +1,5 @@
 /**
- * Longest Increasing Sequence
+ * Longest Increasing Sequence, can be discontinuous
  * (T = O(N^2) by using dynamic programming)
  */
 #include <cstdio>
