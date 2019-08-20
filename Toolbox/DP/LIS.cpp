@@ -21,15 +21,13 @@ int main()
 	int ans = -1;
 	for (int i = 1; i <= n; i++) {
 		dp[i] = 1;
-		for (int j = 1; j < i; j++) {
+		for (int j = 1; j < i; j++)
 			if (A[i] >= A[j] && (dp[j]+1 > dp[i]))
 				dp[i] = dp[j] + 1;
-		}
 		ans = max(ans, dp[i]);
 	}
 	printf("%d\n", ans);
 	return 0;
 }
-
 
 
