@@ -7,6 +7,7 @@
 using namespace std;
 
 const int N = 100;
+// dp[i] is the LIS with the i-th element as the end
 int A[N], dp[N];
 
 int main()
@@ -18,6 +19,9 @@ int main()
 	scanf("%d", &n);
 	for (int i = 1; i <= n; i++)
 		scanf("%d", &A[i]);
+	
+	// dp[i] = max{1, dp[j]+1}
+	// (j = 1, 2, ..., i-1 && A[j] < A[i])
 	int ans = -1;
 	for (int i = 1; i <= n; i++) {
 		dp[i] = 1;
