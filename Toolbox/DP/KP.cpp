@@ -1,5 +1,5 @@
 /**
- * Knapsack problem
+ * Knapsack problem (NP problem)
  */
 #include <cstdio>
 #include <algorithm>
@@ -24,6 +24,9 @@ int main()
 		scanf("%d", &c[i]);
 	for (int v = 0; v <= V; v++)
 		dp[v] = 0;
+	
+	// dp[v] = max{ dp[v], dp[v-w[i]] + c[i] }
+	//          (1<= i <=n, w[i] <= v <= V)
 	for (int i = 1; i <= n; i++)
 		for (int v = V; v >= w[i]; v--)
 			dp[v] = max(dp[v], dp[v-w[i]] + c[i]);
@@ -31,6 +34,7 @@ int main()
 	for (int v = 0; v <= V; v++)
 		if (dp[v] > max)
 			max = dp[v];
+	// 10
 	printf("%d\n", max);
 
 	return 0;
