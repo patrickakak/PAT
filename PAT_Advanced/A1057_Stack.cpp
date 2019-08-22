@@ -99,7 +99,7 @@ int main()
 				int K = st.size();
 				if (K % 2 == 1) K = (K + 1)/2;
 				else K = K / 2;
-				peekMedian(K);
+				peekMedian(K); 	// T = O(N*sqrt(N))
 			}
 		}
 	}
