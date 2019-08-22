@@ -39,7 +39,7 @@
 using namespace std;
 
 const int maxn = 100010;
-const int sqrN = 316;
+const int sqrN = 316; 	// sqrt(100001), # of elements in block
 
 stack<int> st;
 int block[sqrN];
