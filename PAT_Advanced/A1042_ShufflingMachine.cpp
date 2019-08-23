@@ -18,19 +18,23 @@ char mp[5] = {'S', 'H', 'C', 'D', 'J'};
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
+	
 	int K, seq[N+1], start[N+1], end[N+1];
 
 	scanf("%d", &K);
 	for (int i = 1; i <= N; i++)
 		scanf("%d", &seq[i]);
+	
 	for (int i = 1; i <= N; i++)
 		start[i] = i;
+	
 	for (int i = 1; i <= K; i++) {
 		for (int j = 1; j <= N; j++)
 			end[seq[j]] = start[j];
 		for (int j = 1; j <= N; j++)
 			start[j] = end[j];
 	}
+	
 	for (int i = 1; i <= N; i++) {
 		printf("%c%d", mp[(end[i]-1)/13], (end[i]-1)%13+1);
 		if (i < N) printf(" ");
