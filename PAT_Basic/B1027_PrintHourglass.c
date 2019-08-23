@@ -1,7 +1,8 @@
 /**
- * Sample Input:
+ * Sample input:
  * 19 *
- * Sample Output:
+ * -----------
+ * Sample output:
  * *****
  *  ***
  *   *
@@ -9,49 +10,37 @@
  * *****
  * 2
  */
-#include <stdio.h>
-
-#define MAXN 1000
-
-void PrintChar(char ch, int N);
-void Hourglass(char ch, int most);
+#include <cstdio>
+#include <cmath>
 
 int main()
 {
-	int N, NumTriangle, incre;
-	char ch;
+	// freopen("tst.txt", "r", stdin);
+	char c;
+	int n, bottom, used;
 
-	scanf("%d %c", &N, &ch);
-	for (NumTriangle=1, incre=1; NumTriangle+2*(incre+2) <= N; 
-			NumTriangle+=2*(incre+2), incre+=2) ;
-
-	/* 'incre' to represent the length of side with most characters used */
-	Hourglass(ch, incre);
-	printf("%d\n", N-NumTriangle);
+	scanf("%d %c", &n, &c);
+	bottom = (int)sqrt(2.0 * (n + 1)) - 1;
+	if (bottom % 2 == 0)
+		bottom--;
+	used = (bottom + 1)*(bottom + 1)/2 - 1;
+	for (int i = bottom; i >= 1; i -= 2) {
+		for (int j = 0; j < (bottom-i)/2; j++)
+			printf(" ");
+		for (int j = 0; j < i; j++)
+			printf("%c", c);
+		printf("\n");
+	}
+	for (int i = 3; i <= bottom; i += 2) {
+		for (int j = 0; j < (bottom-i)/2; j++)
+			printf(" ");
+		for (int j = 0; j < i; j++)
+			printf("%c", c);
+		printf("\n");
+	}
+	printf("%d\n", n-used);
 
 	return 0;
 }
 
-void PrintChar(char ch, int N)
-{
-	int i;
 
-	for (i = 0; i < N; i++)
-		printf("%c", ch);
-}
-
-void Hourglass(char ch, int most)
-{
-	int spaceNum, incre;
-
-	for (incre=most, spaceNum=0; incre >= 1; incre-=2, spaceNum++) {
-		PrintChar(' ', spaceNum);
-		PrintChar(ch, incre);
-		printf("\n");
-	}
-	for (incre=3, spaceNum-=2; incre <= most; incre+=2, spaceNum--) {
-		PrintChar(' ', spaceNum);
-		PrintChar(ch, incre);
-		printf("\n");
-	}
-}
