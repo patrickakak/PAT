@@ -50,7 +50,7 @@ void BuildMatch(char *pattern, int *match)
 	int m = strlen(pattern);
 
 	match[0] = 0;
-	for (i=1, j=0; i < m; i++) {
+	for (i=1, j=0; i < m; i++)
 		if (pattern[i] == pattern[j]) {
 			match[i] = j+1;
 			j++;
@@ -63,7 +63,6 @@ void BuildMatch(char *pattern, int *match)
 			} else
 				match[i] = 0;
 		}
-	}
 }
 
 Position KMP(char *string, char *pattern)
