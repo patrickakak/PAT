@@ -24,7 +24,7 @@ int main()
 	int len, left, right;
 	bool flag, isPrint;
 
-	gets(str);
+	scanf("%s", str);
 	len = strlen(str);
 	left = 0;
 	right = len - 1;
@@ -55,9 +55,10 @@ int main()
 			left++;
 		}
 		if (isPrint == true && right != len-1)
-			printf(" %s", wei[(len-1-right)/4 + 2]);
+			printf(" %s", wei[(len-right)/4 + 2]);
 		right += 4;
 	}
 	return 0;
 }
+
 
