@@ -49,7 +49,7 @@ int main()
 					printf(" ");
 				printf("%s", num[str[left]-'0']);
 				isPrint = true;
-				if (left != right)
+				if (left != right) 	// except "Ge" wei
 					printf(" %s", wei[right-left-1]);
 			}
 			left++;
