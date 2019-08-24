@@ -30,53 +30,50 @@
 #include <algorithm>
 using namespace std;
 
-struct Student {
-	char id[15];
-	int score;
-	int loc_no;		// location number
-	int loc_r;		// local rank
+struct Stu {
+	char id[20];
+	int grade;
+	int loc;
+	int r;
 } stu[30010];
 
-bool cmp(Student a, Student b)
+bool cmp(Stu a, Stu b)
 {
-	if (a.score != b.score)
-		return a.score > b.score;
-	else
-		return strcmp(a.id, b.id) < 0;
+	if (a.grade != b.grade) return a.grade > b.grade;
+	else return strcmp(a.id, b.id) < 0;
 }
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int n, k, num = 0;
+	int N, K, num = 0;
 
-	scanf("%d", &n);
-	for (int i=1; i <= n; i++) {
-		scanf("%d", &k);
-		for (int j=0; j < k; j++) {
-			scanf("%s %d", stu[num].id, &stu[num].score);
-			stu[num].loc_no = i;
-			num++;
+	scanf("%d", &N);
+	for (int i = 0; i < N; i++){
+		scanf("%d", &K);
+		for (int j = 0+num; j < K + num; j++) {
+			scanf("%s%d", stu[j].id, &stu[j].grade);
+			stu[j].loc = i + 1;
 		}
-		sort(stu+num-k, stu+num, cmp);
-		stu[num-k].loc_r = 1;
-		for (int j=num-k+1; j < num; j++)
-			if (stu[j].score == stu[j-1].score)
-				stu[j].loc_r = stu[j-1].loc_r;
+		sort(stu+num, stu+num+K, cmp);
+		stu[num].r = 1;
+		for (int j = 1+num; j < K + num; j++)
+			if (stu[j].grade == stu[j-1].grade)
+				stu[j].r = stu[j-1].r;
 			else
-				stu[j].loc_r = j+1-(num-k);
+				stu[j].r = j + 1 - num;
+		num+=K;
 	}
-	printf("%d\n", num);
 	sort(stu, stu+num, cmp);
-
+	printf("%d\n", num);
 	int r = 1;
-	for (int i=0; i < num; i++) {
-		if (i > 0 && stu[i].score != stu[i-1].score)
+	for (int i = 0; i < num; i++) {
+		if (i > 0 && stu[i].grade != stu[i-1].grade)
 			r = i + 1;
-		printf("%s ", stu[i].id);
-		printf("%d %d %d\n", r, stu[i].loc_no, stu[i].loc_r);
+		printf("%s %d %d %d\n", stu[i].id, r, stu[i].loc, stu[i].r);
 	}
 
 	return 0;
 }
+
 
