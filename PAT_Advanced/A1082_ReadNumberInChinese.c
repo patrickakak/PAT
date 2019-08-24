@@ -36,7 +36,7 @@ int main()
 		right -= 4;             // which is four-digit long
 	while (left < len) {
 		flag = false;			// To indicate there is no accumulated 0
-		isPrint = false;		// false represents no printing in this section
+		isPrint = false;		// false: no printing in this section (all 0)
 		while (left <= right) {
 			if (left > 0 && str[left] == '0')
 				flag = true;
