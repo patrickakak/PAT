@@ -51,18 +51,18 @@ int main()
 	scanf("%d", &N);
 	for (int i = 0; i < N; i++){
 		scanf("%d", &K);
-		for (int j = 0+num; j < K + num; j++) {
+		for (int j = 0 + num; j < K + num; j++) {
 			scanf("%s%d", stu[j].id, &stu[j].grade);
 			stu[j].loc = i + 1;
 		}
 		sort(stu+num, stu+num+K, cmp);
 		stu[num].r = 1;
-		for (int j = 1+num; j < K + num; j++)
+		for (int j = 1 + num; j < K + num; j++)
 			if (stu[j].grade == stu[j-1].grade)
 				stu[j].r = stu[j-1].r;
 			else
 				stu[j].r = j + 1 - num;
-		num+=K;
+		num += K;
 	}
 	sort(stu, stu+num, cmp);
 	printf("%d\n", num);
