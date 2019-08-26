@@ -11,7 +11,6 @@ void Merge1(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 
 	LeftEnd = R - 1;	/* The end position of left part */
 	Tmp = L;	/* The starting position of ordered sequence */
-
 	while (L <= LeftEnd && R <= RightEnd)
 		if (A[L] <= A[R])
 			TmpA[Tmp++] = A[L++];	/* Copy elements in left part into TmpA */
@@ -42,7 +41,8 @@ void Merge_pass(ElementType A[], ElementType TmpA[], int N, int length)
 	if (i+length < N)	/* Merge the last 2 sub-sequences */
 		Merge1(A, TmpA, i, i+length, N-1);
 	else	/* There's only 1 sub-sequence left */
-		for (j = i; j < N; j++) TmpA[j] = A[j];
+		for (j = i; j < N; j++)
+			TmpA[j] = A[j];
 }
 
 /* Unified interface */
