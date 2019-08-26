@@ -16,6 +16,7 @@ int BinarySearch(List Tbl, ElementType K)
 
 	left = 1; 	/* Initialize left boundary */
 	right = Tbl->Length; 	/* Right boundary */
+	// Search in [0, n-1]
 	while (left <= right) {
 		// mid = (left + right)/2;
 		mid = left + (right-left)/2; 	// To avoid overflow
@@ -30,4 +31,36 @@ int BinarySearch(List Tbl, ElementType K)
 	}
 	return NotFound; 	/* Searching failed */
 }
+
+/* Not strictly increasing (i.e. non-descending)
+ * the inicial left and right should be 0 and n respectively */
+int lower_bound(int A[], int left, int right, int x)
+{
+	int mid;
+	// Search in [0, n]
+	while (left < right) {	// "left=right" to quit
+		mid = left + (right-left)/2;
+		if (A[mid] >= x)
+			right = mid;	// then in [left, mid]
+		else
+			left = mid + 1;
+	}
+	return left;	// Can also be "return right"
+}
+
+/* Same as lower_bound() */
+int upper_bound(int A[], int left, int right, int x)
+{
+	int mid;
+	// Search in [0, n]
+	while (left < right) {
+		mid = left + (right-left)/2;
+		if (A[mid] > x)		// diff from lower_bound
+			right = mid;
+		else
+			left = mid + 1;
+	}
+	return left;
+}
+
 
