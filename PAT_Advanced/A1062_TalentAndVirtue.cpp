@@ -36,48 +36,50 @@
 #include <algorithm>
 using namespace std;
 
-#define Max_N 100010
-struct Student {
-	char id[10];
-	int de, cai, sum;
-	int flag;	// student type
-} stu[Max_N];
+#define maxn 100100
+struct Stu {
+	int id;
+	int v;	// virtue
+	int t;	// talent
+	int r;	// rank
+	int tol;
+} stu[maxn];
 
-bool cmp(Student a, Student b)
+int N, L, H;
+bool cmp(Stu a, Stu b)
 {
-	if (a.flag != b.flag) return a.flag < b.flag;
-	else if (a.sum != b.sum) return a.sum > b.sum;
-	else if (a.de != b.de) return a.de > b.de;
-	else return strcmp(a.id, b.id) < 0;
+	if (a.r != b.r) return a.r < b.r;
+	else if (a.tol != b.tol) return a.tol>b.tol;
+	else if (a.v != b.v) return a.v > b.v;
+	else return a.id < b.id;
 }
-
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int N, M, L, H;
 
-	scanf("%d %d %d", &N, &L, &H);
-	M = N;
+	scanf("%d%d%d", &N, &L, &H);
+	Stu tmp;
+	int num = 0;
 	for (int i = 0; i < N; i++) {
-		scanf("%s %d %d", stu[i].id, &stu[i].de, &stu[i].cai);
-		stu[i].sum = stu[i].de + stu[i].cai;
-		if (stu[i].de < L || stu[i].cai < L) {
-			stu[i].flag = 5;
-			M--;
-		} else if (stu[i].de >= H && stu[i].cai >= H)
-			stu[i].flag = 1;
-		else if (stu[i].de >= H)
-			stu[i].flag = 2;
-		else if (stu[i].de >= stu[i].cai)
-			stu[i].flag = 3;
-		else
-			stu[i].flag = 4;
+		scanf("%d%d%d", &tmp.id, &tmp.v, &tmp.t);
+		if (tmp.t >= L && tmp.v >= L) {
+			tmp.tol=tmp.v+tmp.t;
+			if (tmp.t >= H && tmp.v >= H)
+				tmp.r = 1;
+			else if (tmp.v >= H && tmp.t < H)
+				tmp.r = 2;
+			else if (tmp.v < H && tmp.t < H && tmp.v >= tmp.t)
+				tmp.r = 3;
+			else
+				tmp.r = 4;
+			stu[num++] = tmp;
+		}
 	}
-	sort(stu, stu+N, cmp);
-	printf("%d\n", M);
-	for (int i = 0; i < M; i++)
-		printf("%s %d %d\n", stu[i].id, stu[i].de, stu[i].cai);
+	sort(stu, stu+num, cmp);
+	printf("%d\n", num);
+	for (int i = 0; i < num; i++)
+		printf("%d %d %d\n", stu[i].id, stu[i].v, stu[i].t);
 
 	return 0;
 }
