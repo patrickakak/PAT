@@ -14,7 +14,8 @@ int BinarySearch(List Tbl, ElementType K)
 	left = 1; 	/* Initialize left boundary */
 	right = Tbl->Length; 	/* Right boundary */
 	while (left <= right) {
-		mid = (left + right)/2;
+		// mid = (left + right)/2;
+		mid = left + (right-left)/2; 	// To avoid overflow
 		/* If we update rignt and left pointer to mid only, then it may stuck 
 		 * into a dead loop: (e.g. left=1, right=2 and K!=Tbl->Data[1]) */
 		if (K < Tbl->Data[mid])
