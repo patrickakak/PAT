@@ -45,7 +45,6 @@ struct Stu {
 	int tol;
 } stu[maxn];
 
-int N, L, H;
 bool cmp(Stu a, Stu b)
 {
 	if (a.r != b.r) return a.r < b.r;
@@ -58,6 +57,7 @@ int main()
 {
 	// freopen("tst.txt", "r", stdin);
 
+	int N, L, H;
 	scanf("%d%d%d", &N, &L, &H);
 	Stu tmp;
 	int num = 0;
