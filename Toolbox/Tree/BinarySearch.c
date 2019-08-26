@@ -16,7 +16,7 @@ int BinarySearch(List Tbl, ElementType K)
 
 	left = 1; 	/* Initialize left boundary */
 	right = Tbl->Length; 	/* Right boundary */
-	// Search in [0, n-1]
+	// Search in [0, n)
 	while (left <= right) {
 		// mid = (left + right)/2;
 		mid = left + (right-left)/2; 	// To avoid overflow
