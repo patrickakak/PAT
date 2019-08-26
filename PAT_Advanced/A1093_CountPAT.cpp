@@ -1,4 +1,10 @@
-
+/**
+ * Sample input:
+ * APPAPT
+ * ------------
+ * Sample output:
+ * 2
+ */
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
