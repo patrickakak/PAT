@@ -1,3 +1,6 @@
+/**
+ * Binary Search: T = O(logN)
+ */
 #define NotFound -1
 
 typedef struct Node *List;
@@ -6,7 +9,7 @@ struct Node {
 	int Length;
 };
 
-/* Depth of binary tree: [lgN]+1 */
+/* Depth of binary tree: [lgN]+1, (Strictly increasing) */
 int BinarySearch(List Tbl, ElementType K)
 {
 	int left, right, mid;
