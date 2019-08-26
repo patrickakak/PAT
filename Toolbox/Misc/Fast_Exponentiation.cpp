@@ -20,7 +20,7 @@ LL binaryPow_it(LL a, LL b)
 {
 	LL ans = 1;
 	while (b > 0) {
-		if (b & 1)
+		if (b % 2 == 1)
 			ans *= a;
 		a = a * a;
 		b >>= 1;
