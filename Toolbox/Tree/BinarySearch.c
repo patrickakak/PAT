@@ -16,7 +16,7 @@ int BinarySearch(List Tbl, ElementType K)
 
 	left = 1; 	/* Initialize left boundary */
 	right = Tbl->Length; 	/* Right boundary */
-	// Search in [0, n)
+	// Search in [left, right)
 	while (left <= right) {
 		// mid = (left + right)/2;
 		mid = left + (right-left)/2; 	// To avoid overflow
@@ -37,7 +37,7 @@ int BinarySearch(List Tbl, ElementType K)
 int lower_bound(int A[], int left, int right, int x)
 {
 	int mid;
-	// Search in [0, n]
+	// Search in [left, right]
 	while (left < right) {	// "left=right" to quit
 		mid = left + (right-left)/2;
 		if (A[mid] >= x)
@@ -52,10 +52,26 @@ int lower_bound(int A[], int left, int right, int x)
 int upper_bound(int A[], int left, int right, int x)
 {
 	int mid;
-	// Search in [0, n]
+	// Search in [left, right]
 	while (left < right) {
 		mid = left + (right-left)/2;
 		if (A[mid] > x)		// diff from lower_bound
+			right = mid;
+		else
+			left = mid + 1;
+	}
+	return left;
+}
+
+/* Template of solving the problem of finding 1st element which satisfies 
+ * a given condition in a ordered sequence */
+int solve(int left, int right)
+{
+	int mid;
+	// Search in [left, right]
+	while (left < right) {
+		mid = left + (right-left)/2;
+		if (Condition satisfied)	// or !Condition
 			right = mid;
 		else
 			left = mid + 1;
