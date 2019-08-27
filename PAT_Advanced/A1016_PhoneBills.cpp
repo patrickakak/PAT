@@ -42,7 +42,6 @@ bool cmp(Record a, Record b)
 {
 	int x = strcmp(a.name, b.name);
 	if (x != 0) return x < 0;
-	else if (a.month != b.month) return a.month < b.month;
 	else if (a.dd != b.dd) return a.dd < b.dd;
 	else if (a.hh != b.hh) return a.hh < b.hh;
 	else return a.mm < b.mm;
@@ -70,6 +69,7 @@ void get_ans(int on, int off, int &time, int &charge)
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
+	
 	for (int i = 0; i < 24; i++)
 		scanf("%d", &toll[i]);
 	int n;
