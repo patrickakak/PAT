@@ -64,7 +64,7 @@ int main()
 	for (int i = 0; i < N; i++) {
 		scanf("%d%d%d", &tmp.id, &tmp.v, &tmp.t);
 		if (tmp.t >= L && tmp.v >= L) {
-			tmp.tol=tmp.v+tmp.t;
+			tmp.tol = tmp.v + tmp.t;
 			if (tmp.t >= H && tmp.v >= H)
 				tmp.r = 1;
 			else if (tmp.v >= H && tmp.t < H)
