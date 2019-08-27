@@ -87,6 +87,7 @@ int main()
 	sort(rec, rec+n, cmp);
 	int on = 0, off, next;
 	while (on < n) {
+		// To verify the current customer is printable
 		int needPrint = 0;
 		next = on;
 		while (next < n && strcmp(rec[next].name, rec[on].name) == 0) {
@@ -103,11 +104,12 @@ int main()
 		int AllMoney = 0;
 		printf("%s %02d\n", rec[on].name, rec[on].month);
 		while (on < next) {
+			// Find a pair (on/off-line)
 			while (on < next-1 &&
 					!(rec[on].status==true && rec[on+1].status==false))
 				on++;
 			off = on + 1;
-			if (off == next) {
+			if (off >= next) {
 				on = next;
 				break;
 			}
