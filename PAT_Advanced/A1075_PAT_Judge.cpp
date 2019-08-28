@@ -73,10 +73,12 @@ int main()
 		scanf("%d", &p[i]);
 
 	int uid, pid, score;
-	// user_id problem_id partial_score_obtained
+	// initialize
 	for (int i = 1; i <= N; i++)
 		for (int j = 1; j <= K; j++)
 			user[i].score[j] = -1;
+	
+	// user_id problem_id partial_score_obtained
 	for (int i = 0; i < M; i++) {
 		scanf("%d%d%d", &uid, &pid, &score);
 		user[uid].id = uid;
