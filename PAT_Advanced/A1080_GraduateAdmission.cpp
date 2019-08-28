@@ -45,7 +45,7 @@ struct Stu {
 } stu[maxstu];
 
 #define maxsch 110
-struct s {
+struct School {
 	int quota;
 	int last;			// last admitted stu id
 	int num;			// student num
