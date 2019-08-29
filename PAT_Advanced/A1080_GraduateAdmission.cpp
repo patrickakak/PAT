@@ -106,7 +106,7 @@ int main()
 			printf("\n");
 			continue;
 		}
-		sort(sch[i].stuId, sch[i].stuId+sch[i].stuNum);
+		sort(sch[i].stuId, sch[i].stuId + sch[i].stuNum);
 		printf("%d", sch[i].stuId[0]);
 		for (int j = 1; j < sch[i].stuNum; j++)
 			printf(" %d", sch[i].stuId[j]);
