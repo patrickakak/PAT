@@ -65,7 +65,7 @@ int main()
 	scanf("%d%d%d", &n, &m, &k);
 
 	// init schools
-	for (int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		sch[i].last = -1;
 		sch[i].stuNum = 0;
 		sch[i].quota = 0;
@@ -80,7 +80,7 @@ int main()
 		for (int j = 0; j < k; j++)
 			scanf("%d", stu[i].prefer + j);
 	}
-	sort(stu, stu+n, cmp);
+	sort(stu, stu + n, cmp);
 	stu[0].r = 1;
 	for (int i = 1; i < n; i++)
 		if (stu[i].sum == stu[i-1].sum && stu[i].GE == stu[i-1].GE)
