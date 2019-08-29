@@ -13,7 +13,7 @@
  * 80 70 1 3 2
  * 70 80 1 2 3
  * 100 100 0 2 4
- * ---------------
+ * --------------
  * Sample output:
  * 0 10
  * 3
@@ -36,21 +36,21 @@
 // #include <windows.h>
 using namespace std;
 
-#define maxstu 40010
-struct Stu {
-	int id;
-	int prefer[6];		// preferred school number
-	int GE, GI, sum;	// exam/interview grade
-	int r;				// rank
-} stu[maxstu];
-
-#define maxsch 110
+#define maxStu 40010
+#define maxSch 110
 struct School {
 	int quota;
-	int last;			// last admitted stu id
-	int num;			// student num
-	int ids[maxstu];	// student ids
-} sch[maxsch];
+	int stuNum;			// student num
+	int last;			// last admitted stuId
+	int stuId[maxStu];
+} sch[maxSch];
+
+struct Stu {
+	int id;
+	int GE, GI, sum;	// exam/interview grade
+	int prefer[8];		// preferred school number
+	int r;				// rank
+} stu[maxStu];
 
 bool cmp(Stu a, Stu b)
 {
@@ -58,30 +58,31 @@ bool cmp(Stu a, Stu b)
 	else return a.GE > b.GE;
 }
 
-bool cmpId(int a, int b)
-{
-	return stu[a].id < stu[b].id;
-}
-
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
 	int n, m, k;
 	scanf("%d%d%d", &n, &m, &k);
-	for (int i = 0; i < m; i++) {
-		scanf("%d", &sch[i].quota);
+
+	// init schools
+	for (int i=0; i<m; i++) {
 		sch[i].last = -1;
+		sch[i].stuNum = 0;
+		sch[i].quota = 0;
 	}
+	for (int i = 0; i < m; i++)
+		scanf("%d", &sch[i].quota);
+
 	for (int i = 0; i < n; i++) {
-		stu[i].id = i;
 		scanf("%d%d", &stu[i].GE, &stu[i].GI);
+		stu[i].id = i;
 		stu[i].sum = stu[i].GE + stu[i].GI;
 		for (int j = 0; j < k; j++)
-			scanf("%d", &stu[i].prefer[j]);
+			scanf("%d", stu[i].prefer + j);
 	}
 	sort(stu, stu+n, cmp);
 	stu[0].r = 1;
-	for (int i = 1; i<n; i++)
+	for (int i = 1; i < n; i++)
 		if (stu[i].sum == stu[i-1].sum && stu[i].GE == stu[i-1].GE)
 			stu[i].r = stu[i-1].r;
 		else
@@ -90,26 +91,28 @@ int main()
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
 			int sid = stu[i].prefer[j];
-			int num = sch[sid].num;
+			int num = sch[sid].stuNum;
 			int last = sch[sid].last;
-			if (num < sch[sid].quota || (last!=-1 && stu[i].r==stu[last].r)) {
-				sch[sid].ids[num] = i;
-				sch[sid].num++;
-				sch[sid].last=i;
+			if (num < sch[sid].quota
+					|| (last != -1 && stu[last].r == stu[i].r)) {
+				sch[sid].last = i;
+				sch[sid].stuId[num] = stu[i].id;
+				sch[sid].stuNum++;
 				break;
 			}
 		}
 	for (int i = 0; i < m; i++) {
-		if (sch[i].num > 0) {
-			sort(sch[i].ids, sch[i].ids+sch[i].num, cmpId);
-			for (int j = 0; j < sch[i].num; j++) {
-				printf("%d", stu[sch[i].ids[j]].id);
-				if (j < sch[i].num - 1)
-					printf(" ");
-			}
+		if (sch[i].stuNum == 0) {
+			printf("\n");
+			continue;
 		}
+		sort(sch[i].stuId, sch[i].stuId+sch[i].stuNum);
+		printf("%d", sch[i].stuId[0]);
+		for (int j = 1; j < sch[i].stuNum; j++)
+			printf(" %d", sch[i].stuId[j]);
 		printf("\n");
 	}
+
 	return 0;
 }
 
