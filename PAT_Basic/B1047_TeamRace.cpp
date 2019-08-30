@@ -28,7 +28,7 @@ int main()
 		hashTbl[tid] += score;
 	}
 	int k, Max = -1;
-	for(int i = 0; i < maxn; i++)
+	for (int i = 0; i < maxn; i++)
 		if (hashTbl[i] > Max) {
 			k = i;
 			Max = hashTbl[i];
