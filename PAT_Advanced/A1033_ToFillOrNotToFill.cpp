@@ -1,4 +1,24 @@
-
+/**
+ * Sample input1:
+ * 50 1300 12 8
+ * 6.00 1250
+ * 7.00 600
+ * 7.00 150
+ * 7.10 0
+ * 7.20 200
+ * 7.50 400
+ * 7.30 1000
+ * 6.85 300
+ * Sample output1:
+ * 749.17
+ * ---------------
+ * Sample input2:
+ * 50 1300 12 2
+ * 7.10 0
+ * 7.00 600
+ * Sample output2:
+ * The maximum travel distance = 1200.00
+ */
 #include <cstdio>
 #include <algorithm>
 using namespace std;
