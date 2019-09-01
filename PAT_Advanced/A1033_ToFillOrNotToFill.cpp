@@ -23,10 +23,10 @@
 #include <algorithm>
 using namespace std;
 
-const int INF = 1000000000;
+const int INF = (1 << 30);
 #define maxn 510
 struct Station {
-	double price; // unit price
+	double price;	// unit liter price
 	double dis;
 } st[maxn];
 
@@ -50,7 +50,7 @@ int main()
 	if (st[0].dis != 0)
 		printf("The maximum travel distance = 0.00\n");
 	else {
-		int now = 0;
+		int now = 0;	// current station num
 		double ans = 0, nowTank = 0, MAX = Cmax * Davg;
 		while (now < n) {
 			int k = -1;
