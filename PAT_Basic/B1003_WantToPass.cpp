@@ -27,8 +27,18 @@ int main()
 {
 	// freopen("tst.txt", "r", stdin);
 	int n;
-
 	scanf("%d", &n);
+
+	/* --> PAT ---> APATA ----> AAPATAA ----> ...
+	 *      \          \           \
+	 *       \          \           \
+	 *      PAAT       APAATAA     AAPAATAAAA
+	 *         \          \           \
+	 *          \          \           \
+	 *         PAAAT     APAAATAAA    AAPAAATAAAAAA
+	 *            \          \           \
+	 *            ...        ...         ...
+	 */
 	while (n--) {
 		char str[110];
 		scanf("%s", str);
