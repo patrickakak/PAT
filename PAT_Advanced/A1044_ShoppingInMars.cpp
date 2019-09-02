@@ -20,7 +20,7 @@
 using namespace std;
 
 #define maxn 100010
-int sum[maxn]={0};	// sum[n]: A[1]~A[n]
+int sum[maxn] = {0};	// sum[n]: A[1]~A[n]
 
 int main()
 {
