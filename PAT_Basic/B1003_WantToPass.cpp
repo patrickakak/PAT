@@ -56,7 +56,10 @@ int main()
 			printf("NO\n");
 			continue;
 		}
-		int x = loc_p, y = loc_t - loc_p - 1, z = len - loc_t - 1;
+		// x: # of A's in the left side of 'P'
+		// y: # of A's between 'P' and 'T'
+		// z: # of A's in the right side of 'T'
+		int x = loc_p, y = loc_t-loc_p-1, z = len-loc_t-1;
 		if (z - x * (y-1) == x) printf("YES\n");
 		else printf("NO\n");
 	}
