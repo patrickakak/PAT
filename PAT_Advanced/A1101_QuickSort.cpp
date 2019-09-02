@@ -14,7 +14,7 @@ using namespace std;
 #define maxn 100010
 const int INF = 0x3fffffff;
 int a[maxn], leftMax[maxn], rightMin[maxn];
-int ans[maxn], num = 0;
+int pivots[maxn], num = 0;
 
 int main()
 {
@@ -25,6 +25,7 @@ int main()
 	for (int i = 0; i < n; i++)
 		scanf("%d", &a[i]);
 	
+	// leftMax[i]: a[0]~a[i-1];  rightMin[i]: a[i+1]~a[n-1]
 	leftMax[0] = 0;
 	for (int i = 1; i < n; i++)
 		leftMax[i] = max(leftMax[i-1], a[i-1]);
@@ -34,10 +35,10 @@ int main()
 	
 	for (int i = 0; i < n; i++)
 		if (leftMax[i] < a[i] && rightMin[i] > a[i])
-			ans[num++] = a[i];
+			pivots[num++] = a[i];
 	printf("%d\n", num);
 	for (int i = 0; i < num; i++) {
-		printf("%d", ans[i]);
+		printf("%d", pivots[i]);
 		if (i < num-1) printf(" ");
 	}
 	printf("\n");
