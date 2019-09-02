@@ -31,13 +31,11 @@ int main()
 
 	/* --> PAT ---> APATA ----> AAPATAA ----> ...
 	 *      \          \           \
-	 *       \          \           \
-	 *      PAAT       APAATAA     AAPAATAAAA
-	 *         \          \           \
+	 *      PAAT     APAATAA     AAPAATAAAA
+	 *        \          \           \
+	 *       PAAAT    APAAATAAA    AAPAAATAAAAAA
 	 *          \          \           \
-	 *         PAAAT     APAAATAAA    AAPAAATAAAAAA
-	 *            \          \           \
-	 *            ...        ...         ...
+	 *          ...        ...         ...
 	 */
 	while (n--) {
 		char str[110];
