@@ -20,8 +20,7 @@
 using namespace std;
 
 const int N = 111;
-int origin[N], tmpOri[N], changed[N];
-int n;
+int n, origin[N], tmpOri[N], changed[N];
 
 bool isSame(int A[], int B[])
 {
@@ -31,7 +30,7 @@ bool isSame(int A[], int B[])
 	return true;
 }
 
-void showArray(int A[])
+void show(int A[])
 {
 	for (int i = 0; i < n; i++) {
 		printf("%d", A[i]);
@@ -44,7 +43,7 @@ bool insertSort()
 {
 	bool flag = false;
 	for (int i = 1; i < n; i++) {
-		if (i != 1 && isSame(tmpOri, changed))
+		if (i != 1 && isSame(tmpOri, changed))	// except the original sequence
 			flag = true;
 		int tmp = tmpOri[i], j = i;
 		while (j > 0 && tmpOri[j-1] > tmp) {
@@ -62,14 +61,12 @@ void mergeSort()
 {
 	bool flag = false;
 	for (int step = 2; step/2 <= n; step *= 2) {
-		if (step != 2 && isSame(tmpOri, changed))
+		if (step != 2 && isSame(tmpOri, changed))	// can't be the original
 			flag = true;
 		for (int i = 0; i < n; i += step)
 			sort(tmpOri+i, tmpOri + min(i+step, n));
-		if (flag == true) {
-			showArray(tmpOri);
-			return;
-		}
+		if (flag == true)
+			break;
 	}
 }
 
@@ -85,12 +82,13 @@ int main()
 		scanf("%d", &changed[i]);
 	if (insertSort()) {
 		printf("Insertion Sort\n");
-		showArray(tmpOri);
+		show(tmpOri);
 	} else {
 		printf("Merge Sort\n");
 		for (int i = 0; i < n; i++)
 			tmpOri[i] = origin[i];
 		mergeSort();
+		show(tmpOri);
 	}
 
 	return 0;
