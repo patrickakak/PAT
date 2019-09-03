@@ -10,6 +10,7 @@ const int maxn = 1000001;
 int prime[maxn], num = 0;
 bool p[maxn] = {0};
 
+// Eratosthenes's Sieve: T = O(nloglogn)
 void Find_Prime()
 {
 	for (int i = 2; i < maxn; i++)
@@ -30,6 +31,7 @@ bool isPrime(int n)
 	return true;
 }
 
+// T = O(n * sqrt(n)), works fine if maxn < 10^5
 void Find_Prime()
 {
 	for (int i = 1; i < maxn; i++)
