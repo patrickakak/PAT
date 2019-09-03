@@ -2,6 +2,7 @@
  * Big number calculation (integer w/ more than 1000 digits)
  */
 #include <cstdio>
+#include <cstring>
 
 #define maxn 1010
 struct bigNum {
