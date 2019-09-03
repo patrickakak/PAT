@@ -19,7 +19,7 @@ bool isPrime(int n)
 		if (n % i == 0) return false;
 	return true;
 }
-bool hashTbl[maxn]={0};
+bool hashTbl[maxn] = {0};
 
 int main()
 {
