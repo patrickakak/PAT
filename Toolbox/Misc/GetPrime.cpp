@@ -55,7 +55,9 @@ void Naive_Find_Prime()
 
 int main()
 {
-	EratosthenesSieve();
+	// EratosthenesSieve();
+	EulerSieve();
+	// Naive_Find_Prime();
 
 	for (int i = 0; i < num; i++)
 		printf("%d ", prime[i]);
