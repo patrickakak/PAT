@@ -40,10 +40,9 @@ int to_number(int num[])
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int n, MIN, MAX;
+	int n, MIN, MAX, num[5];;
 
 	scanf("%d", &n);
-	int num[5];
 	while (1) {
 		to_array(n, num);
 		sort(num, num + 4);
