@@ -12,7 +12,7 @@ const int maxn = 100010;
 int prime[maxn], pNum = 0;
 struct factor {
 	int x, cnt;
-} fac[10];
+} fac[10];	// 10 is enough for 32bit integer
 
 bool is_prime(int n)
 {
@@ -44,6 +44,9 @@ int main()
 	else {
 		printf("%d=", n);
 		int sqr = (int)sqrt(1.0 * n);
+		// If there's a prime factor of n, then:
+		//   1: all primes of n must be smaller than sqrt(n) or...
+		//   2: there's only one prime larger than sqrt(n)
 		for (int i = 0; i < pNum && prime[i] <= sqr; i++) {
 			if (n % prime[i] == 0) {
 				fac[num].x = prime[i];
@@ -54,8 +57,7 @@ int main()
 				}
 				num++;
 			}
-			if (n == 1)
-				break;
+			if (n == 1) break;
 		}
 		if (n != 1) {
 			fac[num].x = n;
@@ -71,4 +73,5 @@ int main()
 	}
 	return 0;
 }
+
 
