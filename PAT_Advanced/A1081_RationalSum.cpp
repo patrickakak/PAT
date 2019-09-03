@@ -57,7 +57,7 @@ Fraction add(Fraction f1, Fraction f2)
 
 void show(Fraction r)
 {
-	reduction(r);
+	r = reduction(r);
 	if (r.down == 1) printf("%lld\n", r.up);
 	else if (abs(r.up) > r.down)
 		printf("%lld %lld/%lld\n", r.up/r.down, abs(r.up)%r.down, r.down);
