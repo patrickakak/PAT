@@ -8,13 +8,18 @@ int gcd(int a, int b)
 	return !b ? a : gcd(b, a % b);
 }
 
+int lcm(int a, int b)
+{
+	return a / gcd(a, b) * b;
+}
+
 int main()
 {
-	int m, n, lcm;
+	int m, n, r;
 
 	scanf("%d%d", &m, &n);
-	lcm = m / gcd(m, n) * n;
-	printf("%d\n", lcm);
+	r = lcm(m, n);
+	printf("%d\n", r);
 
 	return 0;
 }
