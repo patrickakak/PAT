@@ -14,8 +14,8 @@ typedef long long LL;
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int n;
-	scanf("%d", &n);
+	LL n;
+	scanf("%lld", &n);
 	LL sqr = (LL)sqrt(1.0 * n), ansI = 0, ansLen = 0;
 	for (LL i = 2; i <= sqr; i++) {
 		LL tmp = 1, j = i;
