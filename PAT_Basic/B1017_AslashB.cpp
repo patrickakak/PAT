@@ -53,11 +53,11 @@ void print(bigNum a)
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	char str1[maxn];
+	char str[maxn];
 	int b, r = 0;
 
-	scanf("%s%d", str1, &b);
-	bigNum a = change(str1);
+	scanf("%s%d", str, &b);
+	bigNum a = change(str);
 	print(divide(a, b, r));
 	printf(" %d", r);
 
