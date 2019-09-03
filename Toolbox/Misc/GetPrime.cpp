@@ -20,14 +20,14 @@ void EratosthenesSieve()
 }
 
 // Euler sieve method: T = O(n)
-bool vis[maxn] = {0};
+bool visit[maxn] = {0};
 void EulerSieve()
 {
 	for (int i = 2; i < maxn; i++) {
-		if (!vis[i])
+		if (!visit[i])
 			prime[num++] = i;
 		for (int j = 0; j < num && i*prime[j] < maxn; j++) {
-			vis[i * prime[j]] = 1;
+			visit[i * prime[j]] = true;
 			if (i % prime[j] == 0)
 				break;
 		}
