@@ -4,6 +4,7 @@
  *    T = O(NloglogN)
  */
 #include <cstdio>
+#include <cmath>
 
 const int maxn = 1000001;
 int prime[maxn], num = 0;
