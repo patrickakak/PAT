@@ -50,8 +50,8 @@ bigN add(bigN a, bigN b)
 
 bool Judge(bigN a)
 {
-	for (int i = 0; i <= a.len/2; i++)
-		if (a.d[i] != a.d[a.len-1-i])
+	for (int i=0, j=a.len-1; i < j; i++, j--)
+		if (a.d[i] != a.d[j])
 			return false;
 	return true;
 }
