@@ -1,7 +1,5 @@
 /**
- * To select primes,
- * the sieve of Eratosthenes algorithm
- *    T = O(NloglogN)
+ * To select primes
  */
 #include <cstdio>
 #include <cmath>
