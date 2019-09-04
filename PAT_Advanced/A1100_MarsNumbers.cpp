@@ -47,7 +47,7 @@ int main()
 	// freopen("tst.txt", "r", stdin);
 	int T;
 
-	init();
+	init(); 	// print table
 	scanf("%d%*c", &T);
 	while (T--) {
 		string str;
