@@ -56,6 +56,9 @@ using namespace std;
 
 const int N = 2501;
 vector<string> courseStu[N];
+/* Only to store the index of names would be better */
+// char name[maxn][5];
+// vector<int> course[maxc];
 
 int main()
 {
