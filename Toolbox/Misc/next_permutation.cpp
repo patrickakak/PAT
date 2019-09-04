@@ -1,5 +1,7 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+using namespace std;
 
 void swap(char *a, char *b)
 {
@@ -31,10 +33,17 @@ void permutation(char s[], int n)
 int main()
 {
 	char s[100] = "abc";
-	int n;
+	int len = strlen(s);
 
-	n = strlen(s);
-	permutation(s, n);
+	/* Version1: Made by user */
+	// permutation(s, len);
+
+	/* Version2: STL */
+	do {
+		for (int i = 0; i < len; i++)
+			printf("%c", s[i]);
+		printf("\n");
+	} while (next_permutation(s, s+len));
 
 	return 0;
 }
