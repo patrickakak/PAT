@@ -35,7 +35,7 @@ int main()
 	char s[100] = "abc";
 	int len = strlen(s);
 
-	/* Version1: Made by user */
+	/* Version1: Made by me */
 	// permutation(s, len);
 
 	/* Version2: STL */
