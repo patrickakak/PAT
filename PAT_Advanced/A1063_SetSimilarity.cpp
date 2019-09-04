@@ -40,6 +40,7 @@ int main()
 		for ( ; it != st[index1].end(); it++) {
 			int x = *it;
 			// if x is not there, the *iterator returned is the # size of set
+			// you can write as: if (st[index2].find(x) != st[index2].end()) cnt++;
 			if (x == *(st[index2].find(x)))
 				cnt++;
 		}
