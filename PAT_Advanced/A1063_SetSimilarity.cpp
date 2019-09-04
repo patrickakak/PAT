@@ -39,6 +39,7 @@ int main()
 		set<int>::iterator it = st[index1].begin();
 		for ( ; it != st[index1].end(); it++) {
 			int x = *it;
+			// if couldn't find x, than the *iterator returned is the size of set
 			if (x == *(st[index2].find(x)))
 				cnt++;
 		}
