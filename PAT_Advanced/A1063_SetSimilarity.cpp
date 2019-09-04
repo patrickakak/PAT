@@ -42,7 +42,7 @@ int main()
 			if (x == *(st[index2].find(x)))
 				cnt++;
 		}
-		printf("%.1f%%\n", (double)100*cnt/(tot-cnt));
+		printf("%.1f%%\n", (double)100*cnt / (tot-cnt));
 	}
 
 	return 0;
