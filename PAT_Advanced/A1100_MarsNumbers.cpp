@@ -47,8 +47,8 @@ int main()
 	// freopen("tst.txt", "r", stdin);
 	int T;
 
-	init(); 	// print table
-	scanf("%d%*c", &T);
+	init(); 				// print table
+	scanf("%d%*c", &T); 	// * to skip '\n'
 	while (T--) {
 		string str;
 		getline(cin, str);
