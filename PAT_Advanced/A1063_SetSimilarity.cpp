@@ -13,10 +13,7 @@
  * 33.3%
  */
 #include <cstdio>
-#include <cstring>
 #include <set>	// red-black tree
-#include <iostream>
-#include <algorithm>
 using namespace std;
 
 const int maxn = 51;
