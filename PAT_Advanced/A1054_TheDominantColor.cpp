@@ -25,7 +25,7 @@ int main()
 			if (mp.find(num) != mp.end())
 				mp[num]++;
 			else
-				mp[num]=1;
+				mp[num] = 1;
 		}
 	int k = 0, MAX = 0;
 	for (map<int, int>::iterator it=mp.begin(); it != mp.end(); it++)
