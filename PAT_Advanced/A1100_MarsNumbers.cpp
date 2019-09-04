@@ -13,12 +13,12 @@
  * 13
  */
 #include <cstdio>
-#include <map>  // red-black tree
+#include <map> 	// red-black tree
 #include <iostream>
 #include <string>
 using namespace std;
 
-// 0~12 in martian radix
+// 0~12 in Mars number system
 string unit[13] = {"tret", "jan", "feb", "mar", "apr", "may", 
                    "jun", "jly", "aug", "sep", "oct", "nov", "dec"};
 string ten[13] = {"tret", "tam", "hel", "maa", "huh", "tou", 
