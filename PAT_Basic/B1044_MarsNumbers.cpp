@@ -13,16 +13,16 @@
  * 13
  */
 #include <cstdio>
-#include <map>  // red-black tree
+#include <map> 	// red-black tree
 #include <iostream>
 #include <string>
 using namespace std;
 
-// 0~12 in martian radix
+// 0~12 in Mars number system, unit/ten digit
 string unit[13] = {"tret", "jan", "feb", "mar", "apr", "may", 
-                   "jun", "jly", "aug", "sep", "oct", "nov", "dec"};
+	"jun", "jly", "aug", "sep", "oct", "nov", "dec"};
 string ten[13] = {"tret", "tam", "hel", "maa", "huh", "tou", 
-                  "kes", "hei", "elo", "syy", "lok", "mer", "jou"};
+	"kes", "hei", "elo", "syy", "lok", "mer", "jou"};
 string num2Str[170];
 map<string, int> str2Num;
 
@@ -47,7 +47,7 @@ int main()
 	// freopen("tst.txt", "r", stdin);
 	int T;
 
-	init();
+	init(); 	// print table
 	scanf("%d%*c", &T);
 	while (T--) {
 		string str;
@@ -57,16 +57,8 @@ int main()
 			for (int i = 0; i < (int)str.length(); i++)
 				num = num*10 + (str[i]-'0');
 			cout << num2Str[num] << endl;
-		} else {
-			string s1, s2;
-			int k = str.find(' ');
-			if (k != -1) {
-				s1 = str.substr(0, k);
-				s2 = str.substr(k+1, str.length()+1);
-				cout << str2Num[s1] + str2Num[s2] << endl;
-			} else
-				cout << str2Num[str] << endl;
-		}
+		} else
+			cout << str2Num[str] << endl;
 	}
 
 	return 0;
