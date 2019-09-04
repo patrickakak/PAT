@@ -26,7 +26,7 @@ int main()
 			word += str[i];
 			i++;
 		}
-		if (word != "") {
+		if (word != "") { 	// in case string like: "a"
 			if (count.find(word) == count.end()) count[word] = 1;
 			else count[word]++;
 		}
