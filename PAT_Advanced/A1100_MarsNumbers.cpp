@@ -20,9 +20,9 @@ using namespace std;
 
 // 0~12 in Mars number system, unit/ten digit
 string unit[13] = {"tret", "jan", "feb", "mar", "apr", "may", 
-	"jun", "jly", "aug", "sep", "oct", "nov", "dec"};
+                   "jun", "jly", "aug", "sep", "oct", "nov", "dec"};
 string ten[13] = {"tret", "tam", "hel", "maa", "huh", "tou", 
-	"kes", "hei", "elo", "syy", "lok", "mer", "jou"};
+                  "kes", "hei", "elo", "syy", "lok", "mer", "jou"};
 string num2Str[170];
 map<string, int> str2Num;
 
