@@ -21,14 +21,14 @@ string deal(string s, int &e)
 
 	while (s.length() > 0 && s[0] == '0')
 		s.erase(s.begin());
-
-	if (s[0] == '.') {
+	// delete '0' and '.' in string s
+	if (s[0] == '.') {		// less than 1: 0.xxxx
 		s.erase(s.begin());
 		while (s.length() > 0 && s[0] == '0') {
 			s.erase(s.begin());
 			e--;
 		}
-	} else {
+	} else {				// larger than 1: xxx.xxxx
 		while (k < (int)s.length() && s[k] != '.') {
 			k++;
 			e++;
@@ -36,16 +36,16 @@ string deal(string s, int &e)
 		if (k < (int)s.length())
 			s.erase(s.begin() + k);
 	}
-	if (s.length() == 0)
+	if (s.length() == 0)	// get rid of strings like 000.000
 		e = 0;
-	int num = 0;
 	k = 0;
 	string res;
+	int num = 0;
 	while (num < n) {
 		if (k < (int)s.length())
 			res += s[k++];
 		else
-			res += '0';
+			res += '0';		// add effective digits
 		num++;
 	}
 	return res;
