@@ -11,11 +11,6 @@
 #include <string>
 using namespace std;
 
-bool check(char c)
-{
-	return isalnum(c);
-}
-
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
@@ -26,7 +21,7 @@ int main()
 	getline(cin, str);
 	while (i < (int)str.length()) {
 		string word;
-		while (i < (int)str.length() && check(str[i]) == true) {
+		while (i < (int)str.length() && isalnum(str[i])) {
 			str[i] = tolower(str[i]);
 			word += str[i];
 			i++;
@@ -35,7 +30,7 @@ int main()
 			if (count.find(word) == count.end()) count[word] = 1;
 			else count[word]++;
 		}
-		while (i < (int)str.length() && check(str[i]) == false)
+		while (i < (int)str.length() && !isalnum(str[i]))
 			i++;
 	}
 	string ans;
