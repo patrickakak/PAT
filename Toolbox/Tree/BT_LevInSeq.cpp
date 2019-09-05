@@ -1,5 +1,5 @@
 /**
- * Create binary tree by level&in order sequence
+ * Create binary tree with level&in order sequence
  */
 #include <cstdio>
 
@@ -76,8 +76,13 @@ int main()
 		scanf("%d", &in[i]);
 
 	BinTree root = CreatBT(level, in, N);
-	printf("pre:"); preOrder(root); printf("\n");
-	printf("post:"); postOrder(root); printf("\n");
+	printf("pre:");
+	preOrder(root);
+	printf("\n");
+	
+	printf("post:");
+	postOrder(root);
+	printf("\n");
 
 	return 0;
 }
