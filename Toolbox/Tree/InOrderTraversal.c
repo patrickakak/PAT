@@ -1,3 +1,6 @@
+/**
+ * In Order Traversal
+ */
 typedef struct TreeNode *BinTree;
 typedef BinTree Position;
 struct TreeNode {
