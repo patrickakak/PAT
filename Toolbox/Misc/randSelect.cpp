@@ -1,3 +1,6 @@
+/**
+ * To get a random number
+ */
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
