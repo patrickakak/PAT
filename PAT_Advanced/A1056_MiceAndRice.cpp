@@ -37,7 +37,7 @@ int main()
 		for (int i = 0; i < group; i++) {
 			int k = q.front();
 			for (int j = 0; j < ng; j++) {
-				if (i * ng + j >= tmp) break;
+				if (i * ng + j >= tmp) break; 	// last group is less than ng
 				int front = q.front();
 				if (mice[front].weight > mice[k].weight)
 					k = front;
