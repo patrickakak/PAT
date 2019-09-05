@@ -1,6 +1,5 @@
 /**
- * PTA--Data Structures and Algorithms (Chinese version)
- * Maximum Subsequence Sum 
+ * Maximum Subsequence Sum in four ways
  */
 #include <stdio.h>
 
