@@ -21,7 +21,9 @@ void DFS(int index, int sumW, int sumC)
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-
+	// 5 8
+	// 3 5 1 2 2
+	// 4 5 2 1 3
 	scanf("%d%d", &n, &V);
 	for (int i = 0; i < n; i++)
 		scanf("%d", &w[i]);
