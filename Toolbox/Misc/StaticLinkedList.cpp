@@ -1,5 +1,5 @@
 /**
- * Static Lined List
+ * Static Lined List (maxn around 10^5)
  */
 #include <cstdio>
 #include <algorithm>
