@@ -1,5 +1,5 @@
 /**
- * Greatest common divisor
+ * Greatest Common Divisor
  * (Euclidean algorithm)
  */
 #include <cstdio>
