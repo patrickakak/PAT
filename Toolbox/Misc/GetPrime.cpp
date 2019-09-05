@@ -1,5 +1,5 @@
 /**
- * To select primes
+ * To print primes' table
  */
 #include <cstdio>
 #include <cmath>
