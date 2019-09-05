@@ -1,3 +1,6 @@
+/**
+ * Fast Exponentiation
+ */
 #include <cstdio>
 
 typedef long long LL;
