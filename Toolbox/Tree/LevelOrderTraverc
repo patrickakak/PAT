@@ -1,4 +1,6 @@
-/* Level order traversal */
+/**
+ * Level order traversal
+ */
 void LevelOrderTraversal(BinTree BT)
 {
 	Queue Q;
