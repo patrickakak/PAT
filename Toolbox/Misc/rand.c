@@ -1,3 +1,6 @@
+/**
+ * To get a random number
+ */
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
