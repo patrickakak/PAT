@@ -1,3 +1,6 @@
+/**
+ * To get all permutations of an array of chars of ints
+ */
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
