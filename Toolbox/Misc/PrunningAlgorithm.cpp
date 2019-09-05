@@ -10,11 +10,11 @@ int w[maxn], c[maxn];   // weight, cost
 void DFS(int index, int sumW, int sumC)
 {
 	if (index == n) return;
-	DFS(index+1, sumW, sumC);
+	DFS(index + 1, sumW, sumC);
 	if (sumW + w[index] <= V) {
 		if (sumC + c[index] > maxValue)
 			maxValue = sumC + c[index];
-		DFS(index+1, sumW+w[index], sumC+c[index]);
+		DFS(index + 1, sumW + w[index], sumC + c[index]);
 	}
 }
 
