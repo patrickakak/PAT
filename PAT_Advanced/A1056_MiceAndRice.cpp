@@ -30,7 +30,7 @@ int main()
 		scanf("%d", &order);
 		q.push(order);
 	}
-	int tmp = np, group;
+	int tmp = np, group; 	// tmp: # of mice in current round
 	while (q.size() != 1) {
 		if (tmp % ng == 0) group = tmp / ng;
 		else group = tmp / ng + 1;
