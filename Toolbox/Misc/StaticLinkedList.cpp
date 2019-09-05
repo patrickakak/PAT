@@ -9,7 +9,7 @@ using namespace std;
 struct Node {
 	int addr;		// address
 	typename data;
-	int next;		// pointer: -1 to end usually
+	int next;		// NULL: -1 to end
 	typename XXX;	// property/flag
 } node[maxn];
 int count = 0;		// # of valid nodes
@@ -17,7 +17,7 @@ int count = 0;		// # of valid nodes
 void init()
 {
 	for (int i = 0; i < maxn; i++)
-		node[i].XXX = -1;	// less than any resonable num (to help sort())
+		node[i].XXX = maxn; 	// set all nodes invalid (to sort() later)
 }
 
 void traverse(int begin)
@@ -32,8 +32,8 @@ void traverse(int begin)
 
 bool cmp(Node a, Node b)
 {
-	if (a.XXX == -1 || b.XXX == -1)		// degrade invalid nodes
-		return a.XXX > b.XXX;
+	if (a.XXX != b.XXX)		// degrade invalid nodes
+		return a.XXX < b.XXX;
 	else {
 		// sort valid nodes as you want
 	}
