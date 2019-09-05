@@ -33,10 +33,8 @@ bool cmp(Node a, Node b)
 
 void init()
 {
-	for (int i = 0; i < maxn; i++) {
+	for (int i = 0; i < maxn; i++)
 		node[i].order = 2 * maxn;
-		isExist[i] = false;
-	}
 }
 
 int main()
