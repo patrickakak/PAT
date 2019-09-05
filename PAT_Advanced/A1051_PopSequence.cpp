@@ -28,7 +28,7 @@ int main()
 	int m, n, k;
 
 	scanf("%d%d%d", &m, &n, &k);
-	for (int i=0; i<k; i++) {
+	for (int i = 0; i < k; i++) {
 		while (!s.empty())	// clear stack once again
 			s.pop();
 		for (int j = 0; j < n; j++)
