@@ -1,5 +1,5 @@
 /**
- * Threaded Binary Tree w/ Pre-threading
+ * Threaded Binary Tree w/ Post-threading
  */
 #include <stdio.h>
 #include <stdlib.h>
