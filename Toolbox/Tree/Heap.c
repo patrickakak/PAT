@@ -1,18 +1,18 @@
 /**
- * Heap implementation: 
+ * IMPLEMENTATION OF Heap
  */
 
 typedef int ElementType;
 typedef struct HeapStruct *Heap;	/* Definition of heap */
 struct HeapStruct {
-	ElementType *Elements;	/* Array to store elements */
-	int Size;	/* Current number of elements in heap */
-	int Capacity;	/* Maximum capacity of heap */
+	ElementType *Elements; 			/* Array to store elements */
+	int Size;						/* Current number of elements in heap */
+	int Capacity;					/* Maximum capacity of heap */
 };
 typedef Heap MaxHeap;
 typedef Heap MinHeap;
 
-#define MaxData 10000	/* Should be larger than every possible elements */
+#define MaxData 10000		/* Should be larger than every possible elements */
 #define ERROR -1
 
 
@@ -29,11 +29,10 @@ MaxHeap Create(int MaxSize)
 	return H;
 }
 
+/* Insert item into MaxHeap, H->Elements[0] has been set */
 bool Insert(MaxHeap H, ElementType item)
 {
-	/* Insert item into MaxHeap, H->Elements[0] has been set */
 	int p;
-
 	if (IsFull(H)) {
 		printf("MaxHeap is full!\n");
 		return false;
@@ -117,16 +116,14 @@ void PercolateDown(int p, MaxHeap H)
 	int Parent, Child;
 
 	/* 'Parent*2 <= H->Size' to find out if there is a left child,
-	 * 'Parent=Child' to jump into the larger child's position */
-
+	 * 'Parent=Child' to jump into the larger child's position 
+	 */
 	for (Parent = p; Parent*2 <= H->Size; Parent = Child) {
 		Child = Parent * 2;
 		if (Child != H->Size && H->Elements[Child] < H->Elements[Child+1])
 			Child++;	/* Child point to the larger one of two children */
-		if (Tmp >= H->Elements[Child])
-			break;
-		else
-			H->Elements[Parent] = H->Elements[Child];
+		if (Tmp >= H->Elements[Child]) break;
+		else H->Elements[Parent] = H->Elements[Child];
 	}
 	H->Elements[Parent] = Tmp;
 }
