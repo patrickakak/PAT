@@ -26,3 +26,10 @@ SetName Find(SetType S, ElementType X)
 	else return S[X] = Find(S, S[X]); 	/* Path compression */
 }
 
+void Init(SetType S, int N)
+{
+	int i;
+	for (i = 0; i < N; i++)
+		S[i] = -1;
+}
+
