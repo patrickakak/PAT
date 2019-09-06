@@ -17,6 +17,7 @@ using namespace std;
 int n, k, p, maxFacSum = -1;
 vector<int> fac, ans, tmp;
 
+// get x^p
 int power(int x)
 {
 	int ans = 1;
@@ -25,6 +26,7 @@ int power(int x)
 	return ans;
 }
 
+// store x^p in vector fac
 void init()
 {
 	int i = 0, tmp = 0;
@@ -39,16 +41,16 @@ void DFS(int index, int nowK, int sum, int facSum)
 	if (sum == n && nowK == k) {
 		if (facSum > maxFacSum) {
 			ans = tmp;
-			maxFacSum=facSum;
+			maxFacSum = facSum;
 		}
 		return;
 	}
 	if (sum > n || nowK > k) return;
-	if (index-1 >= 0) {
+	if (index - 1 >= 0) { 	// fac[0] is ignored
 		tmp.push_back(index);
 		DFS(index, nowK + 1, sum + fac[index], facSum + index);
 		tmp.pop_back();
-		DFS(index-1, nowK, sum, facSum);
+		DFS(index - 1, nowK, sum, facSum);
 	}
 }
 
