@@ -18,11 +18,10 @@
 #include <queue>
 using namespace std;
 
-#define maxn 110
+#define maxn 15
 struct Node {
 	int l, r;
 } node[maxn];
-bool notRoot[maxn] = {false};
 int n, num = 0;
 
 int cntNode(int i)
