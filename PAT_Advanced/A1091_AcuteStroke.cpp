@@ -42,6 +42,7 @@ bool judge(int x, int y, int z)
 	return true;
 }
 
+// get volume of the current block
 int BFS(int x, int y, int z)
 {
 	int tot = 0;
