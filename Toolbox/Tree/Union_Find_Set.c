@@ -26,7 +26,7 @@ void Union(SetType S, SetName Root1, SetName Root2)
 	}
 }
 
-/* Set all elements in the set as -1 */
+/* Find the 1st ancestor of element X: index of root */
 SetName Find(SetType S, ElementType X)
 {
 	if (S[X] < 0) return X; 		/* Find the root of Set */
