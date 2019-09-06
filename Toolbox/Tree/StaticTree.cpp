@@ -28,6 +28,7 @@ void PreOrder(int root)
 		PreOrder(node[root].child[i]);
 }
 
+// Levelorder of tree resembles the process of BFS
 void LevelOrder(int root)
 {
 	queue<int> Q;
