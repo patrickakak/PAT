@@ -16,17 +16,18 @@ struct BNode {
 
 BinTree CreatBT(int pre[], int in[], int preL, int preR, int inL, int inR)
 {
-	if (preL > preR)
-		return NULL;
+	if (preL > preR) return NULL; 	// length is less than 0
+	
 	BinTree newNode = new BNode;
 	newNode->data = pre[preL];
 	int k;
 	for (k = inL; k <= inR; k++)
-		if (in[k] == pre[preL])
-			break;
+		if (in[k] == pre[preL]) break;
+	
 	int numLeft = k - inL;
 	newNode->left = CreatBT(pre, in, preL+1, preL+numLeft, inL, k-1);
 	newNode->right = CreatBT(pre, in, preL+numLeft+1, preR, k+1, inR);
+	
 	return newNode;
 }
 
