@@ -20,6 +20,7 @@ int newNode(int v)
 	return index++;
 }
 
+// Preorder or tree resembles the process of DFS
 void PreOrder(int root)
 {
 	printf("%d ", node[root].data);
