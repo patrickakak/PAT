@@ -26,7 +26,7 @@ int power(int x)
 	return ans;
 }
 
-// store x^p in vector fac
+// store x^p in vector fac if it's less than n
 void init()
 {
 	int i = 0, tmp = 0;
