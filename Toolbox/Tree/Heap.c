@@ -22,7 +22,7 @@ typedef Heap MinHeap;
 MaxHeap Create(int MaxSize)
 {
 	MaxHeap H = (MaxHeap) malloc(sizeof(struct HeapStruct));
-	H->Elements = (ElementType *) malloc((MaxSize + 1)*sizeof(ElementType));
+	H->Elements = (ElementType *) malloc((MaxSize+1) * sizeof(ElementType));
 	H->Size = 0;
 	H->Capacity = MaxSize;
 	H->Elements[0] = MaxData;	/* Set a sentinel */
@@ -68,8 +68,7 @@ bool IsEmpty(MaxHeap H)
 	return H->Size == 0;
 }
 
-/**
- * We can get T = O(N) rather by using Insert function to get T = O(NlogN)
+/* We can get T = O(N) rather by using Insert function to get T = O(NlogN)
  * Prerequisite: Knowing the number of input beforehand 
  */
 MaxHeap BuildHeap(int N)
@@ -82,8 +81,7 @@ MaxHeap BuildHeap(int N)
 		scanf("%d", &H->Elements[i]);
 		H->Size++;
 	}
-	/**
-	 * Build a MaxHeap in this way, in the worst case, the time that we need 
+	/* Build a MaxHeap in this way, in the worst case, the time that we need 
 	 * to move elements of Heap equals to the sum of every node heights:
 	 *     eg. X = [logN], (full binary tree)
 	 *     2^0*X + 2^1*(X-1) + 2^2*(X-2) + ... + 2^(X-1) * (X-(X-1))
@@ -103,7 +101,6 @@ void PercolateUp(int p, MaxHeap H)
 	ElementType Tmp;
 
 	/* If parent node is smaller, drag it down along the path to the root */
-
 	for (i=p, Tmp=H->Elements[p]; H->Elements[i/2] < Tmp; i /= 2)
 		H->Elements[i] = H->Elements[i/2];
 	H->Elements[i] = Tmp;
