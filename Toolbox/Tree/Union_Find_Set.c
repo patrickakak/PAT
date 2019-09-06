@@ -1,15 +1,22 @@
 /**
- * IMPLIMENTATION OF UNION-FIND-SET
+ * IMPLIMENTATION OF Union-Find-Set
  */
 #define MAXN 1000
-typedef int ElementType;	/* Non-negative integer to present normal element */
+typedef int ElementType;	/* Elements are non-negative integers */
 typedef int SetName;		/* Use index of root as the name of Set */
 typedef ElementType SetType[MAXN];
 
-/* Root1 and Root2 are root of different set by assumption */
+void Init(SetType S, int N)
+{
+	int i;
+	for (i = 0; i < N; i++)
+		S[i] = -1;
+}
+
+/* Prerequisite: Root1 and Root2 are root of different set */
 void Union(SetType S, SetName Root1, SetName Root2)
 {
-	/* To promise merge the smaller one into the larger one */
+	/* Merge the smaller one into the larger one */
 	if (S[Root2] < S[Root1]) {		/* Set2 is larger */
 		S[Root2] += S[Root1];		/* Merge into Set2 */
 		S[Root1] = Root2;
@@ -26,10 +33,4 @@ SetName Find(SetType S, ElementType X)
 	else return S[X] = Find(S, S[X]); 	/* Path compression */
 }
 
-void Init(SetType S, int N)
-{
-	int i;
-	for (i = 0; i < N; i++)
-		S[i] = -1;
-}
 
