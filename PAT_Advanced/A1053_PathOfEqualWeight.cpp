@@ -38,11 +38,9 @@ int path[MAXN];
 
 void DFS(int index, int numNode, int sum)
 {
-	if (sum > S)
-		return;
+	if (sum > S) return;
 	if (sum == S) {
-		if (Node[index].child.size() != 0)
-			return;
+		if (Node[index].child.size() != 0) return;
 		for (int i = 0; i < numNode; i++) {
 			printf("%d", Node[path[i]].weight);
 			if (i < numNode-1) printf(" ");
@@ -53,7 +51,7 @@ void DFS(int index, int numNode, int sum)
 	for (int i = 0; i < (int)Node[index].child.size(); i++) {
 		int child = Node[index].child[i];
 		path[numNode] = child;
-		DFS(child, numNode+1, sum+Node[child].weight);
+		DFS(child, numNode + 1, sum + Node[child].weight);
 	}
 }
 
