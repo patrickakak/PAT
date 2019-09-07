@@ -1,5 +1,6 @@
 /**
- * Graph adjacency matrix implementation (suit for dense graph):
+ * Graph adjacency matrix implementation:
+ * (suit for dense graph and vertices are around 1000 at maximum)
  * Time complexity: T = O(N^2)
  */ 
 
