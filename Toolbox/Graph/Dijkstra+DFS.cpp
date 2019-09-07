@@ -39,3 +39,24 @@ void Dijkstra(int s)
 	}
 }
 
+int start, end;				// starting/ending vertex
+int optValue;				// second measurement
+vector<int> path, tmpPath;	// elements in tmpPath is in reversed order
+void DFS(int v)
+{
+	if (v == start) {
+		tmpPath.push_back(v);
+		int value;
+		if (value better than optValue) {
+			optValue = value;
+			path = tmpPath;
+		}
+		tmpPath.pop_back();
+		return;
+	}
+	tmpPath.push_back(v);
+	for (int i = 0; i < pre[v].size(); i++)
+		DFS(pre[v][i]);
+	tmpPath.pop_back();
+}
+
