@@ -18,74 +18,60 @@
 #include <algorithm>
 using namespace std;
 
-const int N = 1010;
-int father[N];
-int isRoot[N] = {0};
-int course[N] = {0};
+const int maxn = 1010;
+int S[maxn], hobby[maxn];
 
-int findFather(int x)
+void init()
 {
-	int a = x;
-	while (x != father[x])
-		x = father[x];
-	while (a != father[a]) {
-		int z = a;
-		a = father[a];
-		father[z] = x;
-	}
-	return x;
-}
-
-void Union(int a, int b)
-{
-	int faA = findFather(a);
-	int faB = findFather(b);
-	if (faA != faB)
-		father[faA] = faB;
-}
-
-void init(int n)
-{
-	for (int i = 1; i <= n; i++) {
-		father[i] = i;
-		isRoot[i] = false;
+	for (int i = 0; i < maxn; i++) {
+		hobby[i] = -1;
+		S[i] = -1;
 	}
 }
 
-bool cmp(int a, int b)
+int Find(int x)
 {
-	return a > b;
+	if (S[x] < 0) return x;
+	else return S[x] = Find(S[x]);
+}
+
+void Union(int Root1, int Root2)
+{
+	if (S[Root2] < S[Root1]) {
+		S[Root2] += S[Root1];
+		S[Root1] = Root2;
+	} else {
+		S[Root1] += S[Root2];
+		S[Root2] = Root1;
+	}
 }
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int n, k, h;
+	int n, k, h, num = 0;
 
+	init();
 	scanf("%d", &n);
-	init(n);
 	for (int i = 1; i <= n; i++) {
 		scanf("%d:", &k);
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &h);
-			if (course[h] == 0)
-				course[h] = i;
-			Union(i, findFather(course[h]));
+			if (hobby[h] == -1) hobby[h] = i;
+			else Union(Find(i), Find(hobby[h]));
 		}
 	}
 	for (int i = 1; i <= n; i++)
-		isRoot[findFather(i)]++;
-	int ans = 0;
-	for (int i = 1; i <= n; i++)
-		if (isRoot[i] != 0) ans++;
-	printf("%d\n", ans);
-	sort(isRoot+1, isRoot+n+1, cmp);
-	for (int i = 1; i <= ans; i++) {
-		printf("%d", isRoot[i]);
-		if (i < ans) printf(" ");
+		if (S[i] < 0) num++;
+	sort(S + 1, S + n + 1);
+	printf("%d\n", num);
+	for (int i = 1; i <= num; i++) {
+		printf("%d", -S[i]);
+		if (i < num) printf(" ");
 	}
 
 	return 0;
 }
+
 
 
