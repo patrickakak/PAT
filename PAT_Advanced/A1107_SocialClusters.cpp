@@ -68,9 +68,8 @@ int main()
 		scanf("%d:", &k);
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &h);
-			if (course[h] == 0) {
+			if (course[h] == 0)
 				course[h] = i;
-			}
 			Union(i, findFather(course[h]));
 		}
 	}
