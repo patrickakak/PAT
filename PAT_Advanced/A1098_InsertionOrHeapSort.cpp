@@ -53,8 +53,8 @@ bool insertSort()
 
 void downAdjust(int low, int high)
 {
-	int i = low, j = i * 2;
-	while (j <= high) {
+	int i = low, j = i * 2; 	// i: node to be adjusted; j: left child
+	while (j <= high) { 		// there is a left child
 		if (j+1 <= high && tmpOri[j+1] > tmpOri[j])
 			j++;
 		if (tmpOri[j] > tmpOri[i]) {
