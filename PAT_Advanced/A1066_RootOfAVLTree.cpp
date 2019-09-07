@@ -77,9 +77,9 @@ void insert(BT &root, int v)
 		insert(root->l, v);
 		updateHeight(root);
 		if (getBalanceFactor(root) == 2) {
-			if (getBalanceFactor(root->l) == 1)
+			if (getBalanceFactor(root->l) == 1)				// LL
 				R(root);
-			else if (getBalanceFactor(root->l) == -1) {
+			else if (getBalanceFactor(root->l) == -1) {		// LR
 				L(root->l);
 				R(root);
 			}
@@ -88,9 +88,9 @@ void insert(BT &root, int v)
 		insert(root->r, v);
 		updateHeight(root);
 		if (getBalanceFactor(root) == -2) {
-			if (getBalanceFactor(root->r) == -1)
+			if (getBalanceFactor(root->r) == -1)			// RR
 				L(root);
-			else if (getBalanceFactor(root->r) == 1) {
+			else if (getBalanceFactor(root->r) == 1) {		// RL
 				R(root->r);
 				L(root);
 			}
