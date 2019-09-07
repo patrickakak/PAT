@@ -39,6 +39,16 @@ void Dijkstra(int s)
 	}
 }
 
+/**           V7
+ *           /  \           pre[7] = {5, 6}  (Ending vertex)
+ *        V5    V6          pre[6] = {3, 4}
+ *         |    / \         pre[5] = {1}
+ *        V1   V3  V4       pre[4] = {2}
+ *              |  |        pre[3] = {2}
+ *             V2  V2       pre[2] = {1}
+ *              |  |        pre[1] = {1}     (Starting vertex)
+ *             V1  V1
+ */
 int start, end;				// starting/ending vertex
 int optValue;				// second measurement
 vector<int> path, tmpPath;	// elements in tmpPath is in reversed order
