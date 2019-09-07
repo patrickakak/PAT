@@ -34,7 +34,7 @@ void DFS(int index, int depth)
 		ans += node[index].data * pow(1+r, depth);
 		return;
 	}
-	for (int i = 0; i < node[index].child.size(); i++)
+	for (int i = 0; i < (int)node[index].child.size(); i++)
 		DFS(node[index].child[i], depth+1);
 }
 
@@ -47,7 +47,7 @@ int main()
 	r /= 100;
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &k);
-		if (k == 0)
+		if (k == 0) 	// leaf
 			scanf("%lf", &node[i].data);
 		else
 			for (int j = 0; j < k; j++) {
