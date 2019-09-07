@@ -20,7 +20,7 @@ typedef struct Node *BT;
 struct Node {
 	int v, ht;	// height
 	BT l, r;	// left, right
-} *root;
+} *root = NULL;
 
 BT newNode(int v)
 {
