@@ -22,9 +22,9 @@ void permutation(char s[], int n)
 		printf("%s\n", s);
 	else
 		for (i = 0; i < n; ++i) {
-			swap(&s[i], &s[n-1]);
+			swap(s[i], s[n-1]);
 			permutation(s, n-1);
-			swap(&s[i], &s[n-1]);
+			swap(s[i], s[n-1]);
 		}
 }
 
@@ -49,24 +49,29 @@ void getPermu(int index, int n, char A[])
 		}
 }
 
+/* Version3: STL */
+void Permu3(char *s, int len)
+{
+	do {
+		for (int i = 0; i < len; i++)
+			printf("%c", s[i]);
+		printf("\n");
+	} while (next_permutation(s, s+len));
+}
 
 int main()
 {
 	char s[100] = "abc";
 	int len = strlen(s);
 
-	/* Version1: Made by me */
+	/* Version1: using swap */
 	// permutation(s, len);
 	
 	/* Version2: using hash */
 	// getPermu(0, len, s);
 
 	/* Version3: STL */
-	do {
-		for (int i = 0; i < len; i++)
-			printf("%c", s[i]);
-		printf("\n");
-	} while (next_permutation(s, s+len));
+	Permu3(s, len);
 
 	return 0;
 }
