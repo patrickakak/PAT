@@ -6,11 +6,6 @@
 #include <algorithm>
 using namespace std;
 
-void swap(char *a, char *b)
-{
-	char tmp;
-	tmp = *a; *a = *b; *b = tmp;
-}
 
 /* n as the number of characters in string, thus
  * n=1 means this time, one perticular permutation is done
@@ -33,6 +28,28 @@ void permutation(char s[], int n)
 		}
 }
 
+// Version 2: using hash
+#define maxn 100
+bool hashTbl[maxn] = {false};
+char result[maxn];
+void getPermu(int index, int n, char A[])
+{
+	if (index == n) {
+		for (int i = 0; i < n; i++)
+			printf("%c", result[i]);
+		printf("\n");
+		return ;
+	}
+	for (int i = 0; i < n; i++)
+		if (hashTbl[i] == false) {
+			result[index] = A[i];
+			hashTbl[i] = true;
+			getPermu(index+1, n, A);
+			hashTbl[i] = false;
+		}
+}
+
+
 int main()
 {
 	char s[100] = "abc";
@@ -40,8 +57,11 @@ int main()
 
 	/* Version1: Made by me */
 	// permutation(s, len);
+	
+	/* Version2: using hash */
+	// getPermu(0, len, s);
 
-	/* Version2: STL */
+	/* Version3: STL */
 	do {
 		for (int i = 0; i < len; i++)
 			printf("%c", s[i]);
