@@ -9,7 +9,7 @@
  * Mike CS991301
  * Joe Math990112
  */
-#include <stdio.h>
+#include <cstdio>
 
 #define max_n 1000
 #define MaxL 16
