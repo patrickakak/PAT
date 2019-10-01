@@ -9,7 +9,7 @@
  * Sample output2:
  * SS123
  */
-#include <stdio.h>
+#include <cstdio>
 
 int main()
 {
