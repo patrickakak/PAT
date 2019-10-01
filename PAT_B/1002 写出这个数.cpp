@@ -5,7 +5,7 @@
  * Sample output:
  * yi san wu
  */
-#include <stdio.h>
+#include <cstdio>
 
 char pinyin[11][5] = {"ling", "yi", "er", "san", "si", 
                       "wu", "liu", "qi", "ba", "jiu", "shi"};
