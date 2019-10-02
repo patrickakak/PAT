@@ -13,7 +13,6 @@
  */
 #include <stdio.h>
 
-
 int isPalindrom(int no[], int N)
 {
 	int i, j;
