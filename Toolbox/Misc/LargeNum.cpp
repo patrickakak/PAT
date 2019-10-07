@@ -66,6 +66,8 @@ largeNum sub(largeNum a, largeNum b)
 	return c;
 }
 
+// since we add one 'whole' integer b at a time, we must 
+// use loop when handling carry digits
 largeNum multi(largeNum a, int b)
 {
 	largeNum c;
