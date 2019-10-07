@@ -14,6 +14,7 @@ struct largeNum {
 	}
 };
 
+// change string into bunch of digits (inversely)
 largeNum change(char str[])
 {
 	largeNum a;
