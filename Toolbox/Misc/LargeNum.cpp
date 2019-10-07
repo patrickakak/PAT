@@ -1,29 +1,29 @@
 /**
- * Big number calculation (integer w/ more than 1000 digits)
+ * Large number calculation (integer w/ more than 1000 digits)
  */
 #include <cstdio>
 #include <cstring>
 
 #define maxn 1010
-struct bigNum {
+struct largeNum {
 	int d[maxn];
 	int len;
-	bigNum() {
+	largeNum() {
 		memset(d, 0, sizeof(d));
 		len = 0;
 	}
 };
 
-bigNum change(char str[])
+largeNum change(char str[])
 {
-	bigNum a;
+	largeNum a;
 	a.len = strlen(str);
 	for (int i = 0; i < a.len; i++)
 		a.d[i] = str[a.len-i-1] - '0';
 	return a;
 }
 
-int compare(bigNum a, bigNum b)
+int compare(largeNum a, largeNum b)
 {
 	if (a.len > b.len) return 1;
 	else if (a.len < b.len) return -1;
@@ -35,9 +35,9 @@ int compare(bigNum a, bigNum b)
 	}
 }
 
-bigNum add(bigNum a, bigNum b)
+largeNum add(largeNum a, largeNum b)
 {
-	bigNum c;
+	largeNum c;
 	int carry = 0;
 	for (int i = 0; i < a.len || i < b.len; i++) {
 		int tmp = a.d[i] + b.d[i] + carry;
@@ -50,9 +50,9 @@ bigNum add(bigNum a, bigNum b)
 }
 
 // Caution: a > b
-bigNum sub(bigNum a, bigNum b)
+largeNum sub(largeNum a, largeNum b)
 {
-	bigNum c;
+	largeNum c;
 	for (int i = 0; i < a.len || i < b.len; i++) {
 		if (a.d[i] < b.d[i]) {
 			a.d[i+1]--;
@@ -65,9 +65,9 @@ bigNum sub(bigNum a, bigNum b)
 	return c;
 }
 
-bigNum multi(bigNum a, int b)
+largeNum multi(largeNum a, int b)
 {
-	bigNum c;
+	largeNum c;
 	int carry = 0;
 	for (int i = 0; i < a.len; i++) {
 		int tmp = a.d[i] * b + carry;
@@ -83,9 +83,9 @@ bigNum multi(bigNum a, int b)
 
 // r: remainder (should be 0 when invoking divide())
 // c: quotient
-bigNum divide(bigNum a, int b, int &r)
+largeNum divide(largeNum a, int b, int &r)
 {
-	bigNum c;
+	largeNum c;
 	c.len = a.len;
 	for (int i = a.len-1; i >= 0; i--) {
 		r = r * 10 + a.d[i];
@@ -100,7 +100,7 @@ bigNum divide(bigNum a, int b, int &r)
 	return c;
 }
 
-void print(bigNum a)
+void print(largeNum a)
 {
 	for (int i = a.len-1; i >= 0; i--)
 		printf("%d", a.d[i]);
@@ -114,8 +114,8 @@ int main()
 
 	scanf("%s", str);
 	scanf("%d", &num);
-	bigNum a = change(str);
-	bigNum b = multi(a, num);
+	largeNum a = change(str);
+	largeNum b = multi(a, num);
 	print(b);
 
 	return 0;
