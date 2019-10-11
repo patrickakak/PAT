@@ -9,7 +9,7 @@ using namespace std;
 typedef long long ll;
 struct Fraction {
 	ll up, down;
-} a, b;
+};
 
 ll gcd(ll a, ll b)
 {
