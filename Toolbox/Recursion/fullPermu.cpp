@@ -4,10 +4,10 @@
 #include <cstdio>
 #include <cstring>
 
-
 #define maxn 100
 bool hashTbl[maxn] = {false};
 char result[maxn];
+
 void getPermu(int index, int n, char A[])
 {
 	if (index == n) {
@@ -27,7 +27,7 @@ void getPermu(int index, int n, char A[])
 
 int main()
 {
-	char s[100] = "abcd";
+	char s[maxn] = "abcd";
 
 	int len = strlen(s);
 	getPermu(0, len, s);
