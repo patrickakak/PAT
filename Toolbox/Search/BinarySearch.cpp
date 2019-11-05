@@ -36,10 +36,9 @@ int BinarySearch(List Tbl, ElementType K)
  * the inicial left and right should be 0 and n respectively */
 int lower_bound(int A[], int left, int right, int x)
 {
-	int mid;
 	// Search in [left, right]
 	while (left < right) {	// "left=right" to quit
-		mid = left + (right-left)/2;
+		int mid = left + (right-left)/2;
 		if (A[mid] >= x)
 			right = mid;	// then in [left, mid]
 		else
@@ -48,13 +47,10 @@ int lower_bound(int A[], int left, int right, int x)
 	return left;	// Can also be "return right"
 }
 
-/* Same as lower_bound() */
 int upper_bound(int A[], int left, int right, int x)
 {
-	int mid;
-	// Search in [left, right]
 	while (left < right) {
-		mid = left + (right-left)/2;
+		int mid = left + (right-left)/2;
 		if (A[mid] > x)		// diff from lower_bound
 			right = mid;
 		else
@@ -67,10 +63,9 @@ int upper_bound(int A[], int left, int right, int x)
  * a given condition in a ordered sequence */
 int solve(int left, int right)
 {
-	int mid;
 	// Search in [left, right]
 	while (left < right) {
-		mid = left + (right-left)/2;
+		int mid = left + (right-left)/2;
 		if (Condition satisfied)	// or !Condition
 			right = mid;
 		else
