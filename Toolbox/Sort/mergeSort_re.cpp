@@ -17,15 +17,11 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 	NumElements = RightEnd - L + 1;
 
 	while (L <= LeftEnd && R <= RightEnd)
-		if (A[L] <= A[R])
-			TmpA[Tmp++] = A[L++];	/* Copy elements in left part into TmpA */
-		else
-			TmpA[Tmp++] = A[R++];	/* Copy elements in right part into TmpA */
+		if (A[L] <= A[R]) TmpA[Tmp++] = A[L++];
+		else TmpA[Tmp++] = A[R++];
 
-	while (L <= LeftEnd)
-		TmpA[Tmp++] = A[L++];	/* Copy the leftover of left part */
-	while (R <= RightEnd)
-		TmpA[Tmp++] = A[R++];	/* Copy the leftover of right part */
+	while (L <= LeftEnd) TmpA[Tmp++] = A[L++];
+	while (R <= RightEnd) TmpA[Tmp++] = A[R++];
 
 	/* Copy ordered sequence from TmpA[] to A[] */
 	for (i = 0; i < NumElements; i++, RightEnd--)
@@ -37,8 +33,8 @@ void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 {
 	if (L < RightEnd) {
 		int Centre = (L + RightEnd)/2;
-		Msort(A, TmpA, L, Centre);	/* Handle the left part recursively */ 
-		Msort(A, TmpA, Centre+1, RightEnd);		/* Handle the right part */
+		Msort(A, TmpA, L, Centre);
+		Msort(A, TmpA, Centre+1, RightEnd);
 		Merge(A, TmpA, L, Centre+1, RightEnd);	/* Merge two sequences */ 
 	}
 }
