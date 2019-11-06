@@ -94,7 +94,7 @@ void mergeSort(int A[], int n)
 // Favorable
 void mergeSort(int A[], int n)
 {
-	for (int step = 2; step/2 < n; step *= 2)
+	for (int step = 2; step/2 < n; step *= 2) {
 		for (int i = 0; i < n; i += step)
 			sort(A+i, A+min(i+step, n));
 		// Do something
