@@ -1,5 +1,5 @@
 /**
- * Merge sort (stable):
+ * Merge sort (stable): Iterative version
  * Worst: Tw = O(NlogN), usually be used as a way of external sort
  * extra S = O(N)
  */
@@ -11,13 +11,11 @@ void Merge1(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 
 	LeftEnd = R - 1;	/* The end position of left part */
 	Tmp = L;	/* The starting position of ordered sequence */
-
 	while (L <= LeftEnd && R <= RightEnd)
 		if (A[L] <= A[R])
 			TmpA[Tmp++] = A[L++];	/* Copy elements in left part into TmpA */
 		else
 			TmpA[Tmp++] = A[R++];	/* Copy elements in right part into TmpA */
-
 	while (L <= LeftEnd)
 		TmpA[Tmp++] = A[L++];	/* Copy the leftover of left part */
 	while (R <= RightEnd)
@@ -73,7 +71,7 @@ void Merge_Sort(ElementType A[], int N)
 void merge(int A[], int L1, int R1, int L2, int R2)
 {
 	int i = L1, j = L2;
-	int temp[maxn], index =0;
+	int temp[maxn], index = 0;
 	while (i <= R1 && j <= R2)
 		if (A[i] <= A[j]) temp[index++] = A[i++];
 		else temp[index++] = A[j++];
