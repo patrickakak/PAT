@@ -1,5 +1,5 @@
 /**
- * Merge sort (stable): 
+ * Merge sort (stable): Recursive version
  * Worst: Tw = O(NlogN), extra S = O(N)
  *
  * Recursive version: L equals to the starting index of left part, R equals to 
@@ -35,10 +35,8 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd)
 /* The core merge sort function */
 void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 {
-	int Centre;
-
 	if (L < RightEnd) {
-		Centre = (L + RightEnd)/2;
+		int Centre = (L + RightEnd)/2;
 		Msort(A, TmpA, L, Centre);	/* Handle the left part recursively */ 
 		Msort(A, TmpA, Centre+1, RightEnd);		/* Handle the right part */
 		Merge(A, TmpA, L, Centre+1, RightEnd);	/* Merge two sequences */ 
@@ -48,11 +46,8 @@ void Msort(ElementType A[], ElementType TmpA[], int L, int RightEnd)
 /* Unified interface */
 void MergeSort(ElementType A[], int N)
 {
-	ElementType *TmpA;
-
 	/* To avoid malloc and free repeatedly */
-	TmpA = (ElementType *) malloc(N * sizeof(ElementType));
-
+	ElementType *TmpA = (ElementType *) malloc(N * sizeof(ElementType));
 	if (TmpA != NULL) {
 		Msort(A, TmpA, 0, N-1);
 		free(TmpA);
