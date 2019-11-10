@@ -50,7 +50,7 @@ largeNum add(largeNum a, largeNum b)
 	return c;
 }
 
-// Caution: a > b
+// Caution: a >= b by default
 largeNum sub(largeNum a, largeNum b)
 {
 	largeNum c;
