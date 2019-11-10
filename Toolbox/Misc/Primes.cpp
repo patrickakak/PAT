@@ -9,7 +9,7 @@ int prime[maxn], num = 0;
 bool p[maxn] = {0};
 
 // Eratosthenes sieve: T = O(nloglogn)
-void EratosthenesSieve()
+void Eratosthenes()
 {
 	for (int i = 2; i < maxn; i++)
 		if (p[i] == false) {
@@ -21,7 +21,7 @@ void EratosthenesSieve()
 
 // Euler sieve method: T = O(n)
 bool visit[maxn] = {0};
-void EulerSieve()
+void Euler()
 {
 	for (int i = 2; i < maxn; i++) {
 		if (!visit[i])
@@ -44,7 +44,7 @@ bool isPrime(int n)
 }
 
 // T = O(n * sqrt(n)), works fine if maxn < 10^5
-void Naive_Find_Prime()
+void Naive()
 {
 	for (int i = 1; i < maxn; i++)
 		if (isPrime(i)) {
@@ -55,9 +55,9 @@ void Naive_Find_Prime()
 
 int main()
 {
-	// EratosthenesSieve();
-	EulerSieve();
-	// Naive_Find_Prime();
+	// Eratosthenes();
+	Euler();
+	// Naive();
 
 	for (int i = 0; i < num; i++)
 		printf("%d ", prime[i]);
