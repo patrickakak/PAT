@@ -41,7 +41,7 @@ int main()
 		printf("%d=", n);
 		int sqr = (int)sqrt(1.0 * n);
 		// If there's a prime factor of n, then:
-		//   1: all primes of n must be smaller than sqrt(n) or...
+		//   1: all prime factors of n are smaller than sqrt(n) or...
 		//   2: there's only one prime larger than sqrt(n)
 		for (int i = 0; i < pNum && prime[i] <= sqr; i++) {
 			if (n % prime[i] == 0) {
