@@ -7,10 +7,6 @@
  * Note: but in fact, it's not that useful, Sedgewick sequence 
  * Shell sort normally is better.
  */
-void Swap(ElementType *a, ElementType *b)
-{
-	ElementType t = *a; *a = *b; *b = t;
-}
 
 /* Re-organize N elements in array A[] to be a MaxHeap(A[p] as root) */
 void PercDown(ElementType A[], int p, int N)
