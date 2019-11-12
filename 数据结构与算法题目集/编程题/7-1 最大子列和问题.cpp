@@ -4,7 +4,7 @@
  * Sample Output: 
  * 20
  */
-#include <stdio.h>
+#include <cstdio>
 
 #define MAXK 100000
 
