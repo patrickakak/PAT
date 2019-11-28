@@ -1,22 +1,6 @@
-/* Sample Input:
- * 00100 6 4
- * 00000 4 99999
- * 00100 1 12309
- * 68237 6 -1
- * 33218 3 00000
- * 99999 5 68237
- * 12309 2 33218
- * --------------
- * Sample Output:
- * 00000 4 33218
- * 33218 3 12309
- * 12309 2 00100
- * 00100 1 99999
- * 99999 5 68237
- * 68237 6 -1
- */
-#include <stdio.h>
-#include <stdlib.h>
+
+#include <cstdio>
+#include <cstdlib>
 
 typedef int AddrType, ElemType, PtrType;
 struct LNode {
@@ -46,7 +30,7 @@ int main()
 	List L;
 	int N, K, lenL, time, flag=0;
 	AddrType firAddr, addrH;
-	PtrType new, last; 	/* last points to the last node of 
+	PtrType New, last; 	/* last points to the last node of 
 						   last group of reversed elements */
 
 	/* freopen("test.txt", "r", stdin); */
@@ -57,12 +41,12 @@ int main()
 	lenL = GetLLen(L); time = lenL/K;
 	if (K == 1) { PrintL(L); DestroyL(L); exit(EXIT_SUCCESS); }
 	while (time--) {
-		new = ReverseK(L, K);
+		New = ReverseK(L, K);
 		if (!flag) { 	/* First time handling */
-			addrH = new;
+			addrH = New;
 			flag = 1;
 		} else
-			L->pData[last].next = new;
+			L->pData[last].next = New;
 		last = L->fir;
 		L->fir = L->pData[last].next; 	/* Move head */
 	}
@@ -110,17 +94,17 @@ int GetLLen(List L)
 
 PtrType ReverseK(List L, int K)
 {
-	PtrType new, old, tmp;
+	PtrType New, old, tmp;
 
-	new = L->fir; old = L->pData[new].next;
+	New = L->fir; old = L->pData[New].next;
 	while (--K) {
 		tmp = L->pData[old].next;
-		L->pData[old].next = new;
-		new = old;
+		L->pData[old].next = New;
+		New = old;
 		old = tmp;
 	}
 	L->pData[L->fir].next = old;
-	return new;
+	return New;
 }
 
 void DestroyL(List L)
