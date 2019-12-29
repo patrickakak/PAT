@@ -3,7 +3,7 @@
 #include <cstdio>
 using namespace std;
 
-OAOAOAstruct node {
+struct node {
 	char ch;
 	int flag, next;
 } nodes[100005];
