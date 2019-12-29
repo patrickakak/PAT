@@ -9,7 +9,7 @@ stack<int> st;
 
 int main()
 {
-	// freopen("tst.txt", "r", stdin);
+	//freopen("tst.txt", "r", stdin);
 	int m, n, k;
 	scanf("%d%d%d", &m, &n, &k);
 	for (int i=0; i<k; i++) {
@@ -17,12 +17,10 @@ int main()
 		for (int j=0; j<n; j++) {
 			scanf("%d", out_seq+j);
 		}
-		bool flag=true;
 		int index=0;
 		for (int j=1; j<=n; j++) {
 			st.push(j);
 			if (st.size()>m) {
-				flag=false;
 				break;
 			}
 			while (!st.empty() && st.top()==out_seq[index]) {
@@ -30,7 +28,7 @@ int main()
 				index++;
 			}
 		}
-		if (st.empty() && flag==true) printf("YES\n");
+		if (st.empty()) printf("YES\n");
 		else printf("NO\n");
 	}
 
