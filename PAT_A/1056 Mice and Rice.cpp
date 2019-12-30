@@ -4,11 +4,11 @@
 using namespace std;
 
 const int maxn=1010;
-struct mice {
-	int wt, rank;
+struct mouse {
+	int wt, rnk;
 } mice[maxn];
 queue<int> q;
-int out_seq[maxn];
+int new_round[maxn];
 
 int main()
 {
@@ -23,33 +23,32 @@ int main()
 		scanf("%d", &order);
 		q.push(order);
 	}
-	int num=np, group;
-	while (q.size() > 1) {
-		if (num % ng == 0) group = num / ng;
-		else group = num/ng + 1;
+	int cnt=np, group;
+	while (q.size()>1) {
+		if (cnt%ng==0) group=cnt/ng;
+		else group=cnt/ng+1;
 		int index=0;
 		for (int i=0; i<group; i++) {
 			int k=q.front();
 			for (int j=0; j<ng; j++) {
 				if (q.empty()) break;
-				int front=q.front();
-				if (mice[k].wt < mice[front].wt) {
-					k=front;
+				if (mice[q.front()].wt>mice[k].wt) {
+					k=q.front();
 				}
-				mice[front].rank=group+1;
+				mice[q.front()].rnk=group+1;
 				q.pop();
 			}
-			out_seq[index++]=k;
+			new_round[index++]=k;
 		}
-		num=group;
+		cnt=group;
 		for (int i=0; i<index; i++) {
-			q.push(out_seq[i]);
+			q.push(new_round[i]);
 		}
 	}
-	mice[q.front()].rank=1;
+	mice[q.front()].rnk=1;
 	for (int i=0; i<np; i++) {
-		printf("%d", mice[i].rank);
-		if (i < np-1) printf(" ");
+		printf("%d", mice[i].rnk);
+		if (i<np-1) printf(" ");
 	}
 
 	return 0;
