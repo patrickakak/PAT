@@ -1,72 +1,56 @@
-/**
- * Sample input:
- * 00100 5
- * 99999 -7 87654
- * 23854 -15 00000
- * 87654 15 -1
- * 00000 -15 99999
- * 00100 21 23854
- * ----------------
- * Sample output:
- * 00100 21 23854
- * 23854 -15 99999
- * 99999 -7 -1
- * 00000 -15 87654
- * 87654 15 -1
- */
+
 #include <cstdio>
 #include <algorithm>
-#include <cstring>
 using namespace std;
 
-#define maxn 100005
+const int maxn=100010;
 struct Node {
 	int addr, data, next;
-	int order;
+	int order, flag;
 } node[maxn];
-bool isExist[maxn] = {false};
+bool isExist[maxn]={false};
+Node lst1[maxn], lst2[maxn];
 
 bool cmp(Node a, Node b)
 {
-	return a.order < b.order;
-}
-
-void init()
-{
-	for (int i = 0; i < maxn; i++)
-		node[i].order = 2 * maxn;
+	if (a.flag!=b.flag) return a.flag>b.flag;
+	return a.order<b.order;
 }
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int begin, n, addr;
-
-	init();
-	scanf("%d%d", &begin, &n);
-	for (int i = 0; i < n; i++) {
-		scanf("%d", &addr);
-		scanf("%d%d", &node[addr].data, &node[addr].next);
-		node[addr].addr = addr;
+	int fir, n;
+	scanf("%d%d", &fir, &n);
+	int addr, data, next;
+	for (int i=0; i<n; i++) {
+		scanf("%d%d%d", &addr, &data, &next);
+		node[addr].addr=addr;
+		node[addr].data=data;
+		node[addr].next=next;
 	}
-	int countValid = 0, countRemoved = 0, p = begin;
-	while (p != -1) {
-		if (!isExist[abs(node[p].data)]) {
-			isExist[abs(node[p].data)] = true;
-			node[p].order = countValid++;
-		} else
-			node[p].order = maxn + countRemoved++;
-		p = node[p].next;
+	int sum=0, cnt1=0, cnt2=0;
+	for (int p=fir; p!=-1; p=node[p].next) {
+		node[p].flag=1;
+		node[p].order=sum++;
+		int v=abs(node[p].data);
+		if (isExist[v]) {
+			lst2[cnt2++]=node[p];
+		} else {
+			lst1[cnt1++]=node[p];
+			isExist[v]=true;
+		}
 	}
-	sort(node, node + maxn, cmp);
-	int count = countValid + countRemoved;
-	for (int i = 0; i < count; i++)
-		if (i != countValid-1 && i != count-1)
-			printf("%05d %d %05d\n", node[i].addr, node[i].data, node[i+1].addr);
-		else
-			printf("%05d %d -1\n", node[i].addr, node[i].data);
-
+	for (int i=0; i<cnt1; i++) {
+		printf("%05d %d ", lst1[i].addr, lst1[i].data);
+		if (i<cnt1-1) printf("%05d\n", lst1[i+1].addr);
+		else printf("-1\n");
+	}
+	for (int i=0; i<cnt2; i++) {
+		printf("%05d %d ", lst2[i].addr, lst2[i].data);
+		if (i<cnt2-1) printf("%05d\n", lst2[i+1].addr);
+		else printf("-1\n");
+	}
 	return 0;
 }
-
 
