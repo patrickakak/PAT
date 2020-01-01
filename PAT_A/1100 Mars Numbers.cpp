@@ -42,10 +42,9 @@ int main()
 	for (int i = 0; i < n; i++) {
 		getline(cin, tmp);
 		if (isalpha(tmp[0])) cout << mp[tmp] << endl;
-		else cout << num2str[atoi(tmp.c_str())] << endl;
+		else cout << num2str[stoi(tmp)] << endl;
 	}
 
 	return 0;
 }
-
 
