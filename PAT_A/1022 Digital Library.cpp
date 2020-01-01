@@ -1,57 +1,52 @@
 
-#include <cstdio>
 #include <map>
 #include <set>
 #include <iostream>
-#include <string>
 using namespace std;
 
-map<string, set<int> > mpTitle, mpAuthor, mpKey, mpPub, mpYear;
-
-void query(map<string, set<int> > &mp, string &str)
+map<string, set<int>> title, author, key, pub, year;
+void query(map<string, set<int>> &m, string &s)
 {
-	if (mp.find(str) == mp.end()) printf("Not Found\n");
+	if (m.find(s) == m.end()) cout << "Not Found\n";
 	else
-		for (auto it = mp[str].begin(); it != mp[str].end(); it++)
+		for (auto it = m[s].begin(); it != m[s].end(); it++)
 			printf("%07d\n", *it);
 }
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	int n, m, id, type;
-	string title, author, key, pub, year;
+	int n, m, num, id;
+	string tt, ta, tk, tp, ty, tmp;
 
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &id);
-		char c = getchar();
-		getline(cin, title);
-		mpTitle[title].insert(id);
-		getline(cin, author);
-		mpAuthor[author].insert(id);
-		while (cin >> key) {
-			mpKey[key].insert(id);
-			c = getchar();
+		scanf("%d\n", &id);
+		getline(cin, tt);
+		title[tt].insert(id);
+		getline(cin, ta);
+		author[ta].insert(id);
+		while (cin >> tk) {
+			key[tk].insert(id);
+			char c = getchar();
 			if (c == '\n') break;
 		}
-		getline(cin, pub);
-		mpPub[pub].insert(id);
-		getline(cin, year);
-		mpYear[year].insert(id);
+		getline(cin, tp);
+		pub[tp].insert(id);
+		getline(cin, ty);
+		year[ty].insert(id);
 	}
-	string tmp;
 	scanf("%d", &m);
 	for (int i = 0; i < m; i++) {
-		scanf("%d: ", &type);
+		scanf("%d: ", &num);
 		getline(cin, tmp);
-		cout << type << ": " << tmp << endl;
-		switch (type) {
-		case 1: query(mpTitle, tmp);  break;
-		case 2: query(mpAuthor, tmp); break;
-		case 3: query(mpKey, tmp);    break;
-		case 4: query(mpPub, tmp);    break;
-		case 5: query(mpYear, tmp);   break;
+		cout << num << ": " << tmp << endl;
+		switch (num) {
+		case 1: query(title, tmp);  break;
+		case 2: query(author, tmp); break;
+		case 3: query(key, tmp);    break;
+		case 4: query(pub, tmp);    break;
+		case 5: query(year, tmp);   break;
 		}
 	}
 
