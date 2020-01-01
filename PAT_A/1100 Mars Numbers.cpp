@@ -1,10 +1,6 @@
 
 #include <iostream>
 #include <map>
-#include <cstdio>
-#include <cstdlib>
-#include <cctype>
-#include <string>
 using namespace std;
 
 string ge[15] = {"tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec"};
