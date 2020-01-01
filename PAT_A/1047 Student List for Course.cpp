@@ -2,39 +2,41 @@
 #include <cstdio>
 #include <cstring>
 #include <vector>
-#include <iostream>
 #include <algorithm>
 using namespace std;
 
-const int N = 2501;
-vector<string> courseStu[N];
 /* Only to store the index of names would be better to 
  * take care of large chunk of data */
-// char name[maxn][5];
-// vector<int> course[maxc];
+const int maxc = 2505;
+vector<int> v[maxc];
+const int maxn = 40010;
+char stu[maxn][5];
+
+bool cmp(int a, int b)
+{
+	return strcmp(stu[a], stu[b]) < 0;
+}
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	char name[5];
-	int n, k, num, courseID;
+	int n, k, c, courseID;
 
 	scanf("%d%d", &n, &k);
 	for (int i = 0; i < n; i++) {
-		scanf("%s %d", name, &num);
-		for (int j = 0; j < num; j++) {
+		scanf("%s%d", stu[i], &c);
+		for (int j = 0; j < c; j++) {
 			scanf("%d", &courseID);
-			courseStu[courseID].push_back(name);
+			v[courseID].push_back(i);
 		}
 	}
 	for (int i = 1; i <= k; i++) {
-		printf("%d %d\n", i, courseStu[i].size());
-		sort(courseStu[i].begin(), courseStu[i].end());
-		for (int j = 0; j < (int)courseStu[i].size(); j++)
-			printf("%s\n", courseStu[i][j].c_str());
+		sort(v[i].begin(), v[i].end(), cmp);
+		printf("%d %d\n", i, v[i].size());
+		for (int j = 0; j < (int)v[i].size(); j++)
+			printf("%s\n", stu[v[i][j]]);
 	}
 
 	return 0;
 }
-
 
