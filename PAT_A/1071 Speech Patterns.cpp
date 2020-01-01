@@ -1,48 +1,36 @@
-/**
- * Sample input:
- * Can1: "Can a can can a can?  It can!"
- * -------------------------------------
- * Sample output:
- * can 5
- */
+
 #include <cstdio>
-#include <map>  // red-black tree
-#include <iostream>
+#include <map>
 #include <string>
+#include <iostream>
 using namespace std;
 
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	map<string, int> count;
-	string str;
-	int i = 0;
+	string s, word = "";
+	map<string, int> m;
 
-	getline(cin, str);
-	while (i < (int)str.length()) {
-		string word;
-		while (i < (int)str.length() && isalnum(str[i])) {
-			str[i] = tolower(str[i]);
-			word += str[i];
-			i++;
+	getline(cin, s);
+	for (int i = 0; i < s.length(); i++) {
+		if (isalnum(s[i])) {
+			s[i] = tolower(s[i]);
+			word += s[i];
 		}
-		if (word != "") { 	// in case string like: "a"
-			if (count.find(word) == count.end()) count[word] = 1;
-			else count[word]++;
-		}
-		while (i < (int)str.length() && !isalnum(str[i]))
-			i++;
+		if (!isalnum(s[i]) || i==s.length()-1)
+			if (word != "") {
+				if (m.find(word) != m.end()) m[word]++;
+				else m[word] = 1;
+				word = "";
+			}
 	}
-	string ans;
-	int MAX = 0;
-	for (map<string, int>::iterator it=count.begin(); it != count.end(); it++)
-		if (it->second > MAX) {
-			MAX = it->second;
-			ans = it->first;
+	int Max = 0;
+	for (auto it = m.begin(); it != m.end(); it++)
+		if (it->second > Max) {
+			Max = it->second;
+			word = it->first;
 		}
-	cout << ans << " " << MAX << endl;
-
+	printf("%s %d", word.c_str(), Max);
 	return 0;
 }
-
 
