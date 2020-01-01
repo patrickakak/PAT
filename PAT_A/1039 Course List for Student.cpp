@@ -1,45 +1,44 @@
 
 #include <cstdio>
-#include <cstring>
 #include <vector>
+#include <string>
 #include <algorithm>
 using namespace std;
 
-const int M = 26*26*26*10 + 1;
-vector<int> selectCourse[M];
-
-int getID(char *name)
+int getId(char *name)
 {
-	int id = 0;
-	for (int i = 0; i < 3; i++)
-		id = id*26 + (name[i]-'A');
-	id = id*10 + (name[3]-'0');
-	return id;
+	int ret = 0;
+	for (int i = 0; i < 4; i++)
+		if (isalpha(name[i])) ret = ret*26 + name[i]-'A';
+		else ret = ret*10 + name[i]-'0';
+	return ret;
 }
 
+const int maxn = 26*26*26*10+1;
+vector<int> v[maxn];
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-	char name[5];
 	int n, k;
+	char name[5];
 
 	scanf("%d%d", &n, &k);
 	for (int i = 0; i < k; i++) {
-		int course, x;
-		scanf("%d%d", &course, &x);
-		for (int j = 0; j < x; j++) {
+		int courseId, num;
+		scanf("%d%d", &courseId, &num);
+		for (int j = 0; j < num; j++) {
 			scanf("%s", name);
-			int id = getID(name);
-			selectCourse[id].push_back(course);
+			int id = getId(name);
+			v[id].push_back(courseId);
 		}
 	}
 	for (int i = 0; i < n; i++) {
 		scanf("%s", name);
-		int id = getID(name);
-		sort(selectCourse[id].begin(), selectCourse[id].end());
-		printf("%s %d", name, selectCourse[id].size());
-		for (int j = 0; j < (int)selectCourse[id].size(); j++)
-			printf(" %d", selectCourse[id][j]);
+		int id = getId(name);
+		printf("%s %d", name, v[id].size());
+		sort(v[id].begin(), v[id].end());
+		for (int j = 0; j < (int)v[id].size(); j++)
+			printf(" %d", v[id][j]);
 		printf("\n");
 	}
 
