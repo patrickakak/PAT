@@ -1,4 +1,4 @@
-# PAT
+# PAT (programming ability test)
 zju mooc pat
 https://pintia.cn/problem-sets
 
