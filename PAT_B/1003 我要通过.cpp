@@ -17,7 +17,7 @@ int main()
 			if (s[j] == 'P') p = j;
 			if (s[j] == 'T') t = j;
 		}
-		if (um['P']==1 && um['T']==1 && um.size()==3 && (p-t)!=1 && p*(t-p-1)==s.length()-1-t)
+		if (um['P']==1 && um['T']==1 && um.size()==3 && t-p!=1 && p*(t-p-1)==s.length()-1-t)
 			cout << "YES" << endl;
 		else cout << "NO" << endl;
 	}
