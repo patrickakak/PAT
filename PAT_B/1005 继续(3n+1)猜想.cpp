@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
 int cnt[110], nums[110];
 bool cmp(int a, int b) { return a > b; }
 int main()
