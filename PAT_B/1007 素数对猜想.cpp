@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 const int maxn = 100010;
 int prime[maxn], num = 0;
 bool isPrime(int n)
@@ -10,7 +9,6 @@ bool isPrime(int n)
 		if (n%i == 0) return false;
 	return true;
 }
-
 int main()
 {
 	int n, cnt = 0;
