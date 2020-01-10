@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
-int main()
-{
+int main() {
 	int n, a[3] = {0}, i = 0;
 	cin >> n;
 	while (n != 0) {
