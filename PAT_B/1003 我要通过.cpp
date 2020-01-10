@@ -1,11 +1,9 @@
-#include <cstdio>
 #include <iostream>
 #include <unordered_map>
 using namespace std;
 
 int main()
 {
-	// freopen("tst.txt", "r", stdin);
 	int n, p, t;
 	cin >> n;
 	string s;
