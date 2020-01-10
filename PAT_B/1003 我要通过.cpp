@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 using namespace std;
+
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
