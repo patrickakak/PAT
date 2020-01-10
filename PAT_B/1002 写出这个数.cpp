@@ -1,36 +1,21 @@
-/**
- * Sample input:
- * 1234567890987654321123456789
- * -------------------
- * Sample output:
- * yi san wu
- */
 #include <cstdio>
+#include <iostream>
+#include <string>
+using namespace std;
 
-char pinyin[11][5] = {"ling", "yi", "er", "san", "si", 
-                      "wu", "liu", "qi", "ba", "jiu", "shi"};
-
+string ss[10] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
 int main()
 {
-	// freopen("test.txt", "r", stdin);
-	char n[120];
-	int r, i = 0, sum = 0, count = 0, arr[120];
-
-	scanf("%s", n);
-	while (n[i]) {
-		sum += n[i] - '0';
-		i++;
+	// freopen("tst.txt", "r", stdin);
+	string s;
+	cin >> s;
+	int sum = 0;
+	for (int i = 0; i < s.length(); i++)
+		sum += s[i] - '0';
+	string num = to_string(sum);
+	for (int i = 0; i < num.length(); i++) {
+		cout << ss[num[i] - '0'];
+		if (i != num.length()-1) cout << " ";
 	}
-	do {
-		r = sum % 10;
-		arr[count++] = r;
-		sum /= 10;
-	} while (sum);
-
-	for (i = count-1; i > 0; i--)
-		printf("%s ", pinyin[arr[i]]);
-	printf("%s", pinyin[arr[0]]);
-
 	return 0;
 }
-
