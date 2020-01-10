@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 int main()
 {
 	int n, score, max = -1, min = 101;
