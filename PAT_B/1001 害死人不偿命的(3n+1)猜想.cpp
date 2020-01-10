@@ -1,27 +1,18 @@
-/**
- * Sample Input:
- * 3
- * Sample Output:
- * 5
- */
-#include <stdio.h>
+
+#include <cstdio>
+#include <iostream>
+using namespace std;
 
 int main()
 {
-	int n, count;
-
-	scanf("%d", &n);
-
-	count = 0;
+    // freopen("tst.txt", "r", stdin);
+	int n, cnt = 0;
+	cin >> n;
 	while (n != 1) {
-		if (n % 2 == 1)
-			n = (3*n + 1)/2;
-		else
-			n /= 2;
-		count++;
+		if (n%2 != 0) n = 3 * n + 1;
+		n /= 2;
+		cnt++;
 	}
-	printf("%d\n", count);
-
+	cout << cnt;
 	return 0;
 }
-
