@@ -13,9 +13,8 @@ int main()
 		reverse(begin(a) + n - m, begin(a) + n);
 		reverse(begin(a), begin(a) + n);
 	}
-	for (int i = 0; i < n; i++) {
-		cout << a[i];
-		if (i != n-1) cout << ' ';
-	}
+	for (int i = 0; i < n-1; i++)
+		cout << a[i] << ' ';
+	cout << a[n-1];
 	return 0;
 }
