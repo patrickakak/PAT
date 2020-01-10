@@ -1,52 +1,33 @@
-/**
- * Sample input:
- * 6
- * 3 5 6 7 8 11
- * -------------
- * Sample output:
- * 7 6
- */
 #include <cstdio>
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
-#define maxn 10010
-bool hashTbl[maxn] = {false};
-int a[110], key[110], cnt = 0;
-
-bool cmp(int a, int b)
-{
-	return a > b;
-}
-
+int cnt[110], nums[110];
+bool cmp(int a, int b) { return a > b; }
 int main()
 {
 	// freopen("tst.txt", "r", stdin);
-
 	int k, n;
-	scanf("%d", &k);
+	cin >> k;
 	for (int i = 0; i < k; i++) {
-		scanf("%d", &a[i]);
-		n = a[i];
+		cin >> n;
+		nums[i] = n;
 		while (n != 1) {
-			if (n % 2 == 1)
-				n = (3*n + 1)/2;
-			else
-				n /= 2;
-			hashTbl[n] = true;
+			if (n > 1 && n <= 100) cnt[n]++;
+			if (n % 2 != 0) n = 3 * n + 1;
+			n /= 2;
 		}
 	}
+	vector<int> v;
 	for (int i = 0; i < k; i++)
-		if (hashTbl[a[i]] == false)
-			key[cnt++] = a[i];
-	sort(key, key+cnt, cmp);
-	for (int i = 0; i < cnt; i++) {
-		if (i > 0) printf(" ");
-		printf("%d", key[i]);
+		if (cnt[nums[i]] == 1)
+			v.push_back(nums[i]);
+	sort(begin(v), end(v), cmp);
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i];
+		if (i != v.size()-1) cout << ' ';
 	}
-
 	return 0;
 }
-
-
