@@ -1,33 +1,16 @@
-/**
- * Sample Input:
- * Hello World Here I Come
- * -----------------------
- * Sample Output:
- * Come I Here World Hello
- */
-#include <string.h>
-#include <stdio.h>
-
-#define MaxL 100
-char s[MaxL];
+#include <iostream>
+#include <stack>
+using namespace std;
 
 int main()
 {
-	// freopen("test.txt", "r", stdin);
-	int i, count;
-
-	gets(s);
-	for (count=0,i=strlen(s)-1; i >= 0; i--) {
-		count++;
-		if (s[i] == ' ') {
-			s[i+count] = '\0';
-			printf("%s ", s+i+1);
-			count = 0;
-		}
+	stack<string> z;
+	string w;
+	while (cin >> w) z.push(w);
+	while (!z.empty()) {
+		cout << z.top();
+		z.pop();
+		if (z.size() != 0) cout << ' ';
 	}
-	s[i+count+1] = '\0';
-	printf("%s\n", s);
-
 	return 0;
 }
-
