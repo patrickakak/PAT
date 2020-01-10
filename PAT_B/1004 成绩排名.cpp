@@ -1,10 +1,8 @@
-#include <cstdio>
 #include <iostream>
 using namespace std;
 
 int main()
 {
-	// freopen("tst.txt", "r", stdin);
 	int n, score, max = -1, min = 101;
 	string name, id, maxname, minname, maxid, minid;
 	cin >> n;
