@@ -2,8 +2,7 @@
 #include <string>
 using namespace std;
 string ss[10] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
-int main()
-{
+int main() {
 	string s;
 	cin >> s;
 	int sum = 0;
