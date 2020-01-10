@@ -2,8 +2,7 @@
 #include <cctype>
 using namespace std;
 string days[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
-int main()
-{
+int main() {
 	string a, b, c, d;
 	cin >> a >> b >> c >> d;
 	int i = 0, j = 0;
