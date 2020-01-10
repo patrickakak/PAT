@@ -22,8 +22,7 @@ int main()
 	}
 	vector<int> v;
 	for (int i = 0; i < k; i++)
-		if (cnt[nums[i]] == 1)
-			v.push_back(nums[i]);
+		if (cnt[nums[i]] == 1) v.push_back(nums[i]);
 	sort(begin(v), end(v), cmp);
 	for (int i = 0; i < v.size(); i++) {
 		cout << v[i];
