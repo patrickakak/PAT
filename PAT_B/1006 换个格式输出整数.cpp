@@ -1,33 +1,16 @@
-/**
- * Sample input1:
- * 234
- * Sample output1:
- * BBSSS1234
- * --------------
- * Sample input2:
- * 23
- * Sample output2:
- * SS123
- */
-#include <cstdio>
+#include <iostream>
+using namespace std;
 
 int main()
 {
-	// freopen("test.txt", "r", stdin);
-	int n, i;
-
-	scanf("%d", &n);
-	for (i = 0; i < n/100; i++)
-		printf("B");
-
-	n -= n / 100 * 100;
-	for (i = 0; i < n/10; i++)
-		printf("S");
-
-	n -= n / 10 * 10;
-	for (i = 1; i <= n; i++)
-		printf("%d", i);
-
+	int n, a[3] = {0}, i = 0;
+	cin >> n;
+	while (n != 0) {
+		a[i++] = n % 10;
+		n /= 10;
+	}
+	for (int i = 0; i < a[2]; i++) cout << 'B';
+	for (int i = 0; i < a[1]; i++) cout << 'S';
+	for (int i = 0; i < a[0]; i++) cout << i+1;
 	return 0;
 }
-
