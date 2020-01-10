@@ -1,8 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int main()
-{
+int main() {
 	int n, m, a[101];
 	cin >> n >> m;
 	m %= n;
