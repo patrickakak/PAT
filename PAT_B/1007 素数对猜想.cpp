@@ -2,14 +2,12 @@
 using namespace std;
 const int maxn = 100010;
 int prime[maxn], num = 0;
-bool isPrime(int n)
-{
+bool isPrime(int n) {
 	for (int i = 2; i*i <= n; i++)
 		if (n%i == 0) return false;
 	return true;
 }
-int main()
-{
+int main() {
 	int n, cnt = 0;
 	cin >> n;
 	for (int i = 0; i <= n; i++)
