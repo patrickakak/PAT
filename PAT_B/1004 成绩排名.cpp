@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
-int main()
-{
+int main() {
 	int n, score, max = -1, min = 101;
 	string name, id, maxname, minname, maxid, minid;
 	cin >> n;
