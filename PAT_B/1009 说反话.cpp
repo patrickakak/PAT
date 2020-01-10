@@ -1,8 +1,7 @@
 #include <iostream>
 #include <stack>
 using namespace std;
-int main()
-{
+int main() {
 	stack<string> z;
 	string w;
 	while (cin >> w) z.push(w);
