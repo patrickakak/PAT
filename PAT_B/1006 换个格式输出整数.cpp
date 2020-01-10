@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 int main()
 {
 	int n, a[3] = {0}, i = 0;
