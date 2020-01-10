@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cctype>
 using namespace std;
-
 string days[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
 int main()
 {
