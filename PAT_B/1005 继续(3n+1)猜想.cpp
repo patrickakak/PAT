@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -8,7 +7,6 @@ int cnt[110], nums[110];
 bool cmp(int a, int b) { return a > b; }
 int main()
 {
-	// freopen("tst.txt", "r", stdin);
 	int k, n;
 	cin >> k;
 	for (int i = 0; i < k; i++) {
