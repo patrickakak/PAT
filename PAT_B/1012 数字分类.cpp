@@ -9,7 +9,7 @@ int main() {
 		cin >> num;
 		v[num%5].push_back(num);
 	}
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < v[i].size(); j++) {
 			if (i == 0 && v[i][j]%2 == 0) A1 += v[i][j];
 			if (i == 1 && j%2 == 0) A2 += v[i][j];
@@ -17,7 +17,6 @@ int main() {
 			if (i == 3) A4 += v[i][j];
 			if (i == 4 && A5 < v[i][j]) A5 = v[i][j];
 		}
-	}
 	for (int i = 0; i < 5; i++) {
 		if (i != 0) cout << ' ';
 		if ((i == 0 && A1 == 0) || (i != 0 && v[i].size() == 0)) {
