@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
 int main()
 {
 	int n, num, A1 = 0, A2 = 0, A4 = 0, A5 = 0;
