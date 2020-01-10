@@ -2,7 +2,7 @@
 #include <cctype>
 using namespace std;
 
-string days[]={"MON","TUE","WED","THU","FRI","SAT","SUN"};
+string days[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
 int main()
 {
 	string a, b, c, d;
