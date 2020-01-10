@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,7 +5,6 @@ using namespace std;
 string ss[10] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
 int main()
 {
-	// freopen("tst.txt", "r", stdin);
 	string s;
 	cin >> s;
 	int sum = 0;
