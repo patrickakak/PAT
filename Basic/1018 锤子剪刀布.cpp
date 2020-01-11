@@ -1,98 +1,37 @@
-/**
- * Sample Input:
- * 10
- * C J
- * J B
- * C B
- * B B
- * B C
- * C C
- * C B
- * J B
- * B C
- * J J
- * --------------
- * Sample Output:
- * 5 3 2
- * 2 3 5
- * B B
- */
-#include <stdio.h>
-
-char getCh(int N)
-{
-	char ch;
-
-	switch (N) {
-	case 0: ch = 'B'; break;
-	case 1: ch = 'C'; break;
-	case 2: ch = 'J'; break;
-	}
-	return ch;
-}
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
-	int N, i, Awin = 0, Bwin = 0, draw = 0;
-	char A, B, chA, chB;
-	int a[3] = {0}, b[3] = {0};		// B,C,J
-	int acount = 0, bcount = 0;
-
-	scanf("%d", &N);
-	getchar();
-	for (i = 0; i < N; i++) {
-		scanf("%c %c\n", &A, &B);
-		switch (A) {
-		case 'B':
-			if (B == 'B')
-				draw++;
-			else if (B == 'C') {
-				Awin++;
-				a[0]++;
-			} else {
-				Bwin++;
-				b[2]++;
-			}
-			break;
-		case 'C':
-			if (B == 'C')
-				draw++;
-			else if (B == 'J') {
-				Awin++;
-				a[1]++;
-			} else {
-				Bwin++;
-				b[0]++;
-			}
-			break;
-		case 'J':
-			if (B == 'J')
-				draw++;
-			else if (B == 'B') {
-				Awin++;
-				a[2]++;
-			} else {
-				Bwin++;
-				b[1]++;
-			}
-			break;
+#include <iostream>
+#include <algorithm>
+using namespace std;
+char ch[] = {'B','C','J'};
+int main() {
+	int n, wina = 0, winb = 0, total = 0, cnta[3] = {0}, cntb[3] = {0};
+	cin >> n;
+	char a, b;
+	for (int i = 0; i < n; i++) {
+		cin >> a >> b;
+		if (a == 'B' && b == 'C') {
+			wina++;
+			cnta[0]++;
+		} else if (a == 'B' && b == 'J') {
+			winb++;
+			cntb[2]++;
+		} else if (a == 'C' && b == 'J') {
+			wina++;
+			cnta[1]++;
+		} else if (a == 'C'&& b == 'B') {
+			winb++;
+			cntb[0]++;
+		} else if (a == 'J' && b == 'B') {
+			wina++;
+			cnta[2]++;
+		} else if (a == 'J' && b == 'C') {
+			winb++;
+			cntb[1]++;
 		}
+		total++;
 	}
-	for (i = 1; i < 3; i++) {
-		if (a[acount] < a[i])
-			acount = i;
-		if (b[bcount] < b[i])
-			bcount = i;
-	}
-	chA = getCh(acount);
-	chB = getCh(bcount);
-
-	printf("%d %d %d\n", Awin, draw, N-Awin-draw);
-	printf("%d %d %d\n", Bwin, draw, N-Bwin-draw);
-	printf("%c %c\n", chA, chB);
-
+	int tie = total - wina - winb;
+	cout << wina << ' ' << tie << ' ' << total-wina-tie << endl;
+	cout << winb << ' ' << tie << ' ' << total-winb-tie << endl;
+	cout << ch[max_element(cnta, cnta+3)-cnta] << ' ' << ch[max_element(cntb, cntb+3)-cntb];
 	return 0;
 }
-
-
