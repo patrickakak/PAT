@@ -9,9 +9,9 @@ int main() {
 		if (a[i] == da) ra += da;
 	for (int j = 0; j < b.length(); j++)
 		if (b[j] == db) rb += db;
-	int x = 0, y = 0;
-	if (ra != "") x = stoi(ra);
-	if (rb != "") y = stoi(rb);
-	cout << x + y;
+	int pa = 0, pb = 0;
+	if (ra != "") pa = stoi(ra);
+	if (rb != "") pb = stoi(rb);
+	cout << pa + pb;
 	return 0;
 }
