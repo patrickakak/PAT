@@ -1,46 +1,26 @@
-/**
- * Sample input:
- * 19 *
- * -----------
- * Sample output:
- * *****
- *  ***
- *   *
- *  ***
- * *****
- * 2
- */
-#include <cstdio>
-#include <cmath>
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
+#include <iostream>
+using namespace std;
+int main() {
+	int N, row = 0;
 	char c;
-	int n, bottom, used;
-
-	scanf("%d %c", &n, &c);
-	bottom = (int)sqrt(2.0 * (n + 1)) - 1;
-	if (bottom % 2 == 0)
-		bottom--;
-	used = (bottom + 1)*(bottom + 1)/2 - 1;
-	for (int i = bottom; i >= 1; i -= 2) {
-		for (int j = 0; j < (bottom-i)/2; j++)
-			printf(" ");
-		for (int j = 0; j < i; j++)
-			printf("%c", c);
-		printf("\n");
+	cin >> N >> c;
+	for (int i = 0; i < N; i++)
+		if ((2 * i * (i + 2) + 1) > N) {
+			row = i - 1;
+			break;
+		}
+	for (int i = row; i >= 1; i--) {
+		for (int k = row - i; k >= 1; k--) cout << " ";
+		for (int j = i * 2 + 1; j >= 1; j--) cout << c;
+		cout << endl;
 	}
-	for (int i = 3; i <= bottom; i += 2) {
-		for (int j = 0; j < (bottom-i)/2; j++)
-			printf(" ");
-		for (int j = 0; j < i; j++)
-			printf("%c", c);
-		printf("\n");
+	for (int i = 0; i < row; i++) cout << " ";
+	cout << c << endl;
+	for (int i = 1; i <= row; i++) {
+		for (int k = row - i; k >= 1; k--) cout << " ";
+		for (int j = i * 2 + 1; j >= 1; j--) cout << c;
+		cout << endl;
 	}
-	printf("%d\n", n-used);
-
+	cout << (N - (2 * row * (row + 2) + 1));
 	return 0;
 }
-
-
