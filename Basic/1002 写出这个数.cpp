@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 string ss[10] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
 int main() {
