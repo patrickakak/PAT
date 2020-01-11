@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int N, row = 0;
+	int n, row = 0;
 	char c;
-	cin >> N >> c;
-	for (int i = 0; i < N; i++)
-		if ((2 * i * (i + 2) + 1) > N) {
+	cin >> n >> c;
+	for (int i = 0; i < n; i++)
+		if ((2 * i * (i + 2) + 1) > n) {
 			row = i - 1;
 			break;
 		}
@@ -21,6 +21,6 @@ int main() {
 		for (int j = i * 2 + 1; j >= 1; j--) cout << c;
 		cout << endl;
 	}
-	cout << (N - (2 * row * (row + 2) + 1));
+	cout << (n - (2 * row * (row + 2) + 1));
 	return 0;
 }
