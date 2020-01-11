@@ -12,7 +12,6 @@ int main() {
 		} else q.push_back('0');
 	}
 	while (q.length() > 0 && q[0] == '0') q.erase(q.begin());
-	if (q.length() != 0) cout<< q << ' ' << r;
-	else cout << "0 " << r;
+	cout << (q.length() != 0 ? q : "0") << ' ' << r;
 	return 0;
 }
