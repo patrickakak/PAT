@@ -3,8 +3,7 @@
 #include <vector>
 using namespace std;
 int main() {
-	int n;
-	long long p;
+	long n, p;
 	cin >> n >> p;
 	vector<int> v(n);
 	for (int i = 0; i < n; i++)
