@@ -1,34 +1,17 @@
-/**
- * Sample Input:
- * 123 456 8
- * ------------
- * Sample Output:
- * 1103
- */
-#include <stdio.h>
-
-int arr[32] = {0};
-
-int main()
-{
-	int A, B, D;
-	int i, sum;
-
-	// freopen("test.txt", "r", stdin);
-	scanf("%d%d%d", &A, &B, &D);
-
-	i = 0;
-	sum = A + B;
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+	int a, b, d;
+	cin >> a >> b >> d;
+	int sum = a + b;
+	vector<int> v;
 	do {
-		arr[i] = sum % D;
-		i++;
-		sum /= D;
+		int r = sum % d;
+		sum /= d;
+		v.push_back(r);
 	} while (sum != 0);
-
-	i--;
-	for (; i >= 0; i--)
-		printf("%d", arr[i]);
-
+	for (int i = v.size() - 1; i >= 0; i--)
+		cout << v[i];
 	return 0;
 }
-
