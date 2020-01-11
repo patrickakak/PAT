@@ -1,29 +1,19 @@
-/**
- * Sample input:
- * 2 2 0 0 0 3 0 0 1 0
- * --------------
- * Sample output:
- * 10015558
- */
-#include <cstdio>
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-	int count[10];
-	for (int i = 0; i < 10; i++)
-		scanf("%d", &count[i]);
-
+#include <iostream>
+using namespace std;
+int main() {
+	int n, cnt[10] = {0};
+	for (int i = 0; i < 10; i++) {
+		cin >> n;
+		cnt[i] = n;
+	}
 	for (int i = 1; i < 10; i++)
-		if (count[i] > 0) {
-			printf("%d", i);
-			count[i]--;
+		if (cnt[i] != 0) {
+			cout << i;
+			cnt[i]--;
 			break;
 		}
 	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < count[i]; j++)
-			printf("%d", i);
-
+		if (cnt[i] != 0)
+			for (int j = 0; j < cnt[i]; j++) cout << i;
 	return 0;
 }
-
