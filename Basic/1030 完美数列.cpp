@@ -1,33 +1,23 @@
-/**
- * Sample input:
- * 10 8
- * 2 3 20 4 5 1 6 7 8 9
- * ----------------------
- * Sample output:
- * 8
- */
-#include <cstdio>
+#include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
-
-const int maxn = 100010;
-int n, p, a[maxn];
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-	scanf("%d%d", &n, &p);
+int main() {
+	int n;
+	long long p;
+	scanf("%d%lld", &n, &p);
+	vector<int> v(n);
 	for (int i = 0; i < n; i++)
-		scanf("%d", &a[i]);
-	sort(a, a + n);
-	int ans = 1;
-	for (int i = 0; i < n; i++) {
-		int j = upper_bound(a+i+1, a+n, (long long)a[i]*p) - a;
-		ans = max(ans, j-i);
-	}
-	printf("%d\n", ans);
-
+		cin >> v[i];
+	sort(v.begin(), v.end());
+	int result = 0, temp = 0;
+	for (int i = 0; i < n; i++)
+		for (int j = i + result; j < n; j++)
+			if (v[j] <= v[i] * p) {
+				temp = j - i + 1;
+				if (temp > result)
+					result = temp;
+			} else break;
+	cout << result;
 	return 0;
 }
-
-
