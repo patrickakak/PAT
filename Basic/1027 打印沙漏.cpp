@@ -10,15 +10,15 @@ int main() {
 			break;
 		}
 	for (int i = row; i >= 1; i--) {
-		for (int k = row - i; k >= 1; k--) cout << " ";
-		for (int j = i * 2 + 1; j >= 1; j--) cout << c;
+		for (int j = row - i; j >= 1; j--) cout << " ";
+		for (int k = i * 2 + 1; k >= 1; k--) cout << c;
 		cout << endl;
 	}
 	for (int i = 0; i < row; i++) cout << " ";
 	cout << c << endl;
 	for (int i = 1; i <= row; i++) {
-		for (int k = row - i; k >= 1; k--) cout << " ";
-		for (int j = i * 2 + 1; j >= 1; j--) cout << c;
+		for (int j = row - i; j >= 1; j--) cout << " ";
+		for (int k = i * 2 + 1; k >= 1; k--) cout << c;
 		cout << endl;
 	}
 	cout << (n - (2 * row * (row + 2) + 1));
