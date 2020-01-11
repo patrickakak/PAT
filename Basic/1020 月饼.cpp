@@ -15,7 +15,7 @@ int main() {
 	for (int i = 0; i < n; i++) a[i].per = a[i].tot / a[i].amt;
 	sort(a.begin(), a.end(), cmp);
 	double res = 0;
-	for (int i = 0; i < a.size(); i++)
+	for (int i = 0; i < n; i++)
 		if (a[i].amt <= d) {
 			d -= a[i].amt;
 			res += a[i].tot;
