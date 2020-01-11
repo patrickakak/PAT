@@ -3,7 +3,6 @@
 #include <algorithm>
 using namespace std;
 int cnt[110], nums[110];
-bool cmp(int a, int b) { return a > b; }
 int main() {
 	int k, n;
 	cin >> k;
@@ -19,7 +18,7 @@ int main() {
 	vector<int> v;
 	for (int i = 0; i < k; i++)
 		if (cnt[nums[i]] == 1) v.push_back(nums[i]);
-	sort(begin(v), end(v), cmp);
+	sort(rbegin(v), rend(v));
 	for (int i = 0; i < v.size(); i++) {
 		cout << v[i];
 		if (i != v.size()-1) cout << ' ';
