@@ -1,30 +1,14 @@
-/**
- * Sample Input:
- * 123 4577973
- * --------------
- * Sample Output:
- * 12:42:59
- */
-#include <stdio.h>
-#include <math.h>
-
-#define CLK_TCK 100
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
-	int C1, C2, diff;
-	double hr, min, sec;
-
-	scanf("%d%d", &C1, &C2);
-	diff = C2 - C1;
-
-	hr = (double)diff/3600/CLK_TCK;
-	min = (hr-(int)hr) * 60;
-	sec = (min-(int)min) * 60;
-
-	printf("%02d:%02d:%02d\n", (int)hr, (int)min, (int)round(sec));
-
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+	int c1, c2;
+	const int clk_tck = 100;
+	cin >> c1 >> c2;
+	int sec = round(1.0 * (c2 - c1) / clk_tck);
+	int hh = sec / 3600;
+	sec %= 3600;
+	int mm = sec / 60, ss = sec % 60;
+	printf("%02d:%02d:%02d", hh, mm, ss);
 	return 0;
 }
-
