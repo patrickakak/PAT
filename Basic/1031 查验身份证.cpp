@@ -1,56 +1,22 @@
-/**
- * Sample input1:
- * 4
- * 320124198808240056
- * 12010X198901011234
- * 110108196711301866
- * 37070419881216001X
- * Sample output1:
- * 12010X198901011234
- * 110108196711301866
- * 37070419881216001X
- * ------------------
- * Sample input2:
- * 2
- * 320124198808240056
- * 110108196711301862
- * Sample output2:
- * All passed
- */
-#include <stdio.h>
-
-int weight[17] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
-char Z2M[11] = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
-	int N, i, j, sum, Z, count=0;
-	char id[20];
-
-	scanf("%d", &N);
-	for (i = 0; i < N; i++) {
-		sum = 0;
-		scanf("%s", id);
+#include <iostream>
+using namespace std;
+int main() {
+	int n, cnt = 0;
+	char z2m[] = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
+	int wt[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+	cin >> n;
+	string s;
+	for (int i = 0; i < n; i++) {
+		cin >> s;
+		int j, sum = 0;
 		for (j = 0; j < 17; j++) {
-			if (id[j] < '0' || id[j] > '9')
-				break;
-			sum += (id[j]-'0') * weight[j];
+			if (!isdigit(s[j])) break;
+			sum += wt[j] * (s[j] - '0');
 		}
-		if (j < 17) {
-			printf("%s\n", id);
-			count++;
-		} else {
-			Z = sum % 11;
-			if (Z2M[Z] != id[17]) {
-				printf("%s\n", id);
-				count++;
-			}
-		}
+		int z = sum % 11;
+		if (j < 17 || z2m[z] != s[17]) cout << s << endl;
+		else cnt++;
 	}
-	if (count == 0)
-		printf("All passed\n");
-
+	if (cnt == n) cout << "All passed";
 	return 0;
 }
-
