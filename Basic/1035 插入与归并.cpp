@@ -6,7 +6,7 @@ int main() {
 	cin >> n;
 	for (int i = 0; i < n; i++) cin >> a[i];
 	for (int i = 0; i < n; i++) cin >> b[i];
-	for (i = 0; i < n - 1 && b[i] <= b[i + 1]; i++);
+	for (i = 0; i < n - 1 && b[i] <= b[i + 1]; i++) ;
 	for (j = i + 1; a[j] == b[j] && j < n; j++) ;
 	if (j == n) {
 		cout << "Insertion Sort" << endl;
