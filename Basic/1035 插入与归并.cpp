@@ -16,20 +16,20 @@ int main() {
 		int k = 1, flag = 1;
 		while (flag) {
 			flag = 0;
-			for (i = 0; i < n; i++)
+			for (int i = 0; i < n; i++)
 				if (a[i] != b[i]) {
 					flag = 1;
 					break;
 				}
 			k *= 2;
-			for (i = 0; i < n / k; i++)
+			for (int i = 0; i < n / k; i++)
 				sort(a + i * k, a + (i + 1) * k);
 			sort(a + n / k * k, a + n);
 		}
 	}
-	for (j = 0; j < n; j++) {
-		if (j != 0) printf(" ");
-		printf("%d", a[j]);
+	for (int j = 0; j < n; j++) {
+		if (j != 0) cout << ' ';
+		cout << a[j];
 	}
 	return 0;
 }
