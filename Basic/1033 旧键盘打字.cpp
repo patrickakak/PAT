@@ -1,53 +1,13 @@
-/**
- * Sample input:
- * 7+IE.
- * 7_This_is_a_test.
- * -----------------
- * Sample output:
- * _hs_s_a_tst
- */
-#include <cstdio>
-#include <cstring>
-#include <cmath>
-#include <vector>
-#include <map>
-#include <stack>
-#include <queue>
-#include <set>
-#include <cstdlib>
 #include <iostream>
-#include <algorithm>
-// #include <windows.h>
 using namespace std;
-
-const int maxn = 100100;
-bool hashTbl[256];		// true: key is intact
-char str[maxn];
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-
-	memset(hashTbl, true, sizeof(hashTbl));
-	cin.getline(str, maxn);
-	int len = strlen(str);
-	for (int i = 0; i < len; i++) {
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] - 'A' + 'a';
-		hashTbl[(int)str[i]] = false;
+int main() {
+	string broken, text;
+	getline(cin, broken);
+	getline(cin, text);
+	for (int i = 0, len = text.length(); i < len; i++) {
+		if (broken.find(toupper(text[i])) != string::npos) continue;
+		if (isupper(text[i]) && broken.find('+') != string::npos) continue;
+		cout << text[i];
 	}
-	cin.getline(str, maxn);
-	len = strlen(str);
-	for (int i = 0; i < len; i++)
-		if (str[i] >= 'A' && str[i] <= 'Z') {
-			int low = str[i] - 'A' + 'a';
-			if (hashTbl[low] == true && hashTbl['+'] == true)
-				printf("%c", str[i]);
-		} else if (hashTbl[(int)str[i]] == true)
-			printf("%c", str[i]);
-	printf("\n");
-
 	return 0;
 }
-
-
