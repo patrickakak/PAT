@@ -1,39 +1,15 @@
-/**
- * Sample Input:
- * 6
- * 3 65
- * 2 80
- * 1 100
- * 2 70
- * 3 40
- * 3 0
- * --------------
- * Sample Output:
- * 2 150
- */
-#include <stdio.h>
-
-#define MaxN 100000
-int A[MaxN] = {0};
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
-	int N, i;
-	int no, score;
-	int index = -1, total = -1;
-
-	scanf("%d", &N);
-	for (i = 0; i < N; i++) {
-		scanf("%d%d", &no, &score);
-		A[no-1] += score;
+#include <iostream>
+#include <algorithm>
+using namespace std;
+const int maxn = 100010;
+int main() {
+	int n, id, score, tot[maxn] = {0};
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> id >> score;
+		tot[id] += score;
 	}
-	for (i = 0; i < N; i++)
-		if (A[i] > total) {
-			index = i;
-			total = A[i];
-		}
-	printf("%d %d\n", index+1, A[index]);
+	int p = max_element(tot, tot + maxn) - tot;
+	cout << p << ' ' << tot[p];
 	return 0;
 }
-
