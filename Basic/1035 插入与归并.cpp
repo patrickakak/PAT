@@ -14,7 +14,7 @@ int main() {
 	} else {
 		cout << "Merge Sort" << endl;
 		int k = 1, flag = 1;
-		while(flag) {
+		while (flag) {
 			flag = 0;
 			for (i = 0; i < n; i++)
 				if (a[i] != b[i]) {
