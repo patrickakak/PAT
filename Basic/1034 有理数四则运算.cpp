@@ -12,14 +12,14 @@ void fun(long long m, long long n) {
 	bool flag = (m < 0 && n > 0) || (m > 0 && n < 0);
 	m = abs(m); n = abs(n);
 	long long q = m / n;
-	cout << (flag == true ? "(-" : "");
+	cout << (flag ? "(-" : "");
 	if (q != 0) cout << q;
 	if (m % n == 0) {
 		if (flag) cout <<')';
 		return ;
 	}
 	if (q != 0) cout << ' ';
-	m -= q*n;
+	m -= q * n;
 	long long t = gcd(m, n);
 	m /= t; n /= t;
 	cout << m << '/' << n << (flag ? ")" : "");
