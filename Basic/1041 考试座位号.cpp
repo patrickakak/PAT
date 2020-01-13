@@ -1,46 +1,18 @@
-/**
- * Sample input:
- * 4
- * 3310120150912233 2 4
- * 3310120150912119 4 1
- * 3310120150912126 1 3
- * 3310120150912002 3 2
- * 2
- * 3 4
- * --------------------
- * Sample output:
- * 3310120150912002 2
- * 3310120150912119 1
- */
-#include <stdio.h>
-#include <string.h>
-
-#define max_n 1005
-#define MAXL 20
-
-typedef struct {
-	char id[MAXL];
-	int exam;
-} Reg[max_n];
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
-	char id[MAXL];
-	Reg reg;
-	int N, i, M, no, trialNo, examNo;
-
-	scanf("%d", &N);
-	for (i = 0; i < N; i++) {
-		scanf("%s %d %d", id, &trialNo, &examNo);
-		strcpy(reg[trialNo].id, id);
-		reg[trialNo].exam = examNo;
-	}
-	scanf("%d", &M);
-	for (i = 0; i < M; i++) {
-		scanf("%d", &no);
-		printf("%s %d\n", reg[no].id, reg[no].exam);
-	}
-	return 0;
+#include <iostream>
+using namespace std;
+int main() {
+    string stu[1010][2], s1, s2;;
+    int n, m, t;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> s1 >> t >> s2;
+        stu[t][0] = s1;
+        stu[t][1] = s2; 
+    } 
+    cin >> m;
+    for (int i = 0; i < m; i++) {
+        cin >> t;
+        cout << stu[t][0] << ' ' << stu[t][1] << endl;
+    } 
+    return 0;
 }
-
