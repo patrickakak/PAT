@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 #include <vector>
 using namespace std;
 int cmp(int a, int b) {return a > b;}
@@ -15,7 +16,7 @@ int main() {
 	for (int i = 0; i < N; i++)
 		scanf("%d", &a[i]);
 	sort(a.begin(), a.end(), cmp);
-	vector<vector<int> > b(m, vector<int>(n));
+	vector<vector<int>> b(m, vector<int>(n));
 	int level = m / 2 + m % 2;
 	for (int i = 0; i < level; i++) {
 		for (int j = i; j <= n - 1 - i && t <= N - 1; j++)
