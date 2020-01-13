@@ -1,42 +1,15 @@
-/**
- * Sample input:
- * redlesPayBestPATTopTeePHPereatitAPPT
- * ------------------------
- * Sample output:
- * PATestPATestPTetPTePePee
- */
-#include <cstdio>
-#include <cstring>
 #include <iostream>
 using namespace std;
-
-#define maxn 10010
-char dict[6] = {'P', 'A', 'T', 'e', 's', 't'};
-int hashTbl[6] = {0};
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-
-	char str[maxn];
-	cin.getline(str, maxn);
-	int len = strlen(str);
-	int sum = 0;
-	for (int i = 0; i < len; i++)
-		for (int j = 0; j < 6; j++)
-			if (str[i] == dict[j]) {
-				hashTbl[j]++;
-				sum++;
-			}
-	while (sum > 0)
-		for (int i = 0; i < 6; i++)
-			if (hashTbl[i] > 0) {
-				printf("%c", dict[i]);
-				hashTbl[i]--;
-				sum--;
-			}
-
+int main() {
+	int map[128] = {0}, c;
+	while ((c = cin.get()) != EOF) map[c]++;
+	while (map['P'] > 0 || map['A'] > 0 || map['T'] > 0 || map['e'] > 0 || map['s'] > 0 || map['t'] > 0) {
+		if (map['P']-- > 0) cout << 'P';
+		if (map['A']-- > 0) cout << 'A';
+		if (map['T']-- > 0) cout << 'T';
+		if (map['e']-- > 0) cout << 'e';
+		if (map['s']-- > 0) cout << 's';
+		if (map['t']-- > 0) cout << 't';
+	}
 	return 0;
 }
-
-
