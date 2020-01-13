@@ -1,67 +1,34 @@
-/**
- * Sample input:
- * 4
- * 29
- * 5
- * elo nov
- * tam
- * ------------
- * Sample output:
- * hel mar
- * may
- * 115
- * 13
- */
-#include <cstdio>
-#include <map> 	// red-black tree
 #include <iostream>
-#include <string>
 using namespace std;
-
-// 0~12 in Mars number system, unit/ten digit
-string unit[13] = {"tret", "jan", "feb", "mar", "apr", "may", 
-	"jun", "jly", "aug", "sep", "oct", "nov", "dec"};
-string ten[13] = {"tret", "tam", "hel", "maa", "huh", "tou", 
-	"kes", "hei", "elo", "syy", "lok", "mer", "jou"};
-string num2Str[170];
-map<string, int> str2Num;
-
-void init()
-{
-	for (int i = 0; i < 13; i++) {
-		num2Str[i] = unit[i];
-		str2Num[unit[i]] = i;
-		num2Str[i*13] = ten[i];
-		str2Num[ten[i]] = i * 13;
-	}
-	for (int i = 1; i < 13; i++)
-		for (int j = 1; j < 13; j++) {
-			string str = ten[i] + " " + unit[j];
-			num2Str[i*13 + j] = str;
-			str2Num[str] = i*13 + j;
-		}
+string a[13] = {"tret", "jan", "feb", "mar", "apr", "may", "jun", "jly", "aug", "sep", "oct", "nov", "dec"};
+string b[13] = {"####", "tam", "hel", "maa", "huh", "tou", "kes", "hei", "elo", "syy", "lok", "mer", "jou"};
+string s;
+int len;
+void func1(int t) {
+	if (t / 13) cout << b[t / 13];
+	if ((t / 13) && (t % 13)) cout << " ";
+	if (t % 13 || t == 0) cout << a[t % 13];
 }
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-	int T;
-
-	init(); 	// print table
-	scanf("%d%*c", &T);
-	while (T--) {
-		string str;
-		getline(cin, str);
-		if (str[0] >= '0' && str[0] <= '9') {
-			int num = 0;
-			for (int i = 0; i < (int)str.length(); i++)
-				num = num*10 + (str[i]-'0');
-			cout << num2Str[num] << endl;
-		} else
-			cout << str2Num[str] << endl;
+void func2() {
+	int t1 = 0, t2 = 0;
+	string s1 = s.substr(0, 3), s2;
+	if (len > 4) s2 = s.substr(4);
+	for (int j = 1; j <= 12; j++) {
+		if (s1 == a[j] || s2 == a[j]) t2 = j;
+		if (s1 == b[j]) t1 = j;
 	}
-
+	cout << t1 * 13 + t2;
+}
+int main() {
+	int n;
+	cin >> n;
+	getchar();
+	for (int i = 0; i < n; i++) {
+		getline(cin, s);
+		len = s.length();
+		if (isdigit(s[0])) func1(stoi(s));
+		else func2();
+		cout << endl;
+	}
 	return 0;
 }
-
-
