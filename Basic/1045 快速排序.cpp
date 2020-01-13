@@ -17,7 +17,7 @@ int main() {
 		if (b[i] > max) max = b[i];
 	}
 	printf("%d\n", cnt);
-	for(int i = 0; i < cnt; i++) {
+	for (int i = 0; i < cnt; i++) {
 		if (i != 0) cout << ' ';
 		cout << v[i];
 	}
