@@ -1,19 +1,16 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 int main() {
-    string s;
-    getline(cin, s);
-    int len = s.length(), a[26] = {0};
-    for (int i = 0; i < len; i++)
-        s[i] = tolower(s[i]);
-    for (int i = 0; i < len; i++)
-        if (islower(s[i])) a[s[i] - 'a']++;
-    int max = a[0], t = 0;
-    for (int i = 1; i < 26; i++)
-        if (a[i] > max) {
-            max = a[i];
-            t = i;
-        }
-    printf("%c %d", t + 'a', max);
-    return 0;
+	string s;
+	getline(cin, s);
+	int len = s.length(), a[26] = {0};
+	for (int i = 0; i < len; i++) {
+		s[i] = tolower(s[i]);
+		if (isalpha(s[i]))
+			a[s[i] - 'a']++;
+	}
+	int p = max_element(a, a + 26) - a;
+	printf("%c %d", p + 'a', a[p]);
+	return 0;
 }
