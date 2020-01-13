@@ -15,7 +15,7 @@ int main() {
 			c += str[(a[i] - '0' + b[i] - '0') % 13];
 		else {
 			int tmp = b[i] - a[i];
-			if (tmp < 0) tmp = tmp + 10;
+			if (tmp < 0) tmp += 10;
 			c += str[tmp];
 		}
 	for (int i = c.length() - 1; i >= 0; i--)
