@@ -18,10 +18,7 @@ int main() {
 	sort(stu.begin(), stu.end(), cmp);
 	int t = 0, row = k;
 	while (row) {
-		if (row == k)
-			m = n - n / k * (k - 1);
-		else
-			m = n / k;
+		m = (row == k ? n % k + n / k : n / k);
 		vector<string> ans(m);
 		ans[m / 2] = stu[t].name;
 		int j = m / 2 - 1;
