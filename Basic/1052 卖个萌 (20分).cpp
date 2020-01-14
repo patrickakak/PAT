@@ -19,10 +19,9 @@ int main() {
 		}
 		v.push_back(row);
 	}
-	int n;
+	int n, a, b, c, d, e;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
-		int a, b, c, d, e;
 		cin >> a >> b >> c >> d >> e;
 		if (a > v[0].size() || b > v[1].size() || c > v[2].size() || d > v[1].size() || e > v[0].size() || a < 1 || b < 1 || c < 1 || d < 1 || e < 1) {
 			cout << "Are you kidding me? @\\/@" << endl;
