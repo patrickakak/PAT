@@ -9,7 +9,7 @@ int main() {
 		vector<string> row;
 		for (int j = 0, k = 0; j < s.length(); j++)
 			if (s[j] == '[')
-				while (k++ < s.length())
+				for (int k = j + 1; k < s.length(); k++)
 					if (s[k] == ']') {
 						row.push_back(s.substr(j+1, k-j-1));
 						break;
