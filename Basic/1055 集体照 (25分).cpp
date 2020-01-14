@@ -27,9 +27,10 @@ int main() {
 		j = m / 2 + 1;
 		for (int i = t + 2; i < t + m; i += 2)
 			ans[j++] = stu[i].name;
-		cout << ans[0];
-		for (int i = 1; i < m; i++)
-			cout << ' ' << ans[i];
+		for (int i = 0; i < m; i++) {
+			if (i != 0) cout << ' ';
+			cout << ans[i];
+		}
 		cout << endl;
 		t += m;
 		row--;
