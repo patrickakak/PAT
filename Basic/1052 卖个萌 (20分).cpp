@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 int main() {
-	vector<vector<string> > v;
+	vector<vector<string>> v;
 	for (int i = 0; i < 3; i++) {
 		string s;
 		getline(cin, s);
@@ -27,7 +27,7 @@ int main() {
 			cout << "Are you kidding me? @\\/@" << endl;
 			continue;
 		}
-		cout << v[0][a-1] << "(" << v[1][b-1] << v[2][c-1] << v[1][d-1] << ")" << v[0][e-1] << endl;
+		cout << v[0][a-1] << '(' << v[1][b-1] << v[2][c-1] << v[1][d-1] << ')' << v[0][e-1] << endl;
 	}
 	return 0;
 }
