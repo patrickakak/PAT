@@ -7,16 +7,13 @@ int main() {
 		string s;
 		getline(cin, s);
 		vector<string> row;
-		int j = 0, k = 0;
-		while (j < s.length()) {
+		for (int j = 0, k = 0; j < s.length(); j++)
 			if (s[j] == '[')
 				while (k++ < s.length())
 					if (s[k] == ']') {
 						row.push_back(s.substr(j+1, k-j-1));
 						break;
 					}
-			j++;
-		}
 		v.push_back(row);
 	}
 	int n, a, b, c, d, e;
