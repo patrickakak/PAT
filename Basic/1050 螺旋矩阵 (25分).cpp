@@ -18,13 +18,13 @@ int main() {
 	vector<vector<int>> b(m, vector<int>(n));
 	int level = m / 2 + m % 2;
 	for (int i = 0; i < level; i++) {
-		for (int j = i; j <= n - 1 - i && t <= N - 1; j++)
+		for (int j = i; j <= n - 1 - i && t < N; j++)
 			b[i][j] = a[t++];
-		for (int j = i + 1; j <= m - 2 - i && t <= N - 1; j++)
+		for (int j = i + 1; j <= m - 2 - i && t < N; j++)
 			b[j][n - 1 - i] = a[t++];
-		for (int j = n - i - 1; j >= i && t <= N - 1; j--)
+		for (int j = n - i - 1; j >= i && t < N; j--)
 			b[m - 1 - i][j] = a[t++];
-		for (int j = m - 2 - i; j >= i + 1 && t <= N - 1; j--)
+		for (int j = m - 2 - i; j >= i + 1 && t < N; j--)
 			b[j][i] = a[t++];
 	}
 	for (int i = 0; i < m; i++) {
