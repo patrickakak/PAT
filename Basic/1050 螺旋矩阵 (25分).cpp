@@ -3,11 +3,10 @@
 #include <cmath>
 #include <vector>
 using namespace std;
-int cmp(int a, int b) { return a > b; }
 int main() {
 	int N, m, n, t = 0;
 	scanf("%d", &N);
-	for (n = sqrt(1.0*N); n >= 1; n--)
+	for (n = sqrt((double)N); n >= 1; n--)
 		if (N % n == 0) {
 			m = N / n;
 			break;
@@ -15,7 +14,7 @@ int main() {
 	vector<int> a(N);
 	for (int i = 0; i < N; i++)
 		scanf("%d", &a[i]);
-	sort(a.begin(), a.end(), cmp);
+	sort(a.rbegin(), a.rend());
 	vector<vector<int>> b(m, vector<int>(n));
 	int level = m / 2 + m % 2;
 	for (int i = 0; i < level; i++) {
