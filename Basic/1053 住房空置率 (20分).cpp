@@ -11,9 +11,8 @@ int main() {
 			cin >> temp;
 			if (temp < e) sum++;
 		}
-		if(sum > (k / 2)) {
+		if (sum > k / 2)
 			k > d ? must++ : maybe++;
-		}
 	}
 	double mayberesult = (double)maybe / n * 100;
 	double mustresult = (double)must / n * 100;
