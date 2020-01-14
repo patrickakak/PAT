@@ -12,8 +12,7 @@ int main() {
 			break;
 		}
 	vector<int> a(N);
-	for (int i = 0; i < N; i++)
-		cin >> a[i];
+	for (int i = 0; i < N; i++) cin >> a[i];
 	sort(a.rbegin(), a.rend());
 	vector<vector<int>> b(m, vector<int>(n));
 	int level = m / 2 + m % 2;
