@@ -22,16 +22,16 @@ int main() {
 		vector<string> ans(m);
 		ans[m / 2] = stu[t].name;
 		int j = m / 2 - 1;
-		for (int i = t + 1; i < t + m; i = i + 2)
+		for (int i = t + 1; i < t + m; i += 2)
 			ans[j--] = stu[i].name;
 		j = m / 2 + 1;
-		for (int i = t + 2; i < t + m; i = i + 2)
+		for (int i = t + 2; i < t + m; i += 2)
 			ans[j++] = stu[i].name;
 		cout << ans[0];
 		for (int i = 1; i < m; i++)
-			cout << " " << ans[i];
+			cout << ' ' << ans[i];
 		cout << endl;
-		t = t + m;
+		t += m;
 		row--;
 	}
 	return 0;
