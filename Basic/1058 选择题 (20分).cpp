@@ -41,8 +41,8 @@ int main() {
 		printf("Too simple");
 	else {
 		printf("%d", maxWrongCnt);
-		for(int i = 0; i < m; i++)
-			if(wrongCnt[i] == maxWrongCnt)
+		for (int i = 0; i < m; i++)
+			if (wrongCnt[i] == maxWrongCnt)
 				printf(" %d", i + 1);
 	}
 	return 0;
