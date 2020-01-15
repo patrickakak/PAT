@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int a[1000000];
+int a[100000];
 bool cmp(int a, int b) {
 	return a > b;
 }
