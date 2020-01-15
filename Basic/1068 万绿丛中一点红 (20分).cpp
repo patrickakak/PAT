@@ -30,11 +30,8 @@ int main() {
 				x = i + 1;
 				y = j + 1;
 			}
-	if (cnt == 1)
-		printf("(%d, %d): %d", y, x, v[x-1][y-1]);
-	else if (cnt == 0)
-		printf("Not Exist");
-	else
-		printf("Not Unique");
+	if (cnt == 1) printf("(%d, %d): %d", y, x, v[x-1][y-1]);
+	else if (cnt == 0) printf("Not Exist");
+	else printf("Not Unique");
 	return 0;
 }
