@@ -1,17 +1,18 @@
-#include <cstdio>
+#include <iostream>
+#include <algorithm>
 #include <vector>
 #include <set>
 using namespace std;
 int main() {
-	int n, m, temp, k;
-	scanf("%d%d", &n, &m);
+	int n, m, tmp, k;
+	cin >> n >> m;
 	vector<set<char>> right(m);
-	vector<int> total(m), wrongCnt(m);
+	vector<int> tot(m), wrongCnt(m);
+	char c;
 	for (int i = 0; i < m; i++) {
-		scanf("%d%d%d", &total[i], &temp, &k);
+		cin >> tot[i] >> tmp >> k;
 		for (int j = 0; j < k; j++) {
-			char c;
-			scanf(" %c", &c);
+			cin >> c;
 			right[i].insert(c);
 		}
 	}
@@ -22,28 +23,24 @@ int main() {
 			if (j != 0) scanf(" ");
 			scanf("(%d", &k);
 			set<char> st;
-			char c;
 			for (int l = 0; l < k; l++) {
-				scanf(" %c", &c);
+				cin >> c;
 				st.insert(c);
 			}
 			scanf(")");
-			if (st == right[j]) score += total[j];
+			if (st == right[j]) score += tot[j];
 			else wrongCnt[j]++;
 		}
-		printf("%d\n", score);
+		cout << score << endl;
 	}
-	int maxWrongCnt = 0;
-	for (int i = 0; i < m; i++)
-		if (wrongCnt[i] > maxWrongCnt)
-			maxWrongCnt = wrongCnt[i];
-	if (maxWrongCnt == 0)
-		printf("Too simple");
+	int p = max_element(wrongCnt.begin(), wrongCnt.end()) - wrongCnt.begin();
+	int maxWrongCnt = wrongCnt[p];
+	if (maxWrongCnt == 0) cout << "Too simple";
 	else {
-		printf("%d", maxWrongCnt);
+		cout << maxWrongCnt;
 		for (int i = 0; i < m; i++)
 			if (wrongCnt[i] == maxWrongCnt)
-				printf(" %d", i + 1);
+				cout << ' ' << i + 1;
 	}
 	return 0;
 }
