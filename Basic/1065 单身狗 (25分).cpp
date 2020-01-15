@@ -4,7 +4,7 @@
 using namespace std;
 int couple[100000];
 int main() {
-	vector<int> couple(100000, -1);
+	vector<int> couple(100000, -1), single;
 	int n, a, b, m, id;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
@@ -17,7 +17,6 @@ int main() {
 		cin >> id;
 		s.insert(id);
 	}
-	vector<int> single;
 	for (auto it = s.begin(); it != s.end(); it++) {
 		if (couple[*it] != -1 && s.find(couple[*it]) == s.end())
 			couple[*it] = -1;
