@@ -2,7 +2,6 @@
 #include <vector>
 #include <set>
 using namespace std;
-int couple[100000];
 int main() {
 	vector<int> couple(100000, -1), single;
 	int n, a, b, m, id;
