@@ -14,10 +14,8 @@ int main() {
 		st.insert(sum);
 	}
 	cout << st.size() << endl;
-	bool flag = true;
 	for (auto it = st.begin(); it != st.end(); it++) {
-		if (flag == true) flag = false;
-		else cout << ' ';
+		if (it != st.begin()) cout << ' ';
 		cout << *it;
 	}
 	return 0;
