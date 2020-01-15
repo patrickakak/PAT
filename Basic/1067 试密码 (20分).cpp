@@ -5,7 +5,8 @@ int main() {
 	int n, cnt = 0;
 	cin >> pwd >> n;
 	getchar();
-	while (getline(cin, tmp)) {
+	while (1) {
+		getline(cin, tmp);
 		if (tmp == "#") break;
 		cnt++;
 		if (cnt <= n && tmp == pwd) {
