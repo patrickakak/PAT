@@ -35,7 +35,8 @@ int main() {
 	}
 	int p = max_element(wrongCnt.begin(), wrongCnt.end()) - wrongCnt.begin();
 	int maxWrongCnt = wrongCnt[p];
-	if (maxWrongCnt == 0) cout << "Too simple";
+	if (maxWrongCnt == 0)
+		cout << "Too simple";
 	else {
 		cout << maxWrongCnt;
 		for (int i = 0; i < m; i++)
