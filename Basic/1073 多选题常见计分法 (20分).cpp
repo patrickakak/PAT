@@ -31,16 +31,14 @@ int main() {
 				if (el)
 					for (int k = 0; k < 5; k++)
 						if (el & hash[k]) cnt[j][k]++;
-			} else
-				grade += tot[j];
+			} else grade += tot[j];
 		}
 		printf("%.1f\n", grade);
 	}
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < 5; j++)
 			maxcnt = maxcnt > cnt[i][j] ? maxcnt : cnt[i][j];
-	if (maxcnt == 0)
-		printf("Too simple\n");
+	if (maxcnt == 0) printf("Too simple\n");
 	else
 		for (int i = 0; i < m; i++)
 			for (int j = 0; j < cnt[i].size(); j++)
