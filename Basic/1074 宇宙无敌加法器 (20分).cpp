@@ -2,7 +2,7 @@
 using namespace std;
 int main() {
 	string s, s1, s2, ans;
-	int carry = 0, flag = 0;
+	int carry = 0;
 	cin >> s >> s1 >> s2;
 	ans = s;
 	string ss1(s.length() - s1.length(), '0');
@@ -15,11 +15,8 @@ int main() {
 		carry = (s1[i] - '0' + s2[i] - '0' + carry) / mod;
 	}
 	if (carry != 0) ans = '1' + ans;
-	for (int i = 0; i < ans.size(); i++)
-		if (ans[i] != '0' || flag == 1) {
-			flag = 1;
-			cout << ans[i];
-		}
-	if (flag == 0) cout << 0;
+	while (ans.length() > 0 && ans[0] == '0') ans.erase(ans.begin());
+	if (ans.size() == 0) cout << 0;
+	else cout << ans;
 	return 0;
 }
