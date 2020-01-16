@@ -24,13 +24,13 @@ int main() {
 				scanf(" %c)", &c);
 				opt[i][j] += hash[c-'a'];
 			}
-			int el = opt[i][j] ^ trueopt[j];
-			if (el) {
+			int exor = opt[i][j] ^ trueopt[j];
+			if (exor) {
 				if ((opt[i][j] | trueopt[j]) == trueopt[j])
 					grade += tot[j] * 1.0 / 2;
-				if (el)
+				if (exor)
 					for (int k = 0; k < 5; k++)
-						if (el & hash[k]) cnt[j][k]++;
+						if (exor & hash[k]) cnt[j][k]++;
 			} else grade += tot[j];
 		}
 		printf("%.1f\n", grade);
