@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int n, t, a[10000] = {0};
+	int n, t, a[10010] = {0};
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		cin >> t;
