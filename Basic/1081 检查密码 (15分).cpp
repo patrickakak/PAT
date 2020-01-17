@@ -9,11 +9,11 @@ int main() {
 		getline(cin, s);
 		if (s.length() < 6) cout << "Your password is tai duan le.\n";
 		else {
-			int invalid = 0, hasAlpha = 0, hasNum = 0;
+			bool invalid = false, hasAlpha = false, hasNum = false;
 			for (int j = 0; j < s.length(); j++) {
-				if (s[j] != '.' && !isalnum(s[j])) invalid = 1;
-				else if (isalpha(s[j])) hasAlpha = 1;
-				else if (isdigit(s[j])) hasNum = 1;
+				if (s[j] != '.' && !isalnum(s[j])) invalid = true;
+				else if (isalpha(s[j])) hasAlpha = true;
+				else if (isdigit(s[j])) hasNum = true;
 			}
 			if (invalid) cout << "Your password is tai luan le.\n";
 			else if (!hasNum) cout << "Your password needs shu zi.\n";
