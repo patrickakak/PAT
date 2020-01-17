@@ -1,13 +1,25 @@
 #include <iostream>
 using namespace std;
 int main() {
-	char t;
-	cin >> t;
+	char c;
+	cin >> c;
 	getchar();
 	string s, num;
 	getline(cin, s);
 	int cnt = 1;
-	if (t == 'D')
+	if (c == 'C') {
+		char pre = s[0];
+		for (int i = 1; i < s.length(); i++)
+			if (s[i] == pre) cnt++;
+			else {
+				if (cnt > 1) cout << cnt;
+				cout << pre;
+				cnt = 1;
+				pre = s[i];
+			}
+		if (cnt > 1) cout << cnt;
+		cout << pre;
+	} else
 		for (int i = 0; i < s.length(); i++)
 			if (isdigit(s[i])) num += s[i];
 			else {
@@ -16,18 +28,5 @@ int main() {
 				cnt = 1;
 				num = "";
 			}
-	else if (s.length() != 0) {
-		char pre = s[0];
-		for (int i = 1; i < s.length(); i++)
-			if (s[i] == pre) cnt++;
-			else {
-				if (cnt >= 2) cout << cnt;
-				cout << pre;
-				cnt = 1;
-				pre = s[i];
-			}
-		if (cnt >= 2) cout << cnt;
-		cout << pre;
-	}
 	return 0;
 }
