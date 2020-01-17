@@ -6,7 +6,7 @@ struct node {
 } list[100000];
 vector<int> v[3];
 int main() {
-	int fir, n, k, a;
+	int fir, n, k, a, flag = 0;
 	scanf("%d%d%d", &fir, &n, &k);
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &a);
@@ -18,7 +18,6 @@ int main() {
 		else if (data >= 0 && data <= k) v[1].push_back(p);
 		else v[2].push_back(p);
 	}
-	int flag = 0;
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < v[i].size(); j++)
 			if (flag == 0) {
