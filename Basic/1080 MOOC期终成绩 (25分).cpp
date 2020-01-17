@@ -5,11 +5,11 @@
 #include <map>
 using namespace std;
 struct node {
-	string name;
+	string id;
 	int gp, gm, gf, g;
 };
 bool cmp(node a, node b) {
-	return a.g != b.g ? a.g > b.g : a.name < b.name;
+	return a.g != b.g ? a.g > b.g : a.id < b.id;
 }
 map<string, int> idx;
 int main() {
@@ -40,6 +40,6 @@ int main() {
 		if (v[i].g >= 60) ans.push_back(v[i]);
 	sort(ans.begin(), ans.end(), cmp);
 	for (int i = 0; i < ans.size(); i++)
-		printf("%s %d %d %d %d\n", ans[i].name.c_str(), ans[i].gp, ans[i].gm, ans[i].gf, ans[i].g);
+		printf("%s %d %d %d %d\n", ans[i].id.c_str(), ans[i].gp, ans[i].gm, ans[i].gf, ans[i].g);
 	return 0;
 }
