@@ -26,12 +26,11 @@ int main() {
 			for (int j = 0; j < n; j++)
 				if (v[j].t[0] == s[0]) ans.push_back(v[j]);
 		} else if (num == 2) {
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < n; j++)
 				if (v[j].t.substr(1, 3) == s) {
 					cnt++;
 					sum += v[j].value;
 				}
-			}
 			if (cnt != 0) printf("%d %d\n", cnt, sum);
 		} else if (num == 3) {
 			unordered_map<string, int> m;
