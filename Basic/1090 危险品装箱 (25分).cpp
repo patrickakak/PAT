@@ -22,7 +22,7 @@ int main() {
 		for (int i = 0; i < v.size(); i++)
 			for (int j = 0; j < m[v[i]].size(); j++)
 				if (a[m[v[i]][j]] == 1) flag = 1;
-		printf("%s\n",flag ? "No" :"Yes");
+		printf("%s\n", flag ? "No" :"Yes");
 	}
 	return 0;
 }
