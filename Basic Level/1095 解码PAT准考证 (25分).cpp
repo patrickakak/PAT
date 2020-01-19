@@ -32,7 +32,7 @@ int main() {
 					sum += v[j].value;
 				}
 			if (cnt != 0) printf("%d %d\n", cnt, sum);
-		} else if (num == 3) {
+		} else {
 			unordered_map<string, int> m;
 			for (int j = 0; j < n; j++)
 				if (v[j].t.substr(4, 6) == s) m[v[j].t.substr(1, 3)]++;
