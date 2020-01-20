@@ -7,13 +7,13 @@ int main() {
 	string s;
 	for (int i = 0; i < n; i++) {
 		cin >> s;
-		unordered_map<char, int> um;
+		unordered_map<char, int> m;
 		for (int j = 0; j < s.length(); j++) {
-			um[s[j]]++;
+			m[s[j]]++;
 			if (s[j] == 'P') p = j;
 			if (s[j] == 'T') t = j;
 		}
-		if (um['P'] == 1 && um['T'] == 1 && um.size() == 3 && t-p != 1 && p*(t-p-1) == s.length()-1-t)
+		if (m['P'] == 1 && m['T'] == 1 && m.size() == 3 && t-p != 1 && p*(t-p-1) == s.length()-1-t)
 			cout << "YES" << endl;
 		else cout << "NO" << endl;
 	}
