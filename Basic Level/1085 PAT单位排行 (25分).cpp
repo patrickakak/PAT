@@ -39,7 +39,7 @@ int main() {
 	for (int i = 0; i < ans.size(); i++) {
 		if (pres != ans[i].tws) r = i + 1;
 		pres = ans[i].tws;
-		cout << r << ' ' << ans[i].uni << ' ' << ans[i].tws << ' ' << ans[i].ns << endl;
+		printf("%d %s %d %d\n", r, ans[i].uni.c_str(), ans[i].tws, ans[i].ns);
 	}
 	return 0;
 }
