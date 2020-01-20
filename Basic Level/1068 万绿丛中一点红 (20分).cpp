@@ -2,9 +2,8 @@
 #include <vector>
 #include <unordered_map>
 using namespace std;
-int m, n, tol;
+int m, n, tol, dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}};
 vector<vector<int>> v;
-int dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}};
 bool judge(int i, int j) {
 	for (int k = 0; k < 8; k++) {
 		int tx = i + dir[k][0];
