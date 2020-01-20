@@ -14,8 +14,8 @@ int main() {
 			if (m[i] != '.') cout << m[i];
 	} else {
 		cout << m[0];
-		int j = 2, cnt = 0;
-		for (; j < m.length() && cnt < e; j++, cnt++) cout << m[j];
+		int j, cnt = 0;
+		for (j = 2; j < m.length() && cnt < e; j++, cnt++) cout << m[j];
 		if (j == m.length())
 			for (int k = 0; k < e-cnt; k++) cout << '0';
 		else {
