@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
 	int n, m, optnum, truenum, tmp, maxcnt = 0;
-	int hash[] = {1, 2, 4, 8, 16}, opt[1010][110] = {0};
+	int hash[] = {1, 2, 4, 8, 16}, opt[1000][100] = {0};
 	char c;
 	scanf("%d %d", &n, &m);
 	vector<int> tot(m), right(m);
