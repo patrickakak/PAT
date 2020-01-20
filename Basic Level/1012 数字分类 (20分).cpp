@@ -25,7 +25,7 @@ int main() {
 		if (i == 0) cout << A1;
 		if (i == 1) cout << A2;
 		if (i == 2) cout << v[2].size();
-		if (i == 3) printf("%.1f", 1.0*A4 / v[3].size());
+		if (i == 3) printf("%.1f", 1.0 * A4 / v[3].size());
 		if (i == 4) cout << A5;
 	}
 	return 0;
