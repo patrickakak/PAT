@@ -16,10 +16,9 @@ int main() {
 				flag = 1;
 				break;
 			}
-		if (flag || tmp < -1000 || tmp > 1000) {
+		if (flag || tmp < -1000 || tmp > 1000)
 			printf("ERROR: %s is not a legal number\n", a);
-			continue;
-		} else {
+		else {
 			sum += tmp;
 			cnt++;
 		}
