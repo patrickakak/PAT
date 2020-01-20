@@ -4,7 +4,7 @@ long long a, b, c, d;
 long long gcd(long long a, long long b) {
 	return !b ? a : gcd(b, a % b);
 }
-void fun(long long n, long long d) {
+void f(long long n, long long d) {
 	if (n * d == 0) {
 		cout << (d == 0 ? "Inf" : "0");
 		return ;
@@ -26,9 +26,9 @@ void fun(long long n, long long d) {
 }
 int main() {
 	scanf("%lld/%lld %lld/%lld", &a, &b, &c, &d);
-	fun(a, b); cout << " + "; fun(c, d); cout << " = "; fun(a*d + b*c, b*d); cout << endl;
-	fun(a, b); cout << " - "; fun(c, d); cout << " = "; fun(a*d - b*c, b*d); cout << endl;
-	fun(a, b); cout << " * "; fun(c, d); cout << " = "; fun(a*c, b*d); cout << endl;
-	fun(a, b); cout << " / "; fun(c, d); cout << " = "; fun(a*d, b*c);
+	f(a, b); cout << " + "; f(c, d); cout << " = "; f(a*d + b*c, b*d); cout << endl;
+	f(a, b); cout << " - "; f(c, d); cout << " = "; f(a*d - b*c, b*d); cout << endl;
+	f(a, b); cout << " * "; f(c, d); cout << " = "; f(a*c, b*d); cout << endl;
+	f(a, b); cout << " / "; f(c, d); cout << " = "; f(a*d, b*c);
 	return 0;
 }
