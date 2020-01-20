@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 int m, n, tol;
 vector<vector<int>> v;
@@ -17,7 +17,7 @@ int main() {
 	int cnt = 0, x = 0, y = 0;
 	scanf("%d%d%d", &m, &n, &tol);
 	v.resize(n, vector<int>(m));
-	map<int, int> mp;
+	unordered_map<int, int> mp;
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++) {
 			scanf("%d", &v[i][j]);
