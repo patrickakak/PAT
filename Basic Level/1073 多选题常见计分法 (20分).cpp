@@ -6,13 +6,13 @@ int main() {
 	int hash[] = {1, 2, 4, 8, 16}, opt[1010][110] = {0};
 	char c;
 	scanf("%d %d", &n, &m);
-	vector<int> tot(m), trueopt(m);
+	vector<int> tot(m), right(m);
 	vector<vector<int>> cnt(m, vector<int>(5));
 	for (int i = 0; i < m; i++) {
 		scanf("%d %d %d", &tot[i], &optnum, &truenum);
 		for (int j = 0; j < truenum; j++) {
 			scanf(" %c", &c);
-			trueopt[i] += hash[c-'a'];
+			right[i] += hash[c-'a'];
 		}
 	}
 	for (int i = 0; i < n; i++) {
@@ -24,9 +24,9 @@ int main() {
 				scanf(" %c)", &c);
 				opt[i][j] += hash[c-'a'];
 			}
-			int e = opt[i][j] ^ trueopt[j];
+			int e = opt[i][j] ^ right[j];
 			if (e) {
-				if ((opt[i][j] | trueopt[j]) == trueopt[j])
+				if ((opt[i][j] | right[j]) == right[j])
 					grade += tot[j] * 1.0 / 2;
 				if (e)
 					for (int k = 0; k < 5; k++)
