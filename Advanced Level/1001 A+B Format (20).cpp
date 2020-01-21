@@ -4,11 +4,10 @@ int main() {
 	int a, b;
 	cin >> a >> b;
 	string s = to_string(a + b);
-	int len = s.length();
-	for (int i = 0; i < len; i++) {
+	for (int i = 0; i < s.length(); i++) {
 		cout << s[i];
 		if (s[i] == '-') continue;
-		if ((i + 1) % 3 == len % 3 && i != len - 1) cout << ",";
+		if ((i + 1) % 3 == s.length() % 3 && i != s.length() - 1) printf(",");
 	}
 	return 0;
 }
