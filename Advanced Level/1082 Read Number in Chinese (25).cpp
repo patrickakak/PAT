@@ -14,7 +14,7 @@ int main() {
 	while (r - 4 >= l) r -= 4;
 	while (l < s.length()) {
 		bool zflag = false, isPrint = false;
-		while (l <= r) {
+		for ( ; l <= r; l++)
 			if (l > 0 && s[l] == '0') zflag = true;
 			else {
 				if (zflag == true) {
@@ -26,8 +26,6 @@ int main() {
 				isPrint = true;
 				if (l != r) cout << ' ' << b[r-l];
 			}
-			l++;
-		}
 		if (isPrint == true && r != s.length()-1)
 			cout << ' ' << b[(s.length() - r) / 4 + 3];
 		r += 4;
