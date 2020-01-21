@@ -1,29 +1,12 @@
-/**
- * Sample input1:
- * -123456789
- * Sample output1:
- * Fu yi Yi er Qian san Bai si Shi wu Wan liu Qian qi Bai ba Shi jiu
- * ----------------
- * Sample input2:
- * 100800
- * Sample output2:
- * yi Shi Wan ling ba Bai
- */
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-
+#include <iostream>
+#include <cstring>
+using namespace std;
 char wei[5][5] = {"Shi", "Bai", "Qian", "Wan", "Yi"};
-char num[10][5] = {"ling", "yi", "er", "san", "si", 
-                   "wu", "liu", "qi", "ba", "jiu"};
-
-int main()
-{
-	// freopen("test.txt", "r", stdin);
+char num[10][5] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
+int main() {
 	char str[15];
 	int len, left, right;
 	bool flag, isPrint;
-
 	scanf("%s", str);
 	len = strlen(str);
 	left = 0;
@@ -32,15 +15,14 @@ int main()
 		printf("Fu");
 		left++;
 	}
-	while (left + 4 <= right)	// left and right points to the same section
-		right -= 4;             // which is four-digit long
+	while (left + 4 <= right) right -= 4;
 	while (left < len) {
-		flag = false;			// To indicate there is no accumulated 0
-		isPrint = false;		// false: no printing in this section (all 0)
+		flag = false;
+		isPrint = false;
 		while (left <= right) {
 			if (left > 0 && str[left] == '0')
 				flag = true;
-			else {				// eg. 8008
+			else {
 				if (flag == true) {
 					printf(" ling");
 					flag = false;
@@ -49,7 +31,7 @@ int main()
 					printf(" ");
 				printf("%s", num[str[left]-'0']);
 				isPrint = true;
-				if (left != right) 	// except "Ge" wei
+				if (left != right)
 					printf(" %s", wei[right-left-1]);
 			}
 			left++;
@@ -60,5 +42,3 @@ int main()
 	}
 	return 0;
 }
-
-
