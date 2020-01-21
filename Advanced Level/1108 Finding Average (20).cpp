@@ -23,9 +23,7 @@ int main() {
 			cnt++;
 		}
 	}
-	if (cnt != 0)
-		printf("The average of %d number%s is %.2f", cnt, cnt > 1 ? "s" : "", sum / cnt);
-	else
-		printf("The average of 0 numbers is Undefined");
+	if (cnt != 0) printf("The average of %d number%s is %.2f", cnt, cnt > 1 ? "s" : "", sum / cnt);
+	else printf("The average of 0 numbers is Undefined");
 	return 0;
 }
