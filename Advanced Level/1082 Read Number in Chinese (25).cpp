@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
-string a[] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
-string b[] = {"","Shi","Bai","Qian","Wan","Yi"};
+string a[] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
+string b[] = {"", "Shi", "Bai", "Qian", "Wan", "Yi"};
 int main() {
-	long n;
+	int n;
 	cin >> n;
 	string s = to_string(n);
 	int l = 0, r = s.length() - 1;
@@ -29,7 +29,7 @@ int main() {
 			l++;
 		}
 		if (isPrint == true && r != s.length()-1)
-			cout << ' ' << b[(s.length()-r)/4 + 3];
+			cout << ' ' << b[(s.length() - r) / 4 + 3];
 		r += 4;
 	}
 	return 0;
