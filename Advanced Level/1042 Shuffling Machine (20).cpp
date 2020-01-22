@@ -13,7 +13,7 @@ int main() {
 		for (int k = 1; k < 55; k++)
 			end[scan[k]] = start[k];
 	}
-	char c[6] = {"SHCDJ"};
+	char c[] = {"SHCDJ"};
 	for (int i = 1; i < 55; i++) {
 		end[i] = end[i] - 1;
 		printf("%c%d", c[end[i]/13], end[i]%13+1);
