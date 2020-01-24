@@ -1,41 +1,17 @@
-/**
- * Sample input1:
- * 7 5 31 5 88 67 88 17
- * Sample outupt1:
- * 31
- * ------------------
- * Sample intput2:
- * 5 888 666 666 888 888
- * Sample output2:
- * None
- */
-#include <cstdio>
-
-#define maxn 100010
-int hashTbl[maxn] = {0};
-int order[maxn];
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-
-	int n, num;
-	scanf("%d", &n);
+#include <iostream>
+using namespace std;
+int h[10010], a[100010], n;
+int main() {
+	cin >> n;
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &num);
-		hashTbl[num]++;
-		order[num] = i;
+		scanf("%d", a + i);
+		h[a[i]]++;
 	}
-	int Min = maxn, k = -1;
-	for (int i = 0; i < maxn; i++)
-		if (hashTbl[i] == 1 && order[i] < Min) {
-			k = i;
-			Min = order[i];
+	for (int i = 0; i < n; i++)
+		if (h[a[i]] == 1) {
+			printf("%d", a[i]);
+			return 0;
 		}
-	if (k == -1) printf("None\n");
-	else printf("%d\n", k);
-
+	printf("None");
 	return 0;
 }
-
-
