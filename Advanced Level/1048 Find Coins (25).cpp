@@ -8,16 +8,14 @@ int main() {
 		scanf("%d", &t);
 		h[t]++;
 	}
-	for (int i = 1; i <= m/2; i++) {
+	for (int i = 1; i <= m/2; i++)
 		if (i == m-i && h[i] >= 2) {
 			printf("%d %d", i, m-i);
 			return 0;
-		}
-		if (i != m-i && h[i] >= 1 && h[m-i] >= 1) {
+		} else if (i != m-i && h[i] >= 1 && h[m-i] >= 1) {
 			printf("%d %d", i, m-i);
 			return 0;
 		}
-	}
 	printf("No Solution");
 	return 0;
 }
