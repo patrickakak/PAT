@@ -3,8 +3,7 @@ using namespace std;
 int main() {
 	int m;
 	cin >> m;
-	string id, in, out, unlock, lock;
-	string early = "24:00:00", late = "00:00:00";
+	string id, in, out, unlock, lock, early = "24:00:00", late = "00:00:00";
 	for (int i = 0; i < m; i++) {
 		cin >> id >> in >> out;
 		if (early > in) {
