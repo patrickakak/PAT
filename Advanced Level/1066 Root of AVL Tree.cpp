@@ -1,124 +1,57 @@
-/**
- * Sample input1:
- * 5
- * 88 70 61 96 120
- * Sample output1:
- * 70
- * -----------------
- * Sample input2:
- * 7
- * 88 70 61 96 120 90 65
- * Sample output2:
- * 88
- */
-#include <cstdio>
-#include <algorithm>
+#include <iostream>
 using namespace std;
-
-typedef struct Node *BT;
-struct Node {
-	int v, ht;	// height
-	BT l, r;	// left, right
-} *root = NULL;
-
-BT newNode(int v)
-{
-	BT node = new Node;
-	node->v = v;
-	node->ht = 1;
-	node->l = node->r = NULL;
-	return node;
+struct node {
+	int val;
+	struct node *left, *right;
+};
+node *rotateLeft(node *root) {
+	node *t = root->right;
+	root->right = t->left;
+	t->left = root;
+	return t;
 }
-
-int getHeight(BT root)
-{
-	if (root == NULL) return 0;
-	return root->ht;
+node *rotateRight(node *root) {
+	node *t = root->left;
+	root->left = t->right;
+	t->right = root;
+	return t;
 }
-
-void updateHeight(BT root)
-{
-	root->ht = max(getHeight(root->l), getHeight(root->r)) + 1;
+node *rotateLeftRight(node *root) {
+	root->left = rotateLeft(root->left);
+	return rotateRight(root);
 }
-
-int getBalanceFactor(BT root)
-{
-	return getHeight(root->l) - getHeight(root->r);
+node *rotateRightLeft(node *root) {
+	root->right = rotateRight(root->right);
+	return rotateLeft(root);
 }
-
-void L(BT &root)
-{
-	BT tmp = root->r;
-	root->r = tmp->l;
-	tmp->l = root;
-	updateHeight(root);
-	updateHeight(tmp);
-	root = tmp;
+int getHeight(node *root) {
+	if(root == NULL) return 0;
+	return max(getHeight(root->left), getHeight(root->right)) + 1;
 }
-
-void R(BT &root)
-{
-	BT tmp = root->l;
-	root->l = tmp->r;
-	tmp->r = root;
-	updateHeight(root);
-	updateHeight(tmp);
-	root = tmp;
-}
-
-void insert(BT &root, int v)
-{
-	if (root == NULL) {
-		root = newNode(v);
-		return;
-	}
-	if (v < root->v) {
-		insert(root->l, v);
-		updateHeight(root);
-		if (getBalanceFactor(root) == 2) {
-			if (getBalanceFactor(root->l) == 1)				// LL
-				R(root);
-			else if (getBalanceFactor(root->l) == -1) {		// LR
-				L(root->l);
-				R(root);
-			}
-		}
+node *insert(node *root, int val) {
+	if(root == NULL) {
+		root = new node();
+		root->val = val;
+		root->left = root->right = NULL;
+	} else if(val < root->val) {
+		root->left = insert(root->left, val);
+		if(getHeight(root->left) - getHeight(root->right) == 2)
+			root = val < root->left->val ? rotateRight(root) : rotateLeftRight(root);
 	} else {
-		insert(root->r, v);
-		updateHeight(root);
-		if (getBalanceFactor(root) == -2) {
-			if (getBalanceFactor(root->r) == -1)			// RR
-				L(root);
-			else if (getBalanceFactor(root->r) == 1) {		// RL
-				R(root->r);
-				L(root);
-			}
-		}
+		root->right = insert(root->right, val);
+		if(getHeight(root->left) - getHeight(root->right) == -2)
+			root = val > root->right->val ? rotateLeft(root) : rotateRightLeft(root);
 	}
-}
-
-BT Create(int data[], int n)
-{
-	BT root = NULL;
-	for (int i = 0; i < n; i++)
-		insert(root, data[i]);
 	return root;
 }
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-	int n, v;
-
+int main() {
+	int n, val;
 	scanf("%d", &n);
-	for (int i = 0; i < n; i++) {
-		scanf("%d", &v);
-		insert(root, v);
+	node *root = NULL;
+	for(int i = 0; i < n; i++) {
+		scanf("%d", &val);
+		root = insert(root, val);
 	}
-	printf("%d\n", root->v);
-
+	printf("%d", root->val);
 	return 0;
 }
-
-
-
