@@ -1,18 +1,13 @@
-
-#include <cstdio>
+#include <iostream>
 #include <queue>
 using namespace std;
-
 const int maxn=1010;
 struct mouse {
 	int wt, rnk;
 } mice[maxn];
 queue<int> q;
 int new_round[maxn];
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
+int main() {
 	int np, ng;
 	scanf("%d%d", &np, &ng);
 	for (int i=0; i<np; i++) {
@@ -50,7 +45,5 @@ int main()
 		printf("%d", mice[i].rnk);
 		if (i<np-1) printf(" ");
 	}
-
 	return 0;
 }
-
