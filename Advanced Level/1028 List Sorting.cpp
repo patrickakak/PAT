@@ -15,12 +15,10 @@ bool cmp(node a, node b) {
 int main() {
 	cin >> n >> c;
 	vector<node> v(n);
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 		cin >> v[i].id >> v[i].name >> v[i].g;
-	}
 	sort(v.begin(), v.end(), cmp);
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 		printf("%06d %s %d\n", v[i].id, v[i].name.c_str(), v[i].g);
-	}
 	return 0;
 }
