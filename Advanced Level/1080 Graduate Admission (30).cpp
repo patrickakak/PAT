@@ -30,11 +30,11 @@ int main(){
 	sort(stu.begin(), stu.end(), cmp);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < k; j++) {
-			int schid = stu[i].choice[j];
-			int lastindex = cnt[schid] - 1;
-			if (cnt[schid] < quota[schid] || (stu[i].fin == sch[schid][lastindex].fin) && stu[i].ge == sch[schid][lastindex].ge) {
-				sch[schid].push_back(stu[i]);
-				cnt[schid]++;
+			int sid = stu[i].choice[j];
+			int lastindex = cnt[sid] - 1;
+			if (cnt[sid] < quota[sid] || (stu[i].fin == sch[sid][lastindex].fin) && stu[i].ge == sch[sid][lastindex].ge) {
+				sch[sid].push_back(stu[i]);
+				cnt[sid]++;
 				break;
 			}
 		}
