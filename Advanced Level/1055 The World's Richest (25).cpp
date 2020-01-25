@@ -13,13 +13,12 @@ bool cmp(node a, node b) {
 	else return strcmp(a.name, b.name) < 0;
 }
 int main() {
-	int n, k;
+	int n, k, m, amin, amax;
 	scanf("%d%d", &n, &k);
 	vector<node> v(n);
 	for (int i = 0; i < n; i++)
 		scanf("%s%d%d", v[i].name, &v[i].age, &v[i].net);
 	sort(v.begin(), v.end(), cmp);
-	int m, amin, amax;
 	for (int i = 0; i < k; i++) {
 		scanf("%d%d%d", &m, &amin, &amax);
 		printf("Case #%d:\n", i + 1);
