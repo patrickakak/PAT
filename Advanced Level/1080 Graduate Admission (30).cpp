@@ -26,8 +26,8 @@ int main() {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
 			int sid = stu[i].choice[j];
-			int lastindex = sch[sid].size() - 1;
-			if (sch[sid].size() < quota[sid] || stu[i].fin == sch[sid][lastindex].fin && stu[i].ge == sch[sid][lastindex].ge) {
+			int last = sch[sid].size() - 1;
+			if (sch[sid].size() < quota[sid] || stu[i].fin == sch[sid][last].fin && stu[i].ge == sch[sid][last].ge) {
 				sch[sid].push_back(stu[i]);
 				break;
 			}
