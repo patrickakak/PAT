@@ -9,7 +9,7 @@ struct peo {
 bool cmp(peo &a, peo &b) { return a.fin != b.fin ? a.fin > b.fin : a.ge > b.ge; }
 bool cmp2(peo &a, peo &b) { return a.id < b.id; }
 int main() {
-	int n, m, k, quota[110], cnt[110] = {0};
+	int n, m, k, quota[110];
 	scanf("%d%d%d", &n, &m, &k);
 	vector<peo> stu(n), sch[110];
 	for (int i = 0; i < m; i++)
@@ -26,16 +26,15 @@ int main() {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
 			int sid = stu[i].choice[j];
-			int lastindex = cnt[sid] - 1;
-			if (cnt[sid] < quota[sid] || stu[i].fin == sch[sid][lastindex].fin && stu[i].ge == sch[sid][lastindex].ge) {
+			int lastindex = sch[sid].size() - 1;
+			if (sch[sid].size() < quota[sid] || stu[i].fin == sch[sid][lastindex].fin && stu[i].ge == sch[sid][lastindex].ge) {
 				sch[sid].push_back(stu[i]);
-				cnt[sid]++;
 				break;
 			}
 		}
 	for (int i = 0; i < m; i++) {
 		sort(sch[i].begin(), sch[i].end(), cmp2);
-		for (int j = 0; j < cnt[i]; j++) {
+		for (int j = 0; j < sch[i].size(); j++) {
 			if (j != 0) printf(" ");
 			printf("%d", sch[i][j].id);
 		}
