@@ -7,9 +7,9 @@ struct node {
 	vector<int> p;
 };
 bool cmp(node a, node b) {
-	if (a.tot!=b.tot) return a.tot>b.tot;
-	else if (a.perfect!=b.perfect) return a.perfect>b.perfect;
-	else return a.uid<b.uid;
+	if (a.tot != b.tot) return a.tot > b.tot;
+	else if (a.perfect != b.perfect) return a.perfect > b.perfect;
+	else return a.uid < b.uid;
 }
 int main() {
 	int n, k, m, uid, pid, g;
