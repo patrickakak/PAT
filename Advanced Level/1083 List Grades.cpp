@@ -1,70 +1,25 @@
-/**
- * Sample input1:
- * 4
- * Tom CS000001 59
- * Joe Math990112 89
- * Mike CS991301 100
- * Mary EE990830 95
- * 60 100
- * Sample output1:
- * Mike CS991301
- * Mary EE990830
- * Joe Math990112
- * -----------------
- * Sample input2:
- * 2
- * Jean AA980920 60
- * Ann CS01 80
- * 90 95
- * Sample output2:
- * NONE
- */
-#include <cstdio>
-#include <cstring>
-#include <cmath>
-#include <vector>
-#include <map>
-#include <stack>
-#include <queue>
-#include <set>
-#include <cstdlib>
 #include <iostream>
 #include <algorithm>
-// #include <windows.h>
+#include <vector>
 using namespace std;
-
-#define maxn 100010
-struct Stu {
-	char name[15];
-	char id[15];
-	int grade;
-} stu[maxn];
-
-bool cmp(Stu a, Stu b)
-{
-	return a.grade > b.grade;
-}
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
-	int n;
-	scanf("%d", &n);
+struct node {
+	string name, id;
+	int g;
+};
+bool cmp(node &a, node &b) { return a.g > b.g; }
+int main() {
+	int n, g1, g2, cnt = 0;
+	cin >> n;
+	vector<node> v(n);
 	for (int i = 0; i < n; i++)
-		scanf("%s%s%d", stu[i].name, stu[i].id, &stu[i].grade);
-
-	sort(stu, stu+n, cmp);
-	int low, high, cnt = 0;
-	scanf("%d%d", &low, &high);
+		cin >> v[i].name >> v[i].id >> v[i].g;
+	sort(v.begin(), v.end(), cmp);
+	cin >> g1 >> g2;
 	for (int i = 0; i < n; i++)
-		if (stu[i].grade >= low && stu[i].grade <= high) {
-			printf("%s %s\n", stu[i].name, stu[i].id);
+		if (v[i].g >= g1 && v[i].g <= g2) {
 			cnt++;
+			cout << v[i].name << ' ' << v[i].id << endl;
 		}
-	if (cnt == 0)
-		printf("NONE\n");
-
+	if (cnt == 0) cout << "NONE";
 	return 0;
 }
-
-
