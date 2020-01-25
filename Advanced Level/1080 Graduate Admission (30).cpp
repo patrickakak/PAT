@@ -13,7 +13,7 @@ int main() {
 	scanf("%d%d%d", &n, &m, &k);
 	vector<peo> stu(n), sch[110];
 	for (int i = 0; i < m; i++)
-		scanf("%d",&quota[i]);
+		scanf("%d", &quota[i]);
 	for (int i = 0; i < n; i++) {
 		scanf("%d%d", &stu[i].ge, &stu[i].gi);
 		stu[i].id = i;
