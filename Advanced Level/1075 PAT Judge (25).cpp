@@ -6,20 +6,20 @@ struct node {
 	int uid, perfect, r, tot, print;
 	vector<int> p;
 };
-bool cmp(node a, node b) {
+bool cmp(node &a, node &b) {
 	if (a.tot != b.tot) return a.tot > b.tot;
 	else if (a.perfect != b.perfect) return a.perfect > b.perfect;
 	else return a.uid < b.uid;
 }
 int main() {
 	int n, k, m, uid, pid, g;
-	cin >> n >> k >> m;
+	scanf("%d%d%d", &n, &k, &m);
 	vector<int> p(k, -1);
 	vector<node> v(n);
 	for (int i = 0; i < n; i++) v[i].p = p;
 	for (int i = 0; i < k; i++) cin >> p[i];
 	for (int i = 0; i < m; i++) {
-		cin >> uid >> pid >> g;
+		scanf("%d%d%d", &uid, &pid, &g);
 		v[uid-1].uid = uid;
 		int t = max(g, v[uid-1].p[pid-1]);
 		if (t != -1) {
