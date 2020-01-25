@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-struct peo{
+struct peo {
 	int id, ge, gi, fin;
 	vector<int> choice;
 };
@@ -13,7 +13,7 @@ bool cmp(peo &a, peo &b) {
 bool cmp2(peo &a, peo &b) {
 	return a.id < b.id;
 }
-int main(){
+int main() {
 	int n, m, k, quota[110], cnt[110] = {0};
 	scanf("%d%d%d", &n, &m, &k);
 	vector<peo> stu(n), sch[110];
