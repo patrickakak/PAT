@@ -12,7 +12,7 @@ void insert(int key) {
 		int index = (key + step * step) % sz;
 		if (h[index] == 0) {
 			h[index] = 1;
-			cout << index % sz;
+			cout << index;
 			return ;
 		}
 	}
