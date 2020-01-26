@@ -1,24 +1,17 @@
-
+#include <iostream>
 #include <map>
 #include <set>
-#include <iostream>
 using namespace std;
-
 map<string, set<int>> title, author, key, pub, year;
-void query(map<string, set<int>> &m, string &s)
-{
+void query(map<string, set<int>> &m, string &s) {
 	if (m.find(s) == m.end()) cout << "Not Found\n";
 	else
 		for (auto it = m[s].begin(); it != m[s].end(); it++)
 			printf("%07d\n", *it);
 }
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
+int main() {
 	int n, m, num, id;
 	string tt, ta, tk, tp, ty, tmp;
-
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d\n", &id);
@@ -49,8 +42,5 @@ int main()
 		case 5: query(year, tmp);   break;
 		}
 	}
-
 	return 0;
 }
-
-
