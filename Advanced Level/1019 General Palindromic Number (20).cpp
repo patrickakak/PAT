@@ -6,7 +6,7 @@ bool ispalindromic(int a[], int len) {
 	return true;
 }
 int main() {
-	int n, b, a[100000], len = 0;
+	int n, b, a[100], len = 0;
 	cin >> n >> b;
 	do {
 		a[len++] = n % b;
