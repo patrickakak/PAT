@@ -7,7 +7,7 @@ bool isprime(int n) {
 	return true;
 }
 int main() {
-	int sz, n, m, a;
+	int sz, n, m, a, ans = 0;
 	scanf("%d %d %d", &sz, &n, &m);
 	while (!isprime(sz)) sz++;
 	vector<int> v(sz);
@@ -24,7 +24,6 @@ int main() {
 		}
 		if (!flag) printf("%d cannot be inserted.\n", a);
 	}
-	int ans = 0;
 	for (int i = 0; i < m; i++) {
 		scanf("%d", &a);
 		for (int j = 0; j <= sz; j++) {
@@ -33,6 +32,6 @@ int main() {
 			if (v[pos] == a || v[pos] == 0) break;
 		}
 	}
-	printf("%.1lf\n", ans * 1.0 / m);
+	printf("%.1lf\n", 1.0 * ans / m);
 	return 0;
 }
