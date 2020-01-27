@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
-map<int, bool> mp;
+unordered_map<int, bool> mp;
 int main() {
 	int m, n, u, v, a;
 	scanf("%d %d", &m, &n);
