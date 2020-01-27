@@ -7,16 +7,16 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		scanf("%lld/%lld", &a, &b);
 		d = gcd(a, b);
-		a = a / d;
-		b = b / d;
+		a /= d;
+		b /= d;
 		suma = a * sumb + suma * b;
 		sumb = b * sumb;
 		d = gcd(suma, sumb);
-		sumb = sumb / d;
-		suma = suma / d;
+		sumb /= d;
+		suma /= d;
 	}
 	long long integer = suma / sumb;
-	suma = suma - (sumb * integer);
+	suma -= (sumb * integer);
 	if (integer != 0) {
 		printf("%lld", integer);
 		if (suma != 0) printf(" ");
