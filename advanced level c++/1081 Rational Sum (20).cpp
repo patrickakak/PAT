@@ -3,18 +3,18 @@
 using namespace std;
 long long gcd(long long a, long long b) { return !b ? abs(a) : gcd(b, a % b); }
 int main() {
-	long long n, a, b, suma = 0, sumb = 1, gcdvalue;
+	long long n, a, b, suma = 0, sumb = 1, d;
 	scanf("%lld", &n);
 	for (int i = 0; i < n; i++) {
 		scanf("%lld/%lld", &a, &b);
-		gcdvalue = gcd(a, b);
-		a = a / gcdvalue;
-		b = b / gcdvalue;
+		d = gcd(a, b);
+		a = a / d;
+		b = b / d;
 		suma = a * sumb + suma * b;
 		sumb = b * sumb;
-		gcdvalue = gcd(suma, sumb);
-		sumb = sumb / gcdvalue;
-		suma = suma / gcdvalue;
+		d = gcd(suma, sumb);
+		sumb = sumb / d;
+		suma = suma / d;
 	}
 	long long integer = suma / sumb;
 	suma = suma - (sumb * integer);
