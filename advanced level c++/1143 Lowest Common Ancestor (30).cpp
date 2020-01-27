@@ -13,7 +13,7 @@ int main() {
 	}
 	for (int i = 0; i < m; i++) {
 		scanf("%d %d", &u, &v);
-		for(int j = 0; j < n; j++) {
+		for (int j = 0; j < n; j++) {
 			a = pre[j];
 			if ((a >= u && a <= v) || (a >= v && a <= u)) break;
 		} 
