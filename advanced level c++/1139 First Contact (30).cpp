@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <unordered_map>
 using namespace std;
-unordered_map<int, bool> arr;
+bool arr[10000][10000];
 struct node {
 	int a, b;
 };
@@ -21,20 +20,19 @@ int main() {
 			v[abs(stoi(a))].push_back(abs(stoi(b)));
 			v[abs(stoi(b))].push_back(abs(stoi(a)));
 		}
-		arr[abs(stoi(a)) * 10000 + abs(stoi(b))] = arr[abs(stoi(b)) * 10000 + abs(stoi(a))] = true;
+		arr[abs(stoi(a))][abs(stoi(b))] = arr[abs(stoi(b))][abs(stoi(a))] = true;
 	}
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
 		int c, d;
 		cin >> c >> d;
 		vector<node> ans;
-		for (int j = 0; j < v[abs(c)].size(); j++) {
+		for (int j = 0; j < v[abs(c)].size(); j++)
 			for (int k = 0; k < v[abs(d)].size(); k++) {
 				if (v[abs(c)][j] == abs(d) || abs(c) == v[abs(d)][k]) continue;
-				if (arr[v[abs(c)][j] * 10000 + v[abs(d)][k]] == true)
+				if (arr[v[abs(c)][j]][v[abs(d)][k]] == true)
 					ans.push_back(node{v[abs(c)][j], v[abs(d)][k]});
 			}
-		}
 		sort(ans.begin(), ans.end(), cmp);
 		printf("%d\n", int(ans.size()));
 		for (int j = 0; j < ans.size(); j++)
