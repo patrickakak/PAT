@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 long long gcd(long long a, long long b) { return !b ? abs(a) : gcd(b, a % b); }
 int main() {
