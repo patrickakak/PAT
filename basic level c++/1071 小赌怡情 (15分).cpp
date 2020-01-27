@@ -9,9 +9,9 @@ int main() {
 		if (T == 0) {
 			printf("Game Over.\n");
 			return 0;
-		} else if (t > T)
+		} else if (t > T) {
 			printf("Not enough tokens.  Total = %d.\n", T);
-		else if (ans == b) {
+		} else if (ans == b) {
 			T += t;
 			printf("Win %d!  Total = %d.\n", t, T);
 		} else if (ans != b) {
