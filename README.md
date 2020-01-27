@@ -4,4 +4,4 @@ https://pintia.cn/problem-sets
 
 compiler version: GNU GCC/G++ Compiler
 
-compiler flags: g++ follow the C++14 ISO C++ language standard [-std=c++14]
+compiler flags: g++ follow the C++11 ISO C++ language standard [-std=c++11]
