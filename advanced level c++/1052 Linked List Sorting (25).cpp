@@ -10,7 +10,7 @@ bool cmp(node a, node b) {
 	return a.flag != b.flag ? a.flag > b.flag : a.key < b.key;
 }
 int main() {
-	int n, fir, addr, cnt=0;
+	int n, fir, addr, cnt = 0;
 	cin >> n >> fir;
 	for (int i=0; i<n; i++) {
 		cin >> addr;
