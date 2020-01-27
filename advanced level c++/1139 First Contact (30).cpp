@@ -34,7 +34,7 @@ int main() {
 					ans.push_back(node{v[abs(c)][j], v[abs(d)][k]});
 			}
 		sort(ans.begin(), ans.end(), cmp);
-		printf("%d\n", int(ans.size()));
+		printf("%d\n", ans.size());
 		for (int j = 0; j < ans.size(); j++)
 			printf("%04d %04d\n", ans[j].a, ans[j].b);
 	}
