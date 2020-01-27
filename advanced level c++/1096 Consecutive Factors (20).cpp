@@ -1,16 +1,16 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-long int n, temp;
+long int n, tmp;
 int main(){
 	cin >> n;
 	int first = 0, len = 0, maxn = sqrt(n) + 1;
 	for (int i = 2; i <= maxn; i++) {
 		int j; 
-		temp = 1;
+		tmp = 1;
 		for (j = i; j <= maxn; j++) {
-			temp *= j;
-			if (n % temp != 0) break;
+			tmp *= j;
+			if (n % tmp != 0) break;
 		}
 		if (j - i > len) {
 			len = j - i;
