@@ -10,10 +10,10 @@ int getid(string s) {
 }
 int main() {
 	int n, k, cid, num;
-	cin >> n >> k;
+	scanf("%d%d", &n, &k);
 	string s;
 	while (k--) {
-		cin >> cid >> num;
+		scanf("%d%d", &cid, &num);
 		for (int i = 0; i < num; i++) {
 			cin >> s;
 			st[getid(s)].insert(cid);
@@ -23,7 +23,7 @@ int main() {
 		cin >> s;
 		int id = getid(s);
 		printf("%s %d", s.c_str(), st[id].size());
-		for (auto it=st[id].begin(); it!=st[id].end(); it++)
+		for (auto it = st[id].begin(); it != st[id].end(); it++)
 			printf(" %d", *it);
 		printf("\n");
 	}
