@@ -1,7 +1,7 @@
 #include <iostream>
 #include <set>
 using namespace std;
-set<int> st[26*26*26*10+1];
+set<int> st[26 * 26 * 26 * 10 + 1];
 int getid(string s) {
 	int id = 0;
 	for (int i = 0; i < 3; i++)
