@@ -1,10 +1,10 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 using namespace std;
 int main() {
 	string s, w;
 	getline(cin, s);
-	map<string, int> m;
+	unordered_map<string, int> m;
 	for (int i = 0; i < s.length(); i++) {
 		if (isalnum(s[i])) w += tolower(s[i]);
 		if (!isalnum(s[i]) || i == s.length() - 1){
