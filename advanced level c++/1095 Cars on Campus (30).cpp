@@ -44,7 +44,7 @@ int main() {
 			if (car[j].time > tmptime) {
 				printf("%d\n", cnt[j - 1]);
 				break;
-			} else if(j == car.size() - 1)
+			} else if (j == car.size() - 1)
 				printf("%d\n", cnt[j]);
 		tmpindex = j;
 	}
