@@ -3,7 +3,7 @@
 using namespace std;
 set<int> s[51];
 int main() {
-	int n, m, t, k, a, b, nc, nt;
+	int n, m, t, k, a, b;
 	scanf("%d", &n);
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &m);
@@ -14,11 +14,11 @@ int main() {
 	}
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
-		nc = 0;
+		int nc = 0;
 		scanf("%d%d", &a, &b);
 		for (auto it = s[a].begin(); it != s[a].end(); it++)
 			if (s[b].find(*it) != s[b].end()) nc++;
-		nt = s[a].size() + s[b].size() - nc;
+		int nt = s[a].size() + s[b].size() - nc;
 		printf("%.1f%%\n", 100.0*nc/nt);
 	}
 	return 0;
