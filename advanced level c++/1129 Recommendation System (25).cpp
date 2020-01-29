@@ -1,7 +1,7 @@
 #include <iostream>
 #include <set>
 using namespace std;
-int book[50001];
+int hit[50001];
 struct node {
 	int v, cnt;
 	bool operator < (const node &a) const {
@@ -23,10 +23,10 @@ int main() {
 			}
 			printf("\n");
 		}
-		auto it = s.find(node{num, book[num]});
+		auto it = s.find(node{num, hit[num]});
 		if (it != s.end()) s.erase(it);
-		book[num]++;
-		s.insert(node{num, book[num]});
+		hit[num]++;
+		s.insert(node{num, hit[num]});
 	}
 	return 0;
 }
