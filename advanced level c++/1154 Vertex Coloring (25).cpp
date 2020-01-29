@@ -11,19 +11,19 @@ int main() {
 		scanf("%d %d", &v[i].t1, &v[i].t2);
 	cin >> k;
 	while (k--) {
-		int a[10009] = {0};
+		vector<int> a(n);
 		bool flag = true;
-		set<int> se;
+		set<int> s;
 		for (int i = 0; i < n; i++) {
 			scanf("%d", &a[i]);
-			se.insert(a[i]);
+			s.insert(a[i]);
 		}
 		for (int i = 0; i < m; i++)
 			if (a[v[i].t1] == a[v[i].t2]) {
 				flag = false;
 				break;
 			}
-		if (flag) printf("%d-coloring\n", se.size());
+		if (flag) printf("%d-coloring\n", s.size());
 		else printf("No\n");
 	}
 	return 0;
