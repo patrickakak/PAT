@@ -2,7 +2,7 @@
 #include <map>
 #include <set>
 using namespace std;
-bool sureNoBroken[256];
+bool sureFine[256];
 int main() {
 	int k, cnt = 1;
 	scanf("%d", &k);
@@ -15,14 +15,14 @@ int main() {
 	for (int i = 0; i < s.length(); i++) {
 		if (s[i] == pre) cnt++;
 		else {
-			if (cnt % k != 0) sureNoBroken[pre] = true;
+			if (cnt % k != 0) sureFine[pre] = true;
 			cnt = 1;
 		}
 		if (i != s.length() - 1) m[s[i]] = (cnt % k == 0);
 		pre = s[i];
 	}
 	for (int i = 0; i < s.length() - 1; i++)
-		if (sureNoBroken[s[i]] == true)
+		if (sureFine[s[i]] == true)
 			m[s[i]] = false;
 	for (int i = 0; i < s.length() - 1; i++)
 		if (m[s[i]] && printed.find(s[i]) == printed.end()) {
