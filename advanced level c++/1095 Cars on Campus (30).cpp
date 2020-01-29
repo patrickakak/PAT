@@ -8,13 +8,8 @@ struct node {
 	char id[10];
 	int time, flag = 0;
 };
-bool cmp1(node a, node b) {
-	if (strcmp(a.id, b.id) != 0) return strcmp(a.id, b.id) < 0;
-	else return a.time < b.time;
-}
-bool cmp2(node a, node b) {
-	return a.time < b.time;
-}
+bool cmp1(node a, node b) { return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time; }
+bool cmp2(node a, node b) { return a.time < b.time; }
 int main() {
 	int n, k, maxtime = -1, tmpindex = 0;
 	scanf("%d%d\n", &n, &k);
@@ -53,7 +48,7 @@ int main() {
 				printf("%d\n", cnt[j]);
 		tmpindex = j;
 	}
-	for (map<string, int>::iterator it = mp.begin(); it != mp.end(); it++)
+	for (auto it = mp.begin(); it != mp.end(); it++)
 		if (it->second == maxtime) printf("%s ", it->first.c_str());
 	printf("%02d:%02d:%02d", maxtime / 3600, (maxtime % 3600) / 60, maxtime % 60);
 	return 0;
