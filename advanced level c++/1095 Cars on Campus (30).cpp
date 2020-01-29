@@ -6,7 +6,7 @@
 using namespace std;
 struct node {
 	char id[10];
-	int time, flag = 0;
+	int time, flag;
 };
 bool cmp1(node a, node b) { return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time; }
 bool cmp2(node a, node b) { return a.time < b.time; }
