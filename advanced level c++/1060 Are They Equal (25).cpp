@@ -10,16 +10,16 @@ string f(string s, int &e, int n) {
 			e--;
 		}
 	} else {
-		while (k < (int)s.length() && s[k] != '.') {
+		while (k < s.length() && s[k] != '.') {
 			k++;
 			e++;
 		}
-		if (k < (int)s.length()) s.erase(s.begin() + k);
+		if (k < s.length()) s.erase(s.begin() + k);
 	}
 	if (s.length() == 0) e = 0;
 	string res;
-	for (int i=0, k=0; i < n; i++, k++)
-		if (k < (int)s.length()) res += s[k];
+	for (int i = 0, k = 0; i < n; i++, k++)
+		if (k < s.length()) res += s[k];
 		else res += '0';
 	return res;
 }
