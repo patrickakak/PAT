@@ -23,7 +23,6 @@ string f(string s, int &e, int n) {
 		else res += '0';
 	return res;
 }
-
 int main() {
 	int n, e1 = 0, e2 = 0;
 	string a, b;
@@ -32,6 +31,5 @@ int main() {
 	string s2 = f(b, e2, n);
 	if (s1 == s2 && e1 == e2) cout << "YES 0." << s1 << "*10^" << e1;
 	else cout << "NO 0." << s1 << "*10^" << e1 << " 0." << s2 << "*10^" << e2;
-
 	return 0;
 }
