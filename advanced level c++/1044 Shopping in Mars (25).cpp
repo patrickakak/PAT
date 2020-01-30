@@ -1,27 +1,27 @@
-#include <cstdio>
+#include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
-#define maxn 100010
-int sum[maxn] = {0};
 int main() {
-	int n, S, nearS = 100000010;
-	scanf("%d%d", &n, &S);
+	int n, m, d = 0x3fff;
+	scanf("%d%d", &n, &m);
+	vector<int> sum(n+1);
 	sum[0] = 0;
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &sum[i]);
 		sum[i] += sum[i-1];
 	}
 	for (int i = 1; i <= n; i++) {
-		int j = upper_bound(sum+i, sum+n+1, sum[i-1]+S) - sum;
-		if (sum[j-1] - sum[i-1] == S) {
-			nearS = S;
+		int j = upper_bound(sum.begin()+i, sum.end(), sum[i-1]+m) - sum.begin();
+		if (sum[j-1] - sum[i-1] == m) {
+			d = m;
 			break;
-		} else if (j <= n && sum[j]-sum[i-1] < nearS)
-			nearS = sum[j] - sum[i-1];
+		} else if (j <= n && sum[j]-sum[i-1] < d)
+			d = sum[j] - sum[i-1];
 	}
 	for (int i = 1; i <= n; i++) {
-		int j = upper_bound(sum+i, sum+n+1, sum[i-1]+nearS) - sum;
-		if (sum[j-1] - sum[i-1] == nearS)
+		int j = upper_bound(sum.begin()+i, sum.end(), sum[i-1]+d) - sum.begin();
+		if (sum[j-1] - sum[i-1] == d)
 			printf("%d-%d\n", i, j-1);
 	}
 	return 0;
