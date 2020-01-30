@@ -11,17 +11,17 @@ int main() {
 		sum[i] += sum[i-1];
 	}
 	for (int i = 1; i <= n; i++) {
-		int j = upper_bound(sum.begin() + i, sum.end(), sum[i-1] + m) - sum.begin();
-		if (sum[j-1] - sum[i-1] == m) {
+		int j = lower_bound(sum.begin() + i, sum.end(), sum[i-1] + m) - sum.begin();
+		if (j <= n && sum[j] - sum[i-1] == m) {
 			d = m;
 			break;
 		} else if (j <= n && sum[j] - sum[i-1] < d)
 			d = sum[j] - sum[i-1];
 	}
 	for (int i = 1; i <= n; i++) {
-		int j = upper_bound(sum.begin() + i, sum.end(), sum[i-1] + d) - sum.begin();
-		if (sum[j-1] - sum[i-1] == d)
-			printf("%d-%d\n", i, j - 1);
+		int j = lower_bound(sum.begin() + i, sum.end(), sum[i-1] + d) - sum.begin();
+		if (j <= n && sum[j] - sum[i-1] == d)
+			printf("%d-%d\n", i, j);
 	}
 	return 0;
 }
