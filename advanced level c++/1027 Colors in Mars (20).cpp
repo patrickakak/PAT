@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main() {
-	char c[] = {"0123456789ABC"};
+	string c = "0123456789ABC";
 	printf("#");
 	for (int i = 0; i < 3; i++) {
 		int num;
