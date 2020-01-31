@@ -14,7 +14,7 @@ int main() {
 	}
 	for (int L = 3; L <= len; L++)
 		for (int i = 0; i + L - 1 < len; i++) {
-			int j = i + L -1;
+			int j = i + L - 1;
 			if (s[i] == s[j] && dp[i+1][j-1] == 1) {
 				dp[i][j] = 1;
 				ans = L;
