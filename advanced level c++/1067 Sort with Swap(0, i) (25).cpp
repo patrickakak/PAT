@@ -2,9 +2,9 @@
 using namespace std;
 int main() {
 	int n, t, cnt = 0, a[100000];
-	cin >> n;
+	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
-		cin >> t;
+		scanf("%d", &t);
 		a[t] = i;
 	}
 	for (int i = 1; i < n; i++)
@@ -18,6 +18,6 @@ int main() {
 				cnt++;
 			}
 		}
-	cout << cnt;
+	printf("%d", cnt);
 	return 0;
 }
