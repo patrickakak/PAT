@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cctype>
 #include <algorithm>
 #include <cmath>
 using namespace std;
@@ -14,7 +13,7 @@ long long convert(string n, long long radix) {
 }
 long long find_radix(string n, long long num) {
 	char it = *max_element(n.begin(), n.end());
-	long long low = (isdigit(it) ? it - '0': it - 'a' + 10) + 1;
+	long long low = (isdigit(it) ? it - '0' : it - 'a' + 10) + 1;
 	long long high = max(num, low);
 	while (low <= high) {
 		long long mid = (low + high) / 2;
@@ -30,10 +29,7 @@ int main() {
 	long long tag = 0, radix = 0, result_radix;
 	cin >> n1 >> n2 >> tag >> radix;
 	result_radix = tag == 1 ? find_radix(n2, convert(n1, radix)) : find_radix(n1, convert(n2, radix));
-	if (result_radix != -1) {
-		printf("%lld", result_radix);
-	} else {
-		printf("Impossible");
-	}   
+	if (result_radix != -1) printf("%lld", result_radix);
+	else printf("Impossible");
 	return 0;
 }
