@@ -12,7 +12,7 @@ int main() {
 	string s;
 	for (int i = 0; i < n; i++) s += v[i];
 	while (s.length() != 0 && s[0] == '0') s.erase(s.begin());
-	if (s.size() == 0) cout << 0;
+	if (s.length() == 0) cout << 0;
 	else cout << s;
 	return 0;
 }
