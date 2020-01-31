@@ -1,18 +1,9 @@
-/**
- * Sample Input:
- * 1 3 4 5 2 -1
- * Sample Output:
- * 5
- */
-int Length(List L)
-{
+int Length(List L) {
 	int count = 0;
-	PtrToLNode tmp = L;
-	
-	while (tmp) {
-		tmp = tmp->Next;
+	PtrToLNode t = L;
+	while (t) {
+		t = t->Next;
 		count++;
 	}
 	return count;
 }
-
