@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int n, t, cnt = 0, a[100010];
+	int n, t, cnt = 0, a[100000];
 	cin >> n;
-	for (int i = 0; i < n; i++){
+	for (int i = 0; i < n; i++) {
 		cin >> t;
 		a[t] = i;
 	}
