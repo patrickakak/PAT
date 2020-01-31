@@ -36,23 +36,19 @@ node* insert(node *tree, int val) {
 	if (tree == NULL) {
 		tree = new node();
 		tree->val = val;
-	}else if (tree->val > val) {
+	} else if (tree->val > val) {
 		tree->left = insert(tree->left, val);
 		int l = getHeight(tree->left), r = getHeight(tree->right);
 		if (l - r >= 2) {
-			if (val < tree->left->val)
-				tree = rightRotate(tree);
-			else
-				tree = leftRightRotate(tree);
+			if (val < tree->left->val) tree = rightRotate(tree);
+			else tree = leftRightRotate(tree);
 		}
 	} else {
 		tree->right = insert(tree->right, val);
 		int l = getHeight(tree->left), r = getHeight(tree->right);
 		if (r - l >= 2) {
-			if (val > tree->right->val)
-				tree = leftRotate(tree);
-			else
-				tree = rightLeftRotate(tree);
+			if (val > tree->right->val) tree = leftRotate(tree);
+			else tree = rightLeftRotate(tree);
 		}
 	}
 	return tree;
@@ -69,15 +65,11 @@ vector<int> levelOrder(node *tree) {
 		if (temp->left != NULL) {
 			if (after) isComplete = 0;
 			queue.push(temp->left);
-		} else {
-			after = 1;
-		}
+		} else after = 1;
 		if (temp->right != NULL) {
 			if (after) isComplete = 0;
 			queue.push(temp->right);
-		} else {
-			after = 1;
-		}
+		} else after = 1;
 	}
 	return v;
 }
