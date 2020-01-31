@@ -1,10 +1,6 @@
-double f(int n, double a[], double x)
-{
-	int i;
+double f(int n, double a[], double x) {
 	double p = a[n];
-
-	for (i=n; i>0; i--)
-		p = a[i-1] + p*x;
+	for (int i = n; i > 0; i--)
+		p = a[i-1] + p * x;
 	return p;
 }
-
