@@ -47,7 +47,7 @@ int main() {
 		scanf("%d", &query);
 		minute = result[query];
 		if (sorry[query] == true) printf("Sorry\n");
-		else printf("%02d:%02d\n",(minute + 480) / 60, (minute + 480) % 60);
+		else printf("%02d:%02d\n", (minute + 480) / 60, (minute + 480) % 60);
 	}
 	return 0;
 }
