@@ -12,9 +12,9 @@ int main() {
 	for (int i = 0; i < np; i++) cin >> p[i];
 	sort(c.begin(), c.end());
 	sort(p.begin(), p.end());
-	for (int i=0, j=0; i<nc && j<np && c[i]<0 && p[j]<0; i++, j++)
+	for (int i = 0, j = 0; i < nc && j < np && c[i] < 0 && p[j] < 0; i++, j++)
 		ans += c[i] * p[j];
-	for (int i=nc-1, j=np-1; i>=0 && j>=0 && c[i]>0 && p[j]>0; i--, j--)
+	for (int i = nc - 1, j = np - 1; i >= 0 && j >= 0 && c[i] > 0 && p[j] > 0; i--, j--)
 		ans += c[i] * p[j];
 	cout << ans;
 	return 0;
