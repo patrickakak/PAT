@@ -2,12 +2,12 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int target;
 struct node {
 	int w;
 	vector<int> child;
 };
 vector<node> v;
+int target;
 vector<int> path;
 void dfs(int index, int nodeNum, int sum) {
 	if (sum > target) return ;
