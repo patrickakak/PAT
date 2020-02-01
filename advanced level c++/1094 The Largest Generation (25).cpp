@@ -14,11 +14,11 @@ void dfs(int index, int depth) {
 }
 int main() {
 	int n, m, id, k, t;
-	cin >> n >> m;
+	scanf("%d%d", &n, &m);
 	for (int i = 0; i < m; i++) {
-		cin >> id >> k;
+		scanf("%d%d", &id, &k);
 		for (int j = 0; j < k; j++) {
-			cin >> t;
+			scanf("%d", &t);
 			v[id].push_back(t);
 		}
 	}
