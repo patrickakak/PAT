@@ -9,7 +9,8 @@ void bfs(int root) {
 	queue<int> q;
 	q.push(root);
 	while (!q.empty()) {
-		int t = q.front(); q.pop();
+		int t = q.front();
+		q.pop();
 		level.push_back(t);
 		if (tree[t].l != -1) q.push(tree[t].l);
 		if (tree[t].r != -1) q.push(tree[t].r);
