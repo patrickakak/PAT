@@ -3,14 +3,14 @@
 #include <cmath>
 using namespace std;
 struct node {
-	double data;
+	double amt;
 	vector<int> child;
 };
 vector<node> v;
-double ans = 0.0, p, r;
+double ans = 0, p, r;
 void dfs(int index, int depth) {
 	if (v[index].child.size() == 0) {
-		ans += v[index].data * pow(1 + r, depth);
+		ans += v[index].amt * pow(1 + r, depth);
 		return ;
 	}
 	for (int i = 0; i < v[index].child.size(); i++)
@@ -19,11 +19,11 @@ void dfs(int index, int depth) {
 int main() {
 	int n, k, c;
 	scanf("%d %lf %lf", &n, &p, &r);
-	r = r / 100;
+	r /= 100;
 	v.resize(n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &k);
-		if (k == 0) scanf("%lf", &v[i].data);
+		if (k == 0) scanf("%lf", &v[i].amt);
 		else
 			for (int j = 0; j < k; j++) {
 				scanf("%d", &c);
