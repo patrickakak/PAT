@@ -1,48 +1,42 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-const int MAXN = 110;
-struct node {
-	int weight;
+int target;
+struct NODE {
+	int w;
 	vector<int> child;
-} Node[MAXN];
-bool cmp(int a, int b) {
-	return Node[a].weight > Node[b].weight;
-}
-int n, m, S;
-int path[MAXN];
-void DFS(int index, int numNode, int sum) {
-	if (sum > S) return;
-	if (sum == S) {
-		if (Node[index].child.size() != 0) return;
-		for (int i = 0; i < numNode; i++) {
-			printf("%d", Node[path[i]].weight);
-			if (i < numNode-1) printf(" ");
-			else printf("\n");
-		}
-		return;
+};
+vector<NODE> v;
+vector<int> path;
+void dfs(int index, int nodeNum, int sum) {
+	if (sum > target) return ;
+	if (sum == target) {
+		if (v[index].child.size() != 0) return;
+		for (int i = 0; i < nodeNum; i++)
+			printf("%d%c", v[path[i]].w, i != nodeNum - 1 ? ' ' : '\n');
+		return ;
 	}
-	for (int i = 0; i < (int)Node[index].child.size(); i++) {
-		int child = Node[index].child[i];
-		path[numNode] = child;
-		DFS(child, numNode + 1, sum + Node[child].weight);
+	for (int i = 0; i < v[index].child.size(); i++) {
+		int node = v[index].child[i];
+		path[nodeNum] = node;
+		dfs(node, nodeNum + 1, sum + v[node].w);
 	}
 }
+int cmp1(int a, int b) { return v[a].w > v[b].w; }
 int main() {
-	scanf("%d%d%d", &n, &m, &S);
+	int n, m, node, k;
+	scanf("%d %d %d", &n, &m, &target);
+	v.resize(n), path.resize(n);
 	for (int i = 0; i < n; i++)
-		scanf("%d", &Node[i].weight);
-	int id, k, child;
+		scanf("%d", &v[i].w);
 	for (int i = 0; i < m; i++) {
-		scanf("%d%d", &id, &k);
-		for (int j = 0; j < k; j++) {
-			scanf("%d", &child);
-			Node[id].child.push_back(child);
-		}
-		sort(Node[id].child.begin(), Node[id].child.end(), cmp);
+		scanf("%d %d", &node, &k);
+		v[node].child.resize(k);
+		for (int j = 0; j < k; j++)
+			scanf("%d", &v[node].child[j]);
+		sort(v[node].child.begin(), v[node].child.end(), cmp1);
 	}
-	path[0] = 0;
-	DFS(0, 1, Node[0].weight);
+	dfs(0, 1, v[0].w);
 	return 0;
 }
