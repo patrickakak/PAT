@@ -11,7 +11,7 @@ vector<node> ans;
 void pre(int root, int start, int end, int index) {
 	if (start > end) return;
 	int i = start;
-	while (i < end && in[i] != post[root]) i++;
+	while (i <= end && in[i] != post[root]) i++;
 	ans.push_back({index, post[root]});
 	pre(root - 1 - end + i, start, i - 1, 2 * index + 1);
 	pre(root - 1, i + 1, end, 2 * index + 2);
