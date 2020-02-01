@@ -23,7 +23,7 @@ void dfs(int index, int nodeNum, int sum) {
 		dfs(node, nodeNum + 1, sum + v[node].w);
 	}
 }
-int cmp1(int a, int b) { return v[a].w > v[b].w; }
+int cmp(int a, int b) { return v[a].w > v[b].w; }
 int main() {
 	int n, m, tmp, k;
 	scanf("%d %d %d", &n, &m, &target);
@@ -35,7 +35,7 @@ int main() {
 		v[tmp].child.resize(k);
 		for (int j = 0; j < k; j++)
 			scanf("%d", &v[tmp].child[j]);
-		sort(v[tmp].child.begin(), v[tmp].child.end(), cmp1);
+		sort(v[tmp].child.begin(), v[tmp].child.end(), cmp);
 	}
 	dfs(0, 1, v[0].w);
 	return 0;
