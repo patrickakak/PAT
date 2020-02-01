@@ -7,6 +7,7 @@ struct node {
 	vector<int> child;
 };
 vector<node> v;
+int cmp(int a, int b) { return v[a].w > v[b].w; }
 int target;
 vector<int> path;
 void dfs(int index, int nodeNum, int sum) {
@@ -23,7 +24,6 @@ void dfs(int index, int nodeNum, int sum) {
 		dfs(node, nodeNum + 1, sum + v[node].w);
 	}
 }
-int cmp(int a, int b) { return v[a].w > v[b].w; }
 int main() {
 	int n, m, tmp, k;
 	scanf("%d %d %d", &n, &m, &target);
