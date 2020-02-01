@@ -6,7 +6,6 @@ struct node {
 	vector<int> child;
 };
 int dmax = 0;
-double p, r;
 vector<int> d(100000);
 vector<node> v;
 void dfs(int index, int depth) {
@@ -20,6 +19,7 @@ void dfs(int index, int depth) {
 }
 int main() {
 	int n, t, root;
+	double p, r;
 	scanf("%d %lf %lf", &n, &p, &r);
 	v.resize(n);
 	for (int i = 0; i < n; i++) {
