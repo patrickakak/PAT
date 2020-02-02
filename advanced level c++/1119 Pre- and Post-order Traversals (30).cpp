@@ -3,18 +3,18 @@
 using namespace std;
 vector<int> in, pre, post;
 bool unique = true;
-void getIn(int preL, int preR, int postLeft, int postRight) {
+void getIn(int preL, int preR, int postL, int postR) {
 	if (preL == preR) {
 		in.push_back(pre[preL]);
 		return;
 	}
-	if (pre[preL] == post[postRight]) {
+	if (pre[preL] == post[postR]) {
 		int i = preL + 1;
-		while (i <= preR && pre[i] != post[postRight-1]) i++;
-		if (i - preL > 1) getIn(preL + 1, i - 1, postLeft, postLeft + (i - preL - 1) - 1);
+		while (i <= preR && pre[i] != post[postR-1]) i++;
+		if (i - preL > 1) getIn(preL + 1, i - 1, postL, postL + (i - preL - 1) - 1);
 		else unique = false;
-		in.push_back(post[postRight]);
-		getIn(i, preR, postLeft + (i - preL - 1), postRight - 1);
+		in.push_back(post[postR]);
+		getIn(i, preR, postL + (i - preL - 1), postR - 1);
 	}
 }
 int main() {
