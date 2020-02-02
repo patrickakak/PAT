@@ -27,7 +27,7 @@ void bfs(int root) {
 int main() {
 	cin >> n;
 	bst.resize(n), in.resize(n);
-	for (int i = 0; i < n; i++) cin >> bst[i].l >> bst[i].r;
+	for (int i = 0; i < n; i++) scanf("%d%d", &bst[i].l, &bst[i].r);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
 	sort(in.begin(), in.end());
 	inOrder(0);
