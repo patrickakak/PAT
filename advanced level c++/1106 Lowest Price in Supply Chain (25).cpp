@@ -1,38 +1,30 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <cmath>
 using namespace std;
-const int maxn = 100010;
-const double INF = 1e12;
-vector<int> node[maxn];
-int n, num = 0;
-double p, r, ans = INF;
-void DFS(int index, int depth) {
-	if (node[index].size() == 0) {
-		double price = p * pow(1+r, depth);
-		if (price < ans) {
-			ans = price;
-			num = 1;
-		} else if (price == ans)
-			num++;
-		return;
+vector<int> v[100000], d(100000);
+int dmin = 0x3fffffff;
+void dfs(int index, int depth) {
+	if (v[index].size() == 0) {
+		d[depth]++;
+		if (dmin > depth) dmin = depth;
+		return ;
 	}
-	for (int i = 0; i < (int)node[index].size(); i++)
-		DFS(node[index][i], depth+1);
+	for (int i = 0; i < v[index].size(); i++)
+		dfs(v[index][i], depth + 1);
 }
 int main() {
-	int k, child;
-	scanf("%d%lf%lf", &n, &p, &r);
-	r /= 100;
+	int n, k, t;
+	double p, r;
+	scanf("%d %lf %lf", &n, &p, &r);
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &k);
-		if (k != 0)
-			for (int j = 0; j < k; j++) {
-				scanf("%d", &child);
-				node[i].push_back(child);
-			}
+		for (int j = 0; j < k; j++) {
+			scanf("%d", &t);
+			v[i].push_back(t);
+		}
 	}
-	DFS(0, 0);
-	printf("%.4f %d\n", ans, num);
+	dfs(0, 0);
+	printf("%.4f %d", p * pow(1 + r/100, dmin), d[dmin]);
 	return 0;
 }
