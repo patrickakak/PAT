@@ -25,16 +25,16 @@ void inorder(int root) {
 int main() {
 	int n, root = 0;
 	cin >> n;
-	char l, r;
+	string l, r;
 	for (int i = 0; i < n; i++) {
 		cin >> l >> r;
-		if (l != '-') {
-			tree[i].r = l - '0';
-			h[l - '0'] = 1;
+		if (l != "-") {
+			tree[i].r = stoi(l);
+			h[stoi(l)] = 1;
 		} else tree[i].r = -1;
-		if (r != '-') {
-			tree[i].l = r - '0';
-			h[r - '0'] = 1;
+		if (r != "-") {
+			tree[i].l = stoi(r);
+			h[stoi(r)] = 1;
 		} else tree[i].l = -1;
 	}
 	while (h[root] == 1) root++;
