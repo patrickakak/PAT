@@ -17,7 +17,7 @@ int main() {
 	int n, m, k, node, c;
 	scanf("%d %d", &n, &m);
 	while (m--) {
-		scanf("%d %d",&node, &k);
+		scanf("%d %d", &node, &k);
 		for (int i = 0; i < k; i++) {
 			scanf("%d", &c);
 			v[node].push_back(c);
