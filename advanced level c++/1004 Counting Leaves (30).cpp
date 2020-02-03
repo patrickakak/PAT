@@ -1,33 +1,31 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-const int N = 110;
-vector<int> G[N];
-int leaf[N] = {0};
-int max_h = 1;
-void DFS(int index, int h) {
-	max_h = max(h, max_h);
-	if (G[index].size() == 0) {
-		leaf[h]++;
-		return;
+vector<int> v[100];
+int book[100], maxdepth = -1;
+void dfs(int index, int depth) {
+	if (v[index].size() == 0) {
+		book[depth]++;
+		maxdepth = max(maxdepth, depth);
+		return ;
 	}
-	for (int i = 0; i < (int)G[index].size(); i++)
-		DFS(G[index][i], h+1);
+	for (int i = 0; i < v[index].size(); i++)
+		dfs(v[index][i], depth + 1);
 }
 int main() {
-	int n, m, parent, child, k;
-	scanf("%d%d", &n, &m);
-	for (int i = 0; i < m; i++) {
-		scanf("%d%d", &parent, &k);
-		for (int j = 0; j < k; j++) {
-			scanf("%d", &child);
-			G[parent].push_back(child);
+	int n, m, k, node, c;
+	scanf("%d %d", &n, &m);
+	while (m--) {
+		scanf("%d %d",&node, &k);
+		for (int i = 0; i < k; i++) {
+			scanf("%d", &c);
+			v[node].push_back(c);
 		}
 	}
-	DFS(1, 1);
-	printf("%d", leaf[1]);
-	for (int i = 2; i <= max_h; i++)
-		printf(" %d", leaf[i]);
+	dfs(1, 0);
+	printf("%d", book[0]);
+	for (int i = 1; i <= maxdepth; i++)
+		printf(" %d", book[i]);
 	return 0;
 }
