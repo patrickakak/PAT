@@ -18,7 +18,6 @@ node *build(int inl, int inr, int postl, int postr) {
 	if (inl > inr || postl > postr) return NULL;
 	node *t = new(node);
 	t->data = post[postr];
-	t->l = t->r = NULL;
 	int i = inl;
 	while (i <= inr && in[i] != post[postr]) i++;
 	t->l = build(inl, i - 1, postl, postl + i - inl - 1);
