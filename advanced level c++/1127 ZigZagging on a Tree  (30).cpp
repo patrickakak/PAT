@@ -22,10 +22,8 @@ void bfs() {
 		node tmp = q.front();
 		q.pop();
 		res[tmp.depth].push_back(post[tmp.index]);
-		if (tree[tmp.index][0] != 0)
-			q.push(node{tree[tmp.index][0], tmp.depth + 1});
-		if (tree[tmp.index][1] != 0)
-			q.push(node{tree[tmp.index][1], tmp.depth + 1});
+		if (tree[tmp.index][0] != 0) q.push(node{tree[tmp.index][0], tmp.depth + 1});
+		if (tree[tmp.index][1] != 0) q.push(node{tree[tmp.index][1], tmp.depth + 1});
 	}
 }
 int main() {
