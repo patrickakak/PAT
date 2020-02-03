@@ -8,8 +8,7 @@ void init() {
 	int tmp = 0, index = 1;
 	while (tmp <= n) {
 		v.push_back(tmp);
-		tmp = pow(index, p);
-		index++;
+		tmp = pow(index++, p);
 	}
 }
 void dfs(int index, int sum, int tmpK, int facSum) {
