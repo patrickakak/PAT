@@ -6,8 +6,8 @@ struct node {
 } a[100];
 string dfs(int root) {
 	if (a[root].l == -1 && a[root].r == -1) return a[root].s;
-	if (a[root].l == -1 && a[root].r != -1) return "(" +  a[root].s + dfs(a[root].r) + ")";
-	if (a[root].l != -1 && a[root].r != -1) return "(" +  dfs(a[root].l) + a[root].s + dfs(a[root].r) + ")";
+	if (a[root].l == -1 && a[root].r != -1) return "(" + a[root].s + dfs(a[root].r) + ")";
+	if (a[root].l != -1 && a[root].r != -1) return "(" + dfs(a[root].l) + a[root].s + dfs(a[root].r) + ")";
 }
 int main() {
 	int h[100] = {0}, n, root = 1;
