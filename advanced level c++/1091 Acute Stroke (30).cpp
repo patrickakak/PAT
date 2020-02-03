@@ -1,56 +1,55 @@
-#include <cstdio>
+#include <iostream>
 #include <queue>
 using namespace std;
-struct Node {
-	int x, y, z;
-} node;
-int m, n, slice, T;
-int pixel[1290][130][61];
-bool inQ[1290][130][61] = {false};
-int X[6] = {0, 0, 0, 0, 1, -1};
-int Y[6] = {0, 0, 1, -1, 0, 0};
-int Z[6] = {1, -1, 0, 0, 0, 0};
+struct node { int x, y, z; };
+int m, n, l, t;
+int X[6] = {1, 0, 0, -1, 0, 0};
+int Y[6] = {0, 1, 0, 0, -1, 0};
+int Z[6] = {0, 0, 1, 0, 0, -1};
+int arr[1300][130][80];
+bool visit[1300][130][80];
 bool judge(int x, int y, int z) {
-	if (x >= m || x < 0 || y >= n || y < 0 || z >= slice || z < 0) return false;
-	if (pixel[x][y][z] == 0 || inQ[x][y][z] == true) return false;
+	if (x < 0 || x >= m || y < 0 || y >= n || z < 0 || z >= l) return false;
+	if (arr[x][y][z] == 0 || visit[x][y][z] == true) return false;
 	return true;
 }
-int BFS(int x, int y, int z) {
-	int tot = 0;
-	queue<Node> Q;
-	node.x = x, node.y = y, node.z = z;
-	Q.push(node);
-	inQ[x][y][z] = true;
-	while (!Q.empty()) {
-		Node top = Q.front();
-		Q.pop();
-		tot++;
+int bfs(int x, int y, int z) {
+	int cnt = 0;
+	node temp;
+	temp.x = x, temp.y = y, temp.z = z;
+	queue<node> q;
+	q.push(temp);
+	visit[x][y][z] = true;
+	while (!q.empty()) {
+		node top = q.front();
+		q.pop();
+		cnt++;
 		for (int i = 0; i < 6; i++) {
-			int newX = top.x + X[i];
-			int newY = top.y + Y[i];
-			int newZ = top.z + Z[i];
-			if (judge(newX, newY, newZ)) {
-				node.x = newX, node.y = newY, node.z = newZ;
-				Q.push(node);
-				inQ[newX][newY][newZ] = true;
+			int tx = top.x + X[i];
+			int ty = top.y + Y[i];
+			int tz = top.z + Z[i];
+			if (judge(tx, ty, tz)) {
+				visit[tx][ty][tz] = true;
+				temp.x = tx, temp.y = ty, temp.z = tz;
+				q.push(temp);
 			}
 		}
 	}
-	if (tot >= T) return tot;
+	if (cnt >= t) return cnt;
 	else return 0;
 }
 int main() {
-	scanf("%d%d%d%d", &m, &n, &slice, &T);
-	for (int z = 0; z < slice; z++)
-		for (int x = 0; x < m; x++)
-			for (int y = 0; y < n; y++)
-				scanf("%d", &pixel[x][y][z]);
+	scanf("%d %d %d %d", &m, &n, &l, &t);
+	for (int i = 0; i < l; i++)
+		for (int j = 0; j < m; j++)
+			for (int k = 0; k < n; k++)
+				scanf("%d", &arr[j][k][i]);
 	int ans = 0;
-	for (int z = 0; z < slice; z++)
-		for (int x = 0; x < m; x++)
-			for (int y = 0; y < n; y++)
-				if (pixel[x][y][z] == 1 && inQ[x][y][z] == false)
-					ans += BFS(x, y, z);
-	printf("%d\n", ans);
+	for (int i = 0; i < l; i++)
+		for (int j = 0; j < m; j++)
+			for (int k = 0; k < n; k++)
+				if (arr[j][k][i] == 1 && visit[j][k][i] == false)
+					ans += bfs(j, k, i);
+	printf("%d", ans);
 	return 0;
 }
