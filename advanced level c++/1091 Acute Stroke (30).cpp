@@ -15,9 +15,9 @@ bool judge(int x, int y, int z) {
 }
 int bfs(int x, int y, int z) {
 	int cnt = 0;
-	node temp = node{x, y, z};
+	node tmp = node{x, y, z};
 	queue<node> q;
-	q.push(temp);
+	q.push(tmp);
 	visit[x][y][z] = true;
 	while (!q.empty()) {
 		node top = q.front();
@@ -29,8 +29,8 @@ int bfs(int x, int y, int z) {
 			int tz = top.z + Z[i];
 			if (judge(tx, ty, tz)) {
 				visit[tx][ty][tz] = true;
-				temp.x = tx, temp.y = ty, temp.z = tz;
-				q.push(temp);
+				tmp.x = tx, tmp.y = ty, tmp.z = tz;
+				q.push(tmp);
 			}
 		}
 	}
