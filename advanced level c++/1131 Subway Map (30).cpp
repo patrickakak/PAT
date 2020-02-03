@@ -54,11 +54,11 @@ int main() {
 		visit[src] = 0;
 		printf("%d\n", minCnt);
 		int preLine = 0, preTrans = src;
-		for (int j = 1; j < path.size(); j++)
-			if (line[path[j-1] * 10000 + path[j]] != preLine) {
-				if (preLine != 0) printf("Take Line#%d from %04d to %04d.\n", preLine, preTrans, path[j-1]);
-				preLine = line[path[j-1] * 10000 + path[j]];
-				preTrans = path[j-1];
+		for (int i = 1; i < path.size(); i++)
+			if (line[path[i-1] * 10000 + path[i]] != preLine) {
+				if (preLine != 0) printf("Take Line#%d from %04d to %04d.\n", preLine, preTrans, path[i-1]);
+				preLine = line[path[i-1] * 10000 + path[i]];
+				preTrans = path[i-1];
 			}
 		printf("Take Line#%d from %04d to %04d.\n", preLine, preTrans, dest);
 	}
