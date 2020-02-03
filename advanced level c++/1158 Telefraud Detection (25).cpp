@@ -20,7 +20,6 @@ struct UnionFind {
 		else { id[j] = i; sz[i] += sz[j]; }
 	}
 };
-
 int main() {
 	int k, n, m;
 	cin >> k >> n >> m;
