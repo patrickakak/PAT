@@ -11,8 +11,8 @@ void init() {
 		tmp = pow(index++, p);
 	}
 }
-void dfs(int index, int sum, int tmpK, int facSum) {
-	if (tmpK == k) {
+void dfs(int index, int sum, int depth, int facSum) {
+	if (depth == k) {
 		if (sum == n && facSum > maxFacSum) {
 			ans = tmpAns;
 			maxFacSum = facSum;
@@ -21,8 +21,8 @@ void dfs(int index, int sum, int tmpK, int facSum) {
 	}
 	while (index >= 1) {
 		if (sum + v[index] <= n) {
-			tmpAns[tmpK] = index;
-			dfs(index, sum + v[index], tmpK + 1, facSum + index);
+			tmpAns[depth] = index;
+			dfs(index, sum + v[index], depth + 1, facSum + index);
 		}
 		if (index == 1) return;
 		index--;
