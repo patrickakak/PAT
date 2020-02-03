@@ -33,14 +33,11 @@ int main() {
 	init(); 
 	tmpAns.resize(k);
 	dfs(v.size() - 1, 0, 0, 0);
-	if (maxFacSum == -1) {
-		printf("Impossible");
-		return 0;
-	}
-	printf("%d = ", n);
-	for (int i = 0; i < ans.size(); i++) {
-		if (i != 0) printf(" + ");
-		printf("%d^%d", ans[i], p);
+	if (maxFacSum == -1) printf("Impossible");
+	else {
+		printf("%d = %d^%d", n, ans[0], p);
+		for (int i = 1; i < ans.size(); i++)
+			printf(" + %d^%d", ans[i], p);
 	}
 	return 0;
 }
