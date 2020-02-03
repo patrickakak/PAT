@@ -3,7 +3,7 @@
 #include <unordered_map>
 using namespace std;
 vector<vector<int>> v(10000);
-int visit[10000], minCnt, minTransfer, start, end1;
+int visit[10000], minCnt, minTransfer, src, dest;
 unordered_map<int, int> line;
 vector<int> path, tmpPath;
 int transferCnt(vector<int> a) {
@@ -15,12 +15,12 @@ int transferCnt(vector<int> a) {
 	return cnt;
 }
 void dfs(int node, int cnt) {
-	if (node == end1 && (cnt < minCnt || (cnt == minCnt && transferCnt(tmpPath) < minTransfer))) {
+	if (node == dest && (cnt < minCnt || (cnt == minCnt && transferCnt(tmpPath) < minTransfer))) {
 		minCnt = cnt;
 		minTransfer = transferCnt(tmpPath);
 		path = tmpPath;
 	}
-	if (node == end1) return;
+	if (node == dest) return;
 	for (int i = 0; i < v[node].size(); i++)
 		if (visit[v[node][i]] == 0) {
 			visit[v[node][i]] = 1;
@@ -45,22 +45,22 @@ int main() {
 	}
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
-		scanf("%d%d", &start, &end1);
+		scanf("%d%d", &src, &dest);
 		minCnt = 99999, minTransfer = 99999;
 		tmpPath.clear();
-		tmpPath.push_back(start);
-		visit[start] = 1;
-		dfs(start, 0);
-		visit[start] = 0;
+		tmpPath.push_back(src);
+		visit[src] = 1;
+		dfs(src, 0);
+		visit[src] = 0;
 		printf("%d\n", minCnt);
-		int preLine = 0, preTransfer = start;
+		int preLine = 0, preTransfer = src;
 		for (int j = 1; j < path.size(); j++)
 			if (line[path[j-1]*10000+path[j]] != preLine) {
 				if (preLine != 0) printf("Take Line#%d from %04d to %04d.\n", preLine, preTransfer, path[j-1]);
 				preLine = line[path[j-1]*10000+path[j]];
 				preTransfer = path[j-1];
 			}
-		printf("Take Line#%d from %04d to %04d.\n", preLine, preTransfer, end1);
+		printf("Take Line#%d from %04d to %04d.\n", preLine, preTransfer, dest);
 	}
 	return 0;
 }
