@@ -1,50 +1,21 @@
-/**
- * Sample input:
- * 3 4 5 2
- * 1 1 1 1
- * 1 1 1 1
- * 1 1 1 1
- * 0 0 1 1
- * 0 0 1 1
- * 0 0 1 1
- * 1 0 1 1
- * 0 1 0 0
- * 0 0 0 0
- * 1 0 1 1
- * 0 0 0 0
- * 0 0 0 0
- * 0 0 0 1
- * 0 0 0 1
- * 1 0 0 0
- * --------------
- * Sample output:
- * 26
- */
 #include <cstdio>
 #include <queue>
 using namespace std;
-
 struct Node {
 	int x, y, z;
 } node;
-
 int m, n, slice, T;
 int pixel[1290][130][61];
 bool inQ[1290][130][61] = {false};
 int X[6] = {0, 0, 0, 0, 1, -1};
 int Y[6] = {0, 0, 1, -1, 0, 0};
 int Z[6] = {1, -1, 0, 0, 0, 0};
-
-bool judge(int x, int y, int z)
-{
+bool judge(int x, int y, int z) {
 	if (x >= m || x < 0 || y >= n || y < 0 || z >= slice || z < 0) return false;
 	if (pixel[x][y][z] == 0 || inQ[x][y][z] == true) return false;
 	return true;
 }
-
-// get volume of the current block
-int BFS(int x, int y, int z)
-{
+int BFS(int x, int y, int z) {
 	int tot = 0;
 	queue<Node> Q;
 	node.x = x, node.y = y, node.z = z;
@@ -68,10 +39,7 @@ int BFS(int x, int y, int z)
 	if (tot >= T) return tot;
 	else return 0;
 }
-
-int main()
-{
-	// freopen("tst.txt", "r", stdin);
+int main() {
 	scanf("%d%d%d%d", &m, &n, &slice, &T);
 	for (int z = 0; z < slice; z++)
 		for (int x = 0; x < m; x++)
@@ -84,8 +52,5 @@ int main()
 				if (pixel[x][y][z] == 1 && inQ[x][y][z] == false)
 					ans += BFS(x, y, z);
 	printf("%d\n", ans);
-
 	return 0;
 }
-
-
