@@ -12,18 +12,18 @@ void init() {
 		index++;
 	}
 }
-void dfs(int index, int tmpSum, int tmpK, int facSum) {
+void dfs(int index, int sum, int tmpK, int facSum) {
 	if (tmpK == k) {
-		if (tmpSum == n && facSum > maxFacSum) {
+		if (sum == n && facSum > maxFacSum) {
 			ans = tmpAns;
 			maxFacSum = facSum;
 		}
 		return;
 	}
 	while (index >= 1) {
-		if (tmpSum + v[index] <= n) {
+		if (sum + v[index] <= n) {
 			tmpAns[tmpK] = index;
-			dfs(index, tmpSum + v[index], tmpK + 1, facSum + index);
+			dfs(index, sum + v[index], tmpK + 1, facSum + index);
 		}
 		if (index == 1) return;
 		index--;
