@@ -6,22 +6,22 @@ struct node {
 	int val;
 	node *l, *r;
 };
-node *build(node *root, int v) {
-	if (root == NULL) {
-		root = new node();
-		root->val = v;
-		root->l = root->r = NULL;
-	} else if (abs(v) < abs(root->val)) root->l = build(root->l, v);
-	else root->r = build(root->r, v);
-	return root;
+node *build(node *r, int v) {
+	if (r == NULL) {
+		r = new node();
+		r->val = v;
+		r->l = r->r = NULL;
+	} else if (abs(v) < abs(r->val)) r->l = build(r->l, v);
+	else r->r = build(r->r, v);
+	return r;
 }
-bool judge1(node *root) {
-	if (root == NULL) return true;
-	if (root->val < 0) {
-		if (root->l != NULL && root->l->val < 0) return false;
-		if (root->r != NULL && root->r->val < 0) return false;
+bool judge1(node *r) {
+	if (r == NULL) return true;
+	if (r->val < 0) {
+		if (r->l && r->l->val < 0) return false;
+		if (r->r && r->r->val < 0) return false;
 	}
-	return judge1(root->l) && judge1(root->r);
+	return judge1(r->l) && judge1(r->r);
 }
 int getNum(node *root) {
 	if (root == NULL) return 0;
