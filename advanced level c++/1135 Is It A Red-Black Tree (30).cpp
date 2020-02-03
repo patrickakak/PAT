@@ -29,12 +29,10 @@ int getNum(node *root) {
 	int r = getNum(root->r);
 	return root->val > 0 ? max(l, r) + 1 : max(l, r);
 }
-bool judge2(node *root) {
-	if (root == NULL) return true;
-	int l = getNum(root->l);
-	int r = getNum(root->r);
-	if (l != r) return false;
-	return judge2(root->l) && judge2(root->r);
+bool judge2(node *r) {
+	if (r == NULL) return true;
+	if (getNum(r->l) != getNum(r->r)) return false;
+	return judge2(r->l) && judge2(r->r);
 }
 int main() {
 	int k, n;
