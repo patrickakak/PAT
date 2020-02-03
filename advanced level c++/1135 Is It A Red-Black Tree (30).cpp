@@ -11,7 +11,7 @@ node *build(node *root, int v) {
 		root = new node();
 		root->val = v;
 		root->l = root->r = NULL;
-	} else if (abs(v) <= abs(root->val)) root->l = build(root->l, v);
+	} else if (abs(v) < abs(root->val)) root->l = build(root->l, v);
 	else root->r = build(root->r, v);
 	return root;
 }
