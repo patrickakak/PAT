@@ -44,7 +44,7 @@ int main() {
 		}
 	}
 	scanf("%d", &k);
-	for (int i = 0; i < k; i++) {
+	while (k--) {
 		scanf("%d%d", &src, &dest);
 		minCnt = 99999, minTrans = 99999;
 		tmpPath.clear();
