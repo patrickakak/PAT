@@ -24,7 +24,7 @@ bool judge1(node *r) {
 	return judge1(r->l) && judge1(r->r);
 }
 int getNum(node *root) {
-	if (root == NULL) return 0;
+	if (root == NULL) return 1;
 	int l = getNum(root->l);
 	int r = getNum(root->r);
 	return root->val > 0 ? max(l, r) + 1 : max(l, r);
