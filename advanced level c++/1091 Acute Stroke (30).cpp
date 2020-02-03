@@ -15,8 +15,7 @@ bool judge(int x, int y, int z) {
 }
 int bfs(int x, int y, int z) {
 	int cnt = 0;
-	node temp;
-	temp.x = x, temp.y = y, temp.z = z;
+	node temp = node{x, y, z};
 	queue<node> q;
 	q.push(temp);
 	visit[x][y][z] = true;
