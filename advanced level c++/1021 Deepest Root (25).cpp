@@ -23,7 +23,7 @@ void dfs(int node, int height) {
 int main() {
 	scanf("%d", &n);
 	v.resize(n + 1);
-	int a, b, cnt = 0, s1 = 0;
+	int a, b, src, cnt = 0;
 	for (int i = 0; i < n - 1; i++) {
 		scanf("%d%d", &a, &b);
 		v[a].push_back(b);
@@ -33,7 +33,7 @@ int main() {
 		if (!visit[i]) {
 			dfs(i, 1);
 			if (i == 1) {
-				if (tmp.size() != 0) s1 = tmp[0];
+				if (tmp.size() != 0) src = tmp[0];
 				for (int j = 0; j < tmp.size(); j++) s.insert(tmp[j]);
 			}
 			cnt++;
@@ -43,7 +43,7 @@ int main() {
 		tmp.clear();
 		maxheight = 0;
 		fill(visit, visit + 10010, false);
-		dfs(s1, 1);
+		dfs(src, 1);
 		for (int i = 0; i < tmp.size(); i++) s.insert(tmp[i]);
 		for (auto it : s) printf("%d\n", it);
 	}
