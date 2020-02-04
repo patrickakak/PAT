@@ -22,7 +22,7 @@ int main() {
 		int cnt = 0;
 		visit[a] = true;
 		for (int j = 1; j <= n; j++)
-			if (visit[j] == false) {
+			if (!visit[j]) {
 				dfs(j);
 				cnt++;
 			}
