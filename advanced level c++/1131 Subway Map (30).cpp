@@ -7,7 +7,7 @@ int visit[10000], minCnt, minTrans, src, dest;
 unordered_map<int, int> line;
 vector<int> path, tmpPath;
 int transCnt(vector<int> a) {
-	int cnt = -1, preLine = -1;
+	int cnt = -1, preLine = 0;
 	for (int i = 1; i < a.size(); i++) {
 		if (line[a[i-1] * 10000 + a[i]] != preLine) cnt++;
 		preLine = line[a[i-1] * 10000 + a[i]];
