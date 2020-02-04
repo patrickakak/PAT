@@ -3,12 +3,12 @@
 using namespace std;
 map<string, int> str2int, ans;
 map<int, string> int2str;
-int idNumber = 1, k;
+int id = 1, k;
 int stoifunc(string s) {
 	if (str2int[s] == 0) {
-		str2int[s] = idNumber;
-		int2str[idNumber] = s;
-		return idNumber++;
+		str2int[s] = id;
+		int2str[id] = s;
+		return id++;
 	} else
 		return str2int[s];
 }
@@ -18,7 +18,7 @@ void dfs(int u, int &head, int &numMember, int &totalweight) {
 	vis[u] = true;
 	numMember++;
 	if (weight[u] > weight[head]) head = u;
-	for (int v = 1; v < idNumber; v++)
+	for (int v = 1; v < id; v++)
 		if (G[u][v] > 0) {
 			totalweight += G[u][v];
 			G[u][v] = G[v][u] = 0;
@@ -26,7 +26,7 @@ void dfs(int u, int &head, int &numMember, int &totalweight) {
 		}
 }
 void dfsTrave() {
-	for (int i = 1; i < idNumber; i++)
+	for (int i = 1; i < id; i++)
 		if (!vis[i]) {
 			int head = i, numMember = 0, totalweight = 0;
 			dfs(i, head, numMember, totalweight);
