@@ -24,7 +24,7 @@ void dfs(int node, int cnt) {
 		return;
 	}
 	for (int i = 0; i < v[node].size(); i++)
-		if (visit[v[node][i]] == 0) {
+		if (!visit[v[node][i]]) {
 			visit[v[node][i]] = 1;
 			tmpPath.push_back(v[node][i]);
 			dfs(v[node][i], cnt + 1);
