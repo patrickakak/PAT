@@ -3,7 +3,9 @@
 #include <vector>
 using namespace std;
 int n, l, m, k;
-struct node { int id, layer; };
+struct node {
+	int id, layer;
+};
 vector<vector<int>> v;
 int bfs(node tnode) {
 	bool inq[1010] = {false};
@@ -33,9 +35,9 @@ int main() {
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &m);
 		for (int j = 0; j < m; j++) {
-			int temp;
-			scanf("%d", &temp);
-			v[temp].push_back(i);
+			int tmp;
+			scanf("%d", &tmp);
+			v[tmp].push_back(i);
 		}
 	}
 	scanf("%d", &k);
