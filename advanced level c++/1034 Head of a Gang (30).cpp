@@ -22,12 +22,12 @@ void dfs(int u, int &head, int &numMember, int &totalweight) {
 		if (G[u][v] > 0) {
 			totalweight += G[u][v];
 			G[u][v] = G[v][u] = 0;
-			if (vis[v] == false) dfs(v, head, numMember, totalweight);
+			if (!vis[v]) dfs(v, head, numMember, totalweight);
 		}
 }
 void dfsTrave() {
 	for (int i = 1; i < idNumber; i++)
-		if (vis[i] == false) {
+		if (!vis[i]) {
 			int head = i, numMember = 0, totalweight = 0;
 			dfs(i, head, numMember, totalweight);
 			if (numMember > 2 && totalweight > k) ans[int2str[head]] = numMember;
