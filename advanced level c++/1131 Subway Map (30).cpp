@@ -15,12 +15,14 @@ int transCnt(vector<int> a) {
 	return cnt;
 }
 void dfs(int node, int cnt) {
-	if (node == dest && (cnt < minCnt || (cnt == minCnt && transCnt(tmpPath) < minTrans))) {
-		minCnt = cnt;
-		minTrans = transCnt(tmpPath);
-		path = tmpPath;
+	if (node == dest) {
+		if (cnt < minCnt || (cnt == minCnt && transCnt(tmpPath) < minTrans)) {
+			minCnt = cnt;
+			minTrans = transCnt(tmpPath);
+			path = tmpPath;
+		}
+		return;
 	}
-	if (node == dest) return;
 	for (int i = 0; i < v[node].size(); i++)
 		if (visit[v[node][i]] == 0) {
 			visit[v[node][i]] = 1;
