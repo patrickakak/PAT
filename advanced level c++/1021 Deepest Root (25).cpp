@@ -45,7 +45,7 @@ int main() {
 		fill(visit, visit + 10010, false);
 		dfs(s1, 1);
 		for (int i = 0; i < tmp.size(); i++) s.insert(tmp[i]);
-		for (auto it = s.begin(); it != s.end(); it++) printf("%d\n", *it);
+		for (auto it : s) printf("%d\n", it);
 	}
 	return 0;
 }
