@@ -19,10 +19,9 @@ int bfs(node tnode) {
 		int topid = top.id;
 		for (int i = 0; i < v[topid].size(); i++) {
 			int nextid = v[topid][i];
-			if (inq[nextid] == false && top.layer < l) {
-				node next = {nextid, top.layer + 1};
-				q.push(next);
-				inq[next.id] = true;
+			if (!inq[nextid] && top.layer < l) {
+				q.push({nextid, top.layer + 1});
+				inq[nextid] = true;
 				cnt++;
 			}
 		}
@@ -44,8 +43,7 @@ int main() {
 	int tid;
 	for (int i = 0; i < k; i++) {
 		scanf("%d", &tid);
-		node tnode = {tid, 0};
-		printf("%d\n", bfs(tnode));
+		printf("%d\n", bfs({tid, 0}));
 	}
 	return 0;
 }
