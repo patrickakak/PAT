@@ -14,23 +14,23 @@ int stoifunc(string s) {
 }
 int G[2010][2010], weight[2010];
 bool vis[2010];
-void dfs(int u, int &head, int &numMember, int &totalweight) {
+void dfs(int u, int &head, int &numMbr, int &totalweight) {
 	vis[u] = true;
-	numMember++;
+	numMbr++;
 	if (weight[u] > weight[head]) head = u;
 	for (int v = 1; v < index; v++)
 		if (G[u][v] > 0) {
 			totalweight += G[u][v];
 			G[u][v] = G[v][u] = 0;
-			if (!vis[v]) dfs(v, head, numMember, totalweight);
+			if (!vis[v]) dfs(v, head, numMbr, totalweight);
 		}
 }
 void dfsTrave() {
 	for (int i = 1; i < index; i++)
 		if (!vis[i]) {
-			int head = i, numMember = 0, totalweight = 0;
-			dfs(i, head, numMember, totalweight);
-			if (numMember > 2 && totalweight > k) ans[int2str[head]] = numMember;
+			int head = i, numMbr = 0, totalweight = 0;
+			dfs(i, head, numMbr, totalweight);
+			if (numMbr > 2 && totalweight > k) ans[int2str[head]] = numMbr;
 		}
 }
 int main() {
