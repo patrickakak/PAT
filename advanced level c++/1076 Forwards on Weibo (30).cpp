@@ -16,9 +16,8 @@ int bfs(node tnode) {
 	while (!q.empty()) {
 		node top = q.front();
 		q.pop();
-		int topid = top.id;
-		for (int i = 0; i < v[topid].size(); i++) {
-			int nextid = v[topid][i];
+		for (int i = 0; i < v[top.id].size(); i++) {
+			int nextid = v[top.id][i];
 			if (!inq[nextid] && top.layer < l) {
 				q.push({nextid, top.layer + 1});
 				inq[nextid] = true;
