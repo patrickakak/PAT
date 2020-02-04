@@ -1,17 +1,16 @@
 #include <iostream>
 #include <map>
 using namespace std;
-map<string, int> stringToInt;
-map<int, string> intToString;
-map<string, int> ans;
+map<string, int> str2int, ans;
+map<int, string> int2str;
 int idNumber = 1, k;
 int stoifunc(string s) {
-	if (stringToInt[s] == 0) {
-		stringToInt[s] = idNumber;
-		intToString[idNumber] = s;
+	if (str2int[s] == 0) {
+		str2int[s] = idNumber;
+		int2str[idNumber] = s;
 		return idNumber++;
 	} else
-		return stringToInt[s];
+		return str2int[s];
 }
 int G[2010][2010], weight[2010];
 bool vis[2010];
@@ -31,7 +30,7 @@ void dfsTrave() {
 		if (vis[i] == false) {
 			int head = i, numMember = 0, totalweight = 0;
 			dfs(i, head, numMember, totalweight);
-			if (numMember > 2 && totalweight > k) ans[intToString[head]] = numMember;
+			if (numMember > 2 && totalweight > k) ans[int2str[head]] = numMember;
 		}
 }
 int main() {
