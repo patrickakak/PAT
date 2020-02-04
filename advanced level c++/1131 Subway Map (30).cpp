@@ -46,7 +46,7 @@ int main() {
 	scanf("%d", &k);
 	while (k--) {
 		scanf("%d%d", &src, &dest);
-		minCnt = 99999, minTrans = 99999;
+		minCnt = minTrans = 0x3ffffff;
 		tmpPath.clear();
 		tmpPath.push_back(src);
 		visit[src] = 1;
