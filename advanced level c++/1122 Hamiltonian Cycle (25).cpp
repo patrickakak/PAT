@@ -1,20 +1,20 @@
 #include <iostream>
-#include <set>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 int main() {
-	int n, m, cnt, k, a[210][210] = {0};
+	int n, m, a, b, cnt, k, g[210][210] = {0};
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
-		int t1, t2;
-		scanf("%d%d", &t1, &t2);
-		a[t1][t2] = a[t2][t1] = 1;
+		int a, b;
+		scanf("%d%d", &a, &b);
+		g[a][b] = g[b][a] = 1;
 	}
 	cin >> cnt;
 	while (cnt--) {
-		cin >> k;
+		scanf("%d", &k);
 		vector<int> v(k);
-		set<int> s;
+		unordered_set<int> s;
 		int flag1 = 1, flag2 = 1;
 		for (int i = 0; i < k; i++) {
 			scanf("%d", &v[i]);
@@ -22,8 +22,8 @@ int main() {
 		}
 		if (s.size() != n || k - 1 != n || v[0] != v[k-1]) flag1 = 0;
 		for (int i = 0; i < k - 1; i++)
-			if (a[v[i]][v[i+1]] == 0) flag2 = 0;
-		printf("%s\n",flag1 && flag2 ? "YES" : "NO");
+			if (g[v[i]][v[i+1]] == 0) flag2 = 0;
+		printf("%s\n", flag1 && flag2 ? "YES" : "NO");
 	}
 	return 0;
 }
