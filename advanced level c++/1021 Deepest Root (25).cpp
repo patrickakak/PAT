@@ -17,7 +17,7 @@ void dfs(int node, int height) {
 		tmp.push_back(node);
 	visit[node] = true;
 	for (int i = 0; i < v[node].size(); i++)
-		if (visit[v[node][i]] == false)
+		if (!visit[v[node][i]])
 			dfs(v[node][i], height + 1);
 }
 int main() {
@@ -30,7 +30,7 @@ int main() {
 		v[b].push_back(a);
 	}
 	for (int i = 1; i <= n; i++)
-		if (visit[i] == false) {
+		if (!visit[i]) {
 			dfs(i, 1);
 			if (i == 1) {
 				if (tmp.size() != 0) s1 = tmp[0];
