@@ -20,7 +20,7 @@ int main() {
 			for (int it : v[a]) tin[it]--;
 		}
 		if (judge == 1) continue;
-		printf("%s%d", flag == 1 ? " ": "", i);
+		printf("%s%d", flag == 1 ? " " : "", i);
 		flag = 1;
 	}
 	return 0;
