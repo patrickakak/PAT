@@ -3,7 +3,6 @@
 #include <algorithm>
 using namespace std;
 vector<int> father, isRoot;
-int cmp(int a, int b) { return a > b; }
 int findFather(int x) {
 	int a = x;
 	while (x != father[x]) x = father[x];
@@ -21,7 +20,7 @@ void Union(int a, int b) {
 }
 int main() {
 	int n, k, t, cnt = 0;
-	int course[1001] = {0};
+	int hobby[1001] = {0};
 	scanf("%d", &n);
 	father.resize(n + 1), isRoot.resize(n + 1);
 	for (int i = 1; i <= n; i++) father[i] = i;
@@ -29,18 +28,18 @@ int main() {
 		scanf("%d:", &k);
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &t);
-			if (course[t] == 0) course[t] = i;
-			Union(i, findFather(course[t]));
+			if (hobby[t] == 0) hobby[t] = i;
+			Union(i, findFather(hobby[t]));
 		}
 	}
 	for (int i = 1; i <= n; i++) isRoot[findFather(i)]++;
 	for (int i = 1; i <= n; i++)
 		if (isRoot[i] != 0) cnt++;
 	printf("%d\n", cnt);
-	sort(isRoot.begin(), isRoot.end(), cmp);
+	sort(isRoot.rbegin(), isRoot.rend());
 	for (int i = 0; i < cnt; i++) {
+		if (i != 0) printf(" ");
 		printf("%d", isRoot[i]);
-		if (i != cnt - 1) printf(" ");
 	}
 	return 0;
 }
