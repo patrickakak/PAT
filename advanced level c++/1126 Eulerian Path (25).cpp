@@ -14,8 +14,7 @@ void dfs(int index) {
 int main() {
 	int n, m, a, b, even = 0;
 	scanf("%d%d", &n, &m);
-	v.resize(n + 1);
-	visit.resize(n + 1);
+	v.resize(n + 1), visit.resize(n + 1);
 	for (int i = 0; i < m; i++) {
 		scanf("%d%d", &a, &b);
 		v[a].push_back(b);
