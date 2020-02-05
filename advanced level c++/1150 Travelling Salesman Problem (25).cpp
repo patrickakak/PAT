@@ -38,9 +38,9 @@ void check(int index) {
 int main() {
 	scanf("%d%d", &n, &m);
 	for (int i = 0; i < m; i++) {
-		int t1, t2, t;
-		scanf("%d%d%d", &t1, &t2, &t);
-		e[t1][t2] = e[t2][t1] = t;
+		int c1, c2, dis;
+		scanf("%d%d%d", &c1, &c2, &dis);
+		e[c1][c2] = e[c2][c1] = dis;
 	}
 	scanf("%d", &k);
 	for (int i = 1; i <= k; i++) check(i);
