@@ -2,7 +2,7 @@
 #include <vector>
 #include <set>
 using namespace std;
-int e[300][300], n, m, k, ans = 0x3fffffff, ansid;
+int e[210][210], n, m, k, ans = 0x3fffffff, ansid;
 vector<int> v;
 void check(int index) {
 	int sum = 0, cnt, flag = 1;
