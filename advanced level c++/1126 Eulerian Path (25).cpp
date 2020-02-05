@@ -29,7 +29,7 @@ int main() {
 	printf("\n");
 	dfs(1);
 	if (even == n && cnt == n) printf("Eulerian");
-	else if(even == n - 2 && cnt == n) printf("Semi-Eulerian");
+	else if (even == n - 2 && cnt == n) printf("Semi-Eulerian");
 	else printf("Non-Eulerian");
 	return 0;
 }
