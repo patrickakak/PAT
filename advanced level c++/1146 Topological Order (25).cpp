@@ -2,8 +2,8 @@
 #include <vector>
 using namespace std;
 int main() {
-	int n, m, a, b, k, flag = 0, in[1010];
-	vector<int> v[1010];
+	int n, m, a, b, k, flag = 0;
+	vector<int> v[1010], in(1010);
 	scanf("%d %d", &n, &m);
 	for (int i = 0; i < m; i++) {
 		scanf("%d %d", &a, &b);
@@ -13,7 +13,7 @@ int main() {
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
 		int judge = 1;
-		vector<int> tin(in, in+n+1);
+		vector<int> tin = in;
 		for (int j = 0; j < n; j++) {
 			scanf("%d", &a);
 			if (tin[a] != 0) judge = 0;
