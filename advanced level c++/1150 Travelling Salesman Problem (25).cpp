@@ -21,14 +21,9 @@ void check(int index) {
 		printf("Path %d: NA (Not a TS cycle)\n", index);
 	else if (v[0] != v[cnt-1] || s.size() != n)
 		printf("Path %d: %d (Not a TS cycle)\n", index, sum);
-	else if (cnt != n + 1) {
-		printf("Path %d: %d (TS cycle)\n", index, sum);
-		if (sum < ans) {
-			ans = sum;
-			ansid = index;
-		}
-	} else {
-		printf("Path %d: %d (TS simple cycle)\n", index, sum);
+	else {
+		if (cnt != n + 1) printf("Path %d: %d (TS cycle)\n", index, sum);
+		else printf("Path %d: %d (TS simple cycle)\n", index, sum);
 		if (sum < ans) {
 			ans = sum;
 			ansid = index;
