@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 vector<int> father, isRoot;
-int cmp1(int a, int b){return a > b;}
+int cmp(int a, int b) { return a > b; }
 int findFather(int x) {
 	int a = x;
 	while (x != father[x]) x = father[x];
@@ -37,7 +37,7 @@ int main() {
 	for (int i = 1; i <= n; i++)
 		if (isRoot[i] != 0) cnt++;
 	printf("%d\n", cnt);
-	sort(isRoot.begin(), isRoot.end(), cmp1);
+	sort(isRoot.begin(), isRoot.end(), cmp);
 	for (int i = 0; i < cnt; i++) {
 		printf("%d", isRoot[i]);
 		if (i != cnt - 1) printf(" ");
