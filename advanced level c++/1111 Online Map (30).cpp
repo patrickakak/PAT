@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 const int inf = 0x3fffffff;
-int dis[510], Time[510], e[510][510], w[510][510], dispre[510],Timepre[510], weight[510],NodeNum[510];
+int dis[510], Time[510], e[510][510], w[510][510], dispre[510], Timepre[510], weight[510], NodeNum[510];
 bool visit[510];
 vector<int> dispath, Timepath, temppath;
 int st, fin, minnode = inf;
