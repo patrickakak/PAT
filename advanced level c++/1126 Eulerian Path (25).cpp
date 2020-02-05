@@ -8,7 +8,7 @@ void dfs(int index) {
 	visit[index] = true;
 	cnt++;
 	for (int i = 0; i < v[index].size(); i++)
-		if (visit[v[index][i]] == false)
+		if (!visit[v[index][i]])
 			dfs(v[index][i]);
 }
 int main() {
