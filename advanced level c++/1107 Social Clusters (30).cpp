@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 vector<int> father, isRoot;
-int findFather(int x) {
+int find(int x) {
 	int a = x;
 	while (x != father[x]) x = father[x];
 	while (a != father[a]) {
@@ -14,8 +14,8 @@ int findFather(int x) {
 	return x;
 }
 void Union(int a, int b) {
-	int faA = findFather(a);
-	int faB = findFather(b);
+	int faA = find(a);
+	int faB = find(b);
 	if (faA != faB) father[faA] = faB;
 }
 int main() {
@@ -29,10 +29,10 @@ int main() {
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &t);
 			if (hobby[t] == 0) hobby[t] = i;
-			Union(i, findFather(hobby[t]));
+			Union(i, find(hobby[t]));
 		}
 	}
-	for (int i = 1; i <= n; i++) isRoot[findFather(i)]++;
+	for (int i = 1; i <= n; i++) isRoot[find(i)]++;
 	for (int i = 1; i <= n; i++)
 		if (isRoot[i] != 0) cnt++;
 	printf("%d\n", cnt);
