@@ -2,7 +2,7 @@
 #include <vector>
 #include <set>
 using namespace std;
-int e[300][300], n, m, k, ans = 99999999, ansid;
+int e[300][300], n, m, k, ans = 0x3fffffff, ansid;
 vector<int> v;
 void check(int index) {
 	int sum = 0, cnt, flag = 1;
@@ -14,7 +14,7 @@ void check(int index) {
 		s.insert(v[i]);
 	}
 	for (int i = 0; i < cnt - 1; i++) {
-		if(e[v[i]][v[i+1]] == 0) flag = 0;
+		if (e[v[i]][v[i+1]] == 0) flag = 0;
 		sum += e[v[i]][v[i+1]];
 	}
 	if (flag == 0)
