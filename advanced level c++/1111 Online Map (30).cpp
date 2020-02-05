@@ -75,11 +75,11 @@ int main() {
 			if (visit[v] == false && w[u][v] != inf) {
 				if (w[u][v] + Time[u] < Time[v]) {
 					Time[v] = w[u][v] + Time[u];
-					Timepre[v]=(u);
-					NodeNum[v]=NodeNum[u]+1;
-				} else if (w[u][v] + Time[u] == Time[v]&&NodeNum[u]+1<NodeNum[v]) {
-					Timepre[v]=(u);
-					NodeNum[v]=NodeNum[u]+1;
+					Timepre[v] = (u);
+					NodeNum[v] = NodeNum[u]+1;
+				} else if (w[u][v] + Time[u] == Time[v] && NodeNum[u] + 1 < NodeNum[v]) {
+					Timepre[v] = (u);
+					NodeNum[v] = NodeNum[u]+1;
 				}
 			}
 	}
