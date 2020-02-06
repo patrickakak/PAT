@@ -12,7 +12,13 @@ struct node {
 int father[10000];
 bool visit[10000];
 int find(int x) {
+	int a = x;
 	while (x != father[x]) x = father[x];
+	while (a != father[a]) {
+		int z = a;
+		a = father[a];
+		father[z] = x;
+	}
 	return x;
 }
 void Union(int a, int b) {
