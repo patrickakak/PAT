@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std;
 struct DATA {
-	int id, fid, mid, num, area, cid[10];
+	int id, fid, mid, num, area, cid[5];
 } data[1005];
 struct node {
 	int id, people;
@@ -58,12 +58,11 @@ int main() {
 		if (visit[i]) ans[find(i)].people++;
 		if (ans[i].flag) cnt++;
 	}
-	for (int i = 0; i < 10000; i++) {
+	for (int i = 0; i < 10000; i++)
 		if (ans[i].flag) {
 			ans[i].num = 1.0 * ans[i].num / ans[i].people;
 			ans[i].area = 1.0 * ans[i].area / ans[i].people;
 		}
-	}
 	sort(ans, ans + 10000, cmp1);
 	printf("%d\n", cnt);
 	for (int i = 0; i < cnt; i++)
