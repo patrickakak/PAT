@@ -19,8 +19,7 @@ void Union(int a, int b) {
 	if (faA != faB) father[faA] = faB;
 }
 int main() {
-	int n, k, t, cnt = 0;
-	int hobby[1001] = {0};
+	int n, k, t, cnt = 0, hobby[1001] = {0};
 	scanf("%d", &n);
 	father.resize(n + 1), isRoot.resize(n + 1);
 	for (int i = 1; i <= n; i++) father[i] = i;
