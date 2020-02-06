@@ -66,8 +66,8 @@ int main() {
 	}
 	for (int i = 0; i < 10000; i++)
 		if (ans[i].flag) {
-			ans[i].num = 1.0 * ans[i].num / ans[i].people;
-			ans[i].area = 1.0 * ans[i].area / ans[i].people;
+			ans[i].num /= ans[i].people;
+			ans[i].area /= ans[i].people;
 		}
 	sort(ans, ans + 10000, cmp1);
 	printf("%d\n", cnt);
