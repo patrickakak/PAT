@@ -1,54 +1,47 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
-int n, m, k;
-const int maxn = 10010;
-int fa[maxn] = {0}, cnt[maxn] = {0};
-int findFather(int x) {
+vector<int> father(10010), visit(10010);
+int find(int x) {
 	int a = x;
-	while (x != fa[x]) x = fa[x];
-	while (a != fa[a]) {
+	while (x != father[x]) x = father[x];
+	while (a != father[a]) {
 		int z = a;
-		a = fa[a];
-		fa[z] = x;
+		a = father[a];
+		father[z] = x;
 	}
 	return x;
 }
 void Union(int a, int b) {
-	int faA = findFather(a);
-	int faB = findFather(b);
-	if (faA != faB) fa[faA] = faB;
+	int faA = find(a);
+	int faB = find(b);
+	if (faA != faB) father[faA] = faB;
 }
-bool exist[maxn];
 int main() {
-	scanf("%d", &n);
-	for (int i = 1; i <= maxn; i++) fa[i] = i;
-	int id, temp;
+	int n, k, bid, t, q, a, b;
+	cin >> n;
+	for (int i = 0; i < 10010; i++) father[i] = i;
 	for (int i = 0; i < n; i++) {
-		scanf("%d%d", &k, &id);
-		exist[id] = true;
-		for (int j = 0; j < k-1; j++) {
-			scanf("%d", &temp);
-			Union(id, temp);
-			exist[temp] = true;
+		cin >> k >> bid;
+		visit[bid] = 1;
+		for (int j = 1; j < k; j++) {
+			cin >> t;
+			visit[t] = 1;
+			Union(bid, t);
 		}
 	}
-	for (int i = 1; i <= maxn; i++)
-		if (exist[i] == true) {
-			int root = findFather(i);
-			cnt[root]++;
-		}
-	int numTrees = 0, numBirds = 0;
-	for (int i = 1; i <= maxn; i++)
-		if (exist[i] == true && cnt[i] != 0) {
-			numTrees++;
-			numBirds += cnt[i];
-		}
-	printf("%d %d\n", numTrees, numBirds);
-	scanf("%d", &m);
-	int ida, idb;
-	for (int i = 0; i < m; i++) {
-		scanf("%d%d", &ida, &idb);
-		printf("%s\n", (findFather(ida) == findFather(idb)) ? "Yes" : "No");
+	int treeCnt = 0, birdCnt = 0;
+	for (int i = 0; i < 10010; i++) {
+		if (visit[i] == 1) birdCnt++;
+		if (visit[i] && father[i] == i) treeCnt++;
+	}
+	printf("%d %d\n", treeCnt, birdCnt);
+	cin >> q;
+	while (q--) {
+		cin >> a >> b;
+		if (find(a) == find(b)) printf("Yes\n");
+		else printf("No\n");
 	}
 	return 0;
 }
