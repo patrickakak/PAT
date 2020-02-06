@@ -2,14 +2,14 @@
 #include <algorithm>
 using namespace std;
 int n, m, s, d;
-int e[510][510], weight[510], dis[510], num[510], w[510];
-bool visit[510];
+int e[500][500], weight[500], dis[500], num[500], w[500];
+bool visit[500];
 const int inf = 0x3fffffff;
 int main() {
 	scanf("%d%d%d%d", &n, &m, &s, &d);
 	for (int i = 0; i < n; i++) scanf("%d", &weight[i]);
-	fill(e[0], e[0] + 510 * 510, inf);
-	fill(dis, dis + 510, inf);
+	fill(e[0], e[0] + 500 * 500, inf);
+	fill(dis, dis + 500, inf);
 	int c1, c2, l;
 	for (int i = 0; i < m; i++) {
 		scanf("%d%d%d", &c1, &c2, &l);
