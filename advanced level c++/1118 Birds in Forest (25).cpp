@@ -6,7 +6,7 @@ int fa[maxn] = {0}, cnt[maxn] = {0};
 int findFather(int x) {
 	int a = x;
 	while (x != fa[x]) x = fa[x];
-	while(a != fa[a]) {
+	while (a != fa[a]) {
 		int z = a;
 		a = fa[a];
 		fa[z] = x;
