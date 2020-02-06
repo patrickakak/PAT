@@ -27,10 +27,7 @@ void Union(int a, int b) {
 	if (faA > faB) father[faA] = faB;
 	else if (faA < faB) father[faB] = faA;
 }
-int cmp1(node a, node b) {
-	if (a.area != b.area) return a.area > b.area;
-	else return a.id < b.id;
-}
+int cmp(node a, node b) { return a.area != b.area ? a.area > b.area : a.id < b.id; }
 int main() {
 	int n, k, cnt = 0;
 	scanf("%d", &n);
@@ -69,7 +66,7 @@ int main() {
 			ans[i].num /= ans[i].people;
 			ans[i].area /= ans[i].people;
 		}
-	sort(ans, ans + 10000, cmp1);
+	sort(ans, ans + 10000, cmp);
 	printf("%d\n", cnt);
 	for (int i = 0; i < cnt; i++)
 		printf("%04d %d %.3f %.3f\n", ans[i].id, ans[i].people, ans[i].num, ans[i].area);
