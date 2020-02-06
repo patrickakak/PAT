@@ -29,7 +29,7 @@ int main() {
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &t);
 			if (hobby[t] == 0) hobby[t] = i;
-			Union(i, find(hobby[t]));
+			Union(i, hobby[t]);
 		}
 	}
 	for (int i = 1; i <= n; i++) isRoot[find(i)]++;
