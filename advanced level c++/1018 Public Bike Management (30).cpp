@@ -47,8 +47,7 @@ int main() {
 	}
 	for (int i = 0; i < m; i++) {
 		int a, b, t;
-		scanf("%d%d", &a, &b);
-		scanf("%d", &t);
+		scanf("%d%d%d", &a, &b, &t);
 		e[b][a] = e[a][b] = t;
 	}
 	dis[0] = 0;
