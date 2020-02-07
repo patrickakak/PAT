@@ -32,12 +32,10 @@ int main() {
 	fill(dis, dis + 510, inf);
 	scanf("%d%d%d%d", &n, &m, &s, &d);
 	for (int i = 0; i < m; i++) {
-		int a, b;
-		scanf("%d%d", &a, &b);
-		scanf("%d", &e[a][b]);
-		e[b][a] = e[a][b];
-		scanf("%d", &cost[a][b]);
-		cost[b][a] = cost[a][b];
+		int a, b, d, c;
+		scanf("%d%d%d%d", &a, &b, &d, &c);
+		e[b][a] = e[a][b] = d;
+		cost[b][a] = cost[a][b] = c;
 	}
 	pre[s].push_back(s);
 	dis[s] = 0;
@@ -61,8 +59,7 @@ int main() {
 			}
 	}
 	dfs(d);
-	for (int i = path.size() - 1; i >= 0; i--)
-		printf("%d ", path[i]);
+	for (int i = path.size() - 1; i >= 0; i--) printf("%d ", path[i]);
 	printf("%d %d", dis[d], mincost);
 	return 0;
 }
