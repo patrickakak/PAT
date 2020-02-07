@@ -46,11 +46,11 @@ int main() {
 		i2s[i + 1] = s;
 	}
 	string sa, sb;
-	int tmp;
+	int hap;
 	for (int i = 0; i < k; i++) {
-		cin >> sa >> sb >> tmp;
-		e[s2i[sa]][s2i[sb]] = tmp;
-		e[s2i[sb]][s2i[sa]] = tmp;
+		cin >> sa >> sb >> hap;
+		e[s2i[sa]][s2i[sb]] = hap;
+		e[s2i[sb]][s2i[sa]] = hap;
 	}
 	dis[1] = 0;
 	for (int i = 0; i < n; i++) {
