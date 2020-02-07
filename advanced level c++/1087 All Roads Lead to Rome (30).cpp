@@ -3,37 +3,35 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int n, k;
 const int inf = 0x3fffffff;
 int e[205][205], weight[205], dis[205];
 bool visit[205];
-vector<int> pre[205], temppath, path;
+vector<int> pre[205], tmppath, path;
 map<string, int> m;
 map<int, string> m2;
-int maxvalue = 0, mindepth, cntpath = 0;
+int n, k, maxvalue = 0, mindepth = inf, cntpath = 0;
 double maxavg;
 void dfs(int v) {
-	temppath.push_back(v);
+	tmppath.push_back(v);
 	if (v == 1) {
 		int value = 0;
-		for (int i = 0; i < temppath.size(); i++)
-			value += weight[temppath[i]];
-		double tempavg = 1.0 * value / (temppath.size() - 1);
+		for (int i = 0; i < tmppath.size(); i++)
+			value += weight[tmppath[i]];
+		double tmpavg = 1.0 * value / (tmppath.size() - 1);
 		if (value > maxvalue) {
 			maxvalue = value;
-			maxavg = tempavg;
-			path = temppath;
-		} else if (value == maxvalue && tempavg > maxavg) {
-			maxavg = tempavg;
-			path = temppath;
+			maxavg = tmpavg;
+			path = tmppath;
+		} else if (value == maxvalue && tmpavg > maxavg) {
+			maxavg = tmpavg;
+			path = tmppath;
 		}
-		temppath.pop_back();
+		tmppath.pop_back();
 		cntpath++;
 		return ;
 	}
-	for (int i = 0; i < pre[v].size(); i++)
-		dfs(pre[v][i]);
-	temppath.pop_back();
+	for (int i = 0; i < pre[v].size(); i++) dfs(pre[v][i]);
+	tmppath.pop_back();
 }
 int main() {
 	fill(e[0], e[0] + 205 * 205, inf);
@@ -49,11 +47,11 @@ int main() {
 		m2[i+1] = s;
 	}
 	string sa, sb;
-	int temp;
+	int tmp;
 	for (int i = 0; i < k; i++) {
-		cin >> sa >> sb >> temp;
-		e[m[sa]][m[sb]] = temp;
-		e[m[sb]][m[sa]] = temp;
+		cin >> sa >> sb >> tmp;
+		e[m[sa]][m[sb]] = tmp;
+		e[m[sb]][m[sa]] = tmp;
 	}
 	dis[1] = 0;
 	for (int i = 0; i < n; i++) {
@@ -78,8 +76,7 @@ int main() {
 	int rom = m["ROM"];
 	dfs(rom);
 	printf("%d %d %d %d\n", cntpath, dis[rom], maxvalue, (int)maxavg);
-	for (int i = path.size() - 1; i >= 1; i--)
-		cout << m2[path[i]] << "->";
+	for (int i = path.size() - 1; i >= 1; i--) cout << m2[path[i]] << "->";
 	cout << "ROM";
 	return 0;
 }
