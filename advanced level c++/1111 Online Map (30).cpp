@@ -74,10 +74,10 @@ int main() {
 			if (visit[v] == false && w[u][v] != inf) {
 				if (w[u][v] + Time[u] < Time[v]) {
 					Time[v] = w[u][v] + Time[u];
-					timepre[v] = (u);
+					timepre[v] = u;
 					nodeNum[v] = nodeNum[u] + 1;
 				} else if (w[u][v] + Time[u] == Time[v] && nodeNum[u] + 1 < nodeNum[v]) {
-					timepre[v] = (u);
+					timepre[v] = u;
 					nodeNum[v] = nodeNum[u] + 1;
 				}
 			}
