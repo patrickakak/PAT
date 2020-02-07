@@ -40,7 +40,7 @@ int main() {
 			if (u == -1) break;
 			visit[u] = true;
 			for (int v = 1; v <= n + m; v++)
-				if (visit[v] == false && dis[v] > dis[u] + e[u][v])
+				if (visit[v] == false && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
 					dis[v] = dis[u] + e[u][v];
 		}
 		for (int i = 1; i <= n; i++) {
