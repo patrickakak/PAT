@@ -7,25 +7,25 @@ int e[510][510], dis[510], cost[510][510];
 vector<int> pre[510];
 bool visit[510];
 const int inf = 0x3fffffff;
-vector<int> path, temppath;
+vector<int> path, tmppath;
 int mincost = inf;
 void dfs(int v) {
-	temppath.push_back(v);
+	tmppath.push_back(v);
 	if (v == s) {
-		int tempcost = 0;
-		for (int i = temppath.size() - 1; i > 0; i--) {
-			int id = temppath[i], nextid = temppath[i-1];
-			tempcost += cost[id][nextid];
+		int tmpcost = 0;
+		for (int i = tmppath.size() - 1; i > 0; i--) {
+			int id = tmppath[i], nextid = tmppath[i-1];
+			tmpcost += cost[id][nextid];
 		}
-		if (tempcost < mincost) {
-			mincost = tempcost;
-			path = temppath;
+		if (tmpcost < mincost) {
+			mincost = tmpcost;
+			path = tmppath;
 		}
-		temppath.pop_back();
+		tmppath.pop_back();
 		return ;
 	}
 	for (int i = 0; i < pre[v].size(); i++) dfs(pre[v][i]);
-	temppath.pop_back();
+	tmppath.pop_back();
 }
 int main() {
 	fill(e[0], e[0] + 510 * 510, inf);
