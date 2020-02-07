@@ -23,9 +23,8 @@ int main() {
 	fill(weight, weight + 510, inf);
 	fill(e[0], e[0] + 510 * 510, inf);
 	fill(w[0], w[0] + 510 * 510, inf);
-	int n, m;
+	int n, m, a, b, flag, len, t;
 	scanf("%d %d", &n, &m);
-	int a, b, flag, len, t;
 	for (int i = 0; i < m; i++) {
 		scanf("%d %d %d %d %d", &a, &b, &flag, &len, &t);
 		e[a][b] = len;
@@ -41,14 +40,14 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (visit[j] == false && dis[j] < minn) {
+			if (!visit[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
 		visit[u] = true;
 		for (int v = 0; v < n; v++)
-			if (visit[v] == false && e[u][v] != inf) {
+			if (!visit[v] && e[u][v] != inf) {
 				if (e[u][v] + dis[u] < dis[v]) {
 					dis[v] = e[u][v] + dis[u];
 					dispre[v] = u;
