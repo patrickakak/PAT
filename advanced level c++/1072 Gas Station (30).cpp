@@ -7,7 +7,6 @@ int e[1020][1020], dis[1020];
 bool visit[1020];
 int main() {
 	fill(e[0], e[0] + 1020 * 1020, inf);
-	fill(dis, dis + 1020, inf);
 	scanf("%d%d%d%d", &n, &m, &k, &ds);
 	for (int i = 0; i < k; i++) {
 		int tmpdis;
