@@ -46,10 +46,10 @@ int main() {
 		weight[i] = weight[i] - cmax / 2;
 	}
 	for (int i = 0; i < m; i++) {
-		int a, b;
+		int a, b, t;
 		scanf("%d%d", &a, &b);
-		scanf("%d", &e[a][b]);
-		e[b][a] = e[a][b];
+		scanf("%d", &t);
+		e[b][a] = e[a][b] = t;
 	}
 	dis[0] = 0;
 	for (int i = 0; i <= n; i++) {
