@@ -36,33 +36,33 @@ void dfs(int v) {
 int main() {
 	fill(e[0], e[0] + 205 * 205, inf);
 	fill(dis, dis + 205, inf);
-	string s, sa, sb;
-	int hap;
+	string s;
 	cin >> n >> k >> s;
 	s2i[s] = 1;
 	i2s[1] = s;
 	for (int i = 1; i < n; i++) {
-		cin >> s >> weight[i+1];
+		cin >> s >> weight[i + 1];
 		s2i[s] = i + 1;
 		i2s[i + 1] = s;
 	}
+	string sa, sb;
+	int hap;
 	for (int i = 0; i < k; i++) {
 		cin >> sa >> sb >> hap;
-		e[s2i[sa]][s2i[sb]] = hap;
-		e[s2i[sb]][s2i[sa]] = hap;
+		e[s2i[sa]][s2i[sb]] = e[s2i[sb]][s2i[sa]] = hap;
 	}
 	dis[1] = 0;
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 1; j <= n; j++)
-			if (visit[j] == false && dis[j] < minn) {
+			if (!visit[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
 		visit[u] = true;
 		for (int v = 1; v <= n; v++)
-			if (visit[v] == false && e[u][v] != inf) {
+			if (!visit[v] && e[u][v] != inf) {
 				if (dis[u] + e[u][v] < dis[v]) {
 					dis[v] = dis[u] + e[u][v];
 					pre[v].clear();
