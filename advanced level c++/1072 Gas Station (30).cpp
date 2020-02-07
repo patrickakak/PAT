@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-const int inf = 0x3fffffff;
+const int inf = 999999999;
 int n, m, k, ds, station;
 int e[1020][1020], dis[1020];
 bool visit[1020];
