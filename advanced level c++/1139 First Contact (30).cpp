@@ -3,12 +3,8 @@
 #include <algorithm>
 using namespace std;
 bool arr[10000][10000];
-struct node {
-	int a, b;
-};
-bool cmp(node x, node y) {
-	return x.a != y.a ? x.a < y.a : x.b < y.b;
-}
+struct node { int a, b; };
+bool cmp(node x, node y) { return x.a != y.a ? x.a < y.a : x.b < y.b; }
 int main() {
 	int n, m, k;
 	scanf("%d%d", &n, &m);
