@@ -7,8 +7,8 @@ const int inf = 0x3fffffff;
 int e[205][205], weight[205], dis[205];
 bool visit[205];
 vector<int> pre[205], tmppath, path;
-map<string, int> m;
-map<int, string> m2;
+map<string, int> s2i;
+map<int, string> i2s;
 int n, k, maxvalue = 0, mindepth = inf, cntpath = 0;
 double maxavg;
 void dfs(int v) {
@@ -36,22 +36,21 @@ void dfs(int v) {
 int main() {
 	fill(e[0], e[0] + 205 * 205, inf);
 	fill(dis, dis + 205, inf);
-	scanf("%d %d", &n, &k);
 	string s;
-	cin >> s;
-	m[s] = 1;
-	m2[1] = s;
+	cin >> n >> k >> s;
+	s2i[s] = 1;
+	i2s[1] = s;
 	for (int i = 1; i < n; i++) {
 		cin >> s >> weight[i+1];
-		m[s] = i+1;
-		m2[i+1] = s;
+		s2i[s] = i + 1;
+		i2s[i + 1] = s;
 	}
 	string sa, sb;
 	int tmp;
 	for (int i = 0; i < k; i++) {
 		cin >> sa >> sb >> tmp;
-		e[m[sa]][m[sb]] = tmp;
-		e[m[sb]][m[sa]] = tmp;
+		e[s2i[sa]][s2i[sb]] = tmp;
+		e[s2i[sb]][s2i[sa]] = tmp;
 	}
 	dis[1] = 0;
 	for (int i = 0; i < n; i++) {
@@ -73,10 +72,10 @@ int main() {
 					pre[v].push_back(u);
 			}
 	}
-	int rom = m["ROM"];
+	int rom = s2i["ROM"];
 	dfs(rom);
 	printf("%d %d %d %d\n", cntpath, dis[rom], maxvalue, (int)maxavg);
-	for (int i = path.size() - 1; i >= 1; i--) cout << m2[path[i]] << "->";
+	for (int i = path.size() - 1; i >= 1; i--) cout << i2s[path[i]] << "->";
 	cout << "ROM";
 	return 0;
 }
