@@ -7,13 +7,13 @@ int cmax, n, sp, m;
 int minNeed = inf, minBack = inf;
 int e[510][510], dis[510], weight[510];
 bool visit[510];
-vector<int> pre[510], path, temppath;
+vector<int> pre[510], path, tmppath;
 void dfs(int v) {
-	temppath.push_back(v);
+	tmppath.push_back(v);
 	if (v == 0) {
 		int need = 0, back = 0;
-		for (int i = temppath.size() - 1; i >= 0; i--) {
-			int id = temppath[i];
+		for (int i = tmppath.size() - 1; i >= 0; i--) {
+			int id = tmppath[i];
 			if (weight[id] > 0) back += weight[id];
 			else {
 				if (back > (0 - weight[id])) back += weight[id];
@@ -26,16 +26,16 @@ void dfs(int v) {
 		if (need < minNeed) {
 			minNeed = need;
 			minBack = back;
-			path = temppath;
+			path = tmppath;
 		} else if (need == minNeed && back < minBack) {
 			minBack = back;
-			path = temppath;
+			path = tmppath;
 		}
-		temppath.pop_back();
+		tmppath.pop_back();
 		return ;
 	}
 	for (int i = 0; i < pre[v].size(); i++) dfs(pre[v][i]);
-	temppath.pop_back();
+	tmppath.pop_back();
 }
 int main() {
 	fill(e[0], e[0] + 510 * 510, inf);
@@ -72,8 +72,7 @@ int main() {
 	}
 	dfs(sp);
 	printf("%d 0", minNeed);
-	for (int i = path.size() - 2; i >= 0; i--)
-		printf("->%d", path[i]);
+	for (int i = path.size() - 2; i >= 0; i--) printf("->%d", path[i]);
 	printf(" %d", minBack);
 	return 0;
 }
