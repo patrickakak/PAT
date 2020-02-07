@@ -36,7 +36,8 @@ void dfs(int v) {
 int main() {
 	fill(e[0], e[0] + 205 * 205, inf);
 	fill(dis, dis + 205, inf);
-	string s;
+	string s, sa, sb;
+	int hap;
 	cin >> n >> k >> s;
 	s2i[s] = 1;
 	i2s[1] = s;
@@ -45,8 +46,6 @@ int main() {
 		s2i[s] = i + 1;
 		i2s[i + 1] = s;
 	}
-	string sa, sb;
-	int hap;
 	for (int i = 0; i < k; i++) {
 		cin >> sa >> sb >> hap;
 		e[s2i[sa]][s2i[sb]] = hap;
