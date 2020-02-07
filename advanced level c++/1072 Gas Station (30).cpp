@@ -10,21 +10,19 @@ int main() {
 	fill(dis, dis + 1020, inf);
 	scanf("%d%d%d%d", &n, &m, &k, &ds);
 	for (int i = 0; i < k; i++) {
-		int tempdis;
+		int tmpdis;
 		string s, t;
-		cin >> s >> t >> tempdis;
+		cin >> s >> t >> tmpdis;
 		int a, b;
 		if (s[0] == 'G') {
 			s = s.substr(1);
 			a = n + stoi(s);
-		} else
-			a = stoi(s);
+		} else a = stoi(s);
 		if (t[0] == 'G') {
 			t = t.substr(1);
 			b = n + stoi(t);
-		} else
-			b = stoi(t);
-		e[a][b] = e[b][a] = tempdis;
+		} else b = stoi(t);
+		e[a][b] = e[b][a] = tmpdis;
 	}
 	int ansid = -1;
 	double ansdis = -1, ansaver = inf;
