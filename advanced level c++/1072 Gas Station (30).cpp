@@ -33,14 +33,14 @@ int main() {
 		for (int i = 0; i < n + m; i++) {
 			int u = -1, minn = inf;
 			for (int j = 1; j <= n + m; j++)
-				if (visit[j] == false && dis[j] < minn) {
+				if (!visit[j] && dis[j] < minn) {
 					u = j;
 					minn = dis[j];
 				}
 			if (u == -1) break;
 			visit[u] = true;
 			for (int v = 1; v <= n + m; v++)
-				if (visit[v] == false && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
+				if (!visit[v] && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
 					dis[v] = dis[u] + e[u][v];
 		}
 		for (int i = 1; i <= n; i++) {
