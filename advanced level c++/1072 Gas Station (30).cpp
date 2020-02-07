@@ -45,13 +45,13 @@ int main() {
 		}
 		for (int i = 1; i <= n; i++) {
 			if (dis[i] > ds) {
-				mindis = -1;
+				mindis = inf;
 				break;
 			}
 			if (dis[i] < mindis) mindis = dis[i];
 			aver += 1.0 * dis[i];
 		}
-		if (mindis == -1) continue;
+		if (mindis == inf) continue;
 		aver = aver / n;
 		if (mindis > ansdis) {
 			ansid = index;
