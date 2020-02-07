@@ -2,13 +2,12 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-int n, m, s, d;
+const int inf = 0x3fffffff;
 int e[510][510], dis[510], cost[510][510];
 vector<int> pre[510];
 bool visit[510];
-const int inf = 0x3fffffff;
 vector<int> path, tmppath;
-int mincost = inf;
+int n, m, s, d, mincost = inf;
 void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == s) {
