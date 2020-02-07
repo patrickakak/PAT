@@ -52,7 +52,7 @@ int main() {
 			aver += 1.0 * dis[i];
 		}
 		if (mindis == inf) continue;
-		aver = aver / n;
+		aver /= n;
 		if (mindis > ansdis) {
 			ansid = index;
 			ansdis = mindis;
