@@ -25,21 +25,21 @@ node *rotateRightLeft(node *root) {
 	return rotateLeft(root);
 }
 int getHeight(node *root) {
-	if(root == NULL) return 0;
+	if (root == NULL) return 0;
 	return max(getHeight(root->left), getHeight(root->right)) + 1;
 }
 node *insert(node *root, int val) {
-	if(root == NULL) {
+	if (root == NULL) {
 		root = new node();
 		root->val = val;
 		root->left = root->right = NULL;
-	} else if(val < root->val) {
+	} else if (val < root->val) {
 		root->left = insert(root->left, val);
-		if(getHeight(root->left) - getHeight(root->right) == 2)
+		if (getHeight(root->left) - getHeight(root->right) == 2)
 			root = val < root->left->val ? rotateRight(root) : rotateLeftRight(root);
 	} else {
 		root->right = insert(root->right, val);
-		if(getHeight(root->left) - getHeight(root->right) == -2)
+		if (getHeight(root->left) - getHeight(root->right) == -2)
 			root = val > root->right->val ? rotateLeft(root) : rotateRightLeft(root);
 	}
 	return root;
@@ -48,7 +48,7 @@ int main() {
 	int n, val;
 	scanf("%d", &n);
 	node *root = NULL;
-	for(int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		scanf("%d", &val);
 		root = insert(root, val);
 	}
