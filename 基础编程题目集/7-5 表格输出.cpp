@@ -1,9 +1,5 @@
-
 #include <cstdio>
-
-int main()
-{
-  //freopen("tst.txt", "r", stdin);
+int main() {
   printf("------------------------------------\n");
   printf("Province      Area(km2)   Pop.(10K)\n");
   printf("------------------------------------\n");
@@ -13,6 +9,5 @@ int main()
   printf("Shanghai        6340.50   1360.26\n");
   printf("Zhejiang      101800.00   4894.00\n");
   printf("------------------------------------\n");
-
   return 0;
 }
