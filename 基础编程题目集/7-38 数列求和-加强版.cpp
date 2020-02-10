@@ -3,12 +3,11 @@
 using namespace std;
 stack<int> st;
 int main() {
-	int a, n;
+	int a, n, carry = 0;
 	scanf("%d%d", &a, &n);
-	int carry = 0;
 	for (int i = 0; i < n; i++) {
-		int t = (n-i) * a + carry;
-		st.push(t%10);
+		int t = (n - i) * a + carry;
+		st.push(t % 10);
 		carry = t / 10;
 	}
 	if (n == 0) {
