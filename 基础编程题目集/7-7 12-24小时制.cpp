@@ -1,4 +1,5 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 int main() {
 	int hh, mm;
 	scanf("%d:%d", &hh, &mm);

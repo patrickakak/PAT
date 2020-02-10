@@ -1,8 +1,7 @@
-#include <cstdio>
+#include <iostream>
 #include <cmath>
-double a3, a2, a1, a0;
-double a, b;
-double eps = 0.001;
+using namespace std;
+double a3, a2, a1, a0, a, b, eps = 0.001;
 double cal(double x) {
 	return a3 * pow(x, 3) + a2 * pow(x, 2) + a1 * pow(x, 1) + a0;
 }

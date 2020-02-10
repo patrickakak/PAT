@@ -1,6 +1,7 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 int main() {
-	int a, b, sum=0;
+	int a, b, sum = 0;
 	scanf("%d%d", &a, &b);
 	for (int i = a, j = 1; i <= b; i++, j++) {
 		printf("%5d", i);

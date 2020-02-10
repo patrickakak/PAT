@@ -1,4 +1,5 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 int main() {
 	double x, y;
 	scanf("%lf", &x);

@@ -1,6 +1,5 @@
-#include <cstdio>
+#include <iostream>
 #include <stack>
-#include <cstring>
 using namespace std;
 stack<int> st;
 int main() {

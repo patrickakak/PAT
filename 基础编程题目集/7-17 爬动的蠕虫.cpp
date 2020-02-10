@@ -1,4 +1,5 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 int main() {
 	int n, u, d;
 	scanf("%d%d%d", &n, &u, &d);
