@@ -1,17 +1,11 @@
-#include <iostream>
-#include <stack>
+#include<iostream>
 using namespace std;
-stack<int> st;
-int main() {
-	char s[1010];
-	scanf("%s", s);
-	for (int i = 0; i < strlen(s); i++)
-		st.push(s[i] - '0');
-	while (!st.empty()) {
-		int t = st.top();
-		st.pop();
-		if (t == 0) continue;
-		else printf("%d", t);
-	}
-	return 0;
+int main(){
+	int a, bai, shi, ge, t;
+	scanf("%d", &a);
+	ge = a / 100;
+	t = a % 100;
+	shi = t / 10;
+	bai = t % 10;
+	printf("%d", bai * 100 + shi * 10 + ge);
 }
