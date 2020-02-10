@@ -1,15 +1,16 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 int main() {
-	int a, b, i, cot = 0, sum = 0;
-	scanf("%d %d", &a, &b);
-	for (i = a; i <= b; i++) {
+	int a, b, sum = 0, cnt = 0;
+	cin >> a >> b;
+	if (a > b) swap(a, b);
+	for (int i = a; i <= b; i++) {
 		printf("%5d", i);
-		cot++;
-		if (cot % 5 == 0 && i != b) printf("\n");
+		if (++cnt % 5 == 0) printf("\n");
+		sum += i;
 	}
-	printf("\n");
-	for(i = a; i <= b; i++) sum += i;
+	if (cnt % 5 != 0) printf("\n");
 	printf("Sum = %d", sum);
 	return 0;
 }
