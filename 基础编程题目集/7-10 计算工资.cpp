@@ -1,9 +1,8 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int year, hour;
+	int year, hour, h1, h2;
 	scanf("%d%d", &year, &hour);
-	int h1, h2;
 	if (hour <= 40) {
 		h1 = hour;
 		h2 = 0;
