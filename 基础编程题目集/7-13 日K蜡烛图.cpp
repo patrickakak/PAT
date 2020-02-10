@@ -5,10 +5,10 @@ int main() {
 	double open, close, high, low;
 	scanf("%lf%lf%lf%lf", &open, &high, &low, &close);
 	if (high < low) swap(high, low);
-	int flag = 0;
 	if (close < open) printf("BW-Solid");
 	else if (close > open) printf("R-Hollow");
 	else printf("R-Cross");
+	int flag = 0;
 	if (low < open && low < close) {
 		printf(" with Lower Shadow");
 		flag = 1;
