@@ -1,11 +1,9 @@
 #include <string.h>
-#define maxn 10010
 typedef struct LargeNum {
-	int d[maxn];
-	int len;
+	int len, d[10010];
 } largeNum;
 void print(largeNum n) {
-	for (int i = n.len-1; i >= 0; i--)
+	for (int i = n.len - 1; i >= 0; i--)
 		printf("%d", n.d[i]);
 }
 largeNum change(char s[]) {
@@ -20,7 +18,7 @@ largeNum multi(largeNum a, int b) {
 	r.len = 0;
 	int carry = 0;
 	for (int i = 0; i < a.len; i++) {
-		int tmp = a.d[i]*b+carry;
+		int tmp = a.d[i] * b + carry;
 		r.d[r.len++] = tmp % 10;
 		carry = tmp / 10;
 	}
