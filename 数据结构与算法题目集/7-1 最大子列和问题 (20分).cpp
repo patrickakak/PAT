@@ -1,20 +1,15 @@
 #include <iostream>
 using namespace std;
 int a[100000];
-int MaxSubseqSum(int A[], int K) {
-	int ThisSum = 0, MaxSum = 0;
-	for (int i = 0; i < K; i++) {
-		ThisSum += A[i];
-		if (ThisSum > MaxSum) MaxSum = ThisSum;
-		else if (ThisSum < 0) ThisSum = 0;
-	}
-	return MaxSum;
-}
 int main() {
-	int k;
-	scanf("%d", &k);
-	for (int i = 0; i < k; i++)
+	int k, tmpSum = 0, maxSum = 0;
+	cin >> k;
+	for (int i = 0; i < k; i++) {
 		scanf("%d", &a[i]);
-	printf("%d\n", MaxSubseqSum(a, k));
+		tmpSum += a[i];
+		if (tmpSum > maxSum) maxSum = tmpSum;
+		else if (tmpSum < 0) tmpSum = 0;
+	}
+	printf("%d", maxSum);
 	return 0;
 }
