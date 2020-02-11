@@ -46,11 +46,8 @@ bool TopSort(LGraph Graph, Vertex TopOrder[]) {
 	for (Vertex V = 0; V < Graph->Nv; V++)
 		for (PtrToAdjVNode W = Graph->G[V].FirstEdge; W; W = W->Next)
 			Indegree[W->AdjV]++;
-
 	for (Vertex V = 0; V < Graph->Nv; V++)
-		if (Indegree[V] == 0)
-			Enqueue(Q, V);
-
+		if (Indegree[V] == 0) Enqueue(Q, V);
 	cnt = 0;
 	while (!IsEmpty(Q)) {
 		Vertex V = Dequeue(Q);
