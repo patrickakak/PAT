@@ -9,15 +9,14 @@ int main() {
 		a[e] = c;
 	}
 	cin >> n2;
-	for (int i=0; i<n2; i++) {
+	for (int i = 0; i < n2; i++) {
 		scanf("%d%d", &c, &e);
 		b[e] = c;
 	}
 	for (int i = 0; i < 2010; i++) {
 		sum[i] += a[i] + b[i];
 		for (int j = 0; j < 2010; j++)
-			if (a[i] != 0 && b[j] != 0)
-				pro[i+j] += a[i] * b[j];
+			if (a[i] != 0 && b[j] != 0) pro[i+j] += a[i] * b[j];
 	}
 	for (int i = 2009; i >= 0; i--)
 		if (pro[i] != 0) {
