@@ -4,6 +4,7 @@ using namespace std;
 vector<int> v;
 int sum = 0, cnt = 0;
 void factorization(int i, int n) {
+	if (sum > n) return;
 	if (sum == n) {
 		cnt++;
 		cout << n << "=";
@@ -15,7 +16,6 @@ void factorization(int i, int n) {
 		else cout << ";";
 		return;
 	}
-	if (sum > n) return;
 	for (int j = i; j <= n; j++) {
 		sum += j;
 		v.push_back(j);
