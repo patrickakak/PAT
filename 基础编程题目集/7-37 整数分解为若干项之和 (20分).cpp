@@ -7,10 +7,10 @@ void factorization(int i, int n) {
 	if (sum == n) {
 		cnt++;
 		cout << n << "=";
-		vector<int>::iterator it;
-		for (it = v.begin(); it != v.end()-1; it++)
-			cout << *it << "+";
-		cout << *it;
+		for (int i = 0; i < v.size(); i++) {
+			if (i != 0) printf("+");
+			printf("%d", v[i]);
+		}
 		if (cnt % 4 == 0 || v[v.size()-1] == n) cout << endl;
 		else cout << ";";
 		return;
