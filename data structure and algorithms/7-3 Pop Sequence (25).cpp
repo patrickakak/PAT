@@ -9,8 +9,7 @@ int main() {
 		bool flag = false;
 		stack<int> s;
 		vector<int> v(n + 1);
-		for (int j = 1; j <= n; j++)
-			scanf("%d", &v[j]);
+		for (int j = 1; j <= n; j++) scanf("%d", &v[j]);
 		int current = 1;
 		for (int j = 1; j <= n; j++) {
 			s.push(j);
