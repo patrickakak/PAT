@@ -2,8 +2,8 @@
 #include <vector>
 using namespace std;
 vector<int> v;
-int n, sum = 0, cnt = 0;
-void factorization(int index) {
+int n, cnt = 0;
+void factorization(int index, int sum) {
 	if (sum > n) return;
 	if (sum == n) {
 		printf("%d=", n);
@@ -16,15 +16,13 @@ void factorization(int index) {
 		return;
 	}
 	for (int j = index; j <= n; j++) {
-		sum += j;
 		v.push_back(j);
-		factorization(j);
-		sum -= j;
+		factorization(j, sum + j);
 		v.pop_back();
 	}
 }
 int main() {
 	scanf("%d", &n);
-	factorization(1);
+	factorization(1, 0);
 	return 0;
 }
