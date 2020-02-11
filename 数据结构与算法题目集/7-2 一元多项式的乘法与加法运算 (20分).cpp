@@ -28,7 +28,7 @@ int main() {
 	printf("\n");
 	flag = 1;
 	for (int i = 2009; i >= 0; i--)
-		if (sum[i]!=0) {
+		if (sum[i] != 0) {
 			if (flag == 1) flag = 0;
 			else printf(" ");
 			printf("%d %d", sum[i], i);
