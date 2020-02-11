@@ -3,7 +3,7 @@
 using namespace std;
 vector<int> v;
 int n, sum = 0, cnt = 0;
-void factorization(int i) {
+void factorization(int index) {
 	if (sum > n) return;
 	if (sum == n) {
 		printf("%d=", n);
@@ -15,7 +15,7 @@ void factorization(int i) {
 		else printf(";");
 		return;
 	}
-	for (int j = i; j <= n; j++) {
+	for (int j = index; j <= n; j++) {
 		sum += j;
 		v.push_back(j);
 		factorization(j);
