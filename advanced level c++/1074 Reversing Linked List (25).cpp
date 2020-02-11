@@ -6,8 +6,8 @@ int main() {
 	int first, n, k, addr, cnt = 0, data[maxn], next[maxn], list[maxn];
 	cin >> first >> n >> k;
 	for (int i = 0; i < n; i++) {
-		cin >> addr;
-		cin >> data[addr] >> next[addr];
+		scanf("%d", &addr);
+		scanf("%d%d", &data[addr], &next[addr]);
 	}
 	while (first != -1) {
 		list[cnt++] = first;
