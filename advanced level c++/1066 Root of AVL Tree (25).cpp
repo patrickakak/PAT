@@ -31,8 +31,7 @@ int getHeight(node *root) {
 node *insert(node *root, int val) {
 	if (root == NULL) {
 		root = new node();
-		root->val = val;
-		root->left = root->right = NULL;
+		*root = node{val, NULL, NULL};
 	} else if (val < root->val) {
 		root->left = insert(root->left, val);
 		if (getHeight(root->left) - getHeight(root->right) == 2)
