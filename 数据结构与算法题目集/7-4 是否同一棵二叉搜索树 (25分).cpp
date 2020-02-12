@@ -1,95 +1,50 @@
-#include <stdio.h>
-#include <stdlib.h>
-typedef int ElementType;
-typedef struct TreeNode *Tree;
-struct TreeNode {
-	ElementType v;
-	Tree Left, Right;
-	int flag;
+#include <iostream>
+#include <vector>
+using namespace std;
+struct node {
+	int v;
+	node *l, *r;
 };
-Tree MakeTree(int N);
-Tree NewNode(ElementType V);
-Tree Insert(Tree T, ElementType V);
-int Judge(Tree T, int N);
-void ResetT(Tree T);
-void FreeTree(Tree T);
-static int check(Tree T, ElementType V);
+void insert(node *&root, int v) {
+	if (root == NULL) {
+		node *t = new node;
+		*t = node{v, NULL, NULL};
+		root = t;
+		return;
+	}
+	if (v < root->v) insert(root->l, v);
+	else insert(root->r, v);
+}
+void preOrder(node *root, vector<int> &vec) {
+	if (root == NULL) return;
+	vec.push_back(root->v);
+	preOrder(root->l, vec);
+	preOrder(root->r, vec);
+}
 int main() {
-	int N, L, i;
-	Tree T;
-	scanf("%d", &N);
-	while (N) {
-		scanf("%d", &L);
-		T = MakeTree(N);
-		for (i = 0; i < L; i++) {
-			if (Judge(T, N)) printf("Yes\n");
-			else printf("No\n");
-			ResetT(T);
+	int n, l, t;
+	cin >> n;
+	while (n) {
+		node *root = NULL;
+		vector<int> pre;
+		cin >> l;
+		for (int i = 0; i < n; i++) {
+			cin >> t;
+			insert(root, t);
 		}
-		FreeTree(T);
-		scanf("%d", &N);
+		preOrder(root, pre);
+		while (l--) {
+			node *tmpRoot = NULL;
+			for (int i = 0; i < n; i++) {
+				cin >> t;
+				insert(tmpRoot, t);
+			}
+			vector<int> tmpPre;
+			preOrder(tmpRoot, tmpPre);
+			if (tmpPre == pre) printf("Yes\n");
+			else printf("No\n");
+		}
+		cin >> n;
 	}
 	return 0;
-}
-Tree MakeTree(int N) {
-	Tree T;
-	int i;
-	ElementType V;
-	scanf("%d", &V);
-	T = NewNode(V);
-	for (i = 1; i < N; i++) {
-		scanf("%d", &V);
-		T = Insert(T, V);
-	}
-	return T;
-}
-Tree NewNode(ElementType V) {
-	Tree T = (Tree) malloc(sizeof(struct TreeNode));
-	T->v = V;
-	T->Left = T->Right = NULL;
-	T->flag = 0;
-	return T;
-}
-Tree Insert(Tree T, ElementType V) {
-	if (!T) T = NewNode(V);
-	else {
-		if (V > T->v) T->Right = Insert(T->Right, V);
-		else T->Left = Insert(T->Left, V);
-	}
-	return T;
-}
-int check(Tree T, ElementType V) {
-	if (T->flag) {
-		if (V < T->v) return check(T->Left, V);
-		else if (V > T->v) return check(T->Right, V);
-		else return 0;
-	} else {
-		if (V == T->v) {
-			T->flag = 1;
-			return 1;
-		} else return 0;
-	}
-}
-int Judge(Tree T, int N) {
-	int i, flag = 0;
-	ElementType V;
-	scanf("%d", &V);
-	if (V != T->v) flag = 1;
-	else T->flag = 1;
-	for (i = 1; i < N; i++) {
-		scanf("%d", &V);
-		if ((!flag) && (!check(T, V))) flag = 1;
-	}
-	if (flag) return 0;
-	else return 1;
-}
-void ResetT(Tree T) {
-	if (T->Left) ResetT(T->Left);
-	if (T->Right) ResetT(T->Right);
-	T->flag = 0;
-}
-void FreeTree(Tree T) {
-	if (T->Left) FreeTree(T->Left);
-	if (T->Right) FreeTree(T->Right);
-	free(T);
 }
