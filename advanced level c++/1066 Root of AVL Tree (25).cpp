@@ -5,24 +5,24 @@ struct node {
 	struct node *left, *right;
 };
 node *ll(node *root) {
-	node *t = root->right;
-	root->right = t->left;
-	t->left = root;
-	return t;
-}
-node *rr(node *root) {
 	node *t = root->left;
 	root->left = t->right;
 	t->right = root;
 	return t;
 }
+node *rr(node *root) {
+	node *t = root->right;
+	root->right = t->left;
+	t->left = root;
+	return t;
+}
 node *lr(node *root) {
-	root->left = ll(root->left);
-	return rr(root);
+	root->left = rr(root->left);
+	return ll(root);
 }
 node *rl(node *root) {
-	root->right = rr(root->right);
-	return ll(root);
+	root->right = ll(root->right);
+	return rr(root);
 }
 int getHeight(node *root) {
 	if (root == NULL) return 0;
@@ -35,11 +35,11 @@ node *insert(node *root, int val) {
 	} else if (val < root->val) {
 		root->left = insert(root->left, val);
 		if (getHeight(root->left) - getHeight(root->right) == 2)
-			root = val < root->left->val ? rr(root) : lr(root);
+			root = val < root->left->val ? ll(root) : lr(root);
 	} else {
 		root->right = insert(root->right, val);
 		if (getHeight(root->left) - getHeight(root->right) == -2)
-			root = val > root->right->val ? ll(root) : rl(root);
+			root = val > root->right->val ? rr(root) : rl(root);
 	}
 	return root;
 }
