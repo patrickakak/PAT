@@ -15,7 +15,7 @@ int build(node t[], int h[], int n) {
 			t[i].l = stoi(l);
 			h[stoi(l)] = 1;
 		}
-		if (r=="-") t[i].r = -1;
+		if (r == "-") t[i].r = -1;
 		else {
 			t[i].r = stoi(r);
 			h[stoi(r)] = 1;
