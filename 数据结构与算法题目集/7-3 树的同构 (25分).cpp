@@ -32,8 +32,7 @@ bool isomorphic(int r1, int r2) {
 	if (t1[r1].l == -1 && t2[r2].l == -1) return isomorphic(t1[r1].r, t2[r2].r);
 	if (t1[r1].l != -1 && t2[r2].l != -1 && t1[t1[r1].l].c == t2[t2[r2].l].c)
 		return isomorphic(t1[r1].l, t2[r2].l) && isomorphic(t1[r1].r, t2[r2].r);
-	else
-		return isomorphic(t1[r1].l, t2[r2].r) && isomorphic(t1[r1].r, t2[r2].l);
+	else return isomorphic(t1[r1].l, t2[r2].r) && isomorphic(t1[r1].r, t2[r2].l);
 }
 int main() {
 	cin >> n1;
