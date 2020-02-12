@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include <iostream>
+using namespace std;
 #define Null -1
 #define MaxSize 10
 typedef char ElementType;
