@@ -1,55 +1,50 @@
 #include <iostream>
 using namespace std;
-#define Null -1
-#define MaxSize 10
-typedef char ElementType;
-typedef int Tree;
-struct TNode {
-	ElementType Data;
-	Tree Left, Right;
-} T1[MaxSize], T2[MaxSize];
-Tree BuildTree(struct TNode T[]) {
-	int i, N, Root=Null, check[MaxSize];
-	char cl, cr;
-	scanf("%d\n", &N);
-	if (N) {
-		for (i = 0; i < N; i++) check[i] = 0;
-		for (i = 0; i < N; i++) {
-			scanf("%c %c %c", &T[i].Data, &cl, &cr);
-			getc(stdin);
-			if (cl != '-') {
-				T[i].Left = cl - '0';
-				check[T[i].Left] = 1;
-			} else T[i].Left = Null;
-			if (cr != '-') {
-				T[i].Right = cr - '0';
-				check[T[i].Right] = 1;
-			} else T[i].Right = Null;
+struct node {
+	string c;
+	int l, r;
+} t1[15], t2[15];
+int n1, n2, h1[15], h2[15];
+int build(node t[], int h[], int n) {
+	string c, l, r;
+	for (int i = 0; i < n; i++) {
+		cin >> c >> l >> r;
+		t[i].c = c;
+		if (l == "-") t[i].l = -1;
+		else {
+			t[i].l = stoi(l);
+			h[stoi(l)] = 1;
 		}
-		for (i = 0; i < N; i++)
-			if (!check[i]) break;
-		Root = i;
+		if (r=="-") t[i].r = -1;
+		else {
+			t[i].r = stoi(r);
+			h[stoi(r)] = 1;
+		}
 	}
-	return Root;
+	int root = 0;
+	while (root < n && h[root] == 1) root++;
+	return root;
 }
-bool Isomorphic(Tree R1, Tree R2) {
-	if (R1==Null && R2==Null)
-		return true;
-	if ((R1==Null && R2!=Null) || (R2==Null && R1!=Null))
-		return false;
-	if (T1[R1].Data != T2[R2].Data)
-		return false;
-	if (T1[R1].Left==Null && T2[R2].Left==Null)
-		return Isomorphic(T1[R1].Right, T2[R2].Right);
-	if (T1[R1].Left!=Null && T2[R2].Left!=Null && T1[T1[R1].Left].Data==T2[T2[R2].Left].Data)
-		return (Isomorphic(T1[R1].Left, T2[R2].Left) && Isomorphic(T1[R1].Right, T2[R2].Right));
+bool isomorphic(int r1, int r2) {
+	if (r1 == -1 && r2 == -1) return true;
+	if ((r1 != -1 && r2 == -1) || (r1 == -1 && r2 != -1)) return false;
+	if (t1[r1].c != t2[r2].c) return false;
+	if (t1[r1].l == -1 && t2[r2].l == -1) return isomorphic(t1[r1].r, t2[r2].r);
+	if (t1[r1].l != -1 && t2[r2].l != -1 && t1[t1[r1].l].c == t2[t2[r2].l].c)
+		return isomorphic(t1[r1].l, t2[r2].l) && isomorphic(t1[r1].r, t2[r2].r);
 	else
-		return (Isomorphic(T1[R1].Left, T2[R2].Right) && Isomorphic(T1[R1].Right, T2[R2].Left));
+		return isomorphic(t1[r1].l, t2[r2].r) && isomorphic(t1[r1].r, t2[r2].l);
 }
 int main() {
-	Tree R1 = BuildTree(T1);
-	Tree R2 = BuildTree(T2);
-	if (Isomorphic(R1, R2)) printf("Yes\n");
-	else printf("No\n");
+	cin >> n1;
+	int r1 = build(t1, h1, n1);
+	cin >> n2;
+	int r2 = build(t2, h2, n2);
+	if (n1 != n2) printf("No");
+	else if (n1 == 0 && n2 == 0) printf("Yes");
+	else {
+		if (isomorphic(r1, r2)) printf("Yes");
+		else printf("No");
+	}
 	return 0;
 }
