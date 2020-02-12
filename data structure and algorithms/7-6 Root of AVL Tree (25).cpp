@@ -4,25 +4,25 @@ struct node {
 	int val;
 	struct node *left, *right;
 };
-node *rotateLeft(node *root) {
+node *ll(node *root) {
 	node *t = root->right;
 	root->right = t->left;
 	t->left = root;
 	return t;
 }
-node *rotateRight(node *root) {
+node *rr(node *root) {
 	node *t = root->left;
 	root->left = t->right;
 	t->right = root;
 	return t;
 }
-node *rotateLeftRight(node *root) {
-	root->left = rotateLeft(root->left);
-	return rotateRight(root);
+node *lr(node *root) {
+	root->left = ll(root->left);
+	return rr(root);
 }
-node *rotateRightLeft(node *root) {
-	root->right = rotateRight(root->right);
-	return rotateLeft(root);
+node *rl(node *root) {
+	root->right = rr(root->right);
+	return ll(root);
 }
 int getHeight(node *root) {
 	if (root == NULL) return 0;
@@ -36,11 +36,11 @@ node *insert(node *root, int val) {
 	} else if (val < root->val) {
 		root->left = insert(root->left, val);
 		if (getHeight(root->left) - getHeight(root->right) == 2)
-			root = val < root->left->val ? rotateRight(root) : rotateLeftRight(root);
+			root = val < root->left->val ? rr(root) : lr(root);
 	} else {
 		root->right = insert(root->right, val);
 		if (getHeight(root->left) - getHeight(root->right) == -2)
-			root = val > root->right->val ? rotateLeft(root) : rotateRightLeft(root);
+			root = val > root->right->val ? ll(root) : rl(root);
 	}
 	return root;
 }
