@@ -48,23 +48,18 @@ bool judge(int wpl) {
 			switch (code[j]) {
 			case '0':
 				if (!t->l) t->l = make('x', 0, NULL, NULL);
-				else if (t->l->f != 0) goto END;
 				t = t->l;
 				break;
 			case '1':
 				if (!t->r) t->r = make('x', 0, NULL, NULL);
-				else if (t->r->f != 0) goto END;
 				t = t->r;
 				break;
 			}
-END:
 		if (!t->l && !t->r) t->f = f[i];
 		else flag = 1;
 	}
-	bool ret;
-	if (!flag && wpl == getwpl(root, 0)) ret = true;
-	else ret = false;
-	return ret;
+	if (!flag && wpl == getwpl(root, 0)) return true;
+	else return false;
 }
 int main() {
 	cin >> n;
