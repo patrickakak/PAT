@@ -1,67 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#define MAXSIZE 1000
-#define MIN -65535
-typedef int ElemType;
-typedef struct HNode *PtrToHNode;
-struct HNode {
-	ElemType *pData;
-	int size;
-};
-typedef PtrToHNode Heap;
-typedef Heap MinHeap;
-bool IsFullH(Heap H) {
-	return H->size == MAXSIZE;
-}
-void PercUp(Heap H, int p) {
-	ElemType x = H->pData[p];
-	for (; H->pData[p/2] > x; p /= 2)
-		H->pData[p] = H->pData[p/2];
-	H->pData[p] = x;
-}
-Heap CreatH(int MaxSize) {
-	MinHeap H = (Heap) malloc(sizeof(struct HNode));
-	H->pData = (ElemType *) malloc((MaxSize + 1)*sizeof(ElemType));
-	H->size = 0;
-	H->pData[0] = MIN;
-	return H;
-}
-void PathUpToR(Heap H, int p) {
-	printf("%d", H->pData[p]);
-	while (p > 1) {
-		p /= 2;
-		printf(" %d", H->pData[p]);
-	}
-	putchar('\n');
-}
-bool InsertH(Heap H, ElemType x) {
-	if (IsFullH(H)) {
-		puts("Full Heap!");
-		return false;
-	}
-	int p = ++H->size;
-	H->pData[p] = x;
-	PercUp(H, p);
-	return true;
-}
-void DestroyH(Heap H) {
-	free(H->pData);
-	free(H);
-}
+#include <iostream>
+using namespace std;
 int main() {
-	int N, M, p;
-	ElemType x;
-	scanf("%d %d", &N, &M);
-	MinHeap H = CreatH(N);
-	for (int i = 0; i < N; i++) {
-		scanf("%d", &x);
-		InsertH(H, x);
+	int n, m, t, h[1010];
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		scanf("%d", &t);
+		h[i] = t;
+		int j = i;
+		while (j > 1)
+			if (h[j/2] > t) {
+				h[j] = h[j/2];
+				j /= 2;
+			} else break;
+		h[j] = t;
 	}
-	for (int i = 0; i < M; i++) {
-		scanf("%d", &p);
-		PathUpToR(H, p);
+	while (m--) {
+		scanf("%d", &t);
+		for (int j = t; j >= 1; j /= 2) {
+			if (j != t) printf(" ");
+			printf("%d", h[j]);
+		}
+		printf("\n");
 	}
-	DestroyH(H);
 	return 0;
 }
