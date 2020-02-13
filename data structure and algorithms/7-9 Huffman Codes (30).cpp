@@ -15,23 +15,21 @@ int n, m, f[80];
 char c[80];
 priority_queue<node*, vector<node*>, cmp> q;
 node *huffman() {
-	for (int i=0; i<n-1; i++) {
-		node *l=q.top();
+	for (int i = 0; i < n-1; i++) {
+		node *l = q.top();
 		q.pop();
-		node *r=q.top();
+		node *r = q.top();
 		q.pop();
-		node *root=new node();
-		*root=node{'x', l->f + r->f, l, r};
+		node *root = new node();
+		*root = node{'x', l->f + r->f, l, r};
 		q.push(root);
 	}
-	node *ret=q.top();
-	q.pop();
-	return ret;
+	return q.top();
 }
 int getwpl(node *root, int depth) {
-	if (root==NULL) return 0;
-	if (root->l==NULL && root->r==NULL) return depth*root->f;
-	return getwpl(root->l, depth+1)+getwpl(root->r, depth+1);
+	if (root == NULL) return 0;
+	if (root->l == NULL && root->r == NULL) return depth * root->f;
+	return getwpl(root->l, depth + 1) + getwpl(root->r, depth + 1);
 }
 bool judge(int wpl) {
 	char ch;
@@ -39,29 +37,29 @@ bool judge(int wpl) {
 	int flag = 0;
 	node *t = new node();
 	*t = node{'x', 0, NULL, NULL};
-	for (int i=1; i<=n; i++) {
+	for (int i = 1; i <= n; i++) {
 		cin >> ch >> code;
 		if (code.length() >= n || flag == 1) {
 			flag = 1; continue;
 		}
 		int w = f[i];
 		node *pt = t;
-		for (int j=0; j<code.length(); j++) {
+		for (int j = 0; j < code.length(); j++) {
 			switch (code[j]) {
-				case '0':
-					if (!pt->l) {
-						pt->l = new node();
-						*(pt->l) = node{'x', 0, NULL, NULL};
-					} else if (pt->l->f != 0) goto END;
-					pt = pt->l;
-					break;
-				case '1':
-					if (!pt->r) {
-						pt->r = new node();
-						*(pt->r) = node{'x', 0, NULL, NULL};
-					} else if (pt->r->f != 0) goto END;
-					pt = pt->r;
-					break;
+			case '0':
+				if (!pt->l) {
+					pt->l = new node();
+					*(pt->l) = node{'x', 0, NULL, NULL};
+				} else if (pt->l->f != 0) goto END;
+				pt = pt->l;
+				break;
+			case '1':
+				if (!pt->r) {
+					pt->r = new node();
+					*(pt->r) = node{'x', 0, NULL, NULL};
+				} else if (pt->r->f != 0) goto END;
+				pt = pt->r;
+				break;
 			}
 		}
 END:
@@ -75,14 +73,14 @@ END:
 }
 int main() {
 	cin >> n;
-	for (int i=1; i<=n; i++) {
+	for (int i = 1; i <= n; i++) {
 		cin >> c[i] >> f[i];
-		node *t=new node;
+		node *t = new node;
 		*t = node{c[i], f[i], NULL, NULL};
 		q.push(t);
 	}
-	node *root=huffman();
-	int wpl=getwpl(root, 0);
+	node *root = huffman();
+	int wpl = getwpl(root, 0);
 	cin >> m;
 	while (m--)
 		if (judge(wpl)) printf("Yes\n");
