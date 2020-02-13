@@ -1,59 +1,48 @@
-#include <stdio.h>
-#define MaxSize 10000
-typedef int ElementType;
-typedef int SetName;
-typedef ElementType SetType[MaxSize];
-void Union(SetType S, SetName Root1, SetName Root2) {
-	if (S[Root2] < S[Root1]) {
-		S[Root2] += S[Root1];
-		S[Root1] = Root2;
-	} else {
-		S[Root1] += S[Root2];
-		S[Root2] = Root1;
+#include <iostream>
+using namespace std;
+int n, father[10010];
+int find(int x) {
+	int a = x;
+	while (father[x] != x) x = father[x];
+	while (father[a] != a) {
+		int z = a;
+		a = father[a];
+		father[z] = x;
 	}
+	return x;
 }
-SetName Find(SetType S, ElementType X) {
-	if (S[X] < 0) return X;
-	else return S[X] = Find(S, S[X]);
+void Union(int a, int b) {
+	int faA = find(a);
+	int faB = find(b);
+	if (faA != faB) father[faA] = faB;
 }
-void Initialization(SetType S, int N) {
-	for (int i = 0; i < N; i++) S[i] = -1;
+void check() {
+	int a, b;
+	cin >> a >> b;
+	if (find(a) == find(b)) printf("yes\n");
+	else printf("no\n");
 }
-void Input_connection(SetType S) {
-	ElementType u, v;
-	scanf("%d %d\n", &u, &v);
-	SetName Root1 = Find(S, u-1);
-	SetName Root2 = Find(S, v-1);
-	if (Root1 != Root2) Union(S, Root1, Root2);
+void connect() {
+	int a, b;
+	cin >> a >> b;
+	Union(a, b);
 }
-void Check_connection(SetType S) {
-	ElementType u, v;
-	scanf("%d %d", &u, &v); getchar();
-	SetName Root1 = Find(S, u-1);
-	SetName Root2 = Find(S, v-1);
-	if (Root1 == Root2) puts("yes");
-	else puts("no");
-}
-void Check_network(SetType S, int N) {
-	int counter = 0;
-	for (int i = 0; i < N; i++)
-		if (S[i] < 0) counter++;
-	if (counter == 1) puts("The network is connected.");
-	else printf("There are %d components.\n", counter);
+void stop() {
+	int cnt = 0;
+	for (int i = 1; i <= n; i++)
+		if (father[i] == i) cnt++;
+	if (cnt == 1) printf("The network is connected.");
+	else printf("There are %d components.", cnt);
 }
 int main() {
-	SetType S;
-	int N;
-	char in;
-	scanf("%d\n", &N);
-	Initialization(S, N);
-	do {
-		scanf("%c", &in);
-		switch (in) {
-		case 'I': Input_connection(S); break;
-		case 'C': Check_connection(S); break;
-		case 'S': Check_network(S, N); break;
+	cin >> n;
+	char c;
+	for (int i = 1; i <= n; i++) father[i] = i;
+	while (cin >> c)
+		switch (c) {
+		case 'C': check();   break;
+		case 'I': connect(); break;
+		case 'S': stop();    break;
 		}
-	} while (in != 'S');	
 	return 0;
 }
