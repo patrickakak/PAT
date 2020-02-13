@@ -21,11 +21,9 @@ char c[80];
 priority_queue<node*, vector<node*>, cmp> q;
 node *huffman() {
 	for (int i = 0; i < n-1; i++) {
-		node *l = q.top();
-		q.pop();
-		node *r = q.top();
-		q.pop();
-		node *root = make('x', l->f+r->f, l, r);
+		node *l = q.top(); q.pop();
+		node *r = q.top(); q.pop();
+		node *root = make('x', l->f + r->f, l, r);
 		q.push(root);
 	}
 	return q.top();
@@ -42,7 +40,7 @@ bool judge(int wpl) {
 	node *t = make('x', 0, NULL, NULL);
 	for (int i = 1; i <= n; i++) {
 		cin >> ch >> code;
-		if (code.length() >= n || flag == 1) {
+		if (code.length() >= n || flag == 1 || ch != c[i]) {
 			flag = 1; continue;
 		}
 		int w = f[i];
