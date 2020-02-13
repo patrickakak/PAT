@@ -36,8 +36,8 @@ void stop() {
 }
 int main() {
 	cin >> n;
-	char c;
 	for (int i = 1; i <= n; i++) father[i] = i;
+	char c;
 	while (cin >> c)
 		switch (c) {
 		case 'C': check();   break;
