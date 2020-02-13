@@ -11,6 +11,11 @@ struct cmp {
 		return a->f > b->f;
 	}
 };
+node *make(char c, int f, node *l, node *r) {
+	node *t = new node();
+	*t = node{c, f, l, r};
+	return t;
+}
 int n, m, f[80];
 char c[80];
 priority_queue<node*, vector<node*>, cmp> q;
@@ -20,8 +25,7 @@ node *huffman() {
 		q.pop();
 		node *r = q.top();
 		q.pop();
-		node *root = new node();
-		*root = node{'x', l->f + r->f, l, r};
+		node *root = make('x', l->f+r->f, l, r);
 		q.push(root);
 	}
 	return q.top();
@@ -35,8 +39,7 @@ bool judge(int wpl) {
 	char ch;
 	string code;
 	int flag = 0;
-	node *t = new node();
-	*t = node{'x', 0, NULL, NULL};
+	node *t = make('x', 0, NULL, NULL);
 	for (int i = 1; i <= n; i++) {
 		cin >> ch >> code;
 		if (code.length() >= n || flag == 1) {
@@ -47,17 +50,13 @@ bool judge(int wpl) {
 		for (int j = 0; j < code.length(); j++) {
 			switch (code[j]) {
 			case '0':
-				if (!pt->l) {
-					pt->l = new node();
-					*(pt->l) = node{'x', 0, NULL, NULL};
-				} else if (pt->l->f != 0) goto END;
+				if (!pt->l) pt->l = make('x', 0, NULL, NULL);
+				else if (pt->l->f != 0) goto END;
 				pt = pt->l;
 				break;
 			case '1':
-				if (!pt->r) {
-					pt->r = new node();
-					*(pt->r) = node{'x', 0, NULL, NULL};
-				} else if (pt->r->f != 0) goto END;
+				if (!pt->r) pt->r = make('x', 0, NULL, NULL);
+				else if (pt->r->f != 0) goto END;
 				pt = pt->r;
 				break;
 			}
@@ -75,8 +74,7 @@ int main() {
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		cin >> c[i] >> f[i];
-		node *t = new node;
-		*t = node{c[i], f[i], NULL, NULL};
+		node *t = make(c[i], f[i], NULL, NULL);
 		q.push(t);
 	}
 	node *root = huffman();
