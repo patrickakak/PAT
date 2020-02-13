@@ -37,34 +37,32 @@ bool judge(int wpl) {
 	char ch;
 	string code;
 	int flag = 0;
-	node *t = make('x', 0, NULL, NULL);
+	node *root = make('x', 0, NULL, NULL);
 	for (int i = 1; i <= n; i++) {
 		cin >> ch >> code;
 		if (code.length() >= n || flag == 1 || ch != c[i]) {
 			flag = 1; continue;
 		}
-		int w = f[i];
-		node *pt = t;
-		for (int j = 0; j < code.length(); j++) {
+		node *t = root;
+		for (int j = 0; j < code.length(); j++)
 			switch (code[j]) {
 			case '0':
-				if (!pt->l) pt->l = make('x', 0, NULL, NULL);
-				else if (pt->l->f != 0) goto END;
-				pt = pt->l;
+				if (!t->l) t->l = make('x', 0, NULL, NULL);
+				else if (t->l->f != 0) goto END;
+				t = t->l;
 				break;
 			case '1':
-				if (!pt->r) pt->r = make('x', 0, NULL, NULL);
-				else if (pt->r->f != 0) goto END;
-				pt = pt->r;
+				if (!t->r) t->r = make('x', 0, NULL, NULL);
+				else if (t->r->f != 0) goto END;
+				t = t->r;
 				break;
 			}
-		}
 END:
-		if (!pt->l && !pt->r) pt->f = w;
+		if (!t->l && !t->r) t->f = f[i];
 		else flag = 1;
 	}
 	bool ret;
-	if (!flag && wpl == getwpl(t, 0)) ret = true;
+	if (!flag && wpl == getwpl(root, 0)) ret = true;
 	else ret = false;
 	return ret;
 }
