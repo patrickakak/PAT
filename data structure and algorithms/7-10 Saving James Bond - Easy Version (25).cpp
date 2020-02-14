@@ -8,10 +8,10 @@ int n;
 double d;
 bool visit[110];
 bool firJump(int v) {
-	return (d+7.5) * (d+7.5) >= c[v].x * c[v].x + c[v].y * c[v].y;
+	return (d + 7.5) * (d + 7.5) >= c[v].x * c[v].x + c[v].y * c[v].y;
 }
 bool jump(int a, int b) {
-	return d * d >= (c[a].x-c[b].x)*(c[a].x-c[b].x) + (c[a].y-c[b].y)*(c[a].y-c[b].y);
+	return d * d >= pow(c[a].x-c[b].x, 2) + pow(c[a].y-c[b].y, 2);
 }
 bool isSafe(int v) {
 	return (fabs(c[v].x) + d >= 50) || (fabs(c[v].y) + d >= 50);
@@ -26,8 +26,7 @@ bool dfs(int v) {
 }
 int main() {
 	cin >> n >> d;
-	for (int i = 0; i < n; i++)
-		cin >> c[i].x >> c[i].y;
+	for (int i = 0; i < n; i++) cin >> c[i].x >> c[i].y;
 	bool ans = false;
 	for (int i = 0; i < n; i++)
 		if (!visit[i] && firJump(i)) {
