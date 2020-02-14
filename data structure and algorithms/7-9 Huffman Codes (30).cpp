@@ -21,8 +21,10 @@ char c[80];
 priority_queue<node*, vector<node*>, cmp> q;
 node *huffman() {
 	for (int i = 0; i < n-1; i++) {
-		node *l = q.top(); q.pop();
-		node *r = q.top(); q.pop();
+		node *l = q.top();
+		q.pop();
+		node *r = q.top();
+		q.pop();
 		node *root = make('x', l->f + r->f, l, r);
 		q.push(root);
 	}
@@ -30,7 +32,7 @@ node *huffman() {
 }
 int getwpl(node *root, int depth) {
 	if (root == NULL) return 0;
-	if (root->l == NULL && root->r == NULL) return depth * root->f;
+	if (!root->l && !root->r) return depth * root->f;
 	return getwpl(root->l, depth + 1) + getwpl(root->r, depth + 1);
 }
 bool judge(int wpl) {
