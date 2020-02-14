@@ -27,7 +27,7 @@ int bfs(int v) {
 int main() {
 	cin >> n >> m;
 	int a, b, cnt;
-	for (int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		cin >> a >> b;
 		G[a][b] = G[b][a] = 1;
 	}
