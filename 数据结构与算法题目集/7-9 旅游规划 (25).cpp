@@ -31,8 +31,8 @@ int main() {
 	int c1, c2, l, cost;
 	for (int i = 0; i < m; i++) {
 		scanf("%d%d%d%d", &c1, &c2, &l, &cost);
-		e[c1][c2] = e[c2][c1]=l;
-		c[c1][c2] = c[c2][c1]=cost;
+		e[c1][c2] = e[c2][c1] = l;
+		c[c1][c2] = c[c2][c1] = cost;
 	}
 	dis[s] = 0;
 	for (int i = 0; i < n; i++) {
