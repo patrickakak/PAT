@@ -28,7 +28,7 @@ void dfs(int v) {
 		} else if (tmppath.size() == jumpcnt) {
 			int u = tmppath[tmppath.size()-2];
 			int w = path[path.size()-2];
-			if (pow(c[u].x, 2)+pow(c[u].y, 2) < pow(c[w].x, 2)+pow(c[w].y, 2))
+			if (pow(c[u].x, 2) + pow(c[u].y, 2) < pow(c[w].x, 2) + pow(c[w].y, 2))
 				path = tmppath;
 		}
 		tmppath.pop_back();
