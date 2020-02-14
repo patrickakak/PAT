@@ -1,9 +1,7 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-struct node {
-	int v, layer;
-};
+struct node { int v, layer; };
 int n, m, G[1010][1010];
 bool inq[1010];
 int bfs(int v) {
@@ -28,7 +26,7 @@ int main() {
 	cin >> n >> m;
 	int a, b, cnt;
 	for (int i = 0; i < m; i++) {
-		cin >> a >> b;
+		scanf("%d%d", &a, &b);
 		G[a][b] = G[b][a] = 1;
 	}
 	for (int i = 1; i <= n; i++) {
