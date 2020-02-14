@@ -1,14 +1,3 @@
-/**
- * Sample Input:
- * 4 5 0 3
- * 0 1 1 20
- * 1 3 2 30
- * 0 3 4 10
- * 0 2 2 20
- * 2 3 1 20
- * Sample Output:
- * 3 40
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -151,4 +140,3 @@ void Dijkstra(MGraph Graph, int dist[], int cost[], Vertex S)
 			}
 	}
 }
-
