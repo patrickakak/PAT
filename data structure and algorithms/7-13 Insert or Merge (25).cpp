@@ -22,9 +22,8 @@ int main() {
 					break;
 				}
 			k *= 2;
-			for (int i = 0; i < n / k; i++)
-				sort(a + i * k, a + (i + 1) * k);
-			sort(a + n / k * k, a + n);
+			for (int i = 0; i < n; i += k)
+				sort(a + i, a + min(n, i + k));
 		}
 	}
 	for (int j = 0; j < n; j++) {
