@@ -1,10 +1,3 @@
-/**
- * Sample Input:
- * 11
- * 33 1 13 12 34 38 27 22 32 -1 21
- * Sample Output:
- * 1 13 12 21 33 34 38 27 22 32
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -291,4 +284,3 @@ bool IsEmptyHeap(MinHeap H)
 {
 	return H->Size == 0;
 }
-
