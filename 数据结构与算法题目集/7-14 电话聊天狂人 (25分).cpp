@@ -1,26 +1,12 @@
-/**
- * Sample Input:
- * 4
- * 13005711862 13588625832
- * 13505711862 13088625832
- * 13588625832 18087925832
- * 15005713862 13588625832
- * ------------------------
- * Sample Output:
- * 13588625832 3
- */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 #define KEYLENGTH 11	/* Length of phone number */
 #define MAXTABLESIZE 1000000
 #define MAXD 5	/* Effective numbers in phone number */
-
 typedef char ElementType[KEYLENGTH+1];
 typedef int Index;
-
 typedef struct LNode *PtrToLNode;
 struct LNode {
 	ElementType Data;
@@ -29,13 +15,11 @@ struct LNode {
 };
 typedef PtrToLNode Position;
 typedef PtrToLNode List;
-
 typedef struct TblNode *HashTable;
 struct TblNode {
 	int TableSize;
 	List Heads;
 };
-
 void ScanAndOutput(HashTable H);
 int NextPrime(int N);
 HashTable CreateTable(int TableSize);
@@ -43,13 +27,10 @@ int Hash(int Key, int P);
 Position Find(HashTable H, ElementType Key);
 bool Insert(HashTable H, ElementType Key);
 void DestroyTable(HashTable H);
-
-int main()
-{
+int main() {
 	int N, i;
 	ElementType Key;
 	HashTable H;
-
 	scanf("%d", &N);
 	H = CreateTable(N);
 	for (i = 0; i < N; i++) {
@@ -57,18 +38,13 @@ int main()
 		scanf("%s", Key); Insert(H, Key);
 	}
 	ScanAndOutput(H);
-
-	DestroyTable(H);
-	
+	DestroyTable(H);	
 	return 0;
 }
-
-void ScanAndOutput(HashTable H)
-{
+void ScanAndOutput(HashTable H) {
 	int i, MaxCnt = 0, PCnt = 0;
 	ElementType MinPhone;
 	List Ptr;
-
 	MinPhone[0] = '\0';
 	for (i = 0; i < H->TableSize; i++) {
 		Ptr = H->Heads[i].Next;
@@ -89,13 +65,9 @@ void ScanAndOutput(HashTable H)
 	if (PCnt > 1) printf(" %d", PCnt);	/* Not only one maniac */
 	putchar('\n');
 }
-
-int NextPrime(int N)
-{
+int NextPrime(int N) {
 	int i, p;
-
 	if (N == 2 || N == 1) return 2;
-
 	p = (N%2) ? N : N+1;
 	while (1) {
 		for (i = 3; i*i <= p; i++)
@@ -105,12 +77,9 @@ int NextPrime(int N)
 	}
 	return p;
 }
-
-HashTable CreateTable(int TableSize)
-{
+HashTable CreateTable(int TableSize) {
 	HashTable H;
 	int i;
-
 	H = (HashTable) malloc(sizeof(struct TblNode));
 	H->TableSize = NextPrime(TableSize);
 	H->Heads = (List) malloc(H->TableSize * sizeof(struct LNode));
@@ -121,32 +90,22 @@ HashTable CreateTable(int TableSize)
 	}
 	return H;
 }
-
-int Hash(int Key, int P)
-{
+int Hash(int Key, int P) {
 	return Key%P;
 }
-
-Position Find(HashTable H, ElementType Key)
-{
+Position Find(HashTable H, ElementType Key) {
 	Position P;
 	Index Pos;
-
 	/* Use effective 5 numbers */
 	Pos = Hash(atoi(Key+KEYLENGTH-MAXD), H->TableSize);
-
 	P = H->Heads[Pos].Next;
 	while (P && strcmp(P->Data, Key))
 		P = P->Next;
-
 	return P;
 }
-
-bool Insert(HashTable H, ElementType Key)
-{
+bool Insert(HashTable H, ElementType Key) {
 	Position P, NewCell;
 	Index Pos;
-
 	P = Find(H, Key);
 	if (!P) {
 		NewCell = (Position) malloc(sizeof(struct LNode));
@@ -161,12 +120,9 @@ bool Insert(HashTable H, ElementType Key)
 		return false;
 	}
 }
-
-void DestroyTable(HashTable H)
-{
+void DestroyTable(HashTable H) {
 	int i;
 	Position P, Tmp;
-
 	for (i = 0; i < H->TableSize; i++) {
 		P = H->Heads[i].Next;
 		while (P) {
@@ -178,4 +134,3 @@ void DestroyTable(HashTable H)
 	free(H->Heads);
 	free(H);
 }
-
