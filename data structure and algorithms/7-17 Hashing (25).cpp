@@ -1,10 +1,3 @@
-/**
- * Sample Input:
- * 4 4
- * 10 6 4 15
- * Sample Output:
- * 0 1 4 -
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -133,4 +126,3 @@ Position Insert(HashTable H, ElementType Key)
 		H->Cells[Pos].Info = Taken;
 	return Pos;
 }
-
