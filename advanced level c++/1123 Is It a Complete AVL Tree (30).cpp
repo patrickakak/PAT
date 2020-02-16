@@ -6,25 +6,25 @@ struct node {
 	int val;
 	struct node *left, *right;
 };
-node* leftRotate(node *tree) {
-	node *temp = tree->right;
-	tree->right = temp->left;
-	temp->left = tree;
-	return temp;
+node *ll(node *tree) {
+	node *tmp = tree->right;
+	tree->right = tmp->left;
+	tmp->left = tree;
+	return tmp;
 }
-node* rightRotate(node *tree) {
-	node *temp = tree->left;
-	tree->left = temp->right;
-	temp->right = tree;
-	return temp;
+node *rr(node *tree) {
+	node *tmp = tree->left;
+	tree->left = tmp->right;
+	tmp->right = tree;
+	return tmp;
 }
-node* leftRightRotate(node *tree) {
-	tree->left = leftRotate(tree->left);
-	return rightRotate(tree);
+node *lr(node *tree) {
+	tree->left = ll(tree->left);
+	return rr(tree);
 }
-node* rightLeftRotate(node *tree) {
-	tree->right = rightRotate(tree->right);
-	return leftRotate(tree);
+node *rl(node *tree) {
+	tree->right = rr(tree->right);
+	return ll(tree);
 }
 int getHeight(node *tree) {
 	if (tree == NULL) return 0;
@@ -32,7 +32,7 @@ int getHeight(node *tree) {
 	int r = getHeight(tree->right);
 	return max(l, r) + 1;
 }
-node* insert(node *tree, int val) {
+node *insert(node *tree, int val) {
 	if (tree == NULL) {
 		tree = new node();
 		tree->val = val;
@@ -40,15 +40,15 @@ node* insert(node *tree, int val) {
 		tree->left = insert(tree->left, val);
 		int l = getHeight(tree->left), r = getHeight(tree->right);
 		if (l - r >= 2) {
-			if (val < tree->left->val) tree = rightRotate(tree);
-			else tree = leftRightRotate(tree);
+			if (val < tree->left->val) tree = rr(tree);
+			else tree = lr(tree);
 		}
 	} else {
 		tree->right = insert(tree->right, val);
 		int l = getHeight(tree->left), r = getHeight(tree->right);
 		if (r - l >= 2) {
-			if (val > tree->right->val) tree = leftRotate(tree);
-			else tree = rightLeftRotate(tree);
+			if (val > tree->right->val) tree = ll(tree);
+			else tree = rl(tree);
 		}
 	}
 	return tree;
@@ -59,27 +59,27 @@ vector<int> levelOrder(node *tree) {
 	queue<node *> queue;
 	queue.push(tree);
 	while (!queue.empty()) {
-		node *temp = queue.front();
+		node *tmp = queue.front();
 		queue.pop();
-		v.push_back(temp->val);
-		if (temp->left != NULL) {
+		v.push_back(tmp->val);
+		if (tmp->left != NULL) {
 			if (after) isComplete = 0;
-			queue.push(temp->left);
+			queue.push(tmp->left);
 		} else after = 1;
-		if (temp->right != NULL) {
+		if (tmp->right != NULL) {
 			if (after) isComplete = 0;
-			queue.push(temp->right);
+			queue.push(tmp->right);
 		} else after = 1;
 	}
 	return v;
 }
 int main() {
-	int n, temp;
+	int n, tmp;
 	scanf("%d", &n);
 	node *tree = NULL;
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &temp);
-		tree = insert(tree, temp);
+		scanf("%d", &tmp);
+		tree = insert(tree, tmp);
 	}
 	vector<int> v = levelOrder(tree);
 	for (int i = 0; i < v.size(); i++) {
