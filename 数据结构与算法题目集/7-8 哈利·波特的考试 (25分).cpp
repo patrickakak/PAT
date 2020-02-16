@@ -3,11 +3,11 @@ using namespace std;
 const int inf = 0x3fffffff;
 int n, m, d[110][110];
 int main() {
-	fill(d[0], d[0]+110*110, inf);
+	fill(d[0], d[0] + 110 * 110, inf);
 	cin >> n >> m;
 	int a, b, w, id, mindist = inf;
 	while (m--) {
-		cin >> a >> b >> w;
+		scanf("%d%d%d", &a, &b, &w);
 		d[a][b] = d[b][a] = w;
 	}
 	for (int k = 1; k <= n; k++)
