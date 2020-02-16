@@ -48,7 +48,7 @@ int main() {
 		for (int i = 1; i <= n; i++)
 			if (e[i][v] != inf) {
 				if (latest[i] > latest[v] - e[i][v]) latest[i] = latest[v] - e[i][v];
-				if (--outd[i]==0) q.push(i);
+				if (--outd[i] == 0) q.push(i);
 			}
 	}
 	for (int i = 1; i <= n; i++)
