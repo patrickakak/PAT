@@ -4,11 +4,8 @@
 using namespace std;
 long long convert(string n, long long radix) {
 	long long sum = 0;
-	int index = 0, tmp = 0;
-	for (auto it = n.rbegin(); it != n.rend(); it++) {
-		tmp = isdigit(*it) ? *it - '0' : *it - 'a' + 10;
-		sum += tmp * pow(radix, index++);
-	}
+	for (int i = 0; i < n.length(); i++)
+		sum = sum * radix + (isdigit(n[i]) ? n[i] - '0' : n[i] - 'a' + 10);
 	return sum;
 }
 long long find_radix(string n, long long num) {
