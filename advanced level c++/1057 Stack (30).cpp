@@ -25,15 +25,15 @@ void PeekMedian() {
 	printf("%d\n", left);
 }
 int main() {
-	int n, temp;
+	int n, tmp;
 	scanf("%d", &n);
 	char str[15];
 	for (int i = 0; i < n; i++) {
 		scanf("%s", str);
 		if (str[1] == 'u') {
-			scanf("%d", &temp);
-			s.push(temp);
-			update(temp, 1);
+			scanf("%d", &tmp);
+			s.push(tmp);
+			update(tmp, 1);
 		} else if (str[1] == 'o') {
 			if (!s.empty()) {
 				update(s.top(), -1);
