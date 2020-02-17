@@ -4,10 +4,10 @@
 using namespace std;
 long long convert(string n, long long radix) {
 	long long sum = 0;
-	int index = 0, temp = 0;
+	int index = 0, tmp = 0;
 	for (auto it = n.rbegin(); it != n.rend(); it++) {
-		temp = isdigit(*it) ? *it - '0' : *it - 'a' + 10;
-		sum += temp * pow(radix, index++);
+		tmp = isdigit(*it) ? *it - '0' : *it - 'a' + 10;
+		sum += tmp * pow(radix, index++);
 	}
 	return sum;
 }
