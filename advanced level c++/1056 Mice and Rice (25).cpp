@@ -31,8 +31,7 @@ int main() {
 			new_round[index++] = k;
 		}
 		cnt = group;
-		for (int i = 0; i < index; i++)
-			q.push(new_round[i]);
+		for (int i = 0; i < index; i++) q.push(new_round[i]);
 	}
 	mice[q.front()].rnk = 1;
 	for (int i = 0; i < np; i++) {
