@@ -6,13 +6,11 @@ using namespace std;
 stack<int> s;
 int c[maxn];
 void update(int x, int v) {
-	for (int i = x; i < maxn; i += lowbit(i))
-		c[i] += v;
+	for (int i = x; i < maxn; i += lowbit(i)) c[i] += v;
 }
 int getsum(int x) {
 	int sum = 0;
-	for (int i = x; i >= 1; i -= lowbit(i))
-		sum += c[i];
+	for (int i = x; i >= 1; i -= lowbit(i)) sum += c[i];
 	return sum;
 }
 void PeekMedian() {
