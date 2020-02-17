@@ -28,19 +28,23 @@ int main() {
 	char str[15];
 	for (int i = 0; i < n; i++) {
 		scanf("%s", str);
-		if (str[1] == 'u') {
+		switch (str[1]) {
+		case 'u':
 			scanf("%d", &tmp);
 			s.push(tmp);
 			update(tmp, 1);
-		} else if (str[1] == 'o') {
+			break;
+		case 'o':
 			if (!s.empty()) {
 				update(s.top(), -1);
 				printf("%d\n", s.top());
 				s.pop();
 			} else printf("Invalid\n");
-		} else {
+			break;
+		case 'e':
 			if (!s.empty()) peekMedian();
 			else printf("Invalid\n");
+			break;
 		}
 	}
 	return 0;
