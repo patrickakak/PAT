@@ -46,8 +46,8 @@ node *insert(node *root, int val) {
 	return root;
 }
 int isComplete = 1, after = 0;
-vector<int> levelOrder(node *tree) {
-	vector<int> v;
+vector<int> v;
+void levelOrder(node *tree) {
 	queue<node *> q;
 	q.push(tree);
 	while (!q.empty()) {
@@ -63,7 +63,6 @@ vector<int> levelOrder(node *tree) {
 			q.push(tmp->right);
 		} else after = 1;
 	}
-	return v;
 }
 int main() {
 	int n, tmp;
@@ -73,7 +72,7 @@ int main() {
 		scanf("%d", &tmp);
 		tree = insert(tree, tmp);
 	}
-	vector<int> v = levelOrder(tree);
+	levelOrder(tree);
 	for (int i = 0; i < v.size(); i++) {
 		if (i != 0) printf(" ");
 		printf("%d", v[i]);
