@@ -28,9 +28,7 @@ node *rl(node *tree) {
 }
 int getHeight(node *tree) {
 	if (tree == NULL) return 0;
-	int l = getHeight(tree->left);
-	int r = getHeight(tree->right);
-	return max(l, r) + 1;
+	return max(getHeight(tree->left), getHeight(tree->right)) + 1;
 }
 node *insert(node *tree, int val) {
 	if (tree == NULL) {
