@@ -3,8 +3,8 @@
 #define lowbit(i) ((i) & (-i))
 const int maxn = 100010;
 using namespace std;
-int c[maxn];
 stack<int> s;
+int c[maxn];
 void update(int x, int v) {
 	for (int i = x; i < maxn; i += lowbit(i))
 		c[i] += v;
