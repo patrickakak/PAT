@@ -48,19 +48,19 @@ node *insert(node *root, int val) {
 int isComplete = 1, after = 0;
 vector<int> levelOrder(node *tree) {
 	vector<int> v;
-	queue<node *> queue;
-	queue.push(tree);
-	while (!queue.empty()) {
-		node *tmp = queue.front();
-		queue.pop();
+	queue<node *> q;
+	q.push(tree);
+	while (!q.empty()) {
+		node *tmp = q.front();
+		q.pop();
 		v.push_back(tmp->val);
 		if (tmp->left != NULL) {
 			if (after) isComplete = 0;
-			queue.push(tmp->left);
+			q.push(tmp->left);
 		} else after = 1;
 		if (tmp->right != NULL) {
 			if (after) isComplete = 0;
-			queue.push(tmp->right);
+			q.push(tmp->right);
 		} else after = 1;
 	}
 	return v;
