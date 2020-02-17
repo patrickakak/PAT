@@ -6,50 +6,44 @@ struct node {
 	int val;
 	struct node *left, *right;
 };
-node *ll(node *tree) {
-	node *tmp = tree->right;
-	tree->right = tmp->left;
-	tmp->left = tree;
-	return tmp;
+node *ll(node *root) {
+	node *t = root->left;
+	root->left = t->right;
+	t->right = root;
+	return t;
 }
-node *rr(node *tree) {
-	node *tmp = tree->left;
-	tree->left = tmp->right;
-	tmp->right = tree;
-	return tmp;
+node *rr(node *root) {
+	node *t = root->right;
+	root->right = t->left;
+	t->left = root;
+	return t;
 }
-node *lr(node *tree) {
-	tree->left = ll(tree->left);
-	return rr(tree);
+node *lr(node *root) {
+	root->left = rr(root->left);
+	return ll(root);
 }
-node *rl(node *tree) {
-	tree->right = rr(tree->right);
-	return ll(tree);
+node *rl(node *root) {
+	root->right = ll(root->right);
+	return rr(root);
 }
-int getHeight(node *tree) {
-	if (tree == NULL) return 0;
-	return max(getHeight(tree->left), getHeight(tree->right)) + 1;
+int getHeight(node *root) {
+	if (root == NULL) return 0;
+	return max(getHeight(root->left), getHeight(root->right)) + 1;
 }
-node *insert(node *tree, int val) {
-	if (tree == NULL) {
-		tree = new node();
-		tree->val = val;
-	} else if (tree->val > val) {
-		tree->left = insert(tree->left, val);
-		int l = getHeight(tree->left), r = getHeight(tree->right);
-		if (l - r >= 2) {
-			if (val < tree->left->val) tree = rr(tree);
-			else tree = lr(tree);
-		}
+node *insert(node *root, int val) {
+	if (root == NULL) {
+		root = new node();
+		*root = node{val, NULL, NULL};
+	} else if (val < root->val) {
+		root->left = insert(root->left, val);
+		if (getHeight(root->left) - getHeight(root->right) == 2)
+			root = val < root->left->val ? ll(root) : lr(root);
 	} else {
-		tree->right = insert(tree->right, val);
-		int l = getHeight(tree->left), r = getHeight(tree->right);
-		if (r - l >= 2) {
-			if (val > tree->right->val) tree = ll(tree);
-			else tree = rl(tree);
-		}
+		root->right = insert(root->right, val);
+		if (getHeight(root->left) - getHeight(root->right) == -2)
+			root = val > root->right->val ? rr(root) : rl(root);
 	}
-	return tree;
+	return root;
 }
 int isComplete = 1, after = 0;
 vector<int> levelOrder(node *tree) {
