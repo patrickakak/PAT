@@ -13,7 +13,7 @@ int getsum(int x) {
 	for (int i = x; i >= 1; i -= lowbit(i)) sum += c[i];
 	return sum;
 }
-void PeekMedian() {
+void peekMedian() {
 	int left = 1, right = maxn, mid, k = (s.size() + 1) / 2;
 	while (left < right) {
 		mid = (left + right) / 2;
@@ -39,7 +39,7 @@ int main() {
 				s.pop();
 			} else printf("Invalid\n");
 		} else {
-			if (!s.empty()) PeekMedian();
+			if (!s.empty()) peekMedian();
 			else printf("Invalid\n");
 		}
 	}
