@@ -10,9 +10,8 @@ int new_round[maxn];
 int main() {
 	int np, ng, order;
 	scanf("%d%d", &np, &ng);
-	for (int i = 0; i < np; i++)
-		scanf("%d", &mice[i].wt);
-	for (int i = 0; i<np; i++) {
+	for (int i = 0; i < np; i++) scanf("%d", &mice[i].wt);
+	for (int i = 0; i < np; i++) {
 		scanf("%d", &order);
 		q.push(order);
 	}
@@ -25,8 +24,7 @@ int main() {
 			int k = q.front();
 			for (int j = 0; j < ng; j++) {
 				if (q.empty()) break;
-				if (mice[q.front()].wt > mice[k].wt)
-					k = q.front();
+				if (mice[q.front()].wt > mice[k].wt) k = q.front();
 				mice[q.front()].rnk = group + 1;
 				q.pop();
 			}
