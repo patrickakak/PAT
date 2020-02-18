@@ -18,15 +18,18 @@ int main() {
 			}
 	if (dp[m] != m) printf("No Solution");
 	else {
-		vector<int> ans;
-		for (int v = m, index = n; v > 0; index--)
+		vector<int> arr;
+		int v = m, index = n;
+		while (v > 0) {
 			if (choice[index][v] == true) {
-				ans.push_back(w[index]);
+				arr.push_back(w[index]);
 				v -= w[index];
 			}
-		for (int i = 0; i < ans.size(); i++) {
+			index--;
+		}
+		for (int i = 0; i < arr.size(); i++) {
 			if (i != 0) printf(" ");
-			printf("%d", ans[i]);
+			printf("%d", arr[i]);
 		}
 	}
 	return 0;
