@@ -9,7 +9,7 @@ struct node {
 int main() {
 	int n, m, k, q, index = 1;
 	scanf("%d%d%d%d", &n, &m, &k, &q);
-	vector<int> time(k + 1), result(k + 1);
+	vector<int> time(k + 1), res(k + 1);
 	for (int i = 1; i <= k; i++) scanf("%d", &time[i]);
 	vector<node> win(n + 1);
 	vector<bool> sorry(k + 1, false);
@@ -20,7 +20,7 @@ int main() {
 				if (win[j].endtime >= 540) sorry[index] = true;
 				win[j].endtime += time[index];
 				if (i == 1) win[j].poptime = win[j].endtime;
-				result[index] = win[j].endtime;
+				res[index] = win[j].endtime;
 				index++;
 			}
 	while (index <= k) {
@@ -35,13 +35,13 @@ int main() {
 		win[tmpwin].poptime +=  win[tmpwin].q.front();
 		if (win[tmpwin].endtime >= 540) sorry[index] = true;
 		win[tmpwin].endtime += time[index];
-		result[index] = win[tmpwin].endtime;
+		res[index] = win[tmpwin].endtime;
 		index++;
 	}
 	for (int i = 1; i <= q; i++) {
 		int query, minute;
 		scanf("%d", &query);
-		minute = result[query];
+		minute = res[query];
 		if (sorry[query] == true) printf("Sorry\n");
 		else printf("%02d:%02d\n", (minute + 480) / 60, (minute + 480) % 60);
 	}
