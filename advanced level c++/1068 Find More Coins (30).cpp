@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int dp[10010], w[10010];
+int dp[110], w[10010];
 bool choice[10010][110];
 int cmp(int a, int b) { return a > b; }
 int main() {
