@@ -19,20 +19,20 @@ int main() {
 		custom.push_back(tmpcustomer);
 	}
 	sort(custom.begin(), custom.end(), cmp);
-	vector<int> window(k, 28800);
+	vector<int> win(k, 28800);
 	double result = 0.0;
 	for (int i = 0; i < custom.size(); i++) {
-		int tmpindex = 0, minfinish = window[0];
+		int tmpindex = 0, minfinish = win[0];
 		for (int j = 1; j < k; j++)
-			if (minfinish > window[j]) {
-				minfinish = window[j];
+			if (minfinish > win[j]) {
+				minfinish = win[j];
 				tmpindex = j;
 			}
-		if (window[tmpindex] <= custom[i].come)
-			window[tmpindex] = custom[i].come + custom[i].time;
+		if (win[tmpindex] <= custom[i].come)
+			win[tmpindex] = custom[i].come + custom[i].time;
 		else {
-			result += (window[tmpindex] - custom[i].come);
-			window[tmpindex] += custom[i].time;
+			result += (win[tmpindex] - custom[i].come);
+			win[tmpindex] += custom[i].time;
 		}
 	}
 	if (custom.size() == 0) printf("0.0");
