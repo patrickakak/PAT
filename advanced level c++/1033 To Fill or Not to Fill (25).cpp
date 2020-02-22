@@ -3,27 +3,21 @@
 #include <vector>
 using namespace std;
 const int inf = 99999999;
-struct station {
-	double price, dis;
-};
-bool cmp1(station a, station b) {
-	return a.dis < b.dis;
-}
+struct station { double price, dis; };
+bool cmp(station a, station b) { return a.dis < b.dis; }
 int main() {
 	double cmax, d, davg;
 	int n;
 	scanf("%lf%lf%lf%d", &cmax, &d, &davg, &n);
 	vector<station> sta(n + 1);
 	sta[0] = {0.0, d};
-	for (int i = 1; i <= n; i++)
-		scanf("%lf%lf", &sta[i].price, &sta[i].dis);
-	sort(sta.begin(), sta.end(), cmp1);
+	for (int i = 1; i <= n; i++) scanf("%lf%lf", &sta[i].price, &sta[i].dis);
+	sort(sta.begin(), sta.end(), cmp);
 	double nowdis = 0.0, maxdis = 0.0, nowprice = 0.0, totalPrice = 0.0, leftdis = 0.0;
 	if (sta[0].dis != 0) {
 		printf("The maximum travel distance = 0.00");
 		return 0;
-	} else
-		nowprice = sta[0].price;
+	} else nowprice = sta[0].price;
 	while (nowdis < d) {
 		maxdis = nowdis + cmax * davg;
 		double minPriceDis = 0, minPrice = inf;
