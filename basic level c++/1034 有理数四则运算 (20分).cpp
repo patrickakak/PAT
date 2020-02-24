@@ -26,9 +26,9 @@ void f(long n, long d) {
 int main() {
 	long a, b, c, d;
 	scanf("%ld/%ld %ld/%ld", &a, &b, &c, &d);
-	f(a, b); cout << " + "; f(c, d); cout << " = "; f(a*d + b*c, b*d); cout << endl;
-	f(a, b); cout << " - "; f(c, d); cout << " = "; f(a*d - b*c, b*d); cout << endl;
-	f(a, b); cout << " * "; f(c, d); cout << " = "; f(a*c, b*d); cout << endl;
-	f(a, b); cout << " / "; f(c, d); cout << " = "; f(a*d, b*c);
+	f(a, b); printf(" + "); f(c, d); printf(" = "); f(a*d + b*c, b*d); printf("\n");
+	f(a, b); printf(" - "); f(c, d); printf(" = "); f(a*d - b*c, b*d); printf("\n");
+	f(a, b); printf(" * "); f(c, d); printf(" = "); f(a*c, b*d); printf("\n");
+	f(a, b); printf(" / "); f(c, d); printf(" = "); f(a*d, b*c);
 	return 0;
 }
