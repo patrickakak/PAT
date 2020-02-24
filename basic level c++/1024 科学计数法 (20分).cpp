@@ -13,15 +13,15 @@ int main() {
 		for (int i = 0; i < m.length(); i++)
 			if (m[i] != '.') cout << m[i];
 	} else {
-		cout << m[0];
-		int j, cnt = 0;
-		for (j = 2; j < m.length() && cnt < e; j++, cnt++) cout << m[j];
-		if (j == m.length())
-			for (int k = 0; k < e-cnt; k++) cout << '0';
-		else {
-			cout << '.';
-			for (int k = j; k < m.length(); k++) cout << m[k];
+		printf("%c", m[0]);
+		m.erase(0, 2);
+		int i;
+		for (i = 0; i < e; i++) {
+			if (i < m.length()) printf("%c", m[i]);
+			else printf("0");
 		}
+		if (i < m.length()) printf(".");
+		for (; i < m.length(); i++) printf("%c", m[i]);
 	}
 	return 0;
 }
