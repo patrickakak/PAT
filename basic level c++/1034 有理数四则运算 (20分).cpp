@@ -9,7 +9,7 @@ void f(long n, long d) {
 		return ;
 	}
 	bool flag = (n < 0 && d > 0) || (n > 0 && d < 0);
-	n = abs(n); d = abs(d);
+	n = abs(n), d = abs(d);
 	long q = n / d;
 	cout << (flag ? "(-" : "");
 	if (q != 0) cout << q;
@@ -20,7 +20,7 @@ void f(long n, long d) {
 	if (q != 0) cout << ' ';
 	n -= q * d;
 	long t = gcd(n, d);
-	n /= t; d /= t;
+	n /= t, d /= t;
 	cout << n << '/' << d << (flag ? ")" : "");
 }
 int main() {
