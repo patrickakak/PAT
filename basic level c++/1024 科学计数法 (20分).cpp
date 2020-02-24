@@ -16,12 +16,11 @@ int main() {
 		printf("%c", m[0]);
 		m.erase(0, 2);
 		int i;
-		for (i = 0; i < e; i++) {
+		for (i = 0; i < e; i++)
 			if (i < m.length()) printf("%c", m[i]);
 			else printf("0");
-		}
 		if (i < m.length()) printf(".");
-		for (; i < m.length(); i++) printf("%c", m[i]);
+		for ( ; i < m.length(); i++) printf("%c", m[i]);
 	}
 	return 0;
 }
