@@ -10,7 +10,7 @@ int main() {
 	vector<int> tot(m), wrongCnt(m);
 	char c;
 	for (int i = 0; i < m; i++) {
-		cin >> tot[i] >> tmp >> k;
+		scanf("%d%d%d", &tot[i], &tmp, &k);
 		for (int j = 0; j < k; j++) {
 			cin >> c;
 			right[i].insert(c);
