@@ -13,15 +13,14 @@ void f(long n, long d) {
 	long q = n / d;
 	printf("%s", flag ? "(-" : "");
 	if (q != 0) printf("%d", q);
-	if (n % d == 0) {
-		if (flag) printf(")");
-		return ;
+	if (n % d != 0) {
+		if (q != 0) printf(" ");
+		n -= q * d;
+		long t = gcd(n, d);
+		n /= t, d /= t;
+		printf("%d/%d", n, d);
 	}
-	if (q != 0) printf(" ");
-	n -= q * d;
-	long t = gcd(n, d);
-	n /= t, d /= t;
-	printf("%d/%d%s", n, d, flag ? ")" : "");
+	if (flag) printf(")");
 }
 int main() {
 	long a, b, c, d;
