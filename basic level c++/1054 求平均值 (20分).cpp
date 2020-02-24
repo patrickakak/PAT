@@ -13,19 +13,15 @@ int main() {
 		int flag = 0;
 		for (int j = 0; j < strlen(a); j++)
 			if (a[j] != b[j]) {
-				flag = 1;
-				break;
+				flag = 1; break;
 			}
-		if (flag || tmp < -1000 || tmp > 1000)
-			printf("ERROR: %s is not a legal number\n", a);
+		if (flag || tmp < -1000 || tmp > 1000) printf("ERROR: %s is not a legal number\n", a);
 		else {
 			sum += tmp;
 			cnt++;
 		}
 	}
-	if (cnt != 0)
-		printf("The average of %d number%s is %.2f", cnt, cnt > 1 ? "s" : "", sum / cnt);
-	else
-		printf("The average of 0 numbers is Undefined");
+	if (cnt != 0) printf("The average of %d number%s is %.2f", cnt, cnt > 1 ? "s" : "", sum / cnt);
+	else printf("The average of 0 numbers is Undefined");
 	return 0;
 }
