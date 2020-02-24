@@ -12,7 +12,7 @@ int main() {
 			break;
 		}
 	vector<int> a(N);
-	for (int i = 0; i < N; i++) cin >> a[i];
+	for (int i = 0; i < N; i++) scanf("%d", &a[i]);
 	sort(a.rbegin(), a.rend());
 	vector<vector<int>> b(m, vector<int>(n));
 	int level = m / 2 + m % 2;
@@ -28,10 +28,10 @@ int main() {
 	}
 	for (int i = 0; i < m; i++) {
 		for (int j = 0 ; j < n; j++) {
-			cout << b[i][j];
-			if (j != n - 1) cout << ' ';
+			printf("%d", b[i][j]);
+			if (j != n - 1) printf(" ");
 		}
-		cout << endl;
+		printf("\n");
 	}
 	return 0;
 }
