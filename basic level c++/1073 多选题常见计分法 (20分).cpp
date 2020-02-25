@@ -25,13 +25,12 @@ int main() {
 				opt[i][j] += hash[c-'a'];
 			}
 			int e = opt[i][j] ^ right[j];
-			if (e) {
-				if ((opt[i][j] | right[j]) == right[j])
-					grade += tot[j] * 1.0 / 2;
-				if (e)
-					for (int k = 0; k < 5; k++)
-						if (e & hash[k]) cnt[j][k]++;
-			} else grade += tot[j];
+			if (!e) grade += tot[j];
+			else {
+				if ((opt[i][j] | right[j]) == right[j]) grade += tot[j] * 1.0 / 2;
+				for (int k = 0; k < 5; k++)
+					if (e & hash[k]) cnt[j][k]++;
+			}
 		}
 		printf("%.1f\n", grade);
 	}
@@ -42,7 +41,6 @@ int main() {
 	else
 		for (int i = 0; i < m; i++)
 			for (int j = 0; j < cnt[i].size(); j++)
-				if (maxcnt == cnt[i][j])
-					printf("%d %d-%c\n", maxcnt, i+1, 'a'+j);
+				if (maxcnt == cnt[i][j]) printf("%d %d-%c\n", maxcnt, i+1, 'a'+j);
 	return 0;
 }
