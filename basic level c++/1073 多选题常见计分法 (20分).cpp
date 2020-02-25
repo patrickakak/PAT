@@ -36,7 +36,7 @@ int main() {
 	}
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < 5; j++)
-			maxcnt = maxcnt > cnt[i][j] ? maxcnt : cnt[i][j];
+			maxcnt = max(maxcnt, cnt[i][j]);
 	if (maxcnt == 0) printf("Too simple\n");
 	else
 		for (int i = 0; i < m; i++)
