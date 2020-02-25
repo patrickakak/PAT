@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
 	int n, m, optnum, truenum, tmp, maxcnt = 0;
-	int hash[] = {1, 2, 4, 8, 16}, opt[1000][100] = {0};
+	int h[] = {1, 2, 4, 8, 16}, opt[1000][100] = {0};
 	char c;
 	scanf("%d %d", &n, &m);
 	vector<int> tot(m), right(m);
@@ -12,7 +12,7 @@ int main() {
 		scanf("%d %d %d", &tot[i], &optnum, &truenum);
 		for (int j = 0; j < truenum; j++) {
 			scanf(" %c", &c);
-			right[i] += hash[c-'a'];
+			right[i] += h[c-'a'];
 		}
 	}
 	for (int i = 0; i < n; i++) {
@@ -22,14 +22,14 @@ int main() {
 			scanf("(%d", &tmp);
 			for (int k = 0; k < tmp; k++) {
 				scanf(" %c)", &c);
-				opt[i][j] += hash[c-'a'];
+				opt[i][j] += h[c-'a'];
 			}
 			int e = opt[i][j] ^ right[j];
 			if (!e) grade += tot[j];
 			else {
 				if ((opt[i][j] | right[j]) == right[j]) grade += 0.5 * tot[j];
 				for (int k = 0; k < 5; k++)
-					if (e & hash[k]) cnt[j][k]++;
+					if (e & h[k]) cnt[j][k]++;
 			}
 		}
 		printf("%.1f\n", grade);
