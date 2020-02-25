@@ -3,7 +3,7 @@ using namespace std;
 string a[] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
 string b[] = {"", "Shi", "Bai", "Qian", "Wan", "Yi"};
 int main() {
-	int n;
+	long long n;
 	cin >> n;
 	string s = to_string(n);
 	int l = 0, r = s.length() - 1;
