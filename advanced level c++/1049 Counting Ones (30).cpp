@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int n, left = 0, right = 0, a = 1, now = 1, ans = 0;
+	int n, left, right, a = 1, now = 1, ans = 0;
 	scanf("%d", &n);
 	while (n / a) {
 		left = n / (a * 10), now = n / a % 10, right = n % a;
