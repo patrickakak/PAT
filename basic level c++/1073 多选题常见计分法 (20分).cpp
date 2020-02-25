@@ -24,12 +24,12 @@ int main() {
 				scanf(" %c)", &c);
 				opt[i][j] += h[c-'a'];
 			}
-			int e = opt[i][j] ^ right[j];
-			if (!e) grade += tot[j];
+			int exor = opt[i][j] ^ right[j];
+			if (!exor) grade += tot[j];
 			else {
 				if ((opt[i][j] | right[j]) == right[j]) grade += 0.5 * tot[j];
 				for (int k = 0; k < 5; k++)
-					if (e & h[k]) cnt[j][k]++;
+					if (exor & h[k]) cnt[j][k]++;
 			}
 		}
 		printf("%.1f\n", grade);
