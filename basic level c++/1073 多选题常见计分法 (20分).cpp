@@ -27,7 +27,7 @@ int main() {
 			int e = opt[i][j] ^ right[j];
 			if (!e) grade += tot[j];
 			else {
-				if ((opt[i][j] | right[j]) == right[j]) grade += tot[j] * 1.0 / 2;
+				if ((opt[i][j] | right[j]) == right[j]) grade += 0.5 * tot[j];
 				for (int k = 0; k < 5; k++)
 					if (e & hash[k]) cnt[j][k]++;
 			}
