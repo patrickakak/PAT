@@ -6,8 +6,8 @@ int main() {
 	cin >> n;
 	int first = 0, len = 0, maxn = sqrt(n) + 1;
 	for (int i = 2; i <= maxn; i++) {
-		int j, fac = 1;
-		for (j = i; j <= maxn; j++) {
+		int j = i, fac = 1;
+		for ( ; j <= maxn; j++) {
 			fac *= j;
 			if (n % fac != 0) break;
 		}
@@ -16,12 +16,12 @@ int main() {
 			first = i;
 		}
 	}
-	if (first == 0) cout << 1 << endl << n;
+	if (first == 0) printf("1\n%d", n);
 	else {
-		cout << len << endl;
+		printf("%d\n", len);
 		for (int i = 0; i < len; i++) {
-			cout << first + i;
-			if (i != len - 1) cout << '*';
+			printf("%d", first+i);
+			if (i != len - 1) printf("*");
 		}
 	}
 	return 0;
