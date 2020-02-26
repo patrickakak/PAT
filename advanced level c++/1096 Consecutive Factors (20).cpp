@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int main(){
+int main() {
 	int n;
 	cin >> n;
 	int first = 0, len = 0, maxn = sqrt(n) + 1;
