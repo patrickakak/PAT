@@ -15,13 +15,13 @@ int main() {
 		int cnt = 0, flag = 0;
 		while (prime[i] == 1 && a % i == 0) {
 			cnt++;
-			a = a / i;
+			a /= i;
 			flag = 1;
 		}
 		if (flag) {
 			if (state) printf("*");
-			printf("%d", i);
 			state = true;
+			printf("%d", i);
 		}
 		if (cnt > 1) printf("^%d", cnt);
 	}
