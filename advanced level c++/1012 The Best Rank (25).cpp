@@ -4,8 +4,7 @@
 #include <unordered_set>
 using namespace std;
 struct node {
-	int id, r[4];
-	double g[4];
+	int id, g[4], r[4];
 };
 int flag;
 bool cmp(node a, node b) { return a.g[flag] > b.g[flag]; }
@@ -15,13 +14,13 @@ int main() {
 	vector<node> v(n);
 	unordered_set<int> s;
 	for (int i = 0; i < n; i++) {
-		cin >> v[i].id >> v[i].g[1] >> v[i].g[2] >> v[i].g[3];
-		v[i].g[0] = (v[i].g[1] + v[i].g[2] + v[i].g[3]) / 3;
+		scanf("%d%d%d%d", &v[i].id, &v[i].g[1], &v[i].g[2], &v[i].g[3]);
+		v[i].g[0] = v[i].g[1] + v[i].g[2] + v[i].g[3];
 		s.insert(v[i].id);
 	}
 	string str = "ACME";
 	for (int i = 0; i < m; i++) {
-		cin >> id;
+		scanf("%d", &id);
 		if (s.find(id) == s.end()) {
 			printf("N/A\n"); continue;
 		}
