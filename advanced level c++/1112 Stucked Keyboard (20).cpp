@@ -11,7 +11,7 @@ int main() {
 	map<char, bool> m;
 	set<char> printed;
 	char pre = '#';
-	s = s + '#';
+	s += '#';
 	for (int i = 0; i < s.length(); i++) {
 		if (s[i] == pre) cnt++;
 		else {
