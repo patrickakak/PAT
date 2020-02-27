@@ -18,8 +18,7 @@ int main() {
 		char tmp[5];
 		int h, m, s;
 		scanf("%s %d:%d:%d %s\n", rec[i].id, &h, &m, &s, tmp);
-		int tmptime = h * 3600 + m * 60 + s;
-		rec[i].time = tmptime;
+		rec[i].time = 3600 * h + 60 * m + s;
 		rec[i].flag = strcmp(tmp, "in") == 0 ? 1 : -1;
 	}
 	sort(rec.begin(), rec.end(), cmp1);
