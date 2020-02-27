@@ -31,7 +31,7 @@ int main() {
 	printf("\n");
 	for (int i = 0; i < s.length() - 1; i++) {
 		printf("%c", s[i]);
-		if (m[s[i]]) i = i + k - 1;
+		if (m[s[i]]) i += k - 1;
 	}
 	return 0;
 }
