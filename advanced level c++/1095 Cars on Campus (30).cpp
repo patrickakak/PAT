@@ -38,8 +38,8 @@ int main() {
 	for (int i = 0; i < k; i++) {
 		int h, m, s;
 		scanf("%d:%d:%d", &h, &m, &s);
-		int j, tmptime = h * 3600 + m * 60 + s;
-		for (j = tmpindex; j < car.size(); j++)
+		int j = tmpindex, tmptime = 3600 * h + 60 * m + s;
+		for ( ; j < car.size(); j++)
 			if (car[j].time > tmptime) {
 				printf("%d\n", cnt[j - 1]);
 				break;
