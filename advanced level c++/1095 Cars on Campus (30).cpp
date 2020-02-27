@@ -31,7 +31,7 @@ int main() {
 			if (maxtime < mp[rec[i].id]) maxtime = mp[rec[i].id];
 		}
 	sort(car.begin(), car.end(), cmp2);
-	vector<int> cnt(n);
+	vector<int> cnt(car.size());
 	for (int i = 0; i < car.size(); i++)
 		if (i == 0) cnt[i] += car[i].flag;
 		else cnt[i] = cnt[i - 1] + car[i].flag;
