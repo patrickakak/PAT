@@ -5,7 +5,7 @@
 #include <map>
 using namespace std;
 struct node {
-	char id[10];
+	char id[8];
 	int time, flag;
 };
 bool cmp1(node &a, node &b) { return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time; }
