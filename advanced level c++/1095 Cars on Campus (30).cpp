@@ -41,7 +41,8 @@ int main() {
 		int j = tmpindex, tmptime = 3600 * h + 60 * m + s;
 		for ( ; j < car.size(); j++)
 			if (car[j].time > tmptime) {
-				printf("%d\n", cnt[j - 1]);
+				if (j == 0) printf("0\n");
+				else printf("%d\n", cnt[j - 1]);
 				break;
 			} else if (j == car.size() - 1)
 				printf("%d\n", cnt[j]);
