@@ -22,8 +22,7 @@ int main() {
 		pre = s[i];
 	}
 	for (int i = 0; i < s.length() - 1; i++)
-		if (sureFine[s[i]] == true)
-			m[s[i]] = false;
+		if (sureFine[s[i]] == true) m[s[i]] = false;
 	for (int i = 0; i < s.length() - 1; i++)
 		if (m[s[i]] && printed.find(s[i]) == printed.end()) {
 			printf("%c", s[i]);
