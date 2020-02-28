@@ -6,7 +6,7 @@ using namespace std;
 struct person {
 	int arrive, start, time;
 	bool vip;
-}tmpperson;
+} tmpperson;
 struct tblnode {
 	int end = 8 * 3600, num;
 	bool vip;
@@ -16,10 +16,8 @@ bool cmp2(person a, person b) { return a.start < b.start; }
 vector<person> player;
 vector<tblnode> tbl;
 void alloctbl(int personid, int tblid) {
-	if (player[personid].arrive <= tbl[tblid].end)
-		player[personid].start = tbl[tblid].end;
-	else
-		player[personid].start = player[personid].arrive;
+	if (player[personid].arrive <= tbl[tblid].end) player[personid].start = tbl[tblid].end;
+	else player[personid].start = player[personid].arrive;
 	tbl[tblid].end = player[personid].start + player[personid].time;
 	tbl[tblid].num++;
 }
