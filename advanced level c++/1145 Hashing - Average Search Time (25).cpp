@@ -14,7 +14,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &key);
 		int flag = 0;
-		for (int step = 0; step < sz; step++) {
+		for (int step = 0; step <= sz; step++) {
 			int pos = (key + step * step) % sz;
 			if (v[pos] == 0) {
 				v[pos] = key;
