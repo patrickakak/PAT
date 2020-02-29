@@ -33,16 +33,16 @@ void dfs(int node, int cnt) {
 		}
 }
 int main() {
-	int n, m, k, pre, tmp;
+	int n, m, k, pre, sid;
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d%d", &m, &pre);
 		for (int j = 1; j < m; j++) {
-			scanf("%d", &tmp);
-			v[pre].push_back(tmp);
-			v[tmp].push_back(pre);
-			line[pre * 10000 + tmp] = line[tmp * 10000 + pre] = i + 1;
-			pre = tmp;
+			scanf("%d", &sid);
+			v[pre].push_back(sid);
+			v[sid].push_back(pre);
+			line[pre * 10000 + sid] = line[sid * 10000 + pre] = i + 1;
+			pre = sid;
 		}
 	}
 	scanf("%d", &k);
