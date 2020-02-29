@@ -7,12 +7,12 @@ int visit[10000], minCnt, minTrans, src, dest;
 unordered_map<int, int> line;
 vector<int> path, tmpPath;
 int transCnt(vector<int> a) {
-	int tcnt = -1, preLine = 0;
+	int transCnt = -1, preLine = 0;
 	for (int i = 1; i < a.size(); i++) {
-		if (line[a[i-1] * 10000 + a[i]] != preLine) tcnt++;
+		if (line[a[i-1] * 10000 + a[i]] != preLine) transCnt++;
 		preLine = line[a[i-1] * 10000 + a[i]];
 	}
-	return tcnt;
+	return transCnt;
 }
 void dfs(int node, int cnt) {
 	if (node == dest) {
