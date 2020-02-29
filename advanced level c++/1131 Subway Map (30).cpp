@@ -15,22 +15,22 @@ int transCnt(vector<int> a) {
 	return transCnt;
 }
 void dfs(int node, int cnt) {
+	visit[node] = 1;
+	tmpPath.push_back(node);
 	if (node == dest) {
 		if (cnt < minCnt || (cnt == minCnt && transCnt(tmpPath) < minTrans)) {
 			minCnt = cnt;
 			minTrans = transCnt(tmpPath);
 			path = tmpPath;
 		}
+		tmpPath.pop_back();
+		visit[node] = 0;
 		return;
 	}
 	for (int i = 0; i < v[node].size(); i++)
-		if (!visit[v[node][i]]) {
-			visit[v[node][i]] = 1;
-			tmpPath.push_back(v[node][i]);
-			dfs(v[node][i], cnt + 1);
-			visit[v[node][i]] = 0;
-			tmpPath.pop_back();
-		}
+		if (!visit[v[node][i]]) dfs(v[node][i], cnt + 1);
+	visit[node] = 0;
+	tmpPath.pop_back();
 }
 int main() {
 	int n, m, k, pre, sid;
@@ -48,12 +48,9 @@ int main() {
 	scanf("%d", &k);
 	while (k--) {
 		scanf("%d%d", &src, &dest);
-		minCnt = minTrans = 0x3ffffff;
+		minCnt = minTrans = 0x2fffffff;
 		tmpPath.clear();
-		tmpPath.push_back(src);
-		visit[src] = 1;
 		dfs(src, 0);
-		visit[src] = 0;
 		printf("%d\n", minCnt);
 		int preLine = 0, preTrans = src;
 		for (int i = 1; i < path.size(); i++)
