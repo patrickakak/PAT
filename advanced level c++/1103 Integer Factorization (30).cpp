@@ -24,8 +24,7 @@ void dfs(int index, int sum, int depth, int facSum) {
 			tmpAns[depth] = index;
 			dfs(index, sum + v[index], depth + 1, facSum + index);
 		}
-		if (index == 1) return;
-		index--;
+		if (index-- == 1) return;
 	}
 }
 int main() {
