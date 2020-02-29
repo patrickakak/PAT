@@ -15,8 +15,8 @@ int transCnt(vector<int> &a) {
 	return transCnt;
 }
 void dfs(int node, int cnt) {
-	visit[node] = 1;
 	tmpPath.push_back(node);
+	visit[node] = 1;
 	if (node == dest) {
 		if (cnt < minCnt || (cnt == minCnt && transCnt(tmpPath) < minTrans)) {
 			minCnt = cnt;
@@ -29,8 +29,8 @@ void dfs(int node, int cnt) {
 	}
 	for (int i = 0; i < v[node].size(); i++)
 		if (!visit[v[node][i]]) dfs(v[node][i], cnt + 1);
-	visit[node] = 0;
 	tmpPath.pop_back();
+	visit[node] = 0;
 }
 int main() {
 	int n, m, k, pre, sid;
