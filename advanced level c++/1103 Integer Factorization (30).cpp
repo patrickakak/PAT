@@ -36,8 +36,7 @@ int main() {
 	if (maxFacSum == -1) printf("Impossible");
 	else {
 		printf("%d = %d^%d", n, ans[0], p);
-		for (int i = 1; i < ans.size(); i++)
-			printf(" + %d^%d", ans[i], p);
+		for (int i = 1; i < ans.size(); i++) printf(" + %d^%d", ans[i], p);
 	}
 	return 0;
 }
