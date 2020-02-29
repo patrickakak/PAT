@@ -4,10 +4,10 @@ struct node {
 	string s;
 	int l, r;
 } a[100];
-string dfs(int root) {
+string inorder(int root) {
 	if (root == -1) return "";
 	if (a[root].l == -1 && a[root].r == -1) return a[root].s;
-	else return "(" + dfs(a[root].l) + a[root].s + dfs(a[root].r) + ")";
+	else return "(" + inorder(a[root].l) + a[root].s + inorder(a[root].r) + ")";
 }
 int main() {
 	int h[100] = {0}, n, root = 1;
@@ -18,7 +18,7 @@ int main() {
 		if (a[i].r != -1) h[a[i].r] = 1;
 	}
 	while (root <= n && h[root] == 1) root++;
-	string ans = dfs(root);
+	string ans = inorder(root);
 	if (ans[0] == '(') ans = ans.substr(1, ans.size()-2);
 	cout << ans;
 	return 0;
