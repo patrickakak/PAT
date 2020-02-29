@@ -13,8 +13,7 @@ void lca(int inl, int inr, int prel, int prer, int u, int v) {
 		printf("LCA of %d and %d is %d.\n", u, v, in[rin]);
 	else if (uin > rin && vin > rin)
 		lca(rin+1, inr, prel+1+(rin-inl), prer, u, v);
-	else
-		printf("%d is an ancestor of %d.\n", in[rin], uin == rin ? v : u);
+	else printf("%d is an ancestor of %d.\n", in[rin], uin == rin ? v : u);
 }
 int main() {
 	int m, n, u, v;
