@@ -21,14 +21,11 @@ int main() {
 	int n;
 	scanf("%d", &n);
 	pre.resize(n), post.resize(n);
-	for (int i = 0; i < n; i++) 
-		scanf("%d", &pre[i]);
-	for (int i = 0; i < n; i++)
-		scanf("%d", &post[i]);
+	for (int i = 0; i < n; i++) scanf("%d", &pre[i]);
+	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
 	getIn(0, n-1, 0, n-1);
 	printf("%s\n%d", unique == true ? "Yes" : "No", in[0]);
-	for (int i = 1; i < in.size(); i++)
-		printf(" %d", in[i]);
+	for (int i = 1; i < in.size(); i++) printf(" %d", in[i]);
 	printf("\n");
 	return 0;
 }
