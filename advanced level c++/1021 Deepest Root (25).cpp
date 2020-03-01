@@ -34,7 +34,7 @@ int main() {
 			dfs(i, 1);
 			if (i == 1) {
 				if (tmp.size() != 0) src = tmp[0];
-				for (int j = 0; j < tmp.size(); j++) s.insert(tmp[j]);
+				for (auto j : tmp) s.insert(j);
 			}
 			cnt++;
 		}
@@ -44,7 +44,7 @@ int main() {
 		maxheight = 0;
 		fill(visit, visit + 10010, false);
 		dfs(src, 1);
-		for (int i = 0; i < tmp.size(); i++) s.insert(tmp[i]);
+		for (auto i : tmp) s.insert(i);
 		for (auto it : s) printf("%d\n", it);
 	}
 	return 0;
