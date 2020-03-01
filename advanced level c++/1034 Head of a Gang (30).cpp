@@ -9,8 +9,7 @@ int stoifunc(string s) {
 		str2int[s] = index;
 		int2str[index] = s;
 		return index++;
-	} else
-		return str2int[s];
+	} else return str2int[s];
 }
 int G[2010][2010], weight[2010];
 bool vis[2010];
@@ -18,19 +17,17 @@ void dfs(int u, int &head, int &numMbr, int &totalweight) {
 	vis[u] = true;
 	numMbr++;
 	if (weight[u] > weight[head]) head = u;
+	totalweight += weight[u];
 	for (int v = 1; v < index; v++)
-		if (G[u][v] > 0) {
-			totalweight += G[u][v];
-			G[u][v] = G[v][u] = 0;
-			if (!vis[v]) dfs(v, head, numMbr, totalweight);
-		}
+		if (!vis[v] && G[u][v] > 0)
+			dfs(v, head, numMbr, totalweight);
 }
 void dfsTrave() {
 	for (int i = 1; i < index; i++)
 		if (!vis[i]) {
 			int head = i, numMbr = 0, totalweight = 0;
 			dfs(i, head, numMbr, totalweight);
-			if (numMbr > 2 && totalweight > k) ans[int2str[head]] = numMbr;
+			if (numMbr > 2 && totalweight/2 > k) ans[int2str[head]] = numMbr;
 		}
 }
 int main() {
