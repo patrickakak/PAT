@@ -6,7 +6,7 @@ const int inf = 0x3fffffff;
 int cmax, n, sp, m;
 int minNeed = inf, minBack = inf;
 int e[510][510], dis[510], weight[510];
-bool visit[510];
+bool vis[510];
 vector<int> pre[510], path, tmppath;
 void dfs(int v) {
 	tmppath.push_back(v);
@@ -54,14 +54,14 @@ int main() {
 	for (int i = 0; i <= n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j <= n; j++)
-			if (!visit[j] && dis[j] < minn) {
+			if (!vis[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
-		visit[u] = true;
+		vis[u] = true;
 		for (int v = 0; v <= n; v++)
-			if (!visit[v] && e[u][v] != inf) {
+			if (!vis[v] && e[u][v] != inf) {
 				if (dis[v] > dis[u] + e[u][v]) {
 					dis[v] = dis[u] + e[u][v];
 					pre[v].clear();
