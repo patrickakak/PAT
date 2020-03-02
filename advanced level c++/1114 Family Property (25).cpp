@@ -25,9 +25,9 @@ void Union(int a, int b) {
 	int faA = find(a);
 	int faB = find(b);
 	if (faA > faB) father[faA] = faB;
-	else if (faA < faB) father[faB] = faA;
+	else father[faB] = faA;
 }
-int cmp(node a, node b) { return a.area != b.area ? a.area > b.area : a.id < b.id; }
+int cmp(node &a, node &b) { return a.area != b.area ? a.area > b.area : a.id < b.id; }
 int main() {
 	int n, k, cnt = 0;
 	scanf("%d", &n);
