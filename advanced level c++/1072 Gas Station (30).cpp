@@ -9,18 +9,13 @@ int main() {
 	fill(e[0], e[0] + 1020 * 1020, inf);
 	scanf("%d%d%d%d", &n, &m, &k, &ds);
 	for (int i = 0; i < k; i++) {
-		int tmpdis;
+		int a, b, tmpdis;
 		string s, t;
 		cin >> s >> t >> tmpdis;
-		int a, b;
-		if (s[0] == 'G') {
-			s = s.substr(1);
-			a = n + stoi(s);
-		} else a = stoi(s);
-		if (t[0] == 'G') {
-			t = t.substr(1);
-			b = n + stoi(t);
-		} else b = stoi(t);
+		if (s[0] == 'G') a = n + stoi(s.substr(1));
+		else a = stoi(s);
+		if (t[0] == 'G') b = n + stoi(t.substr(1));
+		else b = stoi(t);
 		e[a][b] = e[b][a] = tmpdis;
 	}
 	int ansid = -1;
