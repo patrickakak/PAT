@@ -2,8 +2,7 @@
 #include <algorithm>
 using namespace std;
 const int inf = 999999999;
-int n, m, k, ds, station;
-int e[1020][1020], dis[1020];
+int n, m, k, ds, e[1020][1020], dis[1020];
 bool vis[1020];
 int main() {
 	fill(e[0], e[0] + 1020 * 1020, inf);
