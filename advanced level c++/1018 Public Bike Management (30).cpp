@@ -43,7 +43,7 @@ int main() {
 	scanf("%d%d%d%d", &cmax, &n, &sp, &m);
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &weight[i]);
-		weight[i] = weight[i] - cmax / 2;
+		weight[i] -= cmax / 2;
 	}
 	for (int i = 0; i < m; i++) {
 		int a, b, t;
