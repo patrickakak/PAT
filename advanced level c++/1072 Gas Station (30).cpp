@@ -12,10 +12,8 @@ int main() {
 		int a, b, tmpdis;
 		string s, t;
 		cin >> s >> t >> tmpdis;
-		if (s[0] == 'G') a = n + stoi(s.substr(1));
-		else a = stoi(s);
-		if (t[0] == 'G') b = n + stoi(t.substr(1));
-		else b = stoi(t);
+		a = s[0] == 'G' ? n + stoi(s.substr(1)) : stoi(s);
+		b = t[0] == 'G' ? n + stoi(t.substr(1)) : stoi(t);
 		e[a][b] = e[b][a] = tmpdis;
 	}
 	int ansid = -1;
