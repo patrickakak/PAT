@@ -12,7 +12,7 @@ void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == 0) {
 		int need = 0, back = 0;
-		for (int i = tmppath.size() - 1; i >= 0; i--) {
+		for (int i = tmppath.size() - 2; i >= 0; i--) {
 			int id = tmppath[i];
 			if (weight[id] > 0) back += weight[id];
 			else {
