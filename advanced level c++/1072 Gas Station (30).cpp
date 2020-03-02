@@ -4,7 +4,7 @@ using namespace std;
 const int inf = 999999999;
 int n, m, k, ds, station;
 int e[1020][1020], dis[1020];
-bool visit[1020];
+bool vis[1020];
 int main() {
 	fill(e[0], e[0] + 1020 * 1020, inf);
 	scanf("%d%d%d%d", &n, &m, &k, &ds);
@@ -21,19 +21,19 @@ int main() {
 	for (int index = n + 1; index <= n + m; index++) {
 		double mindis = inf, aver = 0;
 		fill(dis, dis + 1020, inf);
-		fill(visit, visit + 1020, false);
+		fill(vis, vis + 1020, false);
 		dis[index] = 0;
-		for (int i = 0; i < n + m; i++) {
+		for (int i = 1; i <= n + m; i++) {
 			int u = -1, minn = inf;
 			for (int j = 1; j <= n + m; j++)
-				if (!visit[j] && dis[j] < minn) {
+				if (!vis[j] && dis[j] < minn) {
 					u = j;
 					minn = dis[j];
 				}
 			if (u == -1) break;
-			visit[u] = true;
+			vis[u] = true;
 			for (int v = 1; v <= n + m; v++)
-				if (!visit[v] && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
+				if (!vis[v] && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
 					dis[v] = dis[u] + e[u][v];
 		}
 		for (int i = 1; i <= n; i++) {
