@@ -5,7 +5,7 @@ const int inf = 0x2fffffff;
 int e[1010][1010], dis[1010];
 bool vis[1010];
 int main() {
-	fill(e[0], e[0]+1010*1010, inf);
+	fill(e[0], e[0] + 1010 * 1010, inf);
 	int nv, ne, k, a, b, w;
 	cin >> nv >> ne;
 	for (int i = 0; i < ne; i++) {
