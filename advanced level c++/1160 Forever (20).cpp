@@ -30,7 +30,7 @@ int main() {
 		scanf("%d%d", &k, &m);
 		vector<pair<int, int>> ans;
 		int begin = pow(10, k-1), end = pow(10, k);
-		for (int j = begin + 9; j < end; j += 10) {
+		for (int j = begin + 99; j < end; j += 100) {
 			if (getSum(j) != m) continue;
 			int n = getSum(j + 1);
 			int d = gcd(m, n);
