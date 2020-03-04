@@ -1,68 +1,84 @@
 #include <iostream>
+#include <map>
+#include <cmath>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
 #include <vector>
 #include <algorithm>
-#include <string>
-#include <unordered_map>
-#include <math.h>
-#define maxsize 10000
 using namespace std;
-struct Node {
-	string add, next;
-	int v;
+struct node {
+	int addr, data, next, flag, order;
 };
-int n;
-string firstL1, firstL2;
-unordered_map<string, Node> l;
-vector<Node> l1, l2, out;
-void comu(vector<Node> a, vector<Node> b) {
-	int j = b.size() - 1;
-	for (int i = 0; i < b.size(); i++, j--) {
-		if (i >= j) break;
-		swap(b[i], b[j]);
-	}
-	for (int i = a.size() - 1; i >= 0; i--) {
-		j = i + 1;
-		if (j <= (2 * b.size())) {
-			out.push_back(b[b.size() - 1]);
-			b.pop_back();
-		}
-		out.push_back(a[i]);
-	}
+int num1=0, num2=0;//1长，2短
+vector<node> v(100000);
+vector<node> ans;
+bool cmp(node &a, node &b) {
+	if (a.flag!=b.flag) return a.flag>b.flag;
+	else return a.order<b.order;
+}
+bool cmp2(node &a, node &b) {
+	return a.order>b.order;
 }
 int main() {
-	std::iostream::sync_with_stdio(false);
-	std::cin.tie(0);
-	cin >> firstL1 >> firstL2 >> n;
-	string a, b;
-	int v;
-	Node tmpNode;
-	for (int i = 0; i < n; i++) {
-		cin >> tmpNode.add >> tmpNode.v >> tmpNode.next;
-		l.insert(make_pair(tmpNode.add, tmpNode));
+	//【题意】：将短链表逆序，并入长链表，题目保证较长的链表至
+	//少是较短链表的两倍长
+	//【分析】：
+	int fir1, fir2, n;
+	cin >> fir1 >> fir2 >> n;
+	for (int i=0; i<n; i++) {
+		int addr, data, next;
+		scanf("%d%d%d", &addr, &data, &next);
+		v[addr].addr=addr, v[addr].data=data, v[addr].next=next;
 	}
-	a = firstL1;
-	while (l.find(a) != l.end()) {
-		tmpNode = l.find(a)->second;
-		l1.push_back(tmpNode);
-		if (tmpNode.next == "-1")
-			break;
-		a = tmpNode.next;
+	int p=fir1;
+	while (p!=-1) {
+		v[p].flag=1;
+		v[p].order=num1++;
+		p=v[p].next;
 	}
-	a = firstL2;
-	while (l.find(a) != l.end()) {
-		tmpNode = l.find(a)->second;
-		l2.push_back(tmpNode);
-		if (tmpNode.next == "-1")
-			break;
-		a = tmpNode.next;
+	p=fir2;
+	while (p!=-1) {
+		v[p].flag=2;
+		v[p].order=num2++;
+		p=v[p].next;
 	}
-	int s1 = l1.size(), s2 = l2.size();
-	if (s1 >= (2 * s2))
-		comu(l1, l2);
-	else
-		comu(l2, l1);
-	for (int i = out.size() - 1; i >= 1; i--)
-		cout << out[i].add << " " << out[i].v << " " << out[i - 1].add << endl;
-	cout << out[0].add << " " << out[0].v << " " << -1 << endl;
+	if (num1<num2) {
+		swap(num1, num2);
+		swap(fir1, fir2);
+	}
+	p=fir1;
+	while (p!=-1) {
+		v[p].flag=1;
+		p=v[p].next;
+	}
+	p=fir2;
+	while (p!=-1) {
+		v[p].flag=2;
+		p=v[p].next;
+	} //第一条长，标记flag=1，第二条短,flag=2，短在前
+	sort(v.begin(), v.end(), cmp);
+	sort(v.begin(), v.begin()+num2, cmp2);//短的逆序
+	//短的在前num2，长的在后num1
+	int cnt1=num2, cnt2=0;
+	while (cnt1 <num1+num2 || cnt2<num2) {
+		if (cnt1<num1+num2) {
+			for (int j=cnt1; j<cnt1+2&&cnt1<num1+num2; j++) {
+				ans.push_back(node{v[j].addr, v[j].data});
+			}
+			cnt1+=2;
+		}
+		if (cnt2<num2) {
+			ans.push_back(node{v[cnt2].addr, v[cnt2].data});
+			cnt2+=1;
+		}
+	}
+	for (int i=0; i<num1+num2; i++) {
+		if (i!=num1+num2-1) {
+			printf("%05d %d %05d\n", ans[i].addr, ans[i].data, ans[i+1].addr);
+		} else {
+			printf("%05d %d -1", ans[i].addr, ans[i].data);
+		}
+	}
 	return 0;
 }
