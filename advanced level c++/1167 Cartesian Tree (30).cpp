@@ -5,15 +5,15 @@
 using namespace std;
 map<int, int> mp;
 vector<int> in;
-void inorder(int inl, int inr, int num) {
+void inorder(int inl, int inr, int index) {
 	if (inl > inr) return;
 	int p = min_element(in.begin()+inl, in.begin()+inr+1) - (in.begin()+inl);
 	int minn = in[inl+p];
-	mp[minn] = num;
-	inorder(inl, inl+p-1, 2*num);
-	inorder(inl+p+1, inr, 2*num+1);
+	mp[minn] = index;
+	inorder(inl, inl+p-1, 2*index);
+	inorder(inl+p+1, inr, 2*index+1);
 }
-bool cmp(int a, int b) { return mp[a]<mp[b]; }
+bool cmp(int a, int b) { return mp[a] < mp[b]; }
 int main() {
 	int n;
 	cin >> n;
