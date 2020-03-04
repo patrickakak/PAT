@@ -3,12 +3,12 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int getSum(int num) {
+int getSum(int n) {
 	int sum = 0;
 	do {
-		sum += num % 10;
-		num /= 10;
-	} while (num);
+		sum += n % 10;
+		n /= 10;
+	} while (n != 0);
 	return sum;
 }
 bool isprime(int n) {
@@ -19,6 +19,9 @@ bool isprime(int n) {
 }
 int gcd(int a, int b) {
 	return !b ? a: gcd(b, a % b);
+}
+bool cmp(pair<int, int> &a, pair<int, int> &b) {
+	return a.first != b.first ? a.first < b.first : a.second < b.second;
 }
 int main() {
 	int N;
@@ -34,9 +37,7 @@ int main() {
 			int d = gcd(m, n);
 			if (d > 2 && isprime(d)) ans.push_back({n, j});
 		}
-		sort(ans.begin(), ans.end(), [](pair<int, int> a, pair<int, int> b) {
-			return a.first != b.first ? a.first < b.first : a.second < b.second;
-		});
+		sort(ans.begin(), ans.end(), cmp);
 		printf("Case %d\n", i);
 		if (ans.empty()) printf("No Solution\n");
 		for (auto it : ans) printf("%d %d\n", it.first, it.second);
