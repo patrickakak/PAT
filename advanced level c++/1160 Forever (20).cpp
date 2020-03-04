@@ -1,7 +1,7 @@
-#include <cmath>
-#include <algorithm>
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <algorithm>
 using namespace std;
 int getSum(int n) {
 	int sum = 0;
@@ -24,10 +24,9 @@ bool cmp(pair<int, int> &a, pair<int, int> &b) {
 	return a.first != b.first ? a.first < b.first : a.second < b.second;
 }
 int main() {
-	int N;
+	int N, k, m;
 	cin >> N;
 	for (int i = 1; i <= N; i++) {
-		int k, m;
 		scanf("%d%d", &k, &m);
 		vector<pair<int, int>> ans;
 		int begin = pow(10, k-1), end = pow(10, k);
