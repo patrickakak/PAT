@@ -1,30 +1,31 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-const int N = 25;
-bool marked[N];
-struct TreeNode {
-	string data;
-	int lchild, rchild;
-} nodes[N];
-void dfs(int id) {
-	if (id == -1) return;
-	int count = (nodes[id].lchild == -1) + (nodes[id].rchild == -1);
-	cout << "(";
-	if (count == 1) cout << nodes[id].data;
-	dfs(nodes[id].lchild);
-	dfs(nodes[id].rchild);
-	if (count != 1) cout << nodes[id].data;
-	cout << ")";
+struct node {
+	string s;
+	int l, r;
+};
+vector<node> v(25);
+int h[25];
+void dfs(int root) {
+	if (root == -1) return;
+	int cnt = (v[root].l == -1) + (v[root].r == -1);
+	printf("(");
+	if (cnt == 1) cout << v[root].s;
+	dfs(v[root].l);
+	dfs(v[root].r);
+	if (cnt != 1) cout << v[root].s;
+	printf(")");
 }
 int main() {
-	int n;
+	int n, root = 1;
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
-		cin >> nodes[i].data >> nodes[i].lchild >> nodes[i].rchild;
-		if (nodes[i].lchild != -1) marked[nodes[i].lchild] = true;
-		if (nodes[i].rchild != -1) marked[nodes[i].rchild] = true;
+		cin >> v[i].s >> v[i].l >> v[i].r;
+		if (v[i].l != -1) h[v[i].l] = 1;
+		if (v[i].r != -1) h[v[i].r] = 1;
 	}
-	for (int i = 1; i <= n; i++)
-		if (!marked[i]) dfs(i);
+	while (root <= n && h[root] == 1) root++;
+	dfs(root);
 	return 0;
 }
