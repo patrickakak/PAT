@@ -28,19 +28,18 @@ int main() {
 		scanf("%d%d", &k, &m);
 		vector<pair<int, int>> ans;
 		int begin = pow(10, k-1), end = pow(10, k);
-		for (int i = begin + 9; i < end; i += 10) {
-			if (getSum(i) != m) continue;
-			int n = getSum(i + 1);
+		for (int j = begin + 9; j < end; j += 10) {
+			if (getSum(j) != m) continue;
+			int n = getSum(j + 1);
 			int d = gcd(m, n);
-			if (d > 2 && isprime(d)) ans.push_back({n, i});
+			if (d > 2 && isprime(d)) ans.push_back({n, j});
 		}
 		sort(ans.begin(), ans.end(), [](pair<int, int> a, pair<int, int> b) {
-				return a.first != b.first ? a.first < b.first : a.second < b.second;
-				});
+			return a.first != b.first ? a.first < b.first : a.second < b.second;
+		});
 		printf("Case %d\n", i);
 		if (ans.empty()) printf("No Solution\n");
-		for (auto it : ans)
-			printf("%d %d\n", it.first, it.second);
+		for (auto it : ans) printf("%d %d\n", it.first, it.second);
 	}
 	return 0;
 }
