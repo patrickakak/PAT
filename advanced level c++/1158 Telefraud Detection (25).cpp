@@ -1,29 +1,24 @@
 #include <iostream>
-#include <cmath>
 #include <vector>
-#include <algorithm>
-#include <map>
 #include <unordered_map>
 #include <set>
-#include <unordered_set>
-#include <cstring>
 using namespace std;
 int father[1010];
 int find(int x) {
-	int a=x;
-	while (x!=father[x]) x=father[x];
-	while (a!=father[a]) {
-		int z=father[a];
-		father[a]=x;
-		a=z;
+	int a = x;
+	while (x != father[x]) x = father[x];
+	while (a != father[a]) {
+		int z = father[a];
+		father[a] = x;
+		a = z;
 	}
 	return x;
 }
 void Union(int a, int b) {
-	int faA=find(a);
-	int faB=find(b);
-	if (faA<faB) father[faB]=faA;
-	else if (faA>faB) father[faA]=faB;
+	int faA = find(a);
+	int faB = find(b);
+	if (faA < faB) father[faB] = faA;
+	else if (faA > faB) father[faA] = faB;
 }
 int e[1010][1010];
 set<int> ans[1010];
