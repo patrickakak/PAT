@@ -1,31 +1,25 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-bool IsPrime(int x) {
-	if (x < 3) return x == 2;
-	if (x % 2 == 0) return false;
-	int limit = sqrt(x);
-	for (int i = 3; i <= limit; i += 2)
-		if (x % i == 0) return false;
+bool isprime(int n) {
+	if (n < 2) return false;
+	for (int i = 2; i*i <= n; i++)
+		if (n % i == 0) return false;
 	return true;
 }
 int main() {
 	int n;
 	cin >> n;
-	if (IsPrime(n)) {
-		if (IsPrime(n - 6)) {
-			cout << "Yes" << endl << n - 6 << endl;
+	if (isprime(n)) {
+		if (isprime(n - 6)) {
+			printf("Yes\n%d", n - 6);
 			return 0;
-		} else if (IsPrime(n + 6)) {
-			cout << "Yes" << endl << n + 6 << endl;
+		} else if (isprime(n + 6)) {
+			printf("Yes\n%d", n + 6);
 			return 0;
 		}
 	}
-	while (1) {
-		if (IsPrime(n) && (IsPrime(n - 6) || IsPrime(n + 6))) {
-			cout << "No" << endl << n << endl;
-			return 0;
-		}
-		n++;
-	}
+	while (!(isprime(n) && (isprime(n - 6) || isprime(n + 6)))) n++;
+	printf("No\n%d", n);
+	return 0;
 }
