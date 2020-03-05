@@ -1,62 +1,67 @@
 #include <iostream>
-#include <algorithm>
+#include <cmath>
 #include <vector>
+#include <algorithm>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+#include <cstring>
 using namespace std;
-struct UnionFind {
-	vector<int> id, sz;
-	UnionFind(int n) : id(n), sz(n, 1) {
-		for (int i = 0; i < n; i++)
-			id[i] = i;
+int father[1010];
+int find(int x) {
+	int a=x;
+	while (x!=father[x]) x=father[x];
+	while (a!=father[a]) {
+		int z=father[a];
+		father[a]=x;
+		a=z;
 	}
-	int Find(int x) {
-		if (id[x] == x) return x;
-		return id[x] = Find(id[x]);
-	}
-	void Union(int x, int y) {
-		int i = Find(x);
-		int j = Find(y);
-		if (i == j) return;
-		if (sz[i] < sz[j]) { id[i] = j; sz[j] += sz[i]; }
-		else { id[j] = i; sz[i] += sz[j]; }
-	}
-};
+	return x;
+}
+void Union(int a, int b) {
+	int faA=find(a);
+	int faB=find(b);
+	if (faA<faB) father[faB]=faA;
+	else if (faA>faB) father[faA]=faB;
+}
+int e[1010][1010];
+set<int> ans[1010];
 int main() {
-	int k, n, m;
+	int k, n, m, c, r, d;
 	cin >> k >> n >> m;
-	vector<vector<int>> durations(n + 1, vector<int>(n + 1));
+	for (int i = 1; i <= n; i++) father[i] = i;
 	while (m--) {
-		int c, r, d;
-		cin >> c >> r >> d;
-		durations[c][r] += d;
+		scanf("%d%d%d", &c, &r, &d);
+		e[c][r] += d;
 	}
-	vector<int> suspects;
+	unordered_map<int, bool> mp;
 	for (int i = 1; i <= n; i++) {
-		int count = 0, call_back = 0;
+		int cnt = 0, callback = 0;
 		for (int j = 1; j <= n; j++)
-			if (durations[i][j] > 0 && durations[i][j] <= 5) {
-				count++;
-				call_back += (durations[j][i] != 0);
+			if (e[i][j] != 0 && e[i][j] <= 5) {
+				cnt++;
+				if (e[j][i] != 0) callback++;
 			}
-		if (count > k && call_back <= 0.2 * count)
-			suspects.push_back(i);
+		if (cnt > k && (double)callback/cnt <= 0.2) mp[i] = true;
 	}
-	if (suspects.empty()) {
-		cout << "None" << endl;
-		return 0;
+	if (mp.size() == 0) {
+		printf("None"); return 0;
 	}
-	UnionFind uf(n + 1);
-	for (int i = 0; i < suspects.size(); i++)
-		for (int j = i + 1; j < suspects.size(); j++)
-			if (durations[suspects[i]][suspects[j]] != 0 && durations[suspects[j]][suspects[i]] != 0)
-				uf.Union(suspects[i], suspects[j]);
-	vector<int> temp[n + 1];
-	for (auto x : suspects) temp[uf.Find(x)].push_back(x);
-	vector<vector<int>> ans;
-	for (auto gang : temp)
-		if (!gang.empty()) ans.push_back(gang);
-	sort(ans.begin(), ans.end(), [](vector<int> v1, vector<int> v2) { return v1.front() < v2.front(); });
-	for (auto gang : ans)
-		for (int i = 0; i < gang.size(); i++)
-			cout << gang[i] << (i < gang.size() - 1 ? ' ' : '\n');
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= n; j++)
+			if (e[i][j] != 0 && e[j][i] != 0 && mp[i] == true && mp[j] == true)
+				Union(i, j);
+	for (int i = 1; i <= n; i++)
+		if (mp[i] == true)
+			ans[find(i)].insert(i);
+	for (int i = 1; i <= n; i++)
+		if (father[i] == i && mp[i] == true) {
+			for (auto it = ans[i].begin(); it != ans[i].end(); it++) {
+				if (it != ans[i].begin()) printf(" ");
+				printf("%d", *it);
+			}
+			printf("\n");
+		}
 	return 0;
 }
