@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 bool isprime(int n) {
 	if (n < 2) return false;
