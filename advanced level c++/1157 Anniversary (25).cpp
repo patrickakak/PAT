@@ -1,27 +1,34 @@
 #include <iostream>
-#include <unordered_set>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
 using namespace std;
+bool cmp(string &a, string &b) {
+	return a.substr(6, 8) < b.substr(6, 8);
+}
 int main() {
-	string id, oldest = "999999999999999999";
-	unordered_set<string> alumnus;
-	int n, m, count = 0;
+	int n, m;
 	cin >> n;
-	while (n--) {
-		cin >> id;
-		alumnus.insert(id);
+	unordered_map<string, bool> mp;
+	string s;
+	for (int i = 0; i < n; i++) {
+		cin >> s;
+		mp[s] = true;
 	}
 	cin >> m;
-	while (m--) {
-		cin >> id;
-		if (alumnus.count(id)) {
-			count++;
-			if (count == 0 || stoi(id.substr(6, 8)) < stoi(oldest.substr(6, 8)))
-				oldest = id;
-		} else {
-			if (count == 0 && stoi(id.substr(6, 8)) < stoi(oldest.substr(6, 8)))
-				oldest = id;
-		}
+	vector<string> alumna, attendee;
+	for (int i = 0; i < m; i++) {
+		cin >> s;
+		if (mp[s] == true) alumna.push_back(s);
+		attendee.push_back(s);
 	}
-	cout << count << endl << oldest << endl;
+	printf("%d\n", alumna.size());
+	if (alumna.size() != 0) {
+		sort(alumna.begin(), alumna.end(), cmp);
+		printf("%s", alumna[0].c_str());
+	} else {
+		sort(attendee.begin(), attendee.end(), cmp);
+		printf("%s", attendee[0].c_str());
+	}
 	return 0;
 }
