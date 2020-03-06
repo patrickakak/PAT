@@ -8,11 +8,10 @@ struct node {
 int num1 = 0, num2 = 0;
 vector<node> v(100000), ans;
 bool cmp(node &a, node &b) {
-	if (a.flag!=b.flag) return a.flag>b.flag;
-	else return a.order<b.order;
+	return a.flag != b.flag ? a.flag > b.flag : a.order < b.order;
 }
 bool cmp2(node &a, node &b) {
-	return a.order>b.order;
+	return a.order > b.order;
 }
 int main() {
 	int fir1, fir2, n, addr, data, next;
