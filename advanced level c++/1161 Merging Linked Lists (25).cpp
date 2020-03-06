@@ -1,18 +1,12 @@
 #include <iostream>
-#include <map>
-#include <cmath>
-#include <unordered_map>
-#include <set>
-#include <unordered_set>
 #include <vector>
 #include <algorithm>
 using namespace std;
 struct node {
 	int addr, data, next, flag, order;
 };
-int num1=0, num2=0;//1长，2短
-vector<node> v(100000);
-vector<node> ans;
+int num1 = 0, num2 = 0;
+vector<node> v(100000), ans;
 bool cmp(node &a, node &b) {
 	if (a.flag!=b.flag) return a.flag>b.flag;
 	else return a.order<b.order;
