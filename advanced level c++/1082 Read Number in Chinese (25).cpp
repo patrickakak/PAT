@@ -15,7 +15,7 @@ int main() {
 	}
 	while (r - 4 >= l) r -= 4;
 	while (l < s.length()) {
-		bool zflag = false, isPrint = false;
+		bool zflag = false;
 		for ( ; l <= r; l++)
 			if (l > 0 && s[l] == '0') zflag = true;
 			else {
@@ -24,10 +24,9 @@ int main() {
 					zflag = false;
 				}
 				v.push_back(a[s[l]-'0']);
-				isPrint = true;
 				if (l != r) v.push_back(b[r-l]);
 			}
-		if (isPrint == true && r != s.length()-1)
+		if (r != s.length()-1)
 			v.push_back(b[(s.length() - r) / 4 + 3]);
 		r += 4;
 	}
