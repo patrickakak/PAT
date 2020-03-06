@@ -6,7 +6,7 @@ int main() {
 	cin >> a >> b >> c >> d;
 	int i = 0, j = 0;
 	for ( ; i < min(a.length(), b.length()); i++)
-		if (a[i] == b[i] && a[i]>='A' && a[i]<='G') {
+		if (a[i] == b[i] && a[i] >= 'A' && a[i] <= 'G') {
 			printf("%s ", days[a[i]-'A'].c_str());
 			break;
 		}
