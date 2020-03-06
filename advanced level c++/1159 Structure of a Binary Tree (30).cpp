@@ -21,13 +21,13 @@ node *build(int inl, int inr, int postl, int postr) {
 	if (root->r) root->r->p = root;
 	return root;
 }
-void trav(node *root) {
+void dfs(node *root) {
 	if (!root) return;
 	if (root->p) root->level = root->p->level + 1;
 	if (root->l && !root->r) is_full = false;
 	if (!root->l && root->r) is_full = false;
-	trav(root->l);
-	trav(root->r);
+	dfs(root->l);
+	dfs(root->r);
 }
 int main() {
 	int n, m;
@@ -36,8 +36,7 @@ int main() {
 	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
 	node *root = build(0, n-1, 0, n-1);
-	root->level = 1;
-	trav(root);
+	dfs(root);
 	scanf("%d\n", &m);
 	while (m--) {
 		bool flag;
