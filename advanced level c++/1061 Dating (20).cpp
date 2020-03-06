@@ -7,7 +7,7 @@ int main() {
 	int i = 0, j = 0;
 	for ( ; i < min(a.length(), b.length()); i++)
 		if (a[i] == b[i] && a[i]>='A' && a[i]<='G') {
-			cout << days[a[i]-'A'] << ' ';
+			printf("%s ", days[a[i]-'A'].c_str());
 			break;
 		}
 	i += 1;
