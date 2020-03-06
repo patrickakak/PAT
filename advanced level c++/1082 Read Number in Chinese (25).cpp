@@ -26,8 +26,7 @@ int main() {
 				v.push_back(a[s[l]-'0']);
 				if (l != r) v.push_back(b[r-l]);
 			}
-		if (r != s.length()-1)
-			v.push_back(b[(s.length() - r) / 4 + 3]);
+		if (r != s.length()-1) v.push_back(b[(s.length() - r) / 4 + 3]);
 		r += 4;
 	}
 	for (int i = 0; i < v.size(); i++) {
