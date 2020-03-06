@@ -8,24 +8,22 @@ int main() {
 	long long n;
 	cin >> n;
 	string s = to_string(n);
-	int l = 0, r = s.length() - 1;
 	if (s[0] == '-') {
 		v.push_back("Fu");
-		l = 1;
+		s.erase(s.begin());
 	}
-	while (r - 4 >= l) r -= 4;
+	int l = 0, r = s.length() - 1, zflag = 0;
+	while (r - 4 >= 0) r -= 4;
 	while (l < s.length()) {
-		bool zflag = false;
-		for ( ; l <= r; l++)
-			if (l > 0 && s[l] == '0') zflag = true;
-			else {
-				if (zflag == true) {
-					v.push_back("ling");
-					zflag = false;
-				}
-				v.push_back(a[s[l]-'0']);
-				if (l != r) v.push_back(b[r-l]);
+		for ( ; l <= r; l++) {
+			if ((s.length() == 1 && s[0] == '0') || (zflag == 1 && s[l] != '0')) {
+				v.push_back("ling");
+				zflag = 0;
 			}
+			if (s[l] != '0') v.push_back(a[s[l]-'0']);
+			else zflag = 1;
+			if (r - l != 0 && s[l] != '0') v.push_back(b[r-l]);
+		}
 		if (r != s.length()-1) v.push_back(b[(s.length() - r) / 4 + 3]);
 		r += 4;
 	}
