@@ -19,7 +19,7 @@ int main() {
 		if (flag == 1) v.push_back(u + " " + pwd);
 	}
 	if (v.size() == 0)
-		cout << "There " << (n > 1 ? "are " : "is ") << n << " account" << (n > 1 ? "s " : " ") << "and no account is modified";
+		printf("There %s %d account%s and no account is modified", n > 1? "are" : "is", n, n > 1 ? "s" : "");
 	else {
 		cout << v.size() << endl;
 		for (int i = 0; i < v.size(); i++)
