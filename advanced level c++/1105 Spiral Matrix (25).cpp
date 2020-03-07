@@ -1,37 +1,36 @@
 #include <iostream>
-#include <algorithm>
-#include <cmath>
 #include <vector>
+#include <cmath>
+#include <algorithm>
 using namespace std;
+int mat[10010][10010];
 int main() {
-	int N, m, n, t = 0;
-	cin >> N;
-	for (n = sqrt((double)N); n >= 1; n--)
-		if (N % n == 0) {
-			m = N / n;
+	int k, m, n, index = 0;
+	cin >> k;
+	for (n = sqrt(k); n >= 1; n--)
+		if (k % n == 0) {
+			m = k / n;
 			break;
 		}
-	vector<int> a(N);
-	for (int i = 0; i < N; i++) cin >> a[i];
-	sort(a.rbegin(), a.rend());
-	vector<vector<int>> b(m, vector<int>(n));
-	int level = m / 2 + m % 2;
-	for (int i = 0; i < level; i++) {
-		for (int j = i; j <= n - 1 - i && t < N; j++)
-			b[i][j] = a[t++];
-		for (int j = i + 1; j <= m - 2 - i && t < N; j++)
-			b[j][n - 1 - i] = a[t++];
-		for (int j = n - i - 1; j >= i && t < N; j--)
-			b[m - 1 - i][j] = a[t++];
-		for (int j = m - 2 - i; j >= i + 1 && t < N; j--)
-			b[j][i] = a[t++];
+	vector<int> v(k);
+	for (int i = 0; i < k; i++) scanf("%d", &v[i]);
+	sort(v.rbegin(), v.rend());
+	for (int i = 1; i <= m; i++) {
+		for (int j = i; j <= n-i+1 && index < k; j++)
+			mat[i][j] = v[index++];
+		for (int j = i+1; j <= m-i+1 && index < k; j++)
+			mat[j][n-i+1] = v[index++];
+		for (int j = n-i; j >= i && index < k; j--)
+			mat[m-i+1][j] = v[index++];
+		for (int j = m-i; j >= i+1 && index < k; j--)
+			mat[j][i] = v[index++];
 	}
-	for (int i = 0; i < m; i++) {
-		for (int j = 0 ; j < n; j++) {
-			cout << b[i][j];
-			if (j != n - 1) cout << ' ';
+	for (int i = 1; i <= m; i++) {
+		for (int j = 1; j <= n; j++) {
+			if (j != 1) printf(" ");
+			printf("%d", mat[i][j]);
 		}
-		cout << endl;
+		printf("\n");
 	}
 	return 0;
 }
