@@ -1,27 +1,26 @@
 #include <iostream>
-#include <stack>
 #include <vector>
+#include <stack>
 using namespace std;
 int main() {
 	int m, n, k;
-	scanf("%d %d %d", &m, &n, &k);
-	for (int i = 0; i < k; i++) {
-		bool flag = false;
+	cin >> m >> n >> k;
+	while (k--) {
+		int flag = 0, index = 0;
 		stack<int> s;
-		vector<int> v(n + 1);
-		for (int j = 1; j <= n; j++) scanf("%d", &v[j]);
-		int current = 1;
-		for (int j = 1; j <= n; j++) {
-			s.push(j);
-			if (s.size() > m) break;
-			while (!s.empty() && s.top() == v[current]) {
+		vector<int> v(n);
+		for (int i = 0; i < n; i++) scanf("%d", &v[i]);
+		for (int i = 1; i <= n; i++) {
+			s.push(i);
+			if (s.size() > m) flag = 1;
+			while (!s.empty() && s.top() == v[index]) {
 				s.pop();
-				current++;
+				index++;
 			}
 		}
-		if (current == n + 1) flag = true;
-		if (flag) printf("YES\n");
-		else printf("NO\n");
+		if (index < n) flag = 1;
+		if (flag == 1) printf("NO\n");
+		else printf("YES\n");
 	}
 	return 0;
 }
