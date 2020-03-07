@@ -1,22 +1,33 @@
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
-const int maxn = 100010;
+struct node {
+	int addr, key, next, flag, id;
+};
+vector<node> v(100010);
+bool cmp(node &a, node &b) {
+	return a.flag != b.flag ? a.flag > b.flag : a.id < b.id;
+}
+bool cmp2(node &a, node &b) {
+	return a.id > b.id;
+}
 int main() {
-	int first, n, k, addr, cnt = 0, data[maxn], next[maxn], list[maxn];
-	cin >> first >> n >> k;
+	int fir, n, k, addr, key, next, cnt = 0;
+	cin >> fir >> n >> k;
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &addr);
-		scanf("%d%d", &data[addr], &next[addr]);
+		scanf("%d%d%d", &addr, &key, &next);
+		v[addr] = node{addr, key, next};
 	}
-	while (first != -1) {
-		list[cnt++] = first;
-		first = next[first];
+	for (int p = fir; p != -1; p = v[p].next) {
+		v[p].flag++;
+		v[p].id = cnt++;
 	}
-	for (int i = 0; i < cnt - cnt%k; i += k)
-		reverse(begin(list) + i, begin(list) + i + k);
-	for (int i = 0; i < cnt - 1; i++)
-		printf("%05d %d %05d\n", list[i], data[list[i]], list[i + 1]);
-	printf("%05d %d -1", list[cnt - 1], data[list[cnt - 1]]);
+	sort(v.begin(), v.end(), cmp);
+	for (int i = 0; i < cnt-cnt%k; i += k)
+		sort(v.begin()+i, v.begin()+i+k, cmp2);
+	for (int i = 0; i < cnt; i++)
+		if (i != cnt-1) printf("%05d %d %05d\n", v[i].addr, v[i].key, v[i+1].addr);
+		else printf("%05d %d -1", v[i].addr, v[i].key);
 	return 0;
 }
