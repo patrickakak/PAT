@@ -5,7 +5,7 @@ using namespace std;
 struct node {
 	int addr, key, next, flag;
 };
-vector<node> v(100100);
+vector<node> v(100010);
 bool cmp(node &a, node &b) {
 	return a.flag != b.flag ? a.flag > b.flag : a.key < b.key;
 }
