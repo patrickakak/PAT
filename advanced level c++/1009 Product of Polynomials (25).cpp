@@ -14,9 +14,8 @@ int main() {
 	for (int i = 0; i < k2; i++) {
 		scanf("%d%lf", &e, &c);
 		for (int j = 0; j < 1010; j++)
-			if (a[j] != 0) {
+			if (a[j] != 0)
 				b[e+j] += a[j] * c;
-			}
 	}
 	vector<pair<int, double>> v;
 	for (int i = 2019; i >= 0; i--)
