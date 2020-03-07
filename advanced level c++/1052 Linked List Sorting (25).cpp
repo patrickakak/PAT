@@ -26,9 +26,8 @@ int main() {
 		return 0;
 	}
 	printf("%d %05d\n", cnt, v[0].addr);
-	for (int i = 0; i < cnt; i++) {
+	for (int i = 0; i < cnt; i++)
 		if (i != cnt-1) printf("%05d %d %05d\n", v[i].addr, v[i].key, v[i+1].addr);
 		else printf("%05d %d -1", v[i].addr, v[i].key);
-	}
 	return 0;
 }
