@@ -1,29 +1,30 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 struct node {
-	int data, next;
-} list[100000];
-vector<int> v[3];
+	int addr, key, next, flag, id;
+};
+vector<node> v(100010);
+bool cmp(node &a, node &b) {
+	return a.flag != b.flag ? a.flag > b.flag : a.id < b.id;
+}
 int main() {
-	int fir, n, k, a, flag = 0;
-	scanf("%d%d%d", &fir, &n, &k);
+	int fir, n, k, addr, key, next, cnt = 0;
+	cin >> fir >> n >> k;
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &a);
-		scanf("%d%d", &list[a].data, &list[a].next);
+		scanf("%d%d%d", &addr, &key, &next);
+		v[addr] = node{addr, key, next};
 	}
-	for (int p = fir; p != -1; p = list[p].next) {
-		int data = list[p].data;
-		if (data < 0) v[0].push_back(p);
-		else if (data >= 0 && data <= k) v[1].push_back(p);
-		else v[2].push_back(p);
+	for (int p = fir; p != -1; p = v[p].next) {
+		if (v[p].key < 0) v[p].flag = 3;
+		else if (v[p].key >= 0 && v[p].key <= k) v[p].flag = 2;
+		else v[p].flag = 1;
+		v[p].id = cnt++;
 	}
-	for (int i = 0; i < 3; i++)
-		for (int j = 0; j < v[i].size(); j++)
-			if (flag == 0) {
-				printf("%05d %d ", v[i][j], list[v[i][j]].data);
-				flag = 1;
-			} else printf("%05d\n%05d %d ", v[i][j], v[i][j], list[v[i][j]].data);
-	printf("-1");
+	sort(v.begin(), v.end(), cmp);
+	for (int i = 0; i < cnt; i++)
+		if (i != cnt-1) printf("%05d %d %05d\n", v[i].addr, v[i].key, v[i+1].addr);
+		else printf("%05d %d -1", v[i].addr, v[i].key);
 	return 0;
 }
