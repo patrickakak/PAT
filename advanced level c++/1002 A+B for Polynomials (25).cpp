@@ -6,7 +6,7 @@ int main() {
 	int k1, k2, e, cnt = 0;
 	double c;
 	cin >> k1;
-	for (int i=0; i<k1; i++) {
+	for (int i = 0; i < k1; i++) {
 		scanf("%d%lf", &e, &c);
 		a[e] += c;
 	}
