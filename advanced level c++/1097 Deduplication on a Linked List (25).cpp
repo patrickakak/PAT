@@ -6,7 +6,7 @@ struct node {
 	int addr, key, next;
 };
 unordered_map<int, bool> m;
-vector<node> v(100000), a, b;
+vector<node> v(100010), a, b;
 int main() {
 	int fir, n, addr, key, next;
 	cin >> fir >> n;
