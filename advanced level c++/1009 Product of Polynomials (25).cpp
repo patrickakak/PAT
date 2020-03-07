@@ -1,24 +1,31 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+double a[1010], b[2020];
 int main() {
-	int n1, n2, a, cnt = 0;
-	scanf("%d", &n1);
-	double b, arr[1001] = {0}, ans[2001] = {0};
-	for (int i = 0; i < n1; i++) {
-		scanf("%d %lf", &a, &b);
-		arr[a] = b;
+	int k1, k2, e, cnt = 0;
+	double c;
+	cin >> k1;
+	for (int i = 0; i < k1; i++) {
+		scanf("%d%lf", &e, &c);
+		a[e] += c;
 	}
-	scanf("%d", &n2);
-	for (int i = 0; i < n2; i++) {
-		scanf("%d %lf", &a, &b);
-		for (int j = 0; j < 1001; j++)
-			ans[j + a] += arr[j] * b;
+	cin >> k2;
+	for (int i = 0; i < k2; i++) {
+		scanf("%d%lf", &e, &c);
+		for (int j = 0; j < 1010; j++)
+			if (a[j] != 0) {
+				b[e+j] += a[j] * c;
+			}
 	}
-	for (int i = 2000; i >= 0; i--)
-		if (ans[i] != 0.0) cnt++;
+	vector<pair<int, double>> v;
+	for (int i = 2019; i >= 0; i--)
+		if (b[i] != 0) {
+			cnt++;
+			v.push_back({i, b[i]});
+		}
 	printf("%d", cnt);
-	for (int i = 2000; i >= 0; i--)
-		if (ans[i] != 0.0)
-			printf(" %d %.1f", i, ans[i]);
+	for (int i = 0; i < v.size(); i++)
+		printf(" %d %.1f", v[i].first, v[i].second);
 	return 0;
 }
