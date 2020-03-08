@@ -3,35 +3,35 @@
 #include <vector>
 using namespace std;
 struct node {
-	string name;
+	string nm;
 	int ht;
 };
-int cmp(struct node a, struct node b) {
-	return a.ht != b.ht ? a.ht > b.ht : a.name < b.name;
+int cmp(node &a, node &b) {
+	return a.ht != b.ht ? a.ht > b.ht : a.nm < b.nm;
 }
 int main() {
 	int n, k, m;
 	cin >> n >> k;
-	vector<node> stu(n);
+	vector<node> v(n);
 	for (int i = 0; i < n; i++)
-		cin >> stu[i].name >> stu[i].ht;
-	sort(stu.begin(), stu.end(), cmp);
+		cin >> v[i].nm >> v[i].ht;
+	sort(v.begin(), v.end(), cmp);
 	int t = 0, row = k;
 	while (row) {
 		m = (row == k ? n % k + n / k : n / k);
 		vector<string> ans(m);
-		ans[m / 2] = stu[t].name;
+		ans[m / 2] = v[t].nm;
 		int j = m / 2 - 1;
 		for (int i = t + 1; i < t + m; i += 2)
-			ans[j--] = stu[i].name;
+			ans[j--] = v[i].nm;
 		j = m / 2 + 1;
 		for (int i = t + 2; i < t + m; i += 2)
-			ans[j++] = stu[i].name;
+			ans[j++] = v[i].nm;
 		for (int i = 0; i < m; i++) {
-			if (i != 0) cout << ' ';
-			cout << ans[i];
+			if (i != 0) printf(" ");
+			printf("%s", ans[i].c_str());
 		}
-		cout << endl;
+		printf("\n");
 		t += m;
 		row--;
 	}
