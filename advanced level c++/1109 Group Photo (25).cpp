@@ -19,7 +19,7 @@ int main() {
 		m = row == k ? n/k + n%k : n/k;
 		vector<node> t(m);
 		t[m/2] = v[cnt++];
-		for (int j = 1; j < m; j++) {
+		for (int j = 1; j < m/2+1; j++) {
 			int left = m/2 - j;
 			if (left >= 0) t[left] = v[cnt++];
 			int right = m/2 + j;
