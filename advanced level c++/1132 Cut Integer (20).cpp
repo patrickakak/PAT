@@ -1,15 +1,15 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int n, num;
-	scanf("%d", &n);
-	for (int i = 0; i < n; i++) {
-		scanf("%d", &num);
-		string s = to_string(num);
-		int len = s.length();
-		int a = stoi(s.substr(0, len/2));
-		int b = stoi(s.substr(len/2));
-		if (a * b != 0 && num % (a * b) == 0) printf("Yes\n");
+	int n;
+	cin >> n;
+	string z;
+	while (n--) {
+		cin >> z;
+		int a = stoi(z.substr(0, z.length()/2));
+		int b = stoi(z.substr(z.length()/2));
+		if (a == 0 || b == 0) printf("No\n");
+		else if (stoi(z) % (a * b) == 0) printf("Yes\n");
 		else printf("No\n");
 	}
 	return 0;
