@@ -1,14 +1,16 @@
 #include <iostream>
 using namespace std;
 int main() {
-	int a, now = 0, sum = 0;
-	cin >> a;
-	while (cin >> a) {
-		if (a > now) sum += 6 * (a - now);
-		else sum += 4 * (now - a);
-		now = a;
+	int n;
+	cin >> n;
+	int sum = 0, pre = 0, tmp;
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &tmp);
+		if (tmp - pre > 0) sum += 6 * (tmp - pre);
+		else sum += 4 * (pre - tmp);
 		sum += 5;
+		pre = tmp;
 	}
-	cout << sum;
+	printf("%d", sum);
 	return 0;
 }
