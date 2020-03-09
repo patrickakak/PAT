@@ -27,9 +27,9 @@ int main() {
 	int n, e1 = 0, e2 = 0;
 	string a, b;
 	cin >> n >> a >> b;
-	string s1 = f(a, e1, n);
-	string s2 = f(b, e2, n);
-	if (s1 == s2 && e1 == e2) cout << "YES 0." << s1 << "*10^" << e1;
-	else cout << "NO 0." << s1 << "*10^" << e1 << " 0." << s2 << "*10^" << e2;
+	string m1 = f(a, e1, n);
+	string m2 = f(b, e2, n);
+	if (m1 == m2 && e1 == e2) printf("YES 0.%s*10^%d", m1.c_str(), e1);
+	else printf("NO 0.%s*10^%d 0.%s*10^%d", m1.c_str(), e1, m2.c_str(), e2);
 	return 0;
 }
