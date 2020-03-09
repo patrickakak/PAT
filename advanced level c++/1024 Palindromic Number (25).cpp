@@ -1,25 +1,39 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-void add(string &s, string t) {
+string add(string a, string b) {
+	string sum;
 	int carry = 0;
-	for (int i = s.length() - 1; i >= 0; i--) {
-		int sum = carry + (s[i] - '0') + (t[i] - '0');
-		carry = sum / 10;
-		s[i] = sum % 10 + '0';
+	for (int i = a.length()-1; i >= 0; i--) {
+		int tmp = a[i]-'0' + b[i]-'0' + carry;
+		int r = tmp % 10;
+		carry = tmp / 10;
+		sum += '0' + r;
 	}
-	if (carry) s = '1' + s;
+	if (carry != 0) sum += '1';
+	reverse(sum.begin(), sum.end());
+	return sum;
+}
+bool ispalindromic(string s) {
+	int flag = 0;
+	for (int i = 0, j = s.length()-1; i < j; i++, j--)
+		if (s[i] != s[j]) {
+			flag = 1;
+			break;
+		}
+	return flag == 1 ? false : true;
 }
 int main() {
 	string s;
-	int cnt, i;
-	cin >> s >> cnt;
-	for (i = 0; i <= cnt; i++) {
-		string t = s;
-		reverse(t.begin(), t.end());
-		if (s == t || i == cnt) break;
-		add(s, t);
+	int k, step = 0;
+	cin >> s >> k;
+	while (step < k) {
+		if (ispalindromic(s)) break;
+		string rs = s;
+		reverse(rs.begin(), rs.end());
+		s = add(s, rs);
+		step++;
 	}
-	cout << s << endl << i;
+	printf("%s\n%d", s.c_str(), step);
 	return 0;
 }
