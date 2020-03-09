@@ -13,7 +13,9 @@ void preorder(int inl, int inr, int index) {
 	preorder(inl, inl+p-1, 2*index);
 	preorder(inl+p+1, inr, 2*index+1);
 }
-bool cmp(int a, int b) { return mp[a] < mp[b]; }
+bool cmp(int a, int b) {
+	return mp[a] < mp[b];
+}
 int main() {
 	int n;
 	cin >> n;
