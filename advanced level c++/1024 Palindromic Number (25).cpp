@@ -15,13 +15,10 @@ string add(string a, string b) {
 	return sum;
 }
 bool ispalindromic(string s) {
-	int flag = 0;
 	for (int i = 0, j = s.length()-1; i < j; i++, j--)
-		if (s[i] != s[j]) {
-			flag = 1;
-			break;
-		}
-	return flag == 1 ? false : true;
+		if (s[i] != s[j])
+			return false;
+	return true;
 }
 int main() {
 	string s;
