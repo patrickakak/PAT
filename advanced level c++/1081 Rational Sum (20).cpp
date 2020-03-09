@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
-long long gcd(long long a, long long b) { return !b ? abs(a) : gcd(b, a % b); }
+long long gcd(long long a, long long b) {
+	return !b ? abs(a) : gcd(b, a % b);
+}
 int main() {
 	long long n, a, b, suma = 0, sumb = 1, d;
 	scanf("%lld", &n);
