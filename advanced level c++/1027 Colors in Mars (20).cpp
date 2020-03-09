@@ -1,12 +1,9 @@
 #include <iostream>
 using namespace std;
 int main() {
-	string c = "0123456789ABC";
-	printf("#");
-	for (int i = 0; i < 3; i++) {
-		int num;
-		scanf("%d", &num);
-		printf("%c%c", c[num/13], c[num%13]);
-	}
+	string s = "0123456789ABC";
+	int r, g, b;
+	scanf("%d%d%d", &r, &g, &b);
+	printf("#%c%c%c%c%c%c", s[r/13], s[r%13], s[g/13], s[g%13], s[b/13], s[b%13]);
 	return 0;
 }
