@@ -6,9 +6,8 @@ string add(string a, string b) {
 	int carry = 0;
 	for (int i = a.length()-1; i >= 0; i--) {
 		int tmp = a[i]-'0' + b[i]-'0' + carry;
-		int r = tmp % 10;
+		sum += '0' + tmp%10;
 		carry = tmp / 10;
-		sum += '0' + r;
 	}
 	if (carry != 0) sum += '1';
 	reverse(sum.begin(), sum.end());
@@ -16,8 +15,7 @@ string add(string a, string b) {
 }
 bool ispalindromic(string s) {
 	for (int i = 0, j = s.length()-1; i < j; i++, j--)
-		if (s[i] != s[j])
-			return false;
+		if (s[i] != s[j]) return false;
 	return true;
 }
 int main() {
