@@ -1,11 +1,9 @@
 #include <iostream>
 using namespace std;
 int main() {
-	long long a, b, c, d, e, f;
-	scanf("%lld.%lld.%lld %lld.%lld.%lld", &a, &b, &c, &d, &e, &f);
-	long long num = c + b * 29 + a * 29 * 17 + f + e * 29 + d * 29 * 17;
-	long long g = num / (17 * 29);
-	num = num % (17 * 29);
-	printf("%lld.%lld.%lld", g, num / 29, num % 29);
+	long long g1, g2, s1, s2, k1, k2;
+	scanf("%lld.%lld.%lld %lld.%lld.%lld", &g1, &s1, &k1, &g2, &s2, &k2);
+	long long sum = g1*17*29 + s1*29 + k1 + g2*17*29 + s2*29 + k2;
+	printf("%lld.%lld.%lld", sum/29/17, sum/29%17, sum%29);
 	return 0;
 }
