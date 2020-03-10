@@ -20,8 +20,7 @@ void f2() {
 	cout << t1 * 13 + t2;
 }
 int main() {
-	cin >> n;
-	getchar();
+	scanf("%d\n", &n);
 	for (int i = 0; i < n; i++) {
 		getline(cin, s);
 		len = s.length();
