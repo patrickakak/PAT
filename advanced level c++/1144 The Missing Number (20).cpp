@@ -9,8 +9,7 @@ int main() {
 		scanf("%d", &a);
 		m[a]++;
 	}
-	while (m[num] != 0)
-		num++;
+	while (m[num] != 0) num++;
 	printf("%d", num);
 	return 0;
 }
