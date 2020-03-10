@@ -1,32 +1,31 @@
 #include <iostream>
+#include <unordered_map>
 using namespace std;
-string a[13] = {"tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec"};
-string b[13] = {"####","tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou"};
-string s;
-int n, len;
-void f1(int t) {
-	if (t / 13) cout << b[t / 13];
-	if ((t / 13) && (t % 13)) cout << " ";
-	if (t % 13 || t == 0) cout << a[t % 13];
-}
-void f2() {
-	int t1 = 0, t2 = 0;
-	string s1 = s.substr(0, 3), s2;
-	if (len > 4) s2 = s.substr(4);
-	for (int j = 1; j <= 12; j++) {
-		if (s1 == a[j] || s2 == a[j]) t2 = j;
-		if (s1 == b[j]) t1 = j;
-	}
-	cout << t1 * 13 + t2;
-}
+string a[] = {"tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec"};
+string b[] = {"####","tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou"};
 int main() {
+	int n;
 	scanf("%d\n", &n);
-	for (int i = 0; i < n; i++) {
+	unordered_map<string, int> m2e;
+	unordered_map<int, string> e2m;
+	for (int i = 0; i < 169; i++) {
+		string s;
+		if (i/13 != 0) s += b[i/13];
+		if (i%13 != 0) {
+			if (i/13 != 0) s += " ";
+			s += a[i%13];
+		}
+		e2m[i] = s, m2e[s] = i;
+		if (i == 0) {
+			e2m[0] = "tret";
+			m2e["tret"] = 0;
+		}
+	}
+	while (n--) {
+		string s;
 		getline(cin, s);
-		len = s.length();
-		if (isdigit(s[0])) f1(stoi(s));
-		else f2();
-		cout << endl;
+		if (isdigit(s[0])) printf("%s\n", e2m[stoi(s)].c_str());
+		else printf("%d\n", m2e[s]);
 	}
 	return 0;
 }
