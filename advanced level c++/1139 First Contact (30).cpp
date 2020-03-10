@@ -12,24 +12,26 @@ int main() {
 	scanf("%d%d", &n, &m);
 	vector<int> v[10000];
 	for (int i = 0; i < m; i++) {
-		string a, b;
-		cin >> a >> b;
-		if (a.length() == b.length()) {
-			v[abs(stoi(a))].push_back(abs(stoi(b)));
-			v[abs(stoi(b))].push_back(abs(stoi(a)));
+		string aa, bb;
+		cin >> aa >> bb;
+		int a = abs(stoi(aa)), b = abs(stoi(bb));
+		if (aa.length() == bb.length()) {
+			v[a].push_back(b);
+			v[b].push_back(a);
 		}
-		e[abs(stoi(a))][abs(stoi(b))] = e[abs(stoi(b))][abs(stoi(a))] = true;
+		e[a][b] = e[b][a] = true;
 	}
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
 		int c, d;
 		scanf("%d%d", &c, &d);
+		c = abs(c), d = abs(d);
 		vector<p> ans;
-		for (int j = 0; j < v[abs(c)].size(); j++)
-			for (int k = 0; k < v[abs(d)].size(); k++) {
-				if (v[abs(c)][j] == abs(d) || abs(c) == v[abs(d)][k]) continue;
-				if (e[v[abs(c)][j]][v[abs(d)][k]] == true)
-					ans.push_back({v[abs(c)][j], v[abs(d)][k]});
+		for (int j = 0; j < v[c].size(); j++)
+			for (int k = 0; k < v[d].size(); k++) {
+				if (v[c][j] == d || c == v[d][k]) continue;
+				if (e[v[c][j]][v[d][k]] == true)
+					ans.push_back({v[c][j], v[d][k]});
 			}
 		sort(ans.begin(), ans.end(), cmp);
 		printf("%d\n", ans.size());
