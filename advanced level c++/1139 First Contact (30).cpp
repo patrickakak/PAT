@@ -2,9 +2,11 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-bool arr[10000][10000];
-struct node { int a, b; };
-bool cmp(node x, node y) { return x.a != y.a ? x.a < y.a : x.b < y.b; }
+bool e[10000][10000];
+typedef pair<int, int> p;
+bool cmp(p a, p b) {
+	return a.first != b.first ? a.first < b.first : a.second < b.second;
+}
 int main() {
 	int n, m, k;
 	scanf("%d%d", &n, &m);
@@ -16,23 +18,23 @@ int main() {
 			v[abs(stoi(a))].push_back(abs(stoi(b)));
 			v[abs(stoi(b))].push_back(abs(stoi(a)));
 		}
-		arr[abs(stoi(a))][abs(stoi(b))] = arr[abs(stoi(b))][abs(stoi(a))] = true;
+		e[abs(stoi(a))][abs(stoi(b))] = e[abs(stoi(b))][abs(stoi(a))] = true;
 	}
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
 		int c, d;
-		cin >> c >> d;
-		vector<node> ans;
+		scanf("%d%d", &c, &d);
+		vector<p> ans;
 		for (int j = 0; j < v[abs(c)].size(); j++)
 			for (int k = 0; k < v[abs(d)].size(); k++) {
 				if (v[abs(c)][j] == abs(d) || abs(c) == v[abs(d)][k]) continue;
-				if (arr[v[abs(c)][j]][v[abs(d)][k]] == true)
-					ans.push_back(node{v[abs(c)][j], v[abs(d)][k]});
+				if (e[v[abs(c)][j]][v[abs(d)][k]] == true)
+					ans.push_back({v[abs(c)][j], v[abs(d)][k]});
 			}
 		sort(ans.begin(), ans.end(), cmp);
 		printf("%d\n", ans.size());
 		for (int j = 0; j < ans.size(); j++)
-			printf("%04d %04d\n", ans[j].a, ans[j].b);
+			printf("%04d %04d\n", ans[j].first, ans[j].second);
 	}
 	return 0;
 }
