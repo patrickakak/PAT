@@ -2,16 +2,16 @@
 #include <vector>
 #include <unordered_map>
 using namespace std;
-unordered_map<int, bool> mp;
 int main() {
 	int m, n, u, v, a;
 	scanf("%d %d", &m, &n);
 	vector<int> pre(n);
+	unordered_map<int, bool> mp;
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &pre[i]);
 		mp[pre[i]] = true;
 	}
-	for (int i = 0; i < m; i++) {
+	while (m--) {
 		scanf("%d %d", &u, &v);
 		for (int j = 0; j < n; j++) {
 			a = pre[j];
