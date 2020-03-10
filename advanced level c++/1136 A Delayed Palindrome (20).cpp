@@ -1,37 +1,37 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-string rev(string s) {
-	reverse(s.begin(), s.end());
-	return s;
-}
-string add(string s1, string s2) {
-	string s = s1;
+string add(string a, string b) {
+	string sum;
 	int carry = 0;
-	for (int i = s1.size() - 1; i >= 0; i--) {
-		s[i] = (s1[i] - '0' + s2[i] - '0' + carry) % 10 + '0';
-		carry = (s1[i] - '0' + s2[i] - '0' + carry) / 10;
+	for (int i = a.length()-1; i >= 0; i--) {
+		int tmp = a[i]-'0' + b[i]-'0' + carry;
+		sum += '0' + tmp%10;
+		carry = tmp / 10;
 	}
-	if (carry > 0) s = "1" + s;
-	return s;
+	if (carry != 0) sum += '1';
+	reverse(sum.begin(), sum.end());
+	return sum;
+}
+bool ispalindromic(string s) {
+	for (int i = 0, j = s.length()-1; i < j; i++, j--)
+		if (s[i] != s[j]) return false;
+	return true;
 }
 int main() {
-	string s, sum;
-	int n = 10;
+	string s;
 	cin >> s;
-	if (s == rev(s)) {
-		cout << s << " is a palindromic number.\n";
-		return 0;
-	}
-	while (n--) {
-		sum = add(s, rev(s));
-		cout << s << " + " << rev(s) << " = " << sum << endl;
-		if (sum == rev(sum)) {
-			cout << sum << " is a palindromic number.\n";
-			return 0;
-		}
+	int step = 0;
+	while (step < 10) {
+		if (ispalindromic(s)) break;
+		string rs = s;
+		reverse(rs.begin(), rs.end());
+		string sum = add(s, rs);
+		printf("%s + %s = %s\n", s.c_str(), rs.c_str(), sum.c_str());
 		s = sum;
+		step++;
 	}
-	cout << "Not found in 10 iterations.\n";
+	if (step == 10) printf("Not found in 10 iterations.");
+	else printf("%s is a palindromic number.", s.c_str());
 	return 0;
 }
