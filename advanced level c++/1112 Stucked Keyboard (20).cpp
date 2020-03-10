@@ -18,7 +18,7 @@ int main() {
 			if (cnt % k != 0) sureOK[pre] = true;
 			cnt = 1;
 		}
-		m[s[i]] = (cnt % k == 0);
+		if (cnt % k == 0) m[s[i]] = true;
 		pre = s[i];
 	}
 	for (int i = 0; i < s.length()-1; i++)
