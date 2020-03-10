@@ -24,7 +24,7 @@ int main() {
 	for (int i = 0; i < s.length()-1; i++)
 		if (sureOK[s[i]]) m[s[i]] = false;
 	for (int i = 0; i < s.length()-1; i++)
-		if (m[s[i]] && printed.find(s[i]) == printed.end()) {
+		if (m[s[i]] == true && printed.find(s[i]) == printed.end()) {
 			printf("%c", s[i]);
 			printed.insert(s[i]);
 		}
