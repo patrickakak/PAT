@@ -3,7 +3,7 @@ using namespace std;
 string a[13] = {"tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec"};
 string b[13] = {"####","tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou"};
 string s;
-int len;
+int n, len;
 void f1(int t) {
 	if (t / 13) cout << b[t / 13];
 	if ((t / 13) && (t % 13)) cout << " ";
@@ -20,7 +20,6 @@ void f2() {
 	cout << t1 * 13 + t2;
 }
 int main() {
-	int n;
 	cin >> n;
 	getchar();
 	for (int i = 0; i < n; i++) {
