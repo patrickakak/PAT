@@ -4,7 +4,7 @@
 using namespace std;
 bool e[10000][10000];
 typedef pair<int, int> p;
-bool cmp(p a, p b) {
+bool cmp(p &a, p &b) {
 	return a.first != b.first ? a.first < b.first : a.second < b.second;
 }
 int main() {
