@@ -31,7 +31,7 @@ int main() {
 	for (int i = 0; i < m; i++) {
 		scanf("%d: ", &num);
 		getline(cin, tmp);
-		cout << num << ": " << tmp << endl;
+		printf("%d: %s\n", num, tmp.c_str());
 		switch (num) {
 		case 1: query(ttl, tmp); break;
 		case 2: query(au, tmp);  break;
