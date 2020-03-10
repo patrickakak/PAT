@@ -2,22 +2,23 @@
 #include <unordered_map>
 using namespace std;
 int main() {
-	string s, w;
+	string s, w, maxs;
 	getline(cin, s);
+	s += '#';
 	unordered_map<string, int> m;
-	for (int i = 0; i < s.length(); i++) {
-		if (isalnum(s[i])) w += tolower(s[i]);
-		if (!isalnum(s[i]) || i == s.length() - 1){
-			if (w.length() != 0) m[w]++;
+	for (int i = 0; i < s.length(); i++)
+		if (isalpha(s[i]) || isdigit(s[i])) w += tolower(s[i]);
+		else {
+			if (w != "") m[w]++;
 			w = "";
 		}
-	}
 	int maxn = 0;
-	for (auto it = m.begin(); it != m.end(); it++)
-		if (it->second > maxn) {
-			w = it->first;
-			maxn = it->second;
-		}
-	cout << w << " " << maxn;
+	for (auto it : m)
+		if (maxn < it.second) {
+			maxs = it.first;
+			maxn = it.second;
+		} else if (maxn == it.second && maxs > it.first)
+			maxs = it.first;
+	printf("%s %d", maxs.c_str(), maxn);
 	return 0;
 }
