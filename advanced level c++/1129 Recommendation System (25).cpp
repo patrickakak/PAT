@@ -25,8 +25,7 @@ int main() {
 		}
 		auto it = s.find(node{num, hit[num]});
 		if (it != s.end()) s.erase(it);
-		hit[num]++;
-		s.insert(node{num, hit[num]});
+		s.insert(node{num, ++hit[num]});
 	}
 	return 0;
 }
