@@ -18,22 +18,22 @@ bool cmp2(node &a, node &b) {
 int main() {
 	int n, k, maxtm = -1, tmpidx = 0;
 	scanf("%d%d\n", &n, &k);
-	vector<node> rec(n), car;
+	vector<node> v(n), car;
 	for (int i = 0; i < n; i++) {
 		char tmp[5];
 		int h, m, s;
-		scanf("%s %d:%d:%d %s\n", rec[i].id, &h, &m, &s, tmp);
-		rec[i].tm = 3600 * h + 60 * m + s;
-		rec[i].flag = strcmp(tmp, "in") == 0 ? 1 : -1;
+		scanf("%s %d:%d:%d %s\n", v[i].id, &h, &m, &s, tmp);
+		v[i].tm = 3600 * h + 60 * m + s;
+		v[i].flag = strcmp(tmp, "in") == 0 ? 1 : -1;
 	}
-	sort(rec.begin(), rec.end(), cmp1);
+	sort(v.begin(), v.end(), cmp1);
 	map<string, int> mp;
 	for (int i = 0; i < n - 1; i++)
-		if (strcmp(rec[i].id, rec[i+1].id) == 0 && rec[i].flag == 1 && rec[i+1].flag == -1) {
-			car.push_back(rec[i]);
-			car.push_back(rec[i+1]);
-			mp[rec[i].id] += (rec[i+1].tm - rec[i].tm);
-			if (maxtm < mp[rec[i].id]) maxtm = mp[rec[i].id];
+		if (strcmp(v[i].id, v[i+1].id) == 0 && v[i].flag == 1 && v[i+1].flag == -1) {
+			car.push_back(v[i]);
+			car.push_back(v[i+1]);
+			mp[v[i].id] += (v[i+1].tm - v[i].tm);
+			if (maxtm < mp[v[i].id]) maxtm = mp[v[i].id];
 		}
 	sort(car.begin(), car.end(), cmp2);
 	vector<int> cnt(car.size());
