@@ -9,14 +9,13 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		cin >> s;
 		int sum = 0;
-		for (int j = 0; j < s.length(); j++)
-			sum += s[j] - '0';
+		for (int j = 0; j < s.length(); j++) sum += s[j] - '0';
 		st.insert(sum);
 	}
 	cout << st.size() << endl;
 	for (auto it = st.begin(); it != st.end(); it++) {
-		if (it != st.begin()) cout << ' ';
-		cout << *it;
+		if (it != st.begin()) printf(" ");
+		printf("%d", *it);
 	}
 	return 0;
 }
