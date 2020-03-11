@@ -6,23 +6,24 @@
 using namespace std;
 struct node {
 	char id[8];
-	int time, flag;
+	int tm, flag;
 };
 bool cmp1(node &a, node &b) {
-	return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time;
+	int r = strcmp(a.id, b.id);
+	return r != 0 ? r < 0 : a.tm < b.tm;
 }
 bool cmp2(node &a, node &b) {
-	return a.time < b.time;
+	return a.tm < b.tm;
 }
 int main() {
-	int n, k, maxtime = -1, tmpindex = 0;
+	int n, k, maxtm = -1, tmpindex = 0;
 	scanf("%d%d\n", &n, &k);
 	vector<node> rec(n), car;
 	for (int i = 0; i < n; i++) {
 		char tmp[5];
 		int h, m, s;
 		scanf("%s %d:%d:%d %s\n", rec[i].id, &h, &m, &s, tmp);
-		rec[i].time = 3600 * h + 60 * m + s;
+		rec[i].tm = 3600 * h + 60 * m + s;
 		rec[i].flag = strcmp(tmp, "in") == 0 ? 1 : -1;
 	}
 	sort(rec.begin(), rec.end(), cmp1);
@@ -31,8 +32,8 @@ int main() {
 		if (strcmp(rec[i].id, rec[i+1].id) == 0 && rec[i].flag == 1 && rec[i+1].flag == -1) {
 			car.push_back(rec[i]);
 			car.push_back(rec[i+1]);
-			mp[rec[i].id] += (rec[i+1].time - rec[i].time);
-			if (maxtime < mp[rec[i].id]) maxtime = mp[rec[i].id];
+			mp[rec[i].id] += (rec[i+1].tm - rec[i].tm);
+			if (maxtm < mp[rec[i].id]) maxtm = mp[rec[i].id];
 		}
 	sort(car.begin(), car.end(), cmp2);
 	vector<int> cnt(car.size());
@@ -42,9 +43,9 @@ int main() {
 	for (int i = 0; i < k; i++) {
 		int h, m, s;
 		scanf("%d:%d:%d", &h, &m, &s);
-		int j = tmpindex, tmptime = 3600 * h + 60 * m + s;
+		int j = tmpindex, tmptm = 3600 * h + 60 * m + s;
 		for ( ; j < car.size(); j++)
-			if (car[j].time > tmptime) {
+			if (car[j].tm > tmptm) {
 				if (j == 0) printf("0\n");
 				else printf("%d\n", cnt[j - 1]);
 				break;
@@ -53,7 +54,7 @@ int main() {
 		tmpindex = j;
 	}
 	for (auto it = mp.begin(); it != mp.end(); it++)
-		if (it->second == maxtime) printf("%s ", it->first.c_str());
-	printf("%02d:%02d:%02d", maxtime / 3600, (maxtime % 3600) / 60, maxtime % 60);
+		if (it->second == maxtm) printf("%s ", it->first.c_str());
+	printf("%02d:%02d:%02d", maxtm / 3600, (maxtm % 3600) / 60, maxtm % 60);
 	return 0;
 }
