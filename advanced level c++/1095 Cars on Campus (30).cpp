@@ -16,7 +16,7 @@ bool cmp2(node &a, node &b) {
 	return a.tm < b.tm;
 }
 int main() {
-	int n, k, maxtm = -1, tmpindex = 0;
+	int n, k, maxtm = -1, tmpidx = 0;
 	scanf("%d%d\n", &n, &k);
 	vector<node> rec(n), car;
 	for (int i = 0; i < n; i++) {
@@ -43,7 +43,7 @@ int main() {
 	for (int i = 0; i < k; i++) {
 		int h, m, s;
 		scanf("%d:%d:%d", &h, &m, &s);
-		int j = tmpindex, tmptm = 3600 * h + 60 * m + s;
+		int j = tmpidx, tmptm = 3600 * h + 60 * m + s;
 		for ( ; j < car.size(); j++)
 			if (car[j].tm > tmptm) {
 				if (j == 0) printf("0\n");
@@ -51,7 +51,7 @@ int main() {
 				break;
 			} else if (j == car.size() - 1)
 				printf("%d\n", cnt[j]);
-		tmpindex = j;
+		tmpidx = j;
 	}
 	for (auto it = mp.begin(); it != mp.end(); it++)
 		if (it->second == maxtm) printf("%s ", it->first.c_str());
