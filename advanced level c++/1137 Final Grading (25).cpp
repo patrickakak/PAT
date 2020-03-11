@@ -17,18 +17,18 @@ int main() {
 	cin >> p >> m >> n;
 	vector<node> v, ans;
 	string s;
-	for (int i = 0; i < p; i++) {
+	while (p--) {
 		cin >> s >> score;
 		if (score >= 200) {
 			v.push_back(node{s, score, -1, -1, 0});
 			idx[s] = cnt++;
 		}
 	}
-	for (int i = 0; i < m; i++) {
+	while (m--) {
 		cin >> s >> score;
-		if (idx[s] != 0) v[idx[s] - 1].gm = score;
+		if (idx[s] != 0) v[idx[s]-1].gm = score;
 	}
-	for (int i = 0; i < n; i++) {
+	while (n--) {
 		cin >> s >> score;
 		if (idx[s] != 0) {
 			int tmp = idx[s] - 1;
