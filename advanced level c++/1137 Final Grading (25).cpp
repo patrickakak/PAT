@@ -8,7 +8,7 @@ struct node {
 	string id;
 	int gp, gm, gf, g;
 };
-bool cmp(node a, node b) {
+bool cmp(node &a, node &b) {
 	return a.g != b.g ? a.g > b.g : a.id < b.id;
 }
 map<string, int> idx;
