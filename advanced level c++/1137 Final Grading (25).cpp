@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <cmath>
-#include <map>
+#include <unordered_map>
 using namespace std;
 struct node {
 	string id;
@@ -11,7 +11,7 @@ struct node {
 bool cmp(node &a, node &b) {
 	return a.g != b.g ? a.g > b.g : a.id < b.id;
 }
-map<string, int> idx;
+unordered_map<string, int> idx;
 int main() {
 	int p, m, n, score, cnt = 1;
 	cin >> p >> m >> n;
