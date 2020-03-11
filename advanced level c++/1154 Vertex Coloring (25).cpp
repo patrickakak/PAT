@@ -2,13 +2,12 @@
 #include <vector>
 #include <unordered_set>
 using namespace std;
-struct node { int t1, t2; };
 int main() {
 	int n, m, k;
 	cin >> n >> m;
-	vector<node> v(m);
+	vector<pair<int, int>> v(m);
 	for (int i = 0; i < m; i++)
-		scanf("%d %d", &v[i].t1, &v[i].t2);
+		scanf("%d %d", &v[i].first, &v[i].second);
 	cin >> k;
 	while (k--) {
 		vector<int> a(n);
@@ -19,7 +18,7 @@ int main() {
 			s.insert(a[i]);
 		}
 		for (int i = 0; i < m; i++)
-			if (a[v[i].t1] == a[v[i].t2]) {
+			if (a[v[i].first] == a[v[i].second]) {
 				flag = 1;
 				break;
 			}
