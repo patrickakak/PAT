@@ -53,8 +53,8 @@ int main() {
 				printf("%d\n", cnt[j]);
 		tmpidx = j;
 	}
-	for (auto it = mp.begin(); it != mp.end(); it++)
-		if (it->second == maxtm) printf("%s ", it->first.c_str());
-	printf("%02d:%02d:%02d", maxtm / 3600, (maxtm % 3600) / 60, maxtm % 60);
+	for (auto it : mp)
+		if (it.second == maxtm) printf("%s ", it.first.c_str());
+	printf("%02d:%02d:%02d", maxtm/3600, maxtm%3600/60, maxtm%60);
 	return 0;
 }
