@@ -7,24 +7,22 @@ int main() {
 	int n, a, b, m, id;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
-		cin >> a >> b;
-		couple[a] = b; couple[b] = a;
+		scanf("%d%d", &a, &b);
+		couple[a] = b, couple[b] = a;
 	}
 	cin >> m;
 	set<int> s;
 	for (int i = 0; i < m; i++) {
-		cin >> id;
+		scanf("%d", &id);
 		s.insert(id);
 	}
-	for (auto it = s.begin(); it != s.end(); it++) {
-		if (couple[*it] != -1 && s.find(couple[*it]) == s.end())
-			couple[*it] = -1;
-		if (couple[*it] == -1)
-			single.push_back(*it);
+	for (auto it : s) {
+		if (couple[it] != -1 && s.find(couple[it]) == s.end()) couple[it] = -1;
+		if (couple[it] == -1) single.push_back(it);
 	}
-	cout << single.size() << endl;
+	printf("%d\n", single.size());
 	for (int i = 0; i < single.size(); i++) {
-		if (i != 0) cout << ' ';
+		if (i != 0) printf(" ");
 		printf("%05d", single[i]);
 	}
 	return 0;
