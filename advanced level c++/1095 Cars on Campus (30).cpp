@@ -8,8 +8,12 @@ struct node {
 	char id[8];
 	int time, flag;
 };
-bool cmp1(node &a, node &b) { return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time; }
-bool cmp2(node &a, node &b) { return a.time < b.time; }
+bool cmp1(node &a, node &b) {
+	return strcmp(a.id, b.id) != 0 ? strcmp(a.id, b.id) < 0 : a.time < b.time;
+}
+bool cmp2(node &a, node &b) {
+	return a.time < b.time;
+}
 int main() {
 	int n, k, maxtime = -1, tmpindex = 0;
 	scanf("%d%d\n", &n, &k);
