@@ -22,10 +22,11 @@ int main() {
 		scanf("%d%d%d", &uid, &pid, &g);
 		v[uid-1].uid = uid;
 		int t = max(g, v[uid-1].p[pid-1]);
-		if (t != -1) {
+		if (t == -1) v[uid-1].p[pid-1] = 0;
+		else {
 			v[uid-1].print = 1;
 			v[uid-1].p[pid-1] = t;
-		} else v[uid-1].p[pid-1] = 0;
+		}
 	}
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
