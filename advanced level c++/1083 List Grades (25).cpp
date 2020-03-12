@@ -20,8 +20,8 @@ int main() {
 	for (int i = 0; i < n; i++)
 		if (v[i].g >= g1 && v[i].g <= g2) {
 			cnt++;
-			cout << v[i].name << ' ' << v[i].id << endl;
+			printf("%s %s\n", v[i].name.c_str(), v[i].id.c_str());
 		}
-	if (cnt == 0) cout << "NONE";
+	if (cnt == 0) printf("NONE");
 	return 0;
 }
