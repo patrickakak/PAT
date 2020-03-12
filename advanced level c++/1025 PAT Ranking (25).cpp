@@ -20,10 +20,10 @@ int main() {
 			cin >> id >> g;
 			v.push_back(node{id, i+1, g});
 		}
-		sort(v.begin() + sum, v.begin() + sum + k, cmp);
+		sort(v.begin()+sum, v.begin()+sum+k, cmp);
 		v[sum].r = 1;
 		for (int j = 1; j < k; j++) {
-			v[j+sum].r = j + 1;
+			v[j+sum].r = j+1;
 			if (v[j+sum].g == v[j+sum-1].g) v[j+sum].r = v[j+sum-1].r;
 		}
 		sum += k;
