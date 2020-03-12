@@ -3,12 +3,12 @@
 #include <vector>
 using namespace std;
 struct node {
-	int uid, perfect, r, tot, print;
+	int uid, perf, r, tot, print;
 	vector<int> p;
 };
 bool cmp(node &a, node &b) {
 	if (a.tot != b.tot) return a.tot > b.tot;
-	else if (a.perfect != b.perfect) return a.perfect > b.perfect;
+	else if (a.perf != b.perf) return a.perf > b.perf;
 	else return a.uid < b.uid;
 }
 int main() {
@@ -31,7 +31,7 @@ int main() {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
 			if (v[i].p[j] != -1) v[i].tot += v[i].p[j];
-			if (v[i].p[j] == p[j]) v[i].perfect++;
+			if (v[i].p[j] == p[j]) v[i].perf++;
 		}
 	sort(v.begin(), v.end(), cmp);
 	v[0].r = 1;
