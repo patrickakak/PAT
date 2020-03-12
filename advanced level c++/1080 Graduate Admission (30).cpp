@@ -6,8 +6,12 @@ struct peo {
 	int id, ge, gi, fin;
 	vector<int> choice;
 };
-bool cmp1(peo &a, peo &b) { return a.fin != b.fin ? a.fin > b.fin : a.ge > b.ge; }
-bool cmp2(peo &a, peo &b) { return a.id < b.id; }
+bool cmp1(peo &a, peo &b) {
+	return a.fin != b.fin ? a.fin > b.fin : a.ge > b.ge;
+}
+bool cmp2(peo &a, peo &b) {
+	return a.id < b.id;
+}
 int main() {
 	int n, m, k, quota[110];
 	scanf("%d%d%d", &n, &m, &k);
