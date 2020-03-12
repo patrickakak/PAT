@@ -2,20 +2,20 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-struct peo {
+struct node {
 	int id, ge, gi, fin;
 	vector<int> choice;
 };
-bool cmp1(peo &a, peo &b) {
+bool cmp1(node &a, node &b) {
 	return a.fin != b.fin ? a.fin > b.fin : a.ge > b.ge;
 }
-bool cmp2(peo &a, peo &b) {
+bool cmp2(node &a, node &b) {
 	return a.id < b.id;
 }
 int main() {
 	int n, m, k, quota[110];
 	scanf("%d%d%d", &n, &m, &k);
-	vector<peo> stu(n), sch[110];
+	vector<node> stu(n), sch[110];
 	for (int i = 0; i < m; i++) scanf("%d", &quota[i]);
 	for (int i = 0; i < n; i++) {
 		scanf("%d%d", &stu[i].ge, &stu[i].gi);
