@@ -4,20 +4,20 @@
 #include <algorithm>
 using namespace std;
 struct node {
-	char name[10];
+	char nm[10];
 	int age, net;
 };
-bool cmp(node a, node b) {
+bool cmp(node &a, node &b) {
 	if (a.net != b.net) return a.net > b.net;
 	else if (a.age != b.age) return a.age < b.age;
-	else return strcmp(a.name, b.name) < 0;
+	else return strcmp(a.nm, b.nm) < 0;
 }
 int main() {
 	int n, k, m, amin, amax;
 	scanf("%d%d", &n, &k);
 	vector<node> v(n);
 	for (int i = 0; i < n; i++)
-		scanf("%s%d%d", v[i].name, &v[i].age, &v[i].net);
+		scanf("%s%d%d", v[i].nm, &v[i].age, &v[i].net);
 	sort(v.begin(), v.end(), cmp);
 	for (int i = 0; i < k; i++) {
 		scanf("%d%d%d", &m, &amin, &amax);
@@ -25,7 +25,7 @@ int main() {
 		int cnt = 0;
 		for (int j = 0; j < n; j++) {
 			if (v[j].age >= amin && v[j].age <= amax) {
-				printf("%s %d %d\n", v[j].name, v[j].age, v[j].net);
+				printf("%s %d %d\n", v[j].nm, v[j].age, v[j].net);
 				cnt++;
 			}
 			if (cnt == m) break;
