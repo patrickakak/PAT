@@ -6,7 +6,9 @@ struct node {
 	string name, id;
 	int g;
 };
-bool cmp(node &a, node &b) { return a.g > b.g; }
+bool cmp(node &a, node &b) {
+	return a.g > b.g;
+}
 int main() {
 	int n, g1, g2, cnt = 0;
 	cin >> n;
