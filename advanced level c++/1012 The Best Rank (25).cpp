@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 struct node {
 	int id, g[4], r[4];
@@ -14,11 +14,11 @@ int main() {
 	int n, m, id;
 	cin >> n >> m;
 	vector<node> v(n);
-	unordered_set<int> s;
+	unordered_map<int, bool> mp;
 	for (int i = 0; i < n; i++) {
 		scanf("%d%d%d%d", &v[i].id, &v[i].g[1], &v[i].g[2], &v[i].g[3]);
 		v[i].g[0] = v[i].g[1] + v[i].g[2] + v[i].g[3];
-		s.insert(v[i].id);
+		mp[v[i].id] = true;
 	}
 	for (flag = 0; flag < 4; flag++) {
 		sort(v.begin(), v.end(), cmp);
@@ -31,7 +31,7 @@ int main() {
 	string str = "ACME";
 	for (int i = 0; i < m; i++) {
 		scanf("%d", &id);
-		if (s.find(id) == s.end()) {
+		if (mp[id] == false) {
 			printf("N/A\n"); continue;
 		}
 		for (int j = 0; j < n; j++)
