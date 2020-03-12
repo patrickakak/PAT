@@ -28,7 +28,7 @@ int main() {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
 			int sid = v[i].choice[j], sz = sch[sid].size();
-			if (sz < quota[sid] || v[i].fin == sch[sid][sz-1].fin && v[i].ge == sch[sid][sz-1].ge) {
+			if (sz < quota[sid] || (v[i].fin == sch[sid][sz-1].fin && v[i].ge == sch[sid][sz-1].ge)) {
 				sch[sid].push_back(v[i]);
 				break;
 			}
