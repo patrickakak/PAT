@@ -6,7 +6,9 @@ struct node {
 	string id;
 	int loc, g, r;
 };
-bool cmp(node a, node b) { return a.g != b.g ? a.g > b.g : a.id < b.id; }
+bool cmp(node &a, node &b) {
+	return a.g != b.g ? a.g > b.g : a.id < b.id;
+}
 int main() {
 	int n, k, g, sum = 0;
 	string id;
