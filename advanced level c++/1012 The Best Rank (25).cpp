@@ -7,7 +7,9 @@ struct node {
 	int id, g[4], r[4];
 };
 int flag;
-bool cmp(node a, node b) { return a.g[flag] > b.g[flag]; }
+bool cmp(node &a, node &b) {
+	return a.g[flag] > b.g[flag];
+}
 int main() {
 	int n, m, id;
 	cin >> n >> m;
