@@ -22,9 +22,9 @@ int main() {
 		}
 		sort(v.begin() + sum, v.begin() + sum + k, cmp);
 		v[sum].r = 1;
-		for (int j = sum + 1; j < sum + k; j++) {
-			v[j].r = j - sum + 1;
-			if (v[j].g == v[j-1].g) v[j].r = v[j-1].r;
+		for (int j = 1; j < k; j++) {
+			v[j+sum].r = j + 1;
+			if (v[j+sum].g == v[j+sum-1].g) v[j+sum].r = v[j+sum-1].r;
 		}
 		sum += k;
 	}
