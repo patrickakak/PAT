@@ -15,21 +15,21 @@ bool cmp2(node &a, node &b) {
 int main() {
 	int n, m, k, quota[110];
 	scanf("%d%d%d", &n, &m, &k);
-	vector<node> stu(n), sch[110];
+	vector<node> v(n), sch[110];
 	for (int i = 0; i < m; i++) scanf("%d", &quota[i]);
 	for (int i = 0; i < n; i++) {
-		scanf("%d%d", &stu[i].ge, &stu[i].gi);
-		stu[i].id = i;
-		stu[i].fin = stu[i].ge + stu[i].gi;
-		stu[i].choice.resize(k);
-		for (int j = 0; j < k; j++) scanf("%d", &stu[i].choice[j]);
+		scanf("%d%d", &v[i].ge, &v[i].gi);
+		v[i].id = i;
+		v[i].fin = v[i].ge + v[i].gi;
+		v[i].choice.resize(k);
+		for (int j = 0; j < k; j++) scanf("%d", &v[i].choice[j]);
 	}
-	sort(stu.begin(), stu.end(), cmp1);
+	sort(v.begin(), v.end(), cmp1);
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < k; j++) {
-			int sid = stu[i].choice[j], last = sch[sid].size() - 1;
-			if (sch[sid].size() < quota[sid] || stu[i].fin == sch[sid][last].fin && stu[i].ge == sch[sid][last].ge) {
-				sch[sid].push_back(stu[i]);
+			int sid = v[i].choice[j], sz = sch[sid].size();
+			if (sz < quota[sid] || v[i].fin == sch[sid][sz-1].fin && v[i].ge == sch[sid][sz-1].ge) {
+				sch[sid].push_back(v[i]);
 				break;
 			}
 		}
