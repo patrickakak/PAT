@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 int main() {
-	int n, m, d = 0x3fffffff;
+	int n, m, d = 0x2fffffff;
 	scanf("%d%d", &n, &m);
 	vector<int> sum(n + 1, 0);
 	for (int i = 1; i <= n; i++) {
