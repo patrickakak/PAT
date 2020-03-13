@@ -8,7 +8,7 @@ bool isprime(int n) {
 	return true;
 }
 void insert(int key) {
-	for (int step = 0; step < sz; step++) {
+	for (int step = 0; step <= sz; step++) {
 		int index = (key + step * step) % sz;
 		if (h[index] == 0) {
 			h[index] = 1;
