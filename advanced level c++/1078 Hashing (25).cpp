@@ -9,10 +9,10 @@ bool isprime(int n) {
 }
 void insert(int key) {
 	for (int step = 0; step <= sz; step++) {
-		int index = (key + step * step) % sz;
-		if (h[index] == 0) {
-			h[index] = 1;
-			printf("%d", index);
+		int idx = (key + step * step) % sz;
+		if (h[idx] == 0) {
+			h[idx] = 1;
+			printf("%d", idx);
 			return ;
 		}
 	}
