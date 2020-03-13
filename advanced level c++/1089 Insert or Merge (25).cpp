@@ -6,11 +6,11 @@ int main() {
 	cin >> n;
 	for (int i = 0; i < n; i++) scanf("%d", &a[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &b[i]);
-	for (i = 0; i < n - 1 && b[i] <= b[i + 1]; i++) ;
-	for (j = i + 1; a[j] == b[j] && j < n; j++) ;
+	for (i = 1; i < n && b[i] >= b[i-1]; i++) ;
+	for (j = i; j<n && a[j] == b[j]; j++) ;
 	if (j == n) {
 		printf("Insertion Sort\n");
-		sort(a, a + i + 2);
+		sort(a, a + i + 1);
 	} else {
 		printf("Merge Sort\n");
 		int k = 1, flag = 1;
@@ -22,9 +22,8 @@ int main() {
 					break;
 				}
 			k *= 2;
-			for (int i = 0; i < n / k; i++)
-				sort(a + i * k, a + (i + 1) * k);
-			sort(a + n / k * k, a + n);
+			for (int i = 0; i < n; i += k)
+				sort(a + i, a + min(i+k, n));
 		}
 	}
 	for (int j = 0; j < n; j++) {
