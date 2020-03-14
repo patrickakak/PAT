@@ -10,13 +10,13 @@ bool cmp(node &a, node &b) {
 }
 vector<int> post, in;
 vector<node> ans;
-void pre(int root, int start, int end, int index) {
-	if (start > end) return;
-	int i = start;
-	while (i <= end && in[i] != post[root]) i++;
-	ans.push_back({index, post[root]});
-	pre(root - 1 - end + i, start, i - 1, 2 * index + 1);
-	pre(root - 1, i + 1, end, 2 * index + 2);
+void pre(int inl, int inr, int postl, int postr, int idx) {
+	if (inl > inr) return;
+	int i = inl;
+	while (i <= inr && in[i] != post[postr]) i++;
+	ans.push_back({idx, post[postr]});
+	pre(inl, i-1, postl, postl+(i-inl)-1, 2*idx+1);
+	pre(i+1, inr, postl+(i-inl), postr-1, 2*idx+2);
 }
 int main() {
 	int n;
@@ -24,7 +24,7 @@ int main() {
 	post.resize(n); in.resize(n);
 	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
-	pre(n-1, 0, n-1, 0);
+	pre(0, n-1, 0, n-1, 0);
 	sort(ans.begin(), ans.end(), cmp);
 	for (int i = 0; i < ans.size(); i++) {
 		if (i != 0) printf(" ");
