@@ -3,15 +3,15 @@
 #include <cmath>
 using namespace std;
 vector<int> v[100000], d(100000);
-int dmin = 0x3fffffff;
-void dfs(int index, int depth) {
-	if (v[index].size() == 0) {
+int dmin = 0x2fffffff;
+void dfs(int idx, int depth) {
+	if (v[idx].size() == 0) {
 		d[depth]++;
 		if (dmin > depth) dmin = depth;
 		return ;
 	}
-	for (int i = 0; i < v[index].size(); i++)
-		dfs(v[index][i], depth + 1);
+	for (int i = 0; i < v[idx].size(); i++)
+		dfs(v[idx][i], depth + 1);
 }
 int main() {
 	int n, k, t;
