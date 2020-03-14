@@ -3,7 +3,7 @@
 #include <unordered_map>
 using namespace std;
 unordered_map<int, int> pos;
-vector<int> in, pre;
+vector<int> pre, in;
 void lca(int prel, int prer, int inl, int inr, int u, int v) {
 	if (inl > inr) return;
 	int rin = pos[pre[prel]], uin = pos[u], vin = pos[v];
@@ -18,7 +18,7 @@ void lca(int prel, int prer, int inl, int inr, int u, int v) {
 int main() {
 	int m, n, u, v;
 	scanf("%d %d", &m, &n);
-	in.resize(n + 1), pre.resize(n + 1);
+	pre.resize(n + 1), in.resize(n + 1);
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &in[i]);
 		pos[in[i]] = i;
