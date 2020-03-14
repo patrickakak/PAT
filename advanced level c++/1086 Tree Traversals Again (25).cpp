@@ -12,15 +12,15 @@ void postOrder(int prel, int prer, int inl, int inr) {
 	post.push_back(pre[prel]);
 }
 int main() {
-	int n, index;
+	int n, idx;
 	cin >> n;
 	string s;
 	stack<int> st;
 	while (cin >> s)
 		if (s.length() == 4) {
-			cin >> index;
-			pre.push_back(index);
-			st.push(index);
+			scanf("%d", &idx);
+			pre.push_back(idx);
+			st.push(idx);
 		} else {
 			in.push_back(st.top());
 			st.pop();
