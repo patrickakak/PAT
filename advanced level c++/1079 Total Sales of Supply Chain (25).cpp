@@ -7,14 +7,14 @@ struct node {
 	vector<int> child;
 };
 vector<node> v;
-double ans = 0, p, r;
-void dfs(int index, int depth) {
-	if (v[index].child.size() == 0) {
-		ans += v[index].amt * pow(1 + r, depth);
+double p, r, ans = 0;
+void dfs(int idx, int depth) {
+	if (v[idx].child.size() == 0) {
+		ans += v[idx].amt * pow(1 + r, depth);
 		return ;
 	}
-	for (int i = 0; i < v[index].child.size(); i++)
-		dfs(v[index].child[i], depth + 1);
+	for (int i = 0; i < v[idx].child.size(); i++)
+		dfs(v[idx].child[i], depth + 1);
 }
 int main() {
 	int n, k, c;
