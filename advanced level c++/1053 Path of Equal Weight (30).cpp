@@ -7,7 +7,9 @@ struct node {
 	vector<int> child;
 };
 vector<node> v;
-bool cmp(int a, int b) { return v[a].w > v[b].w; }
+bool cmp(int a, int b) {
+	return v[a].w > v[b].w;
+}
 int s;
 vector<int> path;
 void dfs(int index, int nodeNum, int sum) {
