@@ -24,7 +24,7 @@ int main() {
 	cin >> n;
 	node *root = NULL;
 	for (int i = 0; i < n; i++) {
-		cin >> v;
+		scanf("%d", &v);
 		insert(root, v);
 	}
 	dfs(root, 0);
