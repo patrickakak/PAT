@@ -3,14 +3,14 @@
 using namespace std;
 vector<int> pre, in;
 bool flag = false;
-void postOrder(int root, int start, int end) {
-	if (start > end || flag == true) return;
-	int i = start;
-	while (i <= end && in[i] != pre[root]) i++;
-	postOrder(root + 1, start, i - 1);
-	postOrder(root + i - start + 1, i + 1, end);
+void postOrder(int prel, int prer, int inl, int inr) {
+	if (inl > inr || flag == true) return;
+	int i = inl;
+	while (i <= inr && in[i] != pre[prel]) i++;
+	postOrder(prel+1, prel+(i-inl), inl, i-1);
+	postOrder(prel+(i-inl)+1, prer, i+1, inr);
 	if (flag == false) {
-		printf("%d", pre[root]);
+		printf("%d", pre[prel]);
 		flag = true;
 	}
 }
@@ -20,6 +20,6 @@ int main() {
 	pre.resize(n), in.resize(n);
 	for (int i = 0; i < n; i++) scanf("%d", &pre[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
-	postOrder(0, 0, n - 1);
+	postOrder(0, n-1, 0, n-1);
 	return 0;
 }
