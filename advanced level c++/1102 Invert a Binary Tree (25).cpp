@@ -2,7 +2,9 @@
 #include <vector>
 #include <queue>
 using namespace std;
-struct node { int l, r; };
+struct node {
+	int l, r;
+};
 vector<node> tree(10);
 vector<int> h(10), level, in;
 void bfs(int root) {
@@ -16,11 +18,11 @@ void bfs(int root) {
 		if (tree[t].r != -1) q.push(tree[t].r);
 	}
 }
-void inorder(int root) {
+void inOrder(int root) {
 	if (root == -1) return;
-	inorder(tree[root].l);
+	inOrder(tree[root].l);
 	in.push_back(root);
-	inorder(tree[root].r);
+	inOrder(tree[root].r);
 }
 int main() {
 	int n, root = 0;
@@ -40,14 +42,14 @@ int main() {
 	while (h[root] == 1) root++;
 	bfs(root);
 	for (int i = 0; i < n; i++) {
-		if (i != 0) cout << ' ';
-		cout << level[i];
+		if (i != 0) printf(" ");
+		printf("%d", level[i]);
 	}
-	cout << endl;
-	inorder(root);
+	printf("\n");
+	inOrder(root);
 	for (int i = 0; i < n; i++) {
-		if (i != 0) cout << ' ';
-		cout << in[i];
+		if (i != 0) printf(" ");
+		printf("%d", in[i]);
 	}
 	return 0;
 }
