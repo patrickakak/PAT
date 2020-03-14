@@ -6,8 +6,7 @@ struct node {
 };
 void insert(node *&r, int v) {
 	node *t = new(node);
-	t->v = v;
-	t->l = t->r = NULL;
+	*t = {v, NULL, NULL};
 	if (r == NULL) r = t;
 	else if (v <= r->v) insert(r->l, v);
 	else insert(r->r, v);
