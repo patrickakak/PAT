@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 int a[1005], m, n;
-void postOrder(int index) {
-	if (index > n) return;
-	postOrder(index * 2);
-	postOrder(index * 2 + 1);
-	printf("%d%s", a[index], index == 1 ? "\n" : " ");
+void postOrder(int idx) {
+	if (idx > n) return;
+	postOrder(idx * 2);
+	postOrder(idx * 2 + 1);
+	printf("%d%s", a[idx], idx == 1 ? "\n" : " ");
 }
 int main() {
 	scanf("%d %d", &m, &n);
