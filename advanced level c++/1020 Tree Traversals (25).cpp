@@ -3,9 +3,11 @@
 #include <vector>
 using namespace std;
 struct node {
-	int index, value;
+	int index, val;
 };
-bool cmp(node a, node b) { return a.index < b.index; }
+bool cmp(node &a, node &b) {
+	return a.index < b.index;
+}
 vector<int> post, in;
 vector<node> ans;
 void pre(int root, int start, int end, int index) {
@@ -22,11 +24,11 @@ int main() {
 	post.resize(n); in.resize(n);
 	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
-	pre(n - 1, 0, n - 1, 0);
+	pre(n-1, 0, n-1, 0);
 	sort(ans.begin(), ans.end(), cmp);
 	for (int i = 0; i < ans.size(); i++) {
-		if (i != 0) cout << " ";
-		cout << ans[i].value;
+		if (i != 0) printf(" ");
+		printf("%d", ans[i].val);
 	}
 	return 0;
 }
