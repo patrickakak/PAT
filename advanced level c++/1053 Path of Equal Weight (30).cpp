@@ -3,40 +3,42 @@
 #include <algorithm>
 using namespace std;
 struct node {
-	int w;
 	vector<int> child;
 };
+int n, m, s;
+vector<int> w, path;
 vector<node> v;
 bool cmp(int a, int b) {
-	return v[a].w > v[b].w;
+	return w[a] > w[b];
 }
-int s;
-vector<int> path;
-void dfs(int index, int nodeNum, int sum) {
-	if (sum > s) return ;
+void dfs(int idx, int sum) {
+	if (sum > s) return;
 	if (sum == s) {
-		if (v[index].child.size() != 0) return;
-		for (int i = 0; i < nodeNum; i++)
-			printf("%d%c", v[path[i]].w, i != nodeNum - 1 ? ' ' : '\n');
-		return ;
+		path.push_back(w[idx]);
+		if (v[idx].child.size() == 0)
+			for (int i = 0; i < path.size(); i++)
+				printf("%d%s", path[i], i == path.size()-1 ? "\n" : " ");
+		path.pop_back();
+		return;
 	}
-	for (int i = 0; i < v[index].child.size(); i++) {
-		int node = v[index].child[i];
-		path[nodeNum] = node;
-		dfs(node, nodeNum + 1, sum + v[node].w);
-	}
+	path.push_back(w[idx]);
+	for (int i = 0; i < v[idx].child.size(); i++)
+		dfs(v[idx].child[i], sum + w[v[idx].child[i]]);
+	path.pop_back();
 }
 int main() {
-	int n, m, tmp, k;
-	scanf("%d %d %d", &n, &m, &s);
-	v.resize(n), path.resize(n);
-	for (int i = 0; i < n; i++) scanf("%d", &v[i].w);
+	cin >> n >> m >> s;
+	v.resize(n), w.resize(n);
+	for (int i = 0; i < n; i++) scanf("%d", &w[i]);
 	for (int i = 0; i < m; i++) {
-		scanf("%d %d", &tmp, &k);
-		v[tmp].child.resize(k);
-		for (int j = 0; j < k; j++) scanf("%d", &v[tmp].child[j]);
-		sort(v[tmp].child.begin(), v[tmp].child.end(), cmp);
+		int id, k, tmp;
+		scanf("%d%d", &id, &k);
+		for (int j = 0; j < k; j++) {
+			scanf("%d", &tmp);
+			v[id].child.push_back(tmp);
+		}
+		sort(v[id].child.begin(), v[id].child.end(), cmp);
 	}
-	dfs(0, 1, v[0].w);
+	dfs(0, w[0]);
 	return 0;
 }
