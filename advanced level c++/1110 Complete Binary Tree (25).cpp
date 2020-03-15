@@ -4,13 +4,13 @@ struct node{
 	int l, r;
 } tree[100];
 int maxn = -1, ans;
-void dfs(int root, int index) {
-	if (index > maxn) {
-		maxn = index;
+void dfs(int root, int idx) {
+	if (idx > maxn) {
+		maxn = idx;
 		ans = root;
 	}
-	if (tree[root].l != -1) dfs(tree[root].l, index * 2);
-	if (tree[root].r != -1) dfs(tree[root].r, index * 2 + 1);
+	if (tree[root].l != -1) dfs(tree[root].l, 2*idx);
+	if (tree[root].r != -1) dfs(tree[root].r, 2*idx+1);
 }
 int main() {
 	int n, root = 0, h[100] = {0};
@@ -31,7 +31,7 @@ int main() {
 	}
 	while (h[root] != 0) root++;
 	dfs(root, 1);
-	if (maxn == n) cout << "YES " << ans;
-	else cout << "NO " << root;
+	if (maxn == n) printf("YES %d", ans);
+	else printf("NO %d", root);
 	return 0;
 }
