@@ -7,7 +7,7 @@ int main() {
 	for (int i = 0; i < n; i++) scanf("%d", &a[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &b[i]);
 	for (i = 1; i < n && b[i] >= b[i-1]; i++) ;
-	for (j = i; j<n && a[j] == b[j]; j++) ;
+	for (j = i; j < n && a[j] == b[j]; j++) ;
 	if (j == n) {
 		printf("Insertion Sort\n");
 		sort(a, a + i + 1);
