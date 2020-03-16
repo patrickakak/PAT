@@ -5,21 +5,20 @@ struct node {
 	int v;
 	node *l, *r;
 };
-void insert(node *&root, int v) {
-	if (root == NULL) {
-		node *t = new node;
-		*t = node{v, NULL, NULL};
-		root = t;
+void insert(node *&rt, int v) {
+	if (rt == NULL) {
+		rt = new node;
+		*rt = {v, NULL, NULL};
 		return;
 	}
-	if (v < root->v) insert(root->l, v);
-	else insert(root->r, v);
+	if (v < rt->v) insert(rt->l, v);
+	else insert(rt->r, v);
 }
-void preOrder(node *root, vector<int> &vec) {
-	if (root == NULL) return;
-	vec.push_back(root->v);
-	preOrder(root->l, vec);
-	preOrder(root->r, vec);
+void preOrder(node *rt, vector<int> &vec) {
+	if (rt == NULL) return;
+	vec.push_back(rt->v);
+	preOrder(rt->l, vec);
+	preOrder(rt->r, vec);
 }
 int main() {
 	int n, l, t;
@@ -27,16 +26,16 @@ int main() {
 	while (n) {
 		node *root = NULL;
 		vector<int> pre;
-		cin >> l;
+		scanf("%d", &l);
 		for (int i = 0; i < n; i++) {
-			cin >> t;
+			scanf("%d", &t);
 			insert(root, t);
 		}
 		preOrder(root, pre);
 		while (l--) {
 			node *tmpRoot = NULL;
 			for (int i = 0; i < n; i++) {
-				cin >> t;
+				scanf("%d", &t);
 				insert(tmpRoot, t);
 			}
 			vector<int> tmpPre;
@@ -44,7 +43,7 @@ int main() {
 			if (tmpPre == pre) printf("Yes\n");
 			else printf("No\n");
 		}
-		cin >> n;
+		scanf("%d", &n);
 	}
 	return 0;
 }
