@@ -34,7 +34,7 @@ int main() {
 	printf("%d", d[0][0]);
 	for (int i = 1; i <= dmax; i++)
 		if (i % 2 == 0)
-			for (int j = d[i].size() - 1; j >= 0; j--) printf(" %d", d[i][j]);
+			for (int j = d[i].size()-1; j >= 0; j--) printf(" %d", d[i][j]);
 		else
 			for (int j = 0; j < d[i].size(); j++) printf(" %d", d[i][j]);
 	return 0;
