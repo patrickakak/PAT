@@ -3,20 +3,20 @@
 using namespace std;
 bool isMirror;
 vector<int> pre, post;
-void postOrder(int root, int tail) {
-	if (root > tail) return ;
-	int i = root + 1, j = tail;
+void postOrder(int prel, int prer) {
+	if (prel > prer) return ;
+	int i = prel + 1, j = prer;
 	if (!isMirror) {
-		while (i <= tail && pre[root] > pre[i]) i++;
-		while (j > root && pre[root] <= pre[j]) j--;
+		while (i <= prer && pre[prel] > pre[i]) i++;
+		while (j > prel && pre[prel] <= pre[j]) j--;
 	} else {
-		while (i <= tail && pre[root] <= pre[i]) i++;
-		while (j > root && pre[root] > pre[j]) j--;
+		while (i <= prer && pre[prel] <= pre[i]) i++;
+		while (j > prel && pre[prel] > pre[j]) j--;
 	}
-	if (i - j != 1) return ;
-	postOrder(root + 1, j);
-	postOrder(i, tail);
-	post.push_back(pre[root]);
+	if (i-j != 1) return ;
+	postOrder(prel+1, j);
+	postOrder(i, prer);
+	post.push_back(pre[prel]);
 }
 int main() {
 	int n;
@@ -27,7 +27,7 @@ int main() {
 	if (post.size() != n) {
 		isMirror = true;
 		post.clear();
-		postOrder(0, n - 1);
+		postOrder(0, n-1);
 	}
 	if (post.size() == n) {
 		printf("YES\n%d", post[0]);
