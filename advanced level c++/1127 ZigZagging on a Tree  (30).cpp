@@ -2,22 +2,22 @@
 #include <vector>
 using namespace std;
 struct node {
-	int data;
+	int key;
 	node *l, *r;
 } *root;
 vector<int> in, post, d[30];
 int n, dmax = 0;
-void dfs(node *r, int level) {
-	if (r == NULL) return;
+void dfs(node *rt, int level) {
+	if (rt == NULL) return;
 	if (dmax < level) dmax = level;
-	d[level].push_back(r->data);
-	if (r->l) dfs(r->l, level + 1);
-	if (r->r) dfs(r->r, level + 1);
+	d[level].push_back(rt->key);
+	if (rt->l) dfs(rt->l, level + 1);
+	if (rt->r) dfs(rt->r, level + 1);
 }
 node *build(int inl, int inr, int postl, int postr) {
 	if (inl > inr) return NULL;
 	node *t = new(node);
-	t->data = post[postr];
+	t->key = post[postr];
 	int i = inl;
 	while (i <= inr && in[i] != post[postr]) i++;
 	t->l = build(inl, i-1, postl, postl+i-inl-1);
