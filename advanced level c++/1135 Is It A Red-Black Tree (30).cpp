@@ -9,8 +9,7 @@ struct node {
 node *build(node *r, int v) {
 	if (r == NULL) {
 		r = new node();
-		r->val = v;
-		r->l = r->r = NULL;
+		*r = {v, NULL, NULL};
 	} else if (abs(v) < abs(r->val)) r->l = build(r->l, v);
 	else r->r = build(r->r, v);
 	return r;
