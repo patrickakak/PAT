@@ -2,14 +2,13 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-void downAdjust(vector<int> &b, int low, int high) {
+void downAdjust(vector<int> &v, int low, int high) {
 	int i = 1, j = i * 2;
 	while (j <= high) {
-		if (j+1 <= high && b[j] < b[j+1]) j++;
-		if (b[i] >= b[j]) break;
-		swap(b[i], b[j]);
-		i = j;
-		j = i * 2;
+		if (j+1 <= high && v[j] < v[j+1]) j++;
+		if (v[i] >= v[j]) break;
+		swap(v[i], v[j]);
+		i = j, j = i * 2;
 	}
 }
 int main() {
