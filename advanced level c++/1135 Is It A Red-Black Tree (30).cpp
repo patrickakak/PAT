@@ -3,35 +3,35 @@
 using namespace std;
 vector<int> a;
 struct node {
-	int val;
+	int key;
 	node *l, *r;
 };
-node *build(node *r, int v) {
-	if (r == NULL) {
-		r = new node();
-		*r = {v, NULL, NULL};
-	} else if (abs(v) < abs(r->val)) r->l = build(r->l, v);
-	else r->r = build(r->r, v);
-	return r;
+node *build(node *rt, int v) {
+	if (rt == NULL) {
+		rt = new node();
+		*rt = {v, NULL, NULL};
+	} else if (abs(v) < abs(rt->key)) rt->l = build(rt->l, v);
+	else rt->r = build(rt->r, v);
+	return rt;
 }
-bool judge1(node *r) {
-	if (r == NULL) return true;
-	if (r->val < 0) {
-		if (r->l && r->l->val < 0) return false;
-		if (r->r && r->r->val < 0) return false;
+bool judge1(node *rt) {
+	if (rt == NULL) return true;
+	if (rt->key < 0) {
+		if (rt->l && rt->l->key < 0) return false;
+		if (rt->r && rt->r->key < 0) return false;
 	}
-	return judge1(r->l) && judge1(r->r);
+	return judge1(rt->l) && judge1(rt->r);
 }
-int getNum(node *root) {
-	if (root == NULL) return 1;
-	int l = getNum(root->l);
-	int r = getNum(root->r);
-	return root->val > 0 ? max(l, r) + 1 : max(l, r);
+int getNum(node *rt) {
+	if (rt == NULL) return 1;
+	int l = getNum(rt->l);
+	int r = getNum(rt->r);
+	return rt->key > 0 ? max(l, r) + 1 : max(l, r);
 }
-bool judge2(node *r) {
-	if (r == NULL) return true;
-	if (getNum(r->l) != getNum(r->r)) return false;
-	return judge2(r->l) && judge2(r->r);
+bool judge2(node *rt) {
+	if (rt == NULL) return true;
+	if (getNum(rt->l) != getNum(rt->r)) return false;
+	return judge2(rt->l) && judge2(rt->r);
 }
 int main() {
 	int k, n;
