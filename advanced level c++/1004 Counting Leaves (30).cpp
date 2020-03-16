@@ -3,10 +3,10 @@
 #include <algorithm>
 using namespace std;
 vector<int> v[100];
-int book[100], maxdepth = -1;
+int cnt[100], maxdepth = -1;
 void dfs(int idx, int depth) {
 	if (v[idx].size() == 0) {
-		book[depth]++;
+		cnt[depth]++;
 		maxdepth = max(maxdepth, depth);
 		return ;
 	}
@@ -24,8 +24,8 @@ int main() {
 		}
 	}
 	dfs(1, 0);
-	printf("%d", book[0]);
+	printf("%d", cnt[0]);
 	for (int i = 1; i <= maxdepth; i++)
-		printf(" %d", book[i]);
+		printf(" %d", cnt[i]);
 	return 0;
 }
