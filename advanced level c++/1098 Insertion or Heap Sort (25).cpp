@@ -18,11 +18,11 @@ int main() {
 	for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
 	for (int i = 1; i <= n; i++) scanf("%d", &b[i]);
 	while (p <= n && b[p - 1] <= b[p]) p++;
-	int index = p;
+	int idx = p;
 	while (p <= n && a[p] == b[p]) p++;
 	if (p == n + 1) {
 		printf("Insertion Sort\n");
-		sort(b.begin() + 1, b.begin() + index + 1);
+		sort(b.begin() + 1, b.begin() + idx + 1);
 	} else {
 		printf("Heap Sort\n");
 		p = n;
