@@ -5,7 +5,7 @@ using namespace std;
 void downAdjust(vector<int> &b, int low, int high) {
 	int i = 1, j = i * 2;
 	while (j <= high) {
-		if (j + 1 <= high && b[j] < b[j + 1]) j++;
+		if (j+1 <= high && b[j] < b[j+1]) j++;
 		if (b[i] >= b[j]) break;
 		swap(b[i], b[j]);
 		i = j;
