@@ -13,20 +13,20 @@ void downAdjust(vector<int> &b, int low, int high) {
 	}
 }
 int main() {
-	int n, p = 2;
+	int n, i = 2;
 	scanf("%d", &n);
 	vector<int> a(n + 1), b(n + 1);
 	for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
 	for (int i = 1; i <= n; i++) scanf("%d", &b[i]);
-	while (p <= n && b[p-1] <= b[p]) p++;
-	int idx = p;
-	while (p <= n && a[p] == b[p]) p++;
-	if (p == n+1) {
+	for (; i <= n && b[i-1] <= b[i]; i++) ;
+	int j = i;
+	for (; j <= n && a[j] == b[j]; j++) ;
+	if (j == n+1) {
 		printf("Insertion Sort\n");
-		sort(b.begin()+1, b.begin()+idx+1);
+		sort(b.begin()+1, b.begin()+i+1);
 	} else {
 		printf("Heap Sort\n");
-		p = n;
+		int p = n;
 		while (p > 2 && b[p] >= b[1]) p--;
 		swap(b[1], b[p]);
 		downAdjust(b, 1, p-1);
