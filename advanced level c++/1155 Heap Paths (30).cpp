@@ -3,16 +3,16 @@
 using namespace std;
 vector<int> v;
 int a[1010], n, isMin = 1, isMax = 1;
-void dfs(int index) {
-	v.push_back(a[index]);
-	if (index * 2 > n) {	
+void dfs(int idx) {
+	v.push_back(a[idx]);
+	if (2 * idx > n) {	
 		for (int i = 0; i < v.size(); i++)
-			printf("%d%s", v[i], i != v.size() - 1 ? " " : "\n");
+			printf("%d%s", v[i], i != v.size()-1 ? " " : "\n");
 		v.pop_back();
 		return;
 	}
-	if (index * 2 + 1 <= n) dfs(index * 2 + 1);
-	if (index * 2 <= n) dfs(index * 2);
+	if (2 * idx + 1 <= n) dfs(2 * idx + 1);
+	if (2 * idx <= n) dfs(2 * idx);
 	v.pop_back();
 }
 int main() {
