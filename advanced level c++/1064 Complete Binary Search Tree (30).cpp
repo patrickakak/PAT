@@ -4,11 +4,11 @@
 using namespace std;
 int n, cnt = 0;
 vector<int> in, cbt;
-void inOrder(int index) {
-	if (index >= n) return;
-	inOrder(2 * index + 1);
-	cbt[index] = in[cnt++];
-	inOrder(2 * index + 2);
+void inOrder(int idx) {
+	if (idx >= n) return;
+	inOrder(2 * idx + 1);
+	cbt[idx] = in[cnt++];
+	inOrder(2 * idx + 2);
 }
 int main() {
 	cin >> n;
