@@ -8,7 +8,7 @@ struct node {
 };
 int n, cnt = 0;
 vector<node> bst;
-vector<int> in, level;
+vector<int> in, lev;
 void inOrder(int idx) {
 	if (idx == -1) return;
 	inOrder(bst[idx].l);
@@ -20,7 +20,7 @@ void bfs(int root) {
 	q.push(root);
 	while (!q.empty()) {
 		int t = q.front();
-		level.push_back(bst[t].data);
+		lev.push_back(bst[t].data);
 		q.pop();
 		if (bst[t].l != -1) q.push(bst[t].l);
 		if (bst[t].r != -1) q.push(bst[t].r);
@@ -36,7 +36,7 @@ int main() {
 	bfs(0);
 	for (int i = 0; i < n; i++) {
 		if (i != 0) printf(" ");
-		printf("%d", level[i]);
+		printf("%d", lev[i]);
 	}
 	return 0;
 }
