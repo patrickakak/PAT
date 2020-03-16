@@ -3,15 +3,17 @@
 #include <vector>
 #include <queue>
 using namespace std;
-struct node { int data, l, r; };
+struct node {
+	int data, l, r;
+};
 int n, cnt = 0;
 vector<node> bst;
 vector<int> in, level;
-void inOrder(int index) {
-	if (index == -1) return;
-	inOrder(bst[index].l);
-	bst[index].data = in[cnt++];
-	inOrder(bst[index].r);
+void inOrder(int idx) {
+	if (idx == -1) return;
+	inOrder(bst[idx].l);
+	bst[idx].data = in[cnt++];
+	inOrder(bst[idx].r);
 }
 void bfs(int root) {
 	queue<int> q;
