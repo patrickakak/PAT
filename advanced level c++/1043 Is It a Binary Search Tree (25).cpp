@@ -13,6 +13,7 @@ void postOrder(int prel, int prer) {
 		while (i <= prer && pre[prel] <= pre[i]) i++;
 		while (j > prel && pre[prel] > pre[j]) j--;
 	}
+	if (i-j != 1) return ;
 	postOrder(prel+1, j);
 	postOrder(i, prer);
 	post.push_back(pre[prel]);
