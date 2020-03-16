@@ -23,7 +23,7 @@ int main() {
 	scanf("%d", &n);
 	pre.resize(n);
 	for (int i = 0; i < n; i++) scanf("%d", &pre[i]);
-	postOrder(0, n - 1);
+	postOrder(0, n-1);
 	if (post.size() != n) {
 		isMirror = true;
 		post.clear();
