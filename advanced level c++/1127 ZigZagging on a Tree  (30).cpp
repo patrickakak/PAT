@@ -15,21 +15,21 @@ void dfs(node *r, int level) {
 	if (r->r) dfs(r->r, level + 1);
 }
 node *build(int inl, int inr, int postl, int postr) {
-	if (inl > inr || postl > postr) return NULL;
+	if (inl > inr) return NULL;
 	node *t = new(node);
 	t->data = post[postr];
 	int i = inl;
 	while (i <= inr && in[i] != post[postr]) i++;
-	t->l = build(inl, i - 1, postl, postl + i - inl - 1);
-	t->r = build(i + 1, inr, postl + i - inl, postr - 1);
+	t->l = build(inl, i-1, postl, postl+i-inl-1);
+	t->r = build(i+1, inr, postl+i-inl, postr-1);
 	return t;
 }
 int main() {
 	cin >> n;
 	in.resize(n), post.resize(n);
-	for (int i = 0; i < n; i++) cin >> in[i];
-	for (int i = 0; i < n; i++) cin >> post[i];
-	root = build(0, n - 1, 0, n - 1);
+	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
+	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
+	root = build(0, n-1, 0, n-1);
 	dfs(root, 0);
 	printf("%d", d[0][0]);
 	for (int i = 1; i <= dmax; i++)
