@@ -23,10 +23,10 @@ int main() {
 	cin >> n;
 	for (int i = 0; i < 10010; i++) father[i] = i;
 	for (int i = 0; i < n; i++) {
-		cin >> k >> bid;
+		scanf("%d%d", &k, &bid);
 		visit[bid] = 1;
 		for (int j = 1; j < k; j++) {
-			cin >> t;
+			scanf("%d", &t);
 			visit[t] = 1;
 			Union(bid, t);
 		}
@@ -39,7 +39,7 @@ int main() {
 	printf("%d %d\n", treeCnt, birdCnt);
 	cin >> q;
 	while (q--) {
-		cin >> a >> b;
+		scanf("%d%d", &a, &b);
 		if (find(a) == find(b)) printf("Yes\n");
 		else printf("No\n");
 	}
