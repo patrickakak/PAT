@@ -20,6 +20,6 @@ int main() {
 	while (root <= n && h[root] == 1) root++;
 	string ans = inorder(root);
 	if (ans[0] == '(') ans = ans.substr(1, ans.size()-2);
-	cout << ans;
+	printf("%s", ans.c_str());
 	return 0;
 }
