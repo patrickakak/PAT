@@ -26,8 +26,8 @@ int bfs(int x, int y, int z) {
 		for (int i = 0; i < 6; i++) {
 			int tx = top.x + X[i], ty = top.y + Y[i], tz = top.z + Z[i];
 			if (judge(tx, ty, tz)) {
-				inq[tx][ty][tz] = true;
 				q.push(node{tx, ty, tz});
+				inq[tx][ty][tz] = true;
 			}
 		}
 	}
