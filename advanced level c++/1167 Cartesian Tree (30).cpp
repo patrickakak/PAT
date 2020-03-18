@@ -5,13 +5,13 @@
 using namespace std;
 map<int, int> mp;
 vector<int> in;
-void preorder(int inl, int inr, int index) {
+void preorder(int inl, int inr, int idx) {
 	if (inl > inr) return;
 	int p = min_element(in.begin()+inl, in.begin()+inr+1) - (in.begin()+inl);
 	int minn = in[inl+p];
-	mp[minn] = index;
-	preorder(inl, inl+p-1, 2*index);
-	preorder(inl+p+1, inr, 2*index+1);
+	mp[minn] = idx;
+	preorder(inl, inl+p-1, 2*idx);
+	preorder(inl+p+1, inr, 2*idx+1);
 }
 bool cmp(int a, int b) {
 	return mp[a] < mp[b];
