@@ -1,7 +1,9 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-struct node { int x, y, z; };
+struct node {
+	int x, y, z;
+};
 int m, n, l, t;
 int X[6] = {1, 0, 0, -1, 0, 0};
 int Y[6] = {0, 1, 0, 0, -1, 0};
