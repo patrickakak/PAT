@@ -4,10 +4,10 @@ struct node {
 	string s;
 	int l, r;
 } a[25];
-string inOrder(int root) {
+string dfs(int root) {
 	if (root == -1) return "";
 	if (a[root].l == -1 && a[root].r == -1) return a[root].s;
-	else return "(" + inOrder(a[root].l) + a[root].s + inOrder(a[root].r) + ")";
+	else return "(" + dfs(a[root].l) + a[root].s + dfs(a[root].r) + ")";
 }
 int main() {
 	int h[25] = {0}, n, root = 1;
@@ -18,7 +18,7 @@ int main() {
 		if (a[i].r != -1) h[a[i].r] = 1;
 	}
 	while (root <= n && h[root] == 1) root++;
-	string ans = inOrder(root);
+	string ans = dfs(root);
 	if (ans[0] == '(') ans = ans.substr(1, ans.length()-2);
 	printf("%s", ans.c_str());
 	return 0;
