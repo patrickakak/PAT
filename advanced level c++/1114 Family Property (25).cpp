@@ -7,7 +7,7 @@ struct DATA {
 struct node {
 	int id, people;
 	double num, area;
-	bool flag = false;
+	bool flag;
 } ans[10000];
 int father[10000];
 bool visit[10000];
@@ -27,7 +27,9 @@ void Union(int a, int b) {
 	if (faA > faB) father[faA] = faB;
 	else father[faB] = faA;
 }
-int cmp(node &a, node &b) { return a.area != b.area ? a.area > b.area : a.id < b.id; }
+int cmp(node &a, node &b) {
+	return a.area != b.area ? a.area > b.area : a.id < b.id;
+}
 int main() {
 	int n, k, cnt = 0;
 	scanf("%d", &n);
