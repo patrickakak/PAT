@@ -9,10 +9,10 @@ int X[] = {1, 0, 0, -1, 0, 0};
 int Y[] = {0, 1, 0, 0, -1, 0};
 int Z[] = {0, 0, 1, 0, 0, -1};
 int arr[1300][130][80];
-bool visit[1300][130][80];
+bool vis[1300][130][80];
 bool judge(int x, int y, int z) {
 	if (x < 0 || x >= m || y < 0 || y >= n || z < 0 || z >= l) return false;
-	if (arr[x][y][z] == 0 || visit[x][y][z] == true) return false;
+	if (arr[x][y][z] == 0 || vis[x][y][z] == true) return false;
 	return true;
 }
 int bfs(int x, int y, int z) {
@@ -20,7 +20,7 @@ int bfs(int x, int y, int z) {
 	node tmp = node{x, y, z};
 	queue<node> q;
 	q.push(tmp);
-	visit[x][y][z] = true;
+	vis[x][y][z] = true;
 	while (!q.empty()) {
 		node top = q.front();
 		q.pop();
@@ -30,7 +30,7 @@ int bfs(int x, int y, int z) {
 			int ty = top.y + Y[i];
 			int tz = top.z + Z[i];
 			if (judge(tx, ty, tz)) {
-				visit[tx][ty][tz] = true;
+				vis[tx][ty][tz] = true;
 				tmp.x = tx, tmp.y = ty, tmp.z = tz;
 				q.push(tmp);
 			}
@@ -49,7 +49,7 @@ int main() {
 	for (int i = 0; i < l; i++)
 		for (int j = 0; j < m; j++)
 			for (int k = 0; k < n; k++)
-				if (arr[j][k][i] == 1 && visit[j][k][i] == false)
+				if (arr[j][k][i] == 1 && vis[j][k][i] == false)
 					ans += bfs(j, k, i);
 	printf("%d", ans);
 	return 0;
