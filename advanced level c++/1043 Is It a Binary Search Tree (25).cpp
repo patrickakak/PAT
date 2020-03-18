@@ -4,7 +4,7 @@ using namespace std;
 bool isMirror;
 vector<int> pre, post;
 void postOrder(int prel, int prer) {
-	if (prel > prer) return ;
+	if (prel > prer) return;
 	int i = prel + 1, j = prer;
 	if (!isMirror) {
 		while (i <= prer && pre[prel] > pre[i]) i++;
