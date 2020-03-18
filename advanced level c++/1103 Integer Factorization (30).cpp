@@ -5,13 +5,13 @@ using namespace std;
 int n, k, p, maxFacSum = -1;
 vector<int> v, ans, tmpAns;
 void init() {
-	int tmp = 0, index = 1;
+	int tmp = 0, idx = 1;
 	while (tmp <= n) {
 		v.push_back(tmp);
-		tmp = pow(index++, p);
+		tmp = pow(idx++, p);
 	}
 }
-void dfs(int index, int sum, int depth, int facSum) {
+void dfs(int idx, int sum, int depth, int facSum) {
 	if (depth == k) {
 		if (sum == n && facSum > maxFacSum) {
 			ans = tmpAns;
@@ -19,12 +19,12 @@ void dfs(int index, int sum, int depth, int facSum) {
 		}
 		return;
 	}
-	while (index >= 1) {
-		if (sum + v[index] <= n) {
-			tmpAns[depth] = index;
-			dfs(index, sum + v[index], depth + 1, facSum + index);
+	while (idx >= 1) {
+		if (sum + v[idx] <= n) {
+			tmpAns[depth] = idx;
+			dfs(idx, sum+v[idx], depth+1, facSum+idx);
 		}
-		if (index-- == 1) return;
+		if (idx-- == 1) return;
 	}
 }
 int main() {
