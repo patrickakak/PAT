@@ -12,6 +12,7 @@ void init() {
 	}
 }
 void dfs(int idx, int sum, int depth, int facSum) {
+	if (sum > n) return;
 	if (depth == k) {
 		if (sum == n && facSum > maxFacSum) {
 			ans = tmpAns;
@@ -20,11 +21,9 @@ void dfs(int idx, int sum, int depth, int facSum) {
 		return;
 	}
 	while (idx >= 1) {
-		if (sum + v[idx] <= n) {
-			tmpAns.push_back(idx);
-			dfs(idx, sum+v[idx], depth+1, facSum+idx);
-			tmpAns.pop_back();
-		}
+		tmpAns.push_back(idx);
+		dfs(idx, sum+v[idx], depth+1, facSum+idx);
+		tmpAns.pop_back();
 		if (--idx == 0) return;
 	}
 }
