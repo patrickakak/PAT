@@ -32,8 +32,7 @@ int bfs(int x, int y, int z) {
 			}
 		}
 	}
-	if (cnt >= t) return cnt;
-	else return 0;
+	return cnt >= t ? cnt : 0;
 }
 int main() {
 	scanf("%d %d %d %d", &m, &n, &l, &t);
