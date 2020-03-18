@@ -4,7 +4,6 @@ struct node {
 	string s;
 	int l, r;
 } a[25];
-int h[25];
 void dfs(int root) {
 	if (root == -1) return;
 	int cnt = (a[root].l == -1) + (a[root].r == -1);
@@ -16,7 +15,7 @@ void dfs(int root) {
 	printf(")");
 }
 int main() {
-	int n, root = 1;
+	int h[25] = {0}, n, root = 1;
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		cin >> a[i].s >> a[i].l >> a[i].r;
