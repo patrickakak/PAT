@@ -17,22 +17,18 @@ bool judge(int x, int y, int z) {
 }
 int bfs(int x, int y, int z) {
 	int cnt = 0;
-	node tmp = node{x, y, z};
 	queue<node> q;
-	q.push(tmp);
+	q.push(node{x, y, z});
 	vis[x][y][z] = true;
 	while (!q.empty()) {
 		node top = q.front();
 		q.pop();
 		cnt++;
 		for (int i = 0; i < 6; i++) {
-			int tx = top.x + X[i];
-			int ty = top.y + Y[i];
-			int tz = top.z + Z[i];
+			int tx = top.x + X[i], ty = top.y + Y[i], tz = top.z + Z[i];
 			if (judge(tx, ty, tz)) {
 				vis[tx][ty][tz] = true;
-				tmp.x = tx, tmp.y = ty, tmp.z = tz;
-				q.push(tmp);
+				q.push(node{tx, ty, tz});
 			}
 		}
 	}
