@@ -31,7 +31,7 @@ int main() {
 	scanf("%d%d%d", &n, &k, &p);
 	init(); 
 	tmpAns.resize(k);
-	dfs(v.size() - 1, 0, 0, 0);
+	dfs(v.size()-1, 0, 0, 0);
 	if (maxFacSum == -1) printf("Impossible");
 	else {
 		printf("%d = %d^%d", n, ans[0], p);
