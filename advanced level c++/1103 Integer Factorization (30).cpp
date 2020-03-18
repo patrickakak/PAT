@@ -21,16 +21,16 @@ void dfs(int idx, int sum, int depth, int facSum) {
 	}
 	while (idx >= 1) {
 		if (sum + v[idx] <= n) {
-			tmpAns[depth] = idx;
+			tmpAns.push_back(idx);
 			dfs(idx, sum+v[idx], depth+1, facSum+idx);
+			tmpAns.pop_back();
 		}
-		if (idx-- == 1) return;
+		if (--idx == 0) return;
 	}
 }
 int main() {
 	scanf("%d%d%d", &n, &k, &p);
 	init(); 
-	tmpAns.resize(k);
 	dfs(v.size()-1, 0, 0, 0);
 	if (maxFacSum == -1) printf("Impossible");
 	else {
