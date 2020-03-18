@@ -5,9 +5,9 @@ struct node {
 	int x, y, z;
 };
 int m, n, l, t;
-int X[] = {1, 0, 0, -1, 0, 0};
-int Y[] = {0, 1, 0, 0, -1, 0};
-int Z[] = {0, 0, 1, 0, 0, -1};
+int X[] = {1, -1, 0, 0, 0, 0};
+int Y[] = {0, 0, 1, -1, 0, 0};
+int Z[] = {0, 0, 0, 0, 1, -1};
 int arr[1300][130][80];
 bool vis[1300][130][80];
 bool judge(int x, int y, int z) {
