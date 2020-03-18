@@ -20,7 +20,7 @@ void dfs(int idx, int sum, int depth, int facSum) {
 		}
 		return;
 	}
-	while (idx >= 1) {
+	while (1) {
 		tmpAns.push_back(idx);
 		dfs(idx, sum+v[idx], depth+1, facSum+idx);
 		tmpAns.pop_back();
