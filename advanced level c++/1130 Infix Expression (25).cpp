@@ -19,7 +19,7 @@ int main() {
 	}
 	while (root <= n && h[root] == 1) root++;
 	string ans = inOrder(root);
-	if (ans[0] == '(') ans = ans.substr(1, ans.size()-2);
+	if (ans[0] == '(') ans = ans.substr(1, ans.length()-2);
 	printf("%s", ans.c_str());
 	return 0;
 }
