@@ -4,15 +4,11 @@ struct node {
 	string s;
 	int l, r;
 } a[25];
-void dfs(int root) {
-	if (root == -1) return;
+string dfs(int root) {
+	if (root == -1) return "";
 	int cnt = (a[root].l == -1) + (a[root].r == -1);
-	printf("(");
-	if (cnt == 1) cout << a[root].s;
-	dfs(a[root].l);
-	dfs(a[root].r);
-	if (cnt != 1) cout << a[root].s;
-	printf(")");
+	if (cnt == 1) return "(" + a[root].s + dfs(a[root].l) + dfs(a[root].r) + ")";
+	else return "(" + dfs(a[root].l) + dfs(a[root].r) + a[root].s + ")";
 }
 int main() {
 	int h[25] = {0}, n, root = 1;
@@ -23,6 +19,7 @@ int main() {
 		if (a[i].r != -1) h[a[i].r] = 1;
 	}
 	while (root <= n && h[root] == 1) root++;
-	dfs(root);
+	string ans = dfs(root);
+	printf("%s", ans.c_str());
 	return 0;
 }
