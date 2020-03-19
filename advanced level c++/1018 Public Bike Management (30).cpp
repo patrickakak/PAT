@@ -11,13 +11,13 @@ void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == 0) {
 		int send = 0, back = 0;
-		for (int i = tmppath.size() - 2; i >= 0; i--) {
+		for (int i = tmppath.size()-2; i >= 0; i--) {
 			int id = tmppath[i];
 			if (weight[id] > 0) back += weight[id];
 			else {
-				if (back > (0 - weight[id])) back += weight[id];
+				if (back > abs(weight[id])) back += weight[id];
 				else {
-					send += ((0 - weight[id]) - back);
+					send += abs(weight[id]) - back;
 					back = 0;
 				}
 			}
