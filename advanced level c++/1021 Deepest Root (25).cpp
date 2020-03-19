@@ -44,7 +44,7 @@ int main() {
 		maxht = 0;
 		fill(vis, vis + 10010, false);
 		dfs(src, 1);
-		for (auto i : tmp) s.insert(i);
+		for (auto it : tmp) s.insert(it);
 		for (auto it : s) printf("%d\n", it);
 	}
 	return 0;
