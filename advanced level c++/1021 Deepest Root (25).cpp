@@ -24,7 +24,7 @@ int main() {
 	scanf("%d", &n);
 	v.resize(n + 1);
 	int a, b, src, cnt = 0;
-	for (int i = 0; i < n - 1; i++) {
+	for (int i = 0; i < n-1; i++) {
 		scanf("%d%d", &a, &b);
 		v[a].push_back(b);
 		v[b].push_back(a);
