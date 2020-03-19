@@ -2,17 +2,16 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-const int inf = 0x3fffffff;
+const int inf = 0x2fffffff;
 int e[510][510], dis[510], cost[510][510];
-vector<int> pre[510];
-bool visit[510];
-vector<int> path, tmppath;
 int n, m, s, d, mincost = inf;
+vector<int> pre[510], path, tmppath;
+bool vis[510];
 void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == s) {
 		int tmpcost = 0;
-		for (int i = tmppath.size() - 1; i > 0; i--) {
+		for (int i = tmppath.size()-1; i > 0; i--) {
 			int id = tmppath[i], nextid = tmppath[i-1];
 			tmpcost += cost[id][nextid];
 		}
@@ -41,14 +40,14 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (visit[j] == false && dis[j] < minn) {
+			if (!vis[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
-		visit[u] = true;
+		vis[u] = true;
 		for (int v = 0; v < n; v++)
-			if (visit[v] == false && e[u][v] != inf) {
+			if (!vis[v] && e[u][v] != inf) {
 				if (dis[v] > dis[u] + e[u][v]) {
 					dis[v] = dis[u] + e[u][v];
 					pre[v].clear();
@@ -58,7 +57,7 @@ int main() {
 			}
 	}
 	dfs(d);
-	for (int i = path.size() - 1; i >= 0; i--) printf("%d ", path[i]);
+	for (int i = path.size()-1; i >= 0; i--) printf("%d ", path[i]);
 	printf("%d %d", dis[d], mincost);
 	return 0;
 }
