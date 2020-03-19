@@ -3,8 +3,7 @@
 #include <vector>
 using namespace std;
 const int inf = 0x2fffffff;
-int e[510][510], dis[510], cost[510][510];
-int n, m, s, d, mincost = inf;
+int n, m, s, d, mincost = inf, e[510][510], dis[510], cost[510][510];
 vector<int> pre[510], path, tmppath;
 bool vis[510];
 void dfs(int v) {
