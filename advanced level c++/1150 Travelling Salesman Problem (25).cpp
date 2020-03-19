@@ -2,9 +2,9 @@
 #include <vector>
 #include <set>
 using namespace std;
-int e[210][210], n, m, k, ans = 0x3fffffff, ansid;
+int e[210][210], n, m, k, ans = 0x2fffffff, ansid;
 vector<int> v;
-void check(int index) {
+void check(int idx) {
 	int sum = 0, cnt, flag = 1;
 	scanf("%d", &cnt);
 	set<int> s;
@@ -13,27 +13,27 @@ void check(int index) {
 		scanf("%d", &v[i]);
 		s.insert(v[i]);
 	}
-	for (int i = 0; i < cnt - 1; i++) {
+	for (int i = 0; i < cnt-1; i++) {
 		if (e[v[i]][v[i+1]] == 0) flag = 0;
 		sum += e[v[i]][v[i+1]];
 	}
 	if (flag == 0)
-		printf("Path %d: NA (Not a TS cycle)\n", index);
+		printf("Path %d: NA (Not a TS cycle)\n", idx);
 	else if (v[0] != v[cnt-1] || s.size() != n)
-		printf("Path %d: %d (Not a TS cycle)\n", index, sum);
+		printf("Path %d: %d (Not a TS cycle)\n", idx, sum);
 	else {
-		if (cnt != n + 1) printf("Path %d: %d (TS cycle)\n", index, sum);
-		else printf("Path %d: %d (TS simple cycle)\n", index, sum);
+		if (cnt != n+1) printf("Path %d: %d (TS cycle)\n", idx, sum);
+		else printf("Path %d: %d (TS simple cycle)\n", idx, sum);
 		if (sum < ans) {
 			ans = sum;
-			ansid = index;
+			ansid = idx;
 		}
 	}
 }
 int main() {
 	scanf("%d%d", &n, &m);
+	int c1, c2, dis;
 	for (int i = 0; i < m; i++) {
-		int c1, c2, dis;
 		scanf("%d%d%d", &c1, &c2, &dis);
 		e[c1][c2] = e[c2][c1] = dis;
 	}
