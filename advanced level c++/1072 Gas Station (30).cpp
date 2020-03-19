@@ -17,21 +17,21 @@ int main() {
 	}
 	int ansid = -1;
 	double ansdis = -1, ansaver = inf;
-	for (int idx = n + 1; idx <= n + m; idx++) {
+	for (int idx = n+1; idx <= n+m; idx++) {
 		double mindis = inf, aver = 0;
 		fill(dis, dis + 1020, inf);
 		fill(vis, vis + 1020, false);
 		dis[idx] = 0;
-		for (int i = 1; i <= n + m; i++) {
+		for (int i = 1; i <= n+m; i++) {
 			int u = -1, minn = inf;
-			for (int j = 1; j <= n + m; j++)
+			for (int j = 1; j <= n+m; j++)
 				if (!vis[j] && dis[j] < minn) {
 					u = j;
 					minn = dis[j];
 				}
 			if (u == -1) break;
 			vis[u] = true;
-			for (int v = 1; v <= n + m; v++)
+			for (int v = 1; v <= n+m; v++)
 				if (!vis[v] && e[u][v] != inf && dis[v] > dis[u] + e[u][v])
 					dis[v] = dis[u] + e[u][v];
 		}
