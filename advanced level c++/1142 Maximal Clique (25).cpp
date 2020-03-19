@@ -12,10 +12,10 @@ int main() {
 	for (int i = 0; i < m; i++) {
 		scanf("%d", &k);
 		vector<int> v(k);
-		int hash[210] = {0}, isClique = 1, isMax = 1;
+		int h[210] = {0}, isClique = 1, isMax = 1;
 		for (int j = 0; j < k; j++) {
 			scanf("%d", &v[j]);
-			hash[v[j]] = 1;
+			h[v[j]] = 1;
 		}
 		for (int j = 0; j < k; j++) {
 			if (isClique == 0) break;
@@ -26,9 +26,9 @@ int main() {
 					break;
 				}
 		}
-		if (isClique == 0) continue;
+		if (!isClique) continue;
 		for (int j = 1; j <= nv; j++) {
-			if (hash[j] == 0)
+			if (h[j] == 0)
 				for (int l = 0; l < k; l++) {
 					if (e[v[l]][j] == 0) break;
 					if (l == k-1) isMax = 0;
