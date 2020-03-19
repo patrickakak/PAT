@@ -30,16 +30,15 @@ int bfs(node t) {
 int main() {
 	scanf("%d %d", &n, &l);
 	v.resize(n + 1);
+	int tid;
 	for (int i = 1; i <= n; i++) {
 		scanf("%d", &m);
 		for (int j = 0; j < m; j++) {
-			int tmp;
-			scanf("%d", &tmp);
-			v[tmp].push_back(i);
+			scanf("%d", &tid);
+			v[tid].push_back(i);
 		}
 	}
 	scanf("%d", &k);
-	int tid;
 	for (int i = 0; i < k; i++) {
 		scanf("%d", &tid);
 		printf("%d\n", bfs({tid, 0}));
