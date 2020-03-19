@@ -3,30 +3,30 @@
 #include <vector>
 using namespace std;
 const int inf = 0x2fffffff;
-int cmax, n, sp, m, minNeed = inf, minBack = inf;
+int cmax, n, sp, m, minSend = inf, minBack = inf;
 int e[510][510], dis[510], weight[510];
 bool vis[510];
 vector<int> pre[510], path, tmppath;
 void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == 0) {
-		int need = 0, back = 0;
+		int send = 0, back = 0;
 		for (int i = tmppath.size() - 2; i >= 0; i--) {
 			int id = tmppath[i];
 			if (weight[id] > 0) back += weight[id];
 			else {
 				if (back > (0 - weight[id])) back += weight[id];
 				else {
-					need += ((0 - weight[id]) - back);
+					send += ((0 - weight[id]) - back);
 					back = 0;
 				}
 			}
 		}
-		if (need < minNeed) {
-			minNeed = need;
+		if (send < minSend) {
+			minSend = send;
 			minBack = back;
 			path = tmppath;
-		} else if (need == minNeed && back < minBack) {
+		} else if (send == minSend && back < minBack) {
 			minBack = back;
 			path = tmppath;
 		}
@@ -44,8 +44,8 @@ int main() {
 		scanf("%d", &weight[i]);
 		weight[i] -= cmax / 2;
 	}
+	int a, b, t;
 	for (int i = 0; i < m; i++) {
-		int a, b, t;
 		scanf("%d%d%d", &a, &b, &t);
 		e[b][a] = e[a][b] = t;
 	}
@@ -70,7 +70,7 @@ int main() {
 			}
 	}
 	dfs(sp);
-	printf("%d 0", minNeed);
+	printf("%d 0", minSend);
 	for (int i = path.size()-2; i >= 0; i--) printf("->%d", path[i]);
 	printf(" %d", minBack);
 	return 0;
