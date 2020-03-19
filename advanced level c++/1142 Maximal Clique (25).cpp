@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int e[210][210];
 int main() {
-	int nv, ne, m, ta, tb, k;
+	int nv, ne, m, ta, tb, k, e[210][210] = {0};
 	scanf("%d %d", &nv, &ne);
 	for (int i = 0; i < ne; i++) {
 		scanf("%d %d", &ta, &tb);
