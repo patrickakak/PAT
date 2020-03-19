@@ -3,12 +3,11 @@
 #include <vector>
 using namespace std;
 int main() {
-	int n, m, a, b, cnt, k, g[210][210] = {0};
+	int n, m, a, b, cnt, k, e[210][210] = {0};
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
-		int a, b;
 		scanf("%d%d", &a, &b);
-		g[a][b] = g[b][a] = 1;
+		e[a][b] = e[b][a] = 1;
 	}
 	cin >> cnt;
 	while (cnt--) {
@@ -22,7 +21,7 @@ int main() {
 		}
 		if (s.size() != n || k - 1 != n || v[0] != v[k-1]) flag1 = 0;
 		for (int i = 0; i < k - 1; i++)
-			if (g[v[i]][v[i+1]] == 0) flag2 = 0;
+			if (e[v[i]][v[i+1]] == 0) flag2 = 0;
 		printf("%s\n", flag1 && flag2 ? "YES" : "NO");
 	}
 	return 0;
