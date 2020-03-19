@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-const int inf = 0x3fffffff;
+const int inf = 0x2fffffff;
 int dis[510], Time[510], e[510][510], w[510][510], dispre[510], timepre[510], weight[510], nodeNum[510];
-bool visit[510];
+bool vis[510];
 vector<int> dispath, timepath, tmppath;
 int s, d, minnode = inf;
 void dfsdispath(int v) {
@@ -40,14 +40,14 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (!visit[j] && dis[j] < minn) {
+			if (!vis[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
-		visit[u] = true;
+		vis[u] = true;
 		for (int v = 0; v < n; v++)
-			if (!visit[v] && e[u][v] != inf) {
+			if (!vis[v] && e[u][v] != inf) {
 				if (e[u][v] + dis[u] < dis[v]) {
 					dis[v] = e[u][v] + dis[u];
 					dispre[v] = u;
@@ -60,18 +60,18 @@ int main() {
 	}
 	dfsdispath(d);
 	Time[s] = 0;
-	fill(visit, visit + 510, false);
+	fill(vis, vis + 510, false);
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (!visit[j] && minn > Time[j]) {
+			if (!vis[j] && minn > Time[j]) {
 				u = j;
 				minn = Time[j];
 			}
 		if (u == -1) break;
-		visit[u] = true;
+		vis[u] = true;
 		for (int v = 0; v < n; v++)
-			if (!visit[v] && w[u][v] != inf) {
+			if (!vis[v] && w[u][v] != inf) {
 				if (w[u][v] + Time[u] < Time[v]) {
 					Time[v] = w[u][v] + Time[u];
 					timepre[v] = u;
@@ -87,13 +87,13 @@ int main() {
 	if (dispath == timepath) printf("; Time = %d: ", Time[d]);
 	else {
 		printf(": ");
-		for (int i = dispath.size() - 1; i >= 0; i--) {
+		for (int i = dispath.size()-1; i >= 0; i--) {
 			printf("%d", dispath[i]);
 			if (i != 0) printf(" -> ");
 		}
 		printf("\nTime = %d: ", Time[d]);
 	}
-	for (int i = timepath.size() - 1; i >= 0; i--) {
+	for (int i = timepath.size()-1; i >= 0; i--) {
 		printf("%d", timepath[i]);
 		if (i != 0) printf(" -> ");
 	}
