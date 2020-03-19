@@ -19,8 +19,8 @@ int main() {
 			scanf("%d", &v[i]);
 			s.insert(v[i]);
 		}
-		if (s.size() != n || k - 1 != n || v[0] != v[k-1]) flag1 = 0;
-		for (int i = 0; i < k - 1; i++)
+		if (s.size() != n || k-1 != n || v[0] != v[k-1]) flag1 = 0;
+		for (int i = 0; i < k-1; i++)
 			if (e[v[i]][v[i+1]] == 0) flag2 = 0;
 		printf("%s\n", flag1 && flag2 ? "YES" : "NO");
 	}
