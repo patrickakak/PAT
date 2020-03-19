@@ -34,7 +34,6 @@ int main() {
 		e[b][a] = e[a][b] = d;
 		cost[b][a] = cost[a][b] = c;
 	}
-	pre[s].push_back(s);
 	dis[s] = 0;
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
