@@ -7,11 +7,11 @@ struct node {
 	int id, layer;
 };
 vector<vector<int>> v;
-int bfs(node tnode) {
+int bfs(node t) {
 	bool inq[1010] = {false};
 	queue<node> q;
-	q.push(tnode);
-	inq[tnode.id] = true;
+	q.push(t);
+	inq[t.id] = true;
 	int cnt = 0;
 	while (!q.empty()) {
 		node top = q.front();
@@ -19,7 +19,7 @@ int bfs(node tnode) {
 		for (int i = 0; i < v[top.id].size(); i++) {
 			int nextid = v[top.id][i];
 			if (!inq[nextid] && top.layer < l) {
-				q.push({nextid, top.layer + 1});
+				q.push({nextid, top.layer+1});
 				inq[nextid] = true;
 				cnt++;
 			}
