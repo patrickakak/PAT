@@ -45,7 +45,7 @@ int main() {
 	}
 	dfsTrave();
 	printf("%d\n", ans.size());
-	for (auto it = ans.begin(); it != ans.end(); it++)
-		printf("%s %d\n", it->first.c_str(), it->second);
+	for (auto it : ans)
+		printf("%s %d\n", it.first.c_str(), it.second);
 	return 0;
 }
