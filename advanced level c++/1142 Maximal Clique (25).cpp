@@ -31,7 +31,7 @@ int main() {
 			if (hash[j] == 0)
 				for (int l = 0; l < k; l++) {
 					if (e[v[l]][j] == 0) break;
-					if (l == k - 1) isMax = 0;
+					if (l == k-1) isMax = 0;
 				}
 			if (isMax == 0) {
 				printf("Not Maximal\n");
