@@ -17,11 +17,11 @@ int main() {
 	}
 	int ansid = -1;
 	double ansdis = -1, ansaver = inf;
-	for (int index = n + 1; index <= n + m; index++) {
+	for (int idx = n + 1; idx <= n + m; idx++) {
 		double mindis = inf, aver = 0;
 		fill(dis, dis + 1020, inf);
 		fill(vis, vis + 1020, false);
-		dis[index] = 0;
+		dis[idx] = 0;
 		for (int i = 1; i <= n + m; i++) {
 			int u = -1, minn = inf;
 			for (int j = 1; j <= n + m; j++)
@@ -46,11 +46,11 @@ int main() {
 		if (mindis == inf) continue;
 		aver /= n;
 		if (mindis > ansdis) {
-			ansid = index;
+			ansid = idx;
 			ansdis = mindis;
 			ansaver = aver;
 		} else if (mindis == ansdis && aver < ansaver) {
-			ansid = index;
+			ansid = idx;
 			ansaver = aver;
 		}
 	}
