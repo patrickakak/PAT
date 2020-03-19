@@ -1,15 +1,15 @@
 #include <iostream>
 #include <map>
 using namespace std;
-map<string, int> str2int, ans;
-map<int, string> int2str;
+map<string, int> s2i, ans;
+map<int, string> i2s;
 int index = 1, k;
 int getid(string s) {
-	if (str2int[s] == 0) {
-		str2int[s] = index;
-		int2str[index] = s;
+	if (s2i[s] == 0) {
+		s2i[s] = index;
+		i2s[index] = s;
 		return index++;
-	} else return str2int[s];
+	} else return s2i[s];
 }
 int G[2010][2010], weight[2010];
 bool vis[2010];
@@ -27,7 +27,7 @@ void dfsTrave() {
 		if (!vis[i]) {
 			int head = i, numMbr = 0, totalwt = 0;
 			dfs(i, head, numMbr, totalwt);
-			if (numMbr > 2 && totalwt/2 > k) ans[int2str[head]] = numMbr;
+			if (numMbr > 2 && totalwt/2 > k) ans[i2s[head]] = numMbr;
 		}
 }
 int main() {
@@ -44,8 +44,8 @@ int main() {
 		G[id2][id1] += w;
 	}
 	dfsTrave();
-	cout << ans.size() << endl;
+	printf("%d\n", ans.size());
 	for (auto it = ans.begin(); it != ans.end(); it++)
-		cout << it->first << " " << it->second << endl;
+		printf("%s %d\n", it->first.c_str(), it->second);
 	return 0;
 }
