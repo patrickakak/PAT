@@ -3,8 +3,8 @@
 using namespace std;
 int n, m, s, d;
 int e[500][500], weight[500], dis[500], num[500], w[500];
-bool visit[500];
-const int inf = 0x3fffffff;
+bool vis[500];
+const int inf = 0x2fffffff;
 int main() {
 	scanf("%d%d%d%d", &n, &m, &s, &d);
 	for (int i = 0; i < n; i++) scanf("%d", &weight[i]);
@@ -21,14 +21,14 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (!visit[j] && dis[j] < minn) {
+			if (!vis[j] && dis[j] < minn) {
 				u = j;
 				minn = dis[j];
 			}
 		if (u == -1) break;
-		visit[u] = true;
+		vis[u] = true;
 		for (int v = 0; v < n; v++)
-			if (!visit[v] && e[u][v] != inf) {
+			if (!vis[v] && e[u][v] != inf) {
 				if (dis[u] + e[u][v] < dis[v]) {
 					dis[v] = dis[u] + e[u][v];
 					num[v] = num[u];
