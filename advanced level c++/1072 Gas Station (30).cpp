@@ -7,9 +7,9 @@ bool vis[1020];
 int main() {
 	fill(e[0], e[0] + 1020 * 1020, inf);
 	scanf("%d%d%d%d", &n, &m, &k, &ds);
+	int a, b, tmpdis;
+	string s, t;
 	for (int i = 0; i < k; i++) {
-		int a, b, tmpdis;
-		string s, t;
 		cin >> s >> t >> tmpdis;
 		a = s[0] == 'G' ? n + stoi(s.substr(1)) : stoi(s);
 		b = t[0] == 'G' ? n + stoi(t.substr(1)) : stoi(t);
@@ -55,6 +55,6 @@ int main() {
 		}
 	}
 	if (ansid == -1) printf("No Solution");
-	else printf("G%d\n%.1f %.1f", ansid - n, ansdis, ansaver);
+	else printf("G%d\n%.1f %.1f", ansid-n, ansdis, ansaver);
 	return 0;
 }
