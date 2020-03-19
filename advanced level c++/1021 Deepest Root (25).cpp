@@ -8,17 +8,17 @@ vector<vector<int>> v;
 bool vis[10010];
 set<int> s;
 vector<int> tmp;
-void dfs(int node, int ht) {
+void dfs(int idx, int ht) {
 	if (ht > maxht) {
 		tmp.clear();
-		tmp.push_back(node);
+		tmp.push_back(idx);
 		maxht = ht;
 	} else if (ht == maxht)
-		tmp.push_back(node);
-	vis[node] = true;
-	for (int i = 0; i < v[node].size(); i++)
-		if (!vis[v[node][i]])
-			dfs(v[node][i], ht + 1);
+		tmp.push_back(idx);
+	vis[idx] = true;
+	for (int i = 0; i < v[idx].size(); i++)
+		if (!vis[v[idx][i]])
+			dfs(v[idx][i], ht + 1);
 }
 int main() {
 	scanf("%d", &n);
