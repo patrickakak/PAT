@@ -2,9 +2,8 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-const int inf = 0x3fffffff;
-int cmax, n, sp, m;
-int minNeed = inf, minBack = inf;
+const int inf = 0x2fffffff;
+int cmax, n, sp, m, minNeed = inf, minBack = inf;
 int e[510][510], dis[510], weight[510];
 bool vis[510];
 vector<int> pre[510], path, tmppath;
@@ -72,7 +71,7 @@ int main() {
 	}
 	dfs(sp);
 	printf("%d 0", minNeed);
-	for (int i = path.size() - 2; i >= 0; i--) printf("->%d", path[i]);
+	for (int i = path.size()-2; i >= 0; i--) printf("->%d", path[i]);
 	printf(" %d", minBack);
 	return 0;
 }
