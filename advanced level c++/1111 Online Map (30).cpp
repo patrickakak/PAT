@@ -3,23 +3,23 @@
 #include <vector>
 using namespace std;
 const int inf = 0x2fffffff;
-int dis[510], Time[510], e[510][510], w[510][510], dispre[510], timepre[510], weight[510], nodeNum[510];
+int dis[510], tm[510], e[510][510], w[510][510], dispre[510], tmpre[510], weight[510], nodeNum[510];
 bool vis[510];
-vector<int> dispath, timepath, tmppath;
+vector<int> dispath, tmpath, tmppath;
 int s, d, minnode = inf;
 void dfsdispath(int v) {
 	dispath.push_back(v);
 	if (v == s) return ;
 	dfsdispath(dispre[v]);
 }
-void dfstimepath(int v) {
-	timepath.push_back(v);
+void dfstmpath(int v) {
+	tmpath.push_back(v);
 	if (v == s) return ;
-	dfstimepath(timepre[v]);
+	dfstmpath(tmpre[v]);
 }
 int main() {
 	fill(dis, dis + 510, inf);
-	fill(Time, Time + 510, inf);
+	fill(tm, tm + 510, inf);
 	fill(weight, weight + 510, inf);
 	fill(e[0], e[0] + 510 * 510, inf);
 	fill(w[0], w[0] + 510 * 510, inf);
@@ -59,42 +59,42 @@ int main() {
 			}
 	}
 	dfsdispath(d);
-	Time[s] = 0;
+	tm[s] = 0;
 	fill(vis, vis + 510, false);
 	for (int i = 0; i < n; i++) {
 		int u = -1, minn = inf;
 		for (int j = 0; j < n; j++)
-			if (!vis[j] && minn > Time[j]) {
+			if (!vis[j] && minn > tm[j]) {
 				u = j;
-				minn = Time[j];
+				minn = tm[j];
 			}
 		if (u == -1) break;
 		vis[u] = true;
 		for (int v = 0; v < n; v++)
 			if (!vis[v] && w[u][v] != inf) {
-				if (w[u][v] + Time[u] < Time[v]) {
-					Time[v] = w[u][v] + Time[u];
-					timepre[v] = u;
+				if (w[u][v] + tm[u] < tm[v]) {
+					tm[v] = w[u][v] + tm[u];
+					tmpre[v] = u;
 					nodeNum[v] = nodeNum[u] + 1;
-				} else if (w[u][v] + Time[u] == Time[v] && nodeNum[u]+1 < nodeNum[v]) {
-					timepre[v] = u;
+				} else if (w[u][v] + tm[u] == tm[v] && nodeNum[u]+1 < nodeNum[v]) {
+					tmpre[v] = u;
 					nodeNum[v] = nodeNum[u] + 1;
 				}
 			}
 	}
-	dfstimepath(d);
+	dfstmpath(d);
 	printf("Distance = %d", dis[d]);
-	if (dispath == timepath) printf("; Time = %d: ", Time[d]);
+	if (dispath == tmpath) printf("; Time = %d: ", tm[d]);
 	else {
 		printf(": ");
 		for (int i = dispath.size()-1; i >= 0; i--) {
 			printf("%d", dispath[i]);
 			if (i != 0) printf(" -> ");
 		}
-		printf("\nTime = %d: ", Time[d]);
+		printf("\nTime = %d: ", tm[d]);
 	}
-	for (int i = timepath.size()-1; i >= 0; i--) {
-		printf("%d", timepath[i]);
+	for (int i = tmpath.size()-1; i >= 0; i--) {
+		printf("%d", tmpath[i]);
 		if (i != 0) printf(" -> ");
 	}
 	return 0;
