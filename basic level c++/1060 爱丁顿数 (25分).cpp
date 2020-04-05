@@ -3,12 +3,11 @@
 #include <algorithm>
 using namespace std;
 int main() {
-	int n;
+	int n, e = 0;
 	cin >> n;
 	vector<int> v(n+1);
 	for (int i = 1; i <= n; i++) scanf("%d", &v[i]);
 	sort(v.rbegin(), v.rend()-1);
-	int e = 0;
 	for (int i = 1; i <= n; i++)
 		if (v[i] > i) e++;
 		else break;
