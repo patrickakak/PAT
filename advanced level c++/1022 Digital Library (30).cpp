@@ -10,7 +10,7 @@ int main() {
 	int n, id, m, inx;
 	scanf("%d\n", &n);
 	string s;
-	unordered_map<string, set<int>> ttl, au, key, pub, yr;
+	unordered_map<string, set<int>> ttl, au, kw, pub, yr;
 	while (n--) {
 		scanf("%d\n", &id);
 		getline(cin, s);
@@ -19,7 +19,7 @@ int main() {
 		au[s].insert(id);
 		while (1) {
 			cin >> s;
-			key[s].insert(id);
+			kw[s].insert(id);
 			if (getchar() == '\n') break;
 		}
 		getline(cin, s);
@@ -35,7 +35,7 @@ int main() {
 		switch (inx) {
 		case 1: query(ttl, s); break;
 		case 2: query(au, s);  break;
-		case 3: query(key, s); break;
+		case 3: query(kw, s);  break;
 		case 4: query(pub, s); break;
 		case 5: query(yr, s);  break;
 		}
