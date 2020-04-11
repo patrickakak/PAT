@@ -8,7 +8,7 @@ bool cmp(p &a, p &b) {
 	return a.first != b.first ? a.first < b.first : a.second < b.second;
 }
 int main() {
-	int n, m, k;
+	int n, m, l;
 	scanf("%d%d", &n, &m);
 	vector<int> v[10000];
 	for (int i = 0; i < m; i++) {
@@ -21,8 +21,8 @@ int main() {
 		}
 		e[a][b] = e[b][a] = true;
 	}
-	scanf("%d", &k);
-	for (int i = 0; i < k; i++) {
+	scanf("%d", &l);
+	for (int i = 0; i < l; i++) {
 		int c, d;
 		scanf("%d%d", &c, &d);
 		c = abs(c), d = abs(d);
