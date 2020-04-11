@@ -7,7 +7,7 @@ int main() {
 	cin >> k >> s;
 	char pre = '#';
 	s += '#';
-	for (int i = 0; i < s.length(); i++) {
+	for (int i = 0; i < s.length(); i++)
 		if (s[i] == pre) cnt++;
 		else {
 			if (cnt % k == 0) {
@@ -16,7 +16,6 @@ int main() {
 			pre = s[i];
 			cnt = 1;
 		}
-	}
 	for (int i = 0; i < suspect.length(); i++)
 		if (ok[suspect[i]] == 1) suspect.erase(i);
 	cout << suspect << endl;
