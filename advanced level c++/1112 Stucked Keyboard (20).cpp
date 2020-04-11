@@ -11,8 +11,7 @@ int main() {
 		if (s[i] == pre) cnt++;
 		else {
 			if (cnt % k == 0) {
-				if (suspect.find(pre) == string::npos)
-					suspect += pre;
+				if (suspect.find(pre) == string::npos) suspect += pre;
 			} else ok[pre] = 1;
 			pre = s[i];
 			cnt = 1;
