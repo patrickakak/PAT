@@ -28,10 +28,9 @@ int main() {
 		c = abs(c), d = abs(d);
 		vector<p> ans;
 		for (int j = 0; j < v[c].size(); j++)
-			for (int k = 0; k < v[d].size(); k++) {
-				if (v[c][j] == d || c == v[d][k]) continue;
-				if (e[v[c][j]][v[d][k]] == true) ans.push_back({v[c][j], v[d][k]});
-			}
+			for (int k = 0; k < v[d].size(); k++)
+				if (v[c][j] != d && c != v[d][k] && e[v[c][j]][v[d][k]] == true)
+					ans.push_back({v[c][j], v[d][k]});
 		sort(ans.begin(), ans.end(), cmp);
 		printf("%d\n", ans.size());
 		for (int j = 0; j < ans.size(); j++)
