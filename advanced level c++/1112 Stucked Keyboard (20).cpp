@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 int main() {
 	int k, cnt = 1, ok[256];
