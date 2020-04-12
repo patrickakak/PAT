@@ -28,8 +28,8 @@ int main() {
 	}
 	sort(v.begin(), v.end(), cmp1);
 	map<string, int> mp;
-	for (int i = 0; i < n; i++)
-		if (i+1 < n && v[i].id == v[i+1].id && v[i].flg == 1 && v[i+1].flg == -1) {
+	for (int i = 0; i < n-1; i++)
+		if (v[i].id == v[i+1].id && v[i].flg == 1 && v[i+1].flg == -1) {
 			car.push_back(v[i]);
 			car.push_back(v[i+1]);
 			mp[v[i].id] += v[i+1].tm - v[i].tm;
