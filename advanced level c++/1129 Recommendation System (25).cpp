@@ -7,6 +7,11 @@ struct node {
 	bool operator < (const node &a) const {
 		return cnt != a.cnt ? cnt > a.cnt : v < a.v;
 	}
+	/*
+	friend bool operator < (const node &a, const node &b) {
+		return a.cnt != b.cnt ? a.cnt > b.cnt : a.v < b.v;
+	}
+	*/
 };
 int main() {
 	int n, k, num;
@@ -16,10 +21,10 @@ int main() {
 		scanf("%d", &num);
 		if (i != 0) {
 			printf("%d:", num);
-			int tmpCnt = 0;
-			for (auto it = s.begin(); tmpCnt < k && it != s.end(); it++) {
+			int j = 0;
+			for (auto it = s.begin(); j < k && it != s.end(); it++) {
 				printf(" %d", it->v);
-				tmpCnt++;
+				j++;
 			}
 			printf("\n");
 		}
