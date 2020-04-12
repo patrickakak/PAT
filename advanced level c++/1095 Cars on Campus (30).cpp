@@ -17,7 +17,7 @@ int main() {
 	int n, k, maxtm = -1, idx = 0, h, m, s, t;
 	cin >> n >> k;
 	vector<node> v, car;
-	for (int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		string id, stat;
 		cin >> id;
 		scanf("%d:%d:%d", &h, &m, &s);
