@@ -7,11 +7,6 @@ struct node {
 	bool operator < (const node &a) const {
 		return cnt != a.cnt ? cnt > a.cnt : v < a.v;
 	}
-	/*
-	friend bool operator < (const node &a, const node &b) {
-		return a.cnt != b.cnt ? a.cnt > b.cnt : a.v < b.v;
-	}
-	*/
 };
 int main() {
 	int n, k, num;
