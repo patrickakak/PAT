@@ -39,7 +39,7 @@ int main() {
 	vector<int> cnt(car.size());
 	for (int i = 0; i < car.size(); i++)
 		if (i == 0) cnt[i] += car[i].flg;
-		else cnt[i] = cnt[i - 1] + car[i].flg;
+		else cnt[i] = cnt[i-1] + car[i].flg;
 	for (int i = 0; i < k; i++) {
 		scanf("%d:%d:%d", &h, &m, &s);
 		t = h*3600 + m*60 + s;
