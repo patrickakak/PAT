@@ -1,7 +1,5 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-vector<int> a;
 struct node {
 	int key;
 	node *l, *r;
@@ -34,17 +32,16 @@ bool f2(node *rt) {
 	return f2(rt->l) && f2(rt->r);
 }
 int main() {
-	int k, n;
+	int k, n, v;
 	scanf("%d", &k);
 	for (int i = 0; i < k; i++) {
 		scanf("%d", &n);
-		a.resize(n);
 		node *root = NULL;
 		for (int j = 0; j < n; j++) {
-			scanf("%d", &a[j]);
-			root = build(root, a[j]);
+			scanf("%d", &v);
+			root = build(root, v);
 		}
-		if (a[0] < 0 || f1(root) == false || f2(root) == false) printf("No\n");
+		if (root->key < 0 || f1(root) == false || f2(root) == false) printf("No\n");
 		else printf("Yes\n");
 	}
 	return 0;
