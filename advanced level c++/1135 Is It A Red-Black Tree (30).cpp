@@ -28,8 +28,8 @@ int cnt(node *rt) {
 }
 bool f2(node *rt) {
 	if (rt == NULL) return true;
-	if (cnt(rt->l) != cnt(rt->r)) return false;
-	return f2(rt->l) && f2(rt->r);
+	if (f2(rt->l) && f2(rt->r)) return cnt(rt->l) != cnt(rt->r) ? false : true;
+	else return false;
 }
 int main() {
 	int k, n, v;
