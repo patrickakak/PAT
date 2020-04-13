@@ -30,7 +30,9 @@ int main() {
 		swap(b[1], b[p]);
 		downAdjust(b, 1, p-1);
 	}
-	printf("%d", b[1]);
-	for (int i = 2; i <= n; i++) printf(" %d", b[i]);
+	for (int i = 1; i <= n; i++) {
+		if (i != 1) printf(" ");
+		printf("%d", b[i]);
+	}
 	return 0;
 }
