@@ -22,6 +22,6 @@ int main() {
 		}
 	if (flg1 == 1 && ta >= 1 && ta <= 1000) flg1 = 2;
 	if (flg2 == 1 && tb >= 1 && tb <= 1000) flg2 = 2;
-	printf("%s + %s = %s\n", flg1 == 2 ? a : "?", flg2 == 2 ? b : "?", (flg1==2 && flg2==2) ? to_string(ta+tb).c_str() : "?");
+	printf("%s + %s = %s", flg1==2 ? a : "?", flg2==2 ? b : "?", (flg1==2 && flg2==2) ? to_string(ta+tb).c_str() : "?");
 	return 0;
 }
