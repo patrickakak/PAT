@@ -20,6 +20,6 @@ int main() {
 			s.insert({tmp, ++h[tmp]});
 		}
 	}
-	printf("%d %d\n", (s.begin())->v, (s.begin())->cnt);
+	printf("%d %d\n", s.begin()->v, s.begin()->cnt);
 	return 0;
 }
