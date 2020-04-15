@@ -15,10 +15,8 @@ int main() {
 		else {
 			int bcnt = 0, j = s.length()-1;
 			for (; j >= 0; j--)
-				if (s[j] == ' ') {
-					bcnt++;	
-					if (bcnt == 3) break;
-				}
+				if (s[j] == ' ')
+					if (++bcnt == 3) break;
 			s.replace(s.begin()+j, s.end(), " qiao ben zhong.");
 			cout << s << endl;
 		}
