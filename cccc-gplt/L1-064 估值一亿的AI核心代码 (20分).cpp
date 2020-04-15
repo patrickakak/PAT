@@ -15,10 +15,10 @@ int main() {
 		cout << s << "\nAI: ";
 		while (s.length() > 0 && s[0] == ' ') s.erase(s.begin());
 		while (s.length() > 0 && s[s.length()-1] == ' ') s.erase(s.end()-1);
-		for (int j = 1; j < s.size(); j++)
+		for (int j = 0; j < s.size(); j++)
 			if (s[j] == ' ') {
 				while (j+1 < s.length() && s[j+1] == ' ') s.erase(j+1, 1);
-				if (j+1 < s.length() && isalnum(s[j+1]) == 0) s.erase(j, 1);
+				if (j+1 < s.length() && ispunct(s[j+1])) s.erase(j, 1);
 			}
 		for (auto &c : s) {
 			if (c != 'I') c = tolower(c);
