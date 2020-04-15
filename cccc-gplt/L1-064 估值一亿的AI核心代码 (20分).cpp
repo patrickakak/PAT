@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-pair<string, string> p[4] = {{"can you","* can"},{"could you","* could"},{"I","you"},{"me","you"}};
+pair<string, string> p[] = {{"can you","* can"},{"could you","* could"},{"I","you"},{"me","you"}};
 int main() {
 	int n;
 	scanf("%d\n", &n);
