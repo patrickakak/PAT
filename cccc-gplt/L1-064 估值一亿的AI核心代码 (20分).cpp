@@ -4,8 +4,8 @@ pair<string, string> p[] = {{"can you","* can"},{"could you","* could"},{"I","yo
 int main() {
 	int n;
 	scanf("%d\n", &n);
+	string s;
 	for (int i = 0; i < n; i++) {
-		string s;
 		getline(cin, s);
 		cout << s << "\nAI: ";
 		while (s.length() > 0 && s[0] == ' ') s.erase(s.begin());
