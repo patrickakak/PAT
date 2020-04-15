@@ -9,9 +9,9 @@ string m[4][2] = {
 int main() {
 	int n;
 	scanf("%d\n", &n);
-	for (int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		string s;
-		getline(cin,s);
+		getline(cin, s);
 		cout << s << "\nAI: ";
 		while (s.length() > 0 && s[0] == ' ') s.erase(s.begin());
 		while (s.length() > 0 && s[s.length()-1] == ' ') s.erase(s.end()-1);
@@ -32,9 +32,11 @@ int main() {
 				k = s.find(m[j][0], k+1);
 			}
 		}
-		for (auto &c : s)
+		for (auto &c : s) {
 			if (c == '*') c = 'I';
-		cout << s << endl;
+			printf("%c", c);
+		}
+		printf("\n");
 	}
 	return 0;
 }
