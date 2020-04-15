@@ -1,6 +1,5 @@
 # PAT (programming ability test)
-zju mooc
-https://pintia.cn/problem-sets
+website link: https://pintia.cn/problem-sets
 
 compiler: GNU GCC/G++
 
