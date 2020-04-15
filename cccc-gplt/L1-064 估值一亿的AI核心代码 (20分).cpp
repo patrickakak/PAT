@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
-string m[4][2] = {
-	"can you", "* can",
-	"could you", "* could",
-	"I", "you",
-	"me", "you"
-};
+pair<string, string> p[4] = {{"can you","* can"},{"could you","* could"},{"I","you"},{"me","you"}};
 int main() {
 	int n;
 	scanf("%d\n", &n);
@@ -25,11 +20,11 @@ int main() {
 			if (c == '?') c = '!';
 		}
 		for (int j = 0; j < 4; j++) {
-			int k = s.find(m[j][0]), l = m[j][0].length();
+			int k = s.find(p[j].first), l = p[j].first.length();
 			while (k != string::npos) {
 				if ((k == 0 || !isalnum(s[k-1])) && (k+l == s.size() || !isalnum(s[k+l])))
-					s.replace(k, l, m[j][1]);
-				k = s.find(m[j][0], k+1);
+					s.replace(k, l, p[j].second);
+				k = s.find(p[j].first, k+1);
 			}
 		}
 		for (auto &c : s) {
