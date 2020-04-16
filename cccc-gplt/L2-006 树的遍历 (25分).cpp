@@ -3,10 +3,10 @@
 #include <vector>
 using namespace std;
 struct node {
-	int index, val;
+	int idx, val;
 };
 bool cmp(node &a, node &b) {
-	return a.index < b.index;
+	return a.idx < b.idx;
 }
 vector<int> post, in;
 vector<node> ans;
