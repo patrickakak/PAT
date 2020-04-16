@@ -21,7 +21,7 @@ void pre(int inl, int inr, int postl, int postr, int idx) {
 int main() {
 	int n;
 	scanf("%d", &n);
-	post.resize(n); in.resize(n);
+	post.resize(n), in.resize(n);
 	for (int i = 0; i < n; i++) scanf("%d", &post[i]);
 	for (int i = 0; i < n; i++) scanf("%d", &in[i]);
 	pre(0, n-1, 0, n-1, 0);
