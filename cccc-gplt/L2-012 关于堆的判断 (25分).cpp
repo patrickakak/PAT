@@ -12,7 +12,7 @@ void upAdjust(int low, int high) {
 	}
 }
 int main() {
-	int n, m;
+	int n, m, a, b;
 	cin >> n >> m;
 	v.resize(n+1);
 	for (int i = 1; i <= n; i++) {
@@ -23,7 +23,6 @@ int main() {
 	for (int i = 1; i <= n; i++) mp[v[i]] = i;
 	getchar();
 	string s;
-	int a, b;
 	bool flg;
 	for (int i = 0; i < m; i++) {
 		getline(cin, s);
