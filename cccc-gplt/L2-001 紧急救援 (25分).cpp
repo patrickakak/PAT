@@ -10,8 +10,7 @@ void dfs(int v) {
 	tmppath.push_back(v);
 	if (v == s) {
 		int sum = 0;
-		for (int i = 0; i < tmppath.size(); i++)
-			sum += resc[tmppath[i]];
+		for (int i = 0; i < tmppath.size(); i++) sum += resc[tmppath[i]];
 		if (sum > maxresc) {
 			maxresc = sum;
 			path = tmppath;
@@ -19,8 +18,7 @@ void dfs(int v) {
 		tmppath.pop_back();
 		return;
 	}
-	for (int i = 0; i < pre[v].size(); i++)
-		dfs(pre[v][i]);
+	for (int i = 0; i < pre[v].size(); i++) dfs(pre[v][i]);
 	tmppath.pop_back();
 }
 int main() {
