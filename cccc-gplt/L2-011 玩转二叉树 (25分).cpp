@@ -12,8 +12,8 @@ void preOrder(int idx, int prel, int prer, int inl, int inr) {
 	lev.push_back({idx, pre[prel]});
 	int i = inl;
 	while (i <= inr && in[i] != pre[prel]) i++;
-	preOrder(idx*2, prel+(i-inl)+1, prer, i+1, inr);
 	preOrder(idx*2+1, prel+1, prel+(i-inl), inl, i-1);
+	preOrder(idx*2, prel+(i-inl)+1, prer, i+1, inr);
 }
 bool cmp(node &a, node &b) {
 	return a.idx < b.idx;
