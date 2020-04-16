@@ -35,7 +35,7 @@ int main() {
 		} else if (s.find("parent") != string::npos) {
 			sscanf(s.c_str(), "%d is the parent of %d", &a, &b);
 			flg = (mp[a] != 0 && mp[b]/2 == mp[a]);
-		} else if (s.find("child") != string::npos) {
+		} else {
 			sscanf(s.c_str(), "%d is a child of %d", &a, &b);
 			flg = (mp[b] != 0 && (mp[b]*2 == mp[a] || mp[b]*2+1 == mp[a]));
 		}
