@@ -9,7 +9,10 @@ void dfs(int u, int depth) {
 	if (depth >= 5 || flg == true) return;
 	for (int i = 0; i < v[u].size(); i++)
 		if (!vis[v[u][i]]) dfs(v[u][i], depth+1);
-		else flg = true;
+		else {
+			flg = true;
+			break;
+		}
 }
 int main() {
 	int n, k, a, b, id, f, m;
