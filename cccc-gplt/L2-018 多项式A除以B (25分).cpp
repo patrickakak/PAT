@@ -20,7 +20,7 @@ int main() {
 		int d = i-maxe2;
 		if (d < 0) break;
 		q[d] = a[i] / b[maxe2];
-		for (int j = maxe2; j >= 0; j--) a[j+d] = a[j+d] - b[j]*q[d];
+		for (int j = maxe2; j >= 0; j--) a[j+d] -= b[j] * q[d];
 	}
 	for (int i = maxe1; i >= 0; i--) {
 		if (fabs(a[i]) >= 0.05) rcnt++;
