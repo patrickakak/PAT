@@ -5,7 +5,7 @@ using namespace std;
 vector<int> v[100010];
 bool vis[100010], flg;
 void dfs(int u, int depth) {
-	if (depth > 5 || flg == true) return;
+	if (flg == true || depth > 5) return;
     vis[u] = true;
 	for (int i = 0; i < v[u].size(); i++)
 		if (!vis[v[u][i]]) dfs(v[u][i], depth+1);
