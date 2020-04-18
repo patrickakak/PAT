@@ -15,20 +15,19 @@ int main() {
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
 		scanf("%d%d", &a, &b);
-		v[a].push_back(b);
-		v[b].push_back(a);
+		v[a].push_back(b), v[b].push_back(a);
 		e[a][b] = e[b][a] = true;
 	}
 	cin >> k;
 	for (int i = 0; i < k; i++) {
 		scanf("%d", &np);
 		unordered_map<int, int> mp;
-		vector<int> tmp(np);
-		for (int j = 0; j < np; j++) scanf("%d", &tmp[j]);
+		vector<int> tv(np);
+		for (int j = 0; j < np; j++) scanf("%d", &tv[j]);
 		for (int j = 0; j < np; j++) {
-			mp[tmp[j]] = 1;
-			for (int l = 0; l < v[tmp[j]].size(); l++)
-				e[tmp[j]][v[tmp[j]][l]] = e[v[tmp[j]][l]][tmp[j]] = false;
+			mp[tv[j]] = 1;
+			for (int l = 0; l < v[tv[j]].size(); l++)
+				e[tv[j]][v[tv[j]][l]] = e[v[tv[j]][l]][tv[j]] = false;
 		}
 		int cnt = 0;
 		fill(vis+1, vis+1+n, false);
@@ -39,8 +38,8 @@ int main() {
 			}
 		printf("%s\n", cnt+np == n ? "YES" : "NO");
 		for (int j = 0; j < np; j++)
-			for (int l = 0; l < v[tmp[j]].size(); l++)
-				e[tmp[j]][v[tmp[j]][l]] = e[v[tmp[j]][l]][tmp[j]] = true;
+			for (int l = 0; l < v[tv[j]].size(); l++)
+				e[tv[j]][v[tv[j]][l]] = e[v[tv[j]][l]][tv[j]] = true;
 	}
 	return 0;
 }
