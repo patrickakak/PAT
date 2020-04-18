@@ -6,12 +6,11 @@ struct node {
 	int addr, data, next, flg, order;
 };
 vector<node> v(100010), w;
-int num = 0;
 bool cmp(node &a, node &b) {
 	return a.flg != b.flg ? a.flg > b.flg : a.order < b.order;
 }
 int main() {
-	int fir, n, addr, data, next;
+	int fir, n, addr, data, next, num = 0;
 	cin >> fir >> n;
 	for (int i = 0; i < n; i++) {
 		scanf("%d %d %d", &addr, &data, &next);
