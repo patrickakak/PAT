@@ -7,7 +7,6 @@ struct node {
 	vector<int> pupil;
 };
 vector<node> v(100010);
-int n;
 double z, r, sum = 0;
 void dfs(int u, int depth) {
 	if (v[u].flg == 1)
@@ -16,8 +15,8 @@ void dfs(int u, int depth) {
 		dfs(v[u].pupil[i], depth+1);
 }
 int main() {
+	int n, k, tmp;
 	cin >> n >> z >> r;
-	int k, tmp;
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &k);
 		if (k == 0) {
