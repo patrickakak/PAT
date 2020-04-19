@@ -10,24 +10,18 @@ vector<node> nm(100010);
 int sex[100010], father[100010];
 unordered_map<string, int> id;
 bool vis[100010];
-bool f(int id1, int id2) {
+bool f(int a, int b) {
 	fill(vis, vis+100010, false);
 	unordered_set<int> s1, s2;
-	int cnt = 1, k = id1;
-	while (k != -1) {
+	for (int k = a, cnt = 1; k != -1; k = father[k]) {
 		vis[k] = true;
 		if (cnt < 5) s1.insert(k);
-		if (k == id2) return false;
-		k = father[k];
+		if (k == b) return false;
 		cnt++;
 	}
-	k = id2, cnt = 1;
-	while (k != -1) {
+	for (int k = b, cnt = 1; k != -1; k = father[k]) {
 		if (cnt < 5) s2.insert(k);
-		if (vis[k]) {
-			if (s1.count(k)) return false;
-		}
-		k = father[k];
+		if (vis[k] && s1.count(k)) return false;
 		cnt++;
 	}
 	return true;
