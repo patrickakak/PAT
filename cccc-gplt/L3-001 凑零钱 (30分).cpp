@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 int n, m, flag = 0;
-vector<int> v, path, rest;
+vector<int> v, rest, path;
 void dfs(int idx, int sum) {
 	if (flag == 1 || sum+rest[idx] < m) return;
 	if (idx == n || sum >= m) {
