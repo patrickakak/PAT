@@ -45,9 +45,9 @@ int main() {
 				if (isprime(i.first)) cnt[i.first] *= 2;
 				break;
 			} else {
-				if (m.find(sum) != m.end()) m.erase(sum);
 				if (h[sum] == 1) break;
 				h[sum] = 1;
+				if (m.find(sum) != m.end()) m.erase(sum);
 				cnt[i.first]++;
 			}
 			tmp = sum;
