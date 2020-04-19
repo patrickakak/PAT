@@ -8,7 +8,7 @@ struct node {
 };
 vector<node> nm(100010);
 int sex[100010], father[100010];
-unordered_map<string, int> id;
+unordered_map<string, int> getid;
 bool vis[100010];
 bool f(int a, int b) {
 	fill(vis, vis+100010, false);
@@ -35,21 +35,21 @@ int main() {
 		int len = nm[i].l.length();
 		if (nm[i].l[len-1] == 'm' || nm[i].l[len-1] == 'n') sex[i] = 1;
 		else sex[i] = 0;
-		id[nm[i].f] = i;
+		getid[nm[i].f] = i;
 	}
 	for (int i = 1; i <= n; i++) {
 		string lst = nm[i].l;
 		int len = lst.length();
-		if (lst[len-1] == 'n') father[i] = id[lst.substr(0, len-4)];
-		else if (lst[len-1] == 'r') father[i] = id[lst.substr(0, len-7)];
+		if (lst[len-1] == 'n') father[i] = getid[lst.substr(0, len-4)];
+		else if (lst[len-1] == 'r') father[i] = getid[lst.substr(0, len-7)];
 	}
 	cin >> m;
 	string a, b, c, d;
 	for (int i = 0; i < m; i++) {
 		cin >> a >> b >> c >> d;
-		if (id[a] == 0 || id[c] == 0) printf("NA\n");
+		if (getid[a] == 0 || getid[c] == 0) printf("NA\n");
 		else {
-			int id1 = id[a], id2 = id[c];
+			int id1 = getid[a], id2 = getid[c];
 			if (sex[id1] == sex[id2]) printf("Whatever\n");
 			else printf("%s\n", f(id1, id2) == true ? "Yes" : "No");
 		}
