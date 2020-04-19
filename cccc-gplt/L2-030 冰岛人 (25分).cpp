@@ -7,14 +7,13 @@ struct node {
 	string f, l;
 };
 vector<node> nm(100010);
-int sex[100010], father[100010];
+int sex[100010], father[100010], vis[100010];
 unordered_map<string, int> getid;
-bool vis[100010];
 bool f(int a, int b) {
-	fill(vis, vis+100010, false);
+	fill(vis, vis+100010, 0);
 	unordered_set<int> s1, s2;
 	for (int k = a, cnt = 1; k != -1; k = father[k]) {
-		vis[k] = true;
+		vis[k] = 1;
 		if (cnt < 5) s1.insert(k);
 		if (k == b) return false;
 		cnt++;
