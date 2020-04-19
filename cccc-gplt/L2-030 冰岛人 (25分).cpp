@@ -17,8 +17,10 @@ bool f(int a, int b) {
 		if (cnt < 5) s.insert(p);
 		if (p == b) return false;
 	}
-	for (int p=b, cnt=1; p != -1; p=father[p], cnt++)
-		if (vis[p] && s.count(p)) return false;
+	for (int p=b, cnt=1; p != -1; p=father[p], cnt++) {
+		if (vis[p] && cnt < 5) return false;
+		if (s.count(p)) return false;
+	}
 	return true;
 }
 int main() {
