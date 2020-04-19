@@ -46,13 +46,8 @@ int main() {
 	for (int i = 1; i <= n; i++) {
 		string lst = nm[i].l;
 		int len = lst.length();
-		if (lst[len-1] == 'n') {
-			lst = lst.substr(0, len-4);
-			father[i] = id[lst];
-		} else if (lst[len-1] == 'r') {
-			lst = lst.substr(0, len-7);
-			father[i] = id[lst];
-		}
+		if (lst[len-1] == 'n') father[i] = id[lst.substr(0, len-4)];
+		else if (lst[len-1] == 'r') father[i] = id[lst.substr(0, len-7)];
 	}
 	cin >> m;
 	string a, b, c, d;
