@@ -11,18 +11,14 @@ int sex[100010], father[100010], vis[100010];
 unordered_map<string, int> getid;
 bool f(int a, int b) {
 	fill(vis, vis+100010, 0);
-	unordered_set<int> s1, s2;
-	for (int k = a, cnt = 1; k != -1; k = father[k]) {
-		vis[k] = 1;
-		if (cnt < 5) s1.insert(k);
-		if (k == b) return false;
-		cnt++;
+	unordered_set<int> s;
+	for (int p=a, cnt=1; p != -1; p=father[p], cnt++) {
+		vis[p] = 1;
+		if (cnt < 5) s.insert(p);
+		if (p == b) return false;
 	}
-	for (int k = b, cnt = 1; k != -1; k = father[k]) {
-		if (cnt < 5) s2.insert(k);
-		if (vis[k] && s1.count(k)) return false;
-		cnt++;
-	}
+	for (int p=b, cnt=1; p != -1; p=father[p], cnt++)
+		if (vis[p] && s.count(p)) return false;
 	return true;
 }
 int main() {
