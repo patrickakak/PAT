@@ -13,7 +13,7 @@ int main() {
 			if (s[i] == 'P') p = i;
 			if (s[i] == 'T') t = i;
 		}
-		if (m['P']==1 && m['T']==1 && m.size()==3 && t-p!=1 && p*(t-p-1) == s.length()-1-t) cout << "YES" << endl;
+		if (m['P']==1 && m['T']==1 && m.size()==3 && t-p!=1 && p*(t-p-1)==s.length()-1-t) cout << "YES" << endl;
 		else cout << "NO" << endl;
 	}
 	return 0;
