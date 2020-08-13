@@ -18,10 +18,10 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		scanf("%d %d %d", &id, &d, &c);
 		if (d>=l && c>=l) {
-			if (d>=h && c>=h) v.push_back(stu{id, d, c, 1});
-			else if (d >= h) v.push_back(stu{id, d, c, 2});
-			else if (d<h && c<h && d>=c) v.push_back(stu{id, d, c, 3});
-			else v.push_back(stu{id, d, c, 4});
+			if (d>=h && c>=h) v.push_back({id, d, c, 1});
+			else if (d >= h) v.push_back({id, d, c, 2});
+			else if (d<h && c<h && d>=c) v.push_back({id, d, c, 3});
+			else v.push_back({id, d, c, 4});
 		}
 	}
 	sort(v.begin(), v.end(), cmp);
