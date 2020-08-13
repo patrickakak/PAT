@@ -7,7 +7,7 @@ int main() {
 	cin >> n;
 	vector<int> a(n), b(n), v;
 	for (int i = 0; i < n; i++) {
-		cin >> a[i];
+		scanf("%d", &a[i]);
 		b[i] = a[i];
 	}
 	sort(a.begin(), a.end());
@@ -17,8 +17,8 @@ int main() {
 	}
 	printf("%d\n", v.size());
 	for (int i = 0; i < v.size(); i++) {
-		if (i != 0) cout << ' ';
-		cout << v[i];
+		if (i != 0) printf(" ");
+		printf("%d", v[i]);
 	}
 	cout << endl;
 	return 0;
