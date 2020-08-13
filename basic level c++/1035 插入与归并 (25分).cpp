@@ -16,7 +16,6 @@ int main() {
 	} else {
 		printf("Merge Sort\n");
 		while (1) {
-			int i;
 			for (i = 0; i < n && a[i] == b[i]; i++) ;
 			if (i == n) flag = 1;
 			k *= 2;
