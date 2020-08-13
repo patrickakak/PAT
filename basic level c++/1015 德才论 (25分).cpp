@@ -1,35 +1,32 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
-const int maxn = 100010;
-struct Stu {
-	int id, sum, de, cai, flag;
-} stu[maxn];
-int num = 0;
-bool cmp(Stu a, Stu b) {
-	if (a.flag != b.flag) return a.flag < b.flag;
-	else if (a.sum != b.sum) return a.sum > b.sum;
-	else if (a.de != b.de) return a.de > b.de;
+struct stu {
+	int id, d, c, r;
+};
+vector<stu> v;
+bool cmp(stu &a, stu &b) {
+	if (a.r != b.r) return a.r < b.r;
+	else if (a.d+a.c != b.d+b.c) return a.d+a.c > b.d+b.c;
+	else if (a.d != b.d) return a.d > b.d;
 	else return a.id < b.id;
 }
 int main() {
-	int n, l, h;
+	int n, l, h, id, d, c;
 	cin >> n >> l >> h;
-	Stu t;
 	for (int i = 0; i < n; i++) {
-		cin >> t.id >> t.de >> t.cai;
-		if (t.de >= l && t.cai >= l) {
-			t.sum = t.de + t.cai;
-			if (t.de >= h && t.cai >= h) t.flag = 1;
-			else if (t.de >= h && t.cai < h) t.flag = 2;
-			else if (t.de >= t.cai) t.flag = 3;
-			else t.flag = 4;
-			stu[num++] = t;
+		scanf("%d %d %d", &id, &d, &c);
+		if (d>=l && c>=l) {
+			if (d>=h && c>=h) v.push_back(stu{id, d, c, 1});
+			else if (d >= h) v.push_back(stu{id, d, c, 2});
+			else if (d<h && c<h && d>=c) v.push_back(stu{id, d, c, 3});
+			else v.push_back(stu{id, d, c, 4});
 		}
 	}
-	sort(stu, stu + num, cmp);
-	cout << num << endl;
-	for (int i = 0; i < num; i++)
-		printf("%08d %d %d\n", stu[i].id, stu[i].de, stu[i].cai);
+	sort(v.begin(), v.end(), cmp);
+	printf("%d\n", (int)v.size());
+	for (int i = 0; i < v.size(); i++)
+		printf("%08d %d %d\n", v[i].id, v[i].d, v[i].c);
 	return 0;
 }
