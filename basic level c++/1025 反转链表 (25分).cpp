@@ -1,22 +1,24 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
-const int maxn = 100010;
+struct node {
+	int ad, key, next;
+};
+vector<node> v, w(100010);
 int main() {
-	int first, n, k, addr, cnt = 0, data[maxn], next[maxn], list[maxn];
-	cin >> first >> n >> k;
+	int fir, n, k, ad, key, next;
+	cin >> fir >> n >> k;
 	for (int i = 0; i < n; i++) {
-		cin >> addr;
-		cin >> data[addr] >> next[addr];
+		scanf("%d%d%d", &ad, &key, &next);
+		w[ad] = {ad, key, next};
 	}
-	while (first != -1) {
-		list[cnt++] = first;
-		first = next[first];
-	}
-	for (int i = 0; i < cnt - cnt%k; i += k)
-		reverse(begin(list) + i, begin(list) + i + k);
-	for (int i = 0; i < cnt - 1; i++)
-		printf("%05d %d %05d\n", list[i], data[list[i]], list[i + 1]);
-	printf("%05d %d -1", list[cnt - 1], data[list[cnt - 1]]);
+	for (int p = fir; p != -1; p = w[p].next)
+		v.push_back(w[p]);
+	for (int i = 0; i+k <= v.size(); i += k)
+		reverse(v.begin()+i, v.begin()+i+k);
+	for (int i = 0; i < v.size(); i++)
+		if (i != v.size()-1) printf("%05d %d %05d\n", v[i].ad, v[i].key, v[i+1].ad);
+		else printf("%05d %d -1\n", v[i].ad, v[i].key);
 	return 0;
 }
