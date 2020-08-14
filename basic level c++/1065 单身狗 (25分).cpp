@@ -1,31 +1,30 @@
 #include <iostream>
+#include <algorithm>
+#include <unordered_map>
 #include <vector>
-#include <set>
 using namespace std;
 int main() {
-	vector<int> couple(100000, -1), single;
-	int n, a, b, m, id;
+	int n, m, a, b;
 	cin >> n;
+	unordered_map<int, int> partner, coming;
 	for (int i = 0; i < n; i++) {
-		cin >> a >> b;
-		couple[a] = b; couple[b] = a;
+		scanf("%d%d", &a, &b);
+		partner[a] = b, partner[b] = a;
 	}
 	cin >> m;
-	set<int> s;
+	vector<int> peo(m), ans;
 	for (int i = 0; i < m; i++) {
-		cin >> id;
-		s.insert(id);
+		scanf("%d", &peo[i]);
+		coming[peo[i]] = 1;
 	}
-	for (auto it = s.begin(); it != s.end(); it++) {
-		if (couple[*it] != -1 && s.find(couple[*it]) == s.end())
-			couple[*it] = -1;
-		if (couple[*it] == -1)
-			single.push_back(*it);
-	}
-	cout << single.size() << endl;
-	for (int i = 0; i < single.size(); i++) {
-		if (i != 0) cout << ' ';
-		printf("%05d", single[i]);
+	for (int i = 0; i < m; i++)
+		if (coming[partner[peo[i]]] != 1)
+			ans.push_back(peo[i]);
+	printf("%d\n", (int)ans.size());
+	sort(ans.begin(), ans.end());
+	for (int i = 0; i < ans.size(); i++) {
+		if (i != 0) printf(" ");
+		printf("%05d", ans[i]);
 	}
 	return 0;
 }
