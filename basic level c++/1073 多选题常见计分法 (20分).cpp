@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 int main() {
-	int n, m, num, wt[]={1,2,4,8,16};
+	int n, m, num, maxn = -1, wt[] = {1,2,4,8,16};
 	char ch;
 	cin >> n >> m;
 	vector<double> full(m);
@@ -35,7 +35,6 @@ int main() {
 		}
 		printf("%.1f\n", totScore);
 	}
-	int maxn = -1;
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < totOpt[i]; j++)
 			maxn = max(maxn, cnt[i][j]);
@@ -43,7 +42,6 @@ int main() {
 	else
 		for (int i = 0; i < m; i++)
 			for (int j = 0; j < totOpt[i]; j++)
-				if (cnt[i][j] == maxn)
-					printf("%d %d-%c\n", maxn, i+1, j+'a');
+				if (cnt[i][j] == maxn) printf("%d %d-%c\n", maxn, i+1, j+'a');
 	return 0;
 }
