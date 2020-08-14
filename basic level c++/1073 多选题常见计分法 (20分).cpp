@@ -2,45 +2,48 @@
 #include <vector>
 using namespace std;
 int main() {
-	int n, m, optnum, truenum, tmp, maxcnt = 0;
-	int h[] = {1, 2, 4, 8, 16}, opt[1000][100] = {0};
-	char c;
-	scanf("%d %d", &n, &m);
-	vector<int> tot(m), right(m);
-	vector<vector<int>> cnt(m, vector<int>(5));
+	int n, m, num, wt[]={1,2,4,8,16};
+	char ch;
+	cin >> n >> m;
+	vector<double> full(m);
+	vector<int> totOpt(m), rightOpt(m), rightWt(m);
 	for (int i = 0; i < m; i++) {
-		scanf("%d %d %d", &tot[i], &optnum, &truenum);
-		for (int j = 0; j < truenum; j++) {
-			scanf(" %c", &c);
-			right[i] += h[c-'a'];
+		scanf("%lf%d%d", &full[i], &totOpt[i], &rightOpt[i]);
+		for (int j = 0; j < rightOpt[i]; j++) {
+			cin >> ch;
+			rightWt[i] += wt[ch-'a'];
 		}
 	}
+	vector<vector<int>> stu(n, vector<int>(m)), cnt(m, vector<int>(5));
 	for (int i = 0; i < n; i++) {
-		double grade = 0;
+		double totScore = 0;
 		for (int j = 0; j < m; j++) {
-			getchar();
-			scanf("(%d", &tmp);
-			for (int k = 0; k < tmp; k++) {
-				scanf(" %c)", &c);
-				opt[i][j] += h[c-'a'];
+			cin.get();
+			scanf("(%d", &num);
+			for (int k = 0; k < num; k++) {
+				cin >> ch;
+				stu[i][j] += wt[ch-'a'];
 			}
-			int exor = opt[i][j] ^ right[j];
-			if (!exor) grade += tot[j];
+			scanf(")");
+			int e = stu[i][j] ^ rightWt[j];
+			if (e == 0) totScore += full[j];
 			else {
-				if ((opt[i][j] | right[j]) == right[j]) grade += 0.5 * tot[j];
-				for (int k = 0; k < 5; k++)
-					if (exor & h[k]) cnt[j][k]++;
+				if ((e | rightWt[j]) == rightWt[j]) totScore += full[j]/2;
+				for (int k = 0; k < totOpt[j]; k++)
+					if (e & wt[k]) cnt[j][k]++;
 			}
 		}
-		printf("%.1f\n", grade);
+		printf("%.1f\n", totScore);
 	}
+	int maxn = -1;
 	for (int i = 0; i < m; i++)
-		for (int j = 0; j < 5; j++)
-			maxcnt = max(maxcnt, cnt[i][j]);
-	if (maxcnt == 0) printf("Too simple\n");
+		for (int j = 0; j < totOpt[i]; j++)
+			maxn = max(maxn, cnt[i][j]);
+	if (maxn == 0) printf("Too simple\n");
 	else
 		for (int i = 0; i < m; i++)
-			for (int j = 0; j < cnt[i].size(); j++)
-				if (maxcnt == cnt[i][j]) printf("%d %d-%c\n", maxcnt, i+1, 'a'+j);
+			for (int j = 0; j < totOpt[i]; j++)
+				if (cnt[i][j] == maxn)
+					printf("%d %d-%c\n", maxn, i+1, j+'a');
 	return 0;
 }
