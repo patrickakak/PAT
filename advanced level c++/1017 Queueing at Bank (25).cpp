@@ -1,36 +1,37 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
+#include <vector>
 using namespace std;
-struct person {
-	int come, time;
-} p[10010];
-bool cmp(person &p1, person &p2) {
-	return p1.come < p2.come;
+struct node {
+	int arrive, process;
+};
+bool cmp(node &a, node &b) {
+	return a.arrive < b.arrive;
 }
-int n, k, cnt, total;
 int main() {
-	scanf("%d%d", &n, &k);
-	for (int i = 1; i <= n; i++) {
-		int hh, ss, mm, tt;
-		scanf("%d:%d:%d %d", &hh, &mm, &ss, &tt);
-		int sum = hh*60*60 + mm*60 + ss;
-		if (sum > 17*60*60) continue;
-		p[++cnt].time = tt * 60;
-		p[cnt].come = sum;
+	int n, k, time = 0, h, m, s, p, arrive;
+	cin >> n >> k;
+	vector<node> v;
+	for (int i = 0; i < n; i++) {
+		scanf("%d:%d:%d %d", &h, &m, &s, &p);
+		arrive = h*3600 + m*60 + s;
+		if (arrive > 17*60*60) continue;
+		v.push_back({arrive, p*60});
 	}
-	sort(p+1, p+1+cnt, cmp);
+	sort(v.begin(), v.end(), cmp);
 	priority_queue<int, vector<int>, greater<int>> q;
-	for (int i = 1; i <= k; ++i) q.push(8*60*60);
-	for (int i = 1; i <= cnt; ++i)
-		if (q.top() <= p[i].come) {
-			q.push(p[i].come + p[i].time);
+	for (int i = 0; i < k; i++)
+		q.push(8*60*60);
+	for (int i = 0; i < v.size(); i++)
+		if (v[i].arrive < q.top()) {
+			time += q.top() - v[i].arrive;
+			q.push(q.top() + v[i].process);
 			q.pop();
 		} else {
-			total += q.top() - p[i].come;
-			q.push(q.top() + p[i].time);
+			q.push(v[i].arrive + v[i].process);
 			q.pop();
 		}
-	(!cnt) ? printf("0.0\n") : printf("%.1lf", 1.0*total/60/cnt);
+	v.size()==0 ? printf("0.0") : printf("%.1f", 1.0*time/60/v.size());
 	return 0;
 }
