@@ -6,7 +6,7 @@ const int maxn = 10005;
 struct person {
 	int come, time;
 } p[maxn];
-int cmp(person p1, person p2) {
+int cmp(person &p1, person &p2) {
 	return p1.come < p2.come;
 }
 int n, k, cnt, total;
