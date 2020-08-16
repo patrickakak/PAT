@@ -14,14 +14,14 @@ int main() {
 	for (int i = 1; i <= n; i++) {
 		int hh, ss, mm, tt;
 		scanf("%d:%d:%d %d", &hh, &mm, &ss, &tt);
-		int sum = hh * 3600 + mm * 60 + ss;
-		if (sum > 61200) continue;
+		int sum = hh*60*60 + mm*60 + ss;
+		if (sum > 17*60*60) continue;
 		p[++cnt].time = tt * 60;
 		p[cnt].come = sum;
 	}
 	sort(p+1, p+1+cnt, cmp);
 	priority_queue<int, vector<int>, greater<int>> q;
-	for (int i = 1; i <= k; ++i) q.push(28800);
+	for (int i = 1; i <= k; ++i) q.push(8*60*60);
 	for (int i = 1; i <= cnt; ++i)
 		if (q.top() <= p[i].come) {
 			q.push(p[i].come + p[i].time);
