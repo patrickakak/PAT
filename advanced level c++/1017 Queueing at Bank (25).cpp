@@ -31,6 +31,6 @@ int main() {
 			q.push(q.top() + p[i].time);
 			q.pop();
 		}
-	(!cnt) ? printf("0.0\n") : printf("%.1lf", (1.0*total/60)/cnt);
+	(!cnt) ? printf("0.0\n") : printf("%.1lf", 1.0*total/60/cnt);
 	return 0;
 }
