@@ -2,11 +2,10 @@
 #include <queue>
 #include <algorithm>
 using namespace std;
-const int maxn = 10005;
 struct person {
 	int come, time;
-} p[maxn];
-int cmp(person &p1, person &p2) {
+} p[10010];
+bool cmp(person &p1, person &p2) {
 	return p1.come < p2.come;
 }
 int n, k, cnt, total;
@@ -20,8 +19,8 @@ int main() {
 		p[++cnt].time = tt * 60;
 		p[cnt].come = sum;
 	}
-	sort(p + 1, p + 1 + cnt, cmp);
-	priority_queue<int, vector<int>, greater<int> > q;
+	sort(p+1, p+1+cnt, cmp);
+	priority_queue<int, vector<int>, greater<int>> q;
 	for (int i = 1; i <= k; ++i) q.push(28800);
 	for (int i = 1; i <= cnt; ++i)
 		if (q.top() <= p[i].come) {
@@ -32,6 +31,6 @@ int main() {
 			q.push(q.top() + p[i].time);
 			q.pop();
 		}
-	(!cnt) ? printf("0.0\n") : printf("%.1lf", ((double)total/60.0)/(double) cnt);
+	(!cnt) ? printf("0.0\n") : printf("%.1lf", (1.0*total/60)/cnt);
 	return 0;
 }
