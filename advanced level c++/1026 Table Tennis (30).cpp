@@ -12,9 +12,9 @@ bool cmp2(p &a, p &b) {
 	return a.ser < b.ser;
 }
 int sta[110], c[110], vis[110];
-queue <int> q[3];
+queue <int> q[2];
 int main() {
-	int n, k, m, hh, mm, ss, tid, pos = 1, a[3] = {0};
+	int n, k, m, hh, mm, ss, tid, pos = 1, a[2] = {0};
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		scanf("%d:%d:%d %d %d", &hh, &mm, &ss, &f[i].t, &f[i].is);
