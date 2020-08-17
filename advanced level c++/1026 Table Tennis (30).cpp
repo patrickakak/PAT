@@ -60,11 +60,10 @@ int main() {
 			}
 	}
 	sort(f+1, f+n+1, cmp2);
-	int i = 1;
-	while (f[i].ser==0 && i<=n) i++;
-	for ( ; i <= n; i++)
-		printf("%02d:%02d:%02d %02d:%02d:%02d %d\n", f[i].date/3600, f[i].date%3600/60, 
-				f[i].date%60, f[i].ser/3600, f[i].ser%3600/60, f[i].ser%60, (f[i].ser-f[i].date+30)/60);
+	for (int i = 0; i <= n; i++)
+		if (f[i].ser != 0)
+			printf("%02d:%02d:%02d %02d:%02d:%02d %d\n", f[i].date/3600, f[i].date%3600/60, 
+					f[i].date%60, f[i].ser/3600, f[i].ser%3600/60, f[i].ser%60, (f[i].ser-f[i].date+30)/60);
 	for (int i = 1; i <= k; i++)
 		printf(i<k ? "%d " : "%d\n", c[i]);
 	return 0;
