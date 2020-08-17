@@ -1,18 +1,19 @@
 #include <iostream>
+#include <cmath>
 #include <algorithm>
 #include <queue>
 using namespace std;
 struct p {
 	int date, t, is, ser=0;
 } f[10010];
-bool cmp(p &a, p &b) {
+bool cmp1(p &a, p &b) {
 	return a.date < b.date;
 }
 bool cmp2(p &a, p &b) {
 	return a.ser < b.ser;
 }
 int sta[110], c[110], vis[110];
-queue <int> q[2];
+queue<int> q[2];
 int main() {
 	int n, k, m, hh, mm, ss, tid, pos = 1, a[2] = {0};
 	cin >> n;
@@ -21,9 +22,9 @@ int main() {
 		f[i].date = hh*60*60 + mm*60 + ss;
 		f[i].t = min(f[i].t*60, 2*60*60);
 	}
-	sort(f+1, f+n+1, cmp);
+	sort(f+1, f+n+1, cmp1);
 	cin >> k >> m;
-	while (m--) {
+	for (int i = 0; i < m; i++) {
 		scanf("%d", &tid);
 		sta[tid] = 1;
 	}
@@ -31,7 +32,7 @@ int main() {
 		if (pos<=n && f[pos].date==i) q[f[pos].is].push(pos), pos++;
 		if (!q[0].empty()) a[0] = q[0].front();
 		if (!q[1].empty()) a[1] = q[1].front();
-		queue <int> v;
+		queue<int> v;
 		for (int j = 1; j <= k; j++) {
 			if (vis[j] && f[vis[j]].ser+f[vis[j]].t==i) vis[j] = 0;
 			if (!vis[j] && sta[j]) v.push(j);
@@ -58,11 +59,11 @@ int main() {
 			}
 	}
 	sort(f+1, f+n+1, cmp2);
-	for (int i = 0; i <= n; i++)
+	for (int i = 1; i <= n; i++)
 		if (f[i].ser != 0)
 			printf("%02d:%02d:%02d %02d:%02d:%02d %d\n", f[i].date/3600, f[i].date%3600/60, 
-					f[i].date%60, f[i].ser/3600, f[i].ser%3600/60, f[i].ser%60, (f[i].ser-f[i].date+30)/60);
+					f[i].date%60, f[i].ser/3600, f[i].ser%3600/60, f[i].ser%60, (int)round((f[i].ser-f[i].date)/60.0));
 	for (int i = 1; i <= k; i++)
-		printf(i<k ? "%d " : "%d\n", c[i]);
+		printf("%d%c", c[i], i<k ? ' ' : '\n');
 	return 0;
 }
