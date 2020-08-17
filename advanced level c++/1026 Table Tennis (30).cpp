@@ -43,8 +43,7 @@ int main() {
 			vis[num] = a[1];
 			c[num]++;
 			f[a[1]].ser = i;
-			if (!q[1].empty()) a[1] = q[1].front();
-			else a[1] = 0;
+			a[1] = !q[1].empty() ? q[1].front() : 0;
 		}
 		for (int j = 1; j <= k; j++)
 			if (!vis[j]) {
@@ -54,8 +53,7 @@ int main() {
 				q[op].pop();
 				vis[j] = a[op];
 				f[a[op]].ser = i;
-				if (!q[op].empty()) a[op] = q[op].front();
-				else a[op] = 0;
+				a[op] = !q[op].empty() ? q[op].front() : 0;
 				c[j]++;
 			}
 	}
