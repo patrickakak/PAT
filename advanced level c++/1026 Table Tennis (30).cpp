@@ -1,111 +1,76 @@
 #include <iostream>
-#include <vector>
-#include <cmath>
 #include <algorithm>
+#include <queue>
 using namespace std;
-struct person {
-	int arrive, start, time;
-	bool vip;
-} tmpperson;
-struct tblnode {
-	int end = 8 * 3600, num;
-	bool vip;
-};
-bool cmp1(person a, person b) { return a.arrive < b.arrive; }
-bool cmp2(person a, person b) { return a.start < b.start; }
-vector<person> player;
-vector<tblnode> tbl;
-void alloctbl(int personid, int tblid) {
-	if (player[personid].arrive <= tbl[tblid].end) player[personid].start = tbl[tblid].end;
-	else player[personid].start = player[personid].arrive;
-	tbl[tblid].end = player[personid].start + player[personid].time;
-	tbl[tblid].num++;
+struct p {
+    int date, t, is, ser=0;
+} f[10005];
+bool cmp(p &a, p &b) {
+    return a.date < b.date;
 }
-int findnextvip(int vipid) {
-	vipid++;
-	while (vipid < player.size() && player[vipid].vip == false) vipid++;
-	return vipid;
+bool cmp2(p &a, p &b) {
+    return a.ser < b.ser;
 }
+int sta[105], c[105], vis[105];
+queue <int> q[3];
 int main() {
-	int n, k, m, viptbl;
-	scanf("%d", &n);
-	for (int i = 0; i < n; i++) {
-		int h, m, s, tmptime, flag;
-		scanf("%d:%d:%d %d %d", &h, &m, &s, &tmptime, &flag);
-		tmpperson.arrive = h * 3600 + m * 60 + s;
-		tmpperson.start = 21 * 3600;
-		if (tmpperson.arrive >= 21 * 3600) continue;
-		tmpperson.time = tmptime <= 120 ? tmptime * 60 : 7200;
-		tmpperson.vip = ((flag == 1) ? true : false);
-		player.push_back(tmpperson);
-	}
+    int n;
+	scanf("%d",&n);
+    for(int i = 1; i <= n; i++){
+        int h, m, s;
+        scanf("%d:%d:%d %d %d", &h, &m, &s, &f[i].t, &f[i].is);
+        f[i].date = h*60*60 + m*60 + s;
+        f[i].t = min(f[i].t*60,2*60*60);
+    }
+    sort(f+1, f+n+1, cmp);
+    int k, m;
 	scanf("%d%d", &k, &m);
-	tbl.resize(k + 1);
-	for (int i = 0; i < m; i++) {
-		scanf("%d", &viptbl);
-		tbl[viptbl].vip = true;
-	}
-	sort(player.begin(), player.end(), cmp1);
-	int i = 0, vipid = -1;
-	vipid = findnextvip(vipid);
-	while (i < player.size()) {
-		int index = -1, minendtime = 999999999;
-		for (int j = 1; j <= k; j++)
-			if (tbl[j].end < minendtime) {
-				minendtime = tbl[j].end;
-				index = j;
-			}
-		if (tbl[index].end >= 21 * 3600) break;
-		if (player[i].vip == true && i < vipid) {
-			i++;
-			continue;
-		}
-		if (tbl[index].vip == true) {
-			if (player[i].vip == true) {
-				alloctbl(i, index);
-				if (vipid == i) vipid = findnextvip(vipid);
-				i++;
-			} else {
-				if (vipid < player.size() && player[vipid].arrive <= tbl[index].end) {
-					alloctbl(vipid, index);
-					vipid = findnextvip(vipid);
-				} else {
-					alloctbl(i, index);
-					i++;
-				}
-			}
-		} else {
-			if (player[i].vip == false) {
-				alloctbl(i, index);
-				i++;
-			} else {
-				int vipindex = -1, minvipendtime = 999999999;
-				for (int j = 1; j <= k; j++)
-					if (tbl[j].vip == true && tbl[j].end < minvipendtime) {
-						minvipendtime = tbl[j].end;
-						vipindex = j;
-					}
-				if (vipindex != -1 && player[i].arrive >= tbl[vipindex].end) {
-					alloctbl(i, vipindex);
-					if (vipid == i) vipid = findnextvip(vipid);
-					i++;
-				} else {
-					alloctbl(i, index);
-					if(vipid == i) vipid = findnextvip(vipid);
-					i++;
-				}
-			}
-		}
-	}
-	sort(player.begin(), player.end(), cmp2);
-	for (i = 0; i < player.size() && player[i].start < 21 * 3600; i++) {
-		printf("%02d:%02d:%02d ", player[i].arrive / 3600, player[i].arrive % 3600 / 60, player[i].arrive % 60);
-		printf("%02d:%02d:%02d ", player[i].start / 3600, player[i].start % 3600 / 60, player[i].start % 60);
-		printf("%.0f\n", round((player[i].start - player[i].arrive) / 60.0));
-	}
-	for (int i = 1; i <= k; i++) {
-		if (i != 1) printf(" ");
-		printf("%d", tbl[i].num);
-	}
-	return 0;
+    while (m--) {
+        int x;
+		scanf("%d", &x);
+        sta[x] = 1; //VIP桌
+    }
+    int pos = 1, a[3] = {0};
+    for (int i = 8*60*60; i < 21*60*60; i++) {
+        if (pos<=n && f[pos].date==i) q[f[pos].is].push(pos), pos++; //客户抵达，压入等待序列
+        if (!q[0].empty()) a[0] = q[0].front(); //普通
+        if (!q[1].empty()) a[1] = q[1].front(); //VIP
+        queue <int> v; //记录空闲的VIP桌
+        for (int j = 1; j <= k; j++) { //遍历每张桌子
+            if (vis[j] && f[vis[j]].ser+f[vis[j]].t==i) vis[j] = 0; //服务完成，变成空闲
+            if (!vis[j] && sta[j]) v.push(j);
+        }
+        while (!q[1].empty() && !v.empty()) { //优先匹配VIP客户和VIP桌
+            q[1].pop();
+            int num = v.front();
+			v.pop();
+            vis[num] = a[1];
+            c[num]++;
+            f[a[1]].ser = i;
+            if (!q[1].empty()) a[1] = q[1].front();
+            else a[1] = 0;
+        }
+        for (int j = 1; j <= k; j++) {
+            if (!vis[j]) { //可用
+                if (!a[0] && !a[1]) continue;
+                int op = 0;
+                if (a[1] && (!a[0] || f[a[1]].date<f[a[0]].date)) op = 1;
+                q[op].pop();
+                vis[j] = a[op];
+                f[a[op]].ser = i;
+                if (!q[op].empty()) a[op] = q[op].front();
+                else a[op] = 0;
+                c[j]++;
+            }
+        }
+    }
+    sort(f+1, f+n+1, cmp2);
+    int i = 1;
+    while (f[i].ser==0 && i<=n) i++;
+    for ( ; i <= n; i++)
+        printf("%02d:%02d:%02d %02d:%02d:%02d %d\n", f[i].date/3600, f[i].date%3600/60, f[i].date%60, 
+				f[i].ser/3600, f[i].ser%3600/60, f[i].ser%60, (f[i].ser-f[i].date+30)/60);
+    for (int i = 1; i <= k; i++)
+        printf(i<k ? "%d " : "%d\n", c[i]);
+    return 0;
 }
