@@ -14,7 +14,7 @@ bool cmp2(p &a, p &b) {
 int sta[110], c[110], vis[110];
 queue <int> q[3];
 int main() {
-	int n, k, m, hh, mm, ss, pos = 1, a[3] = {0};
+	int n, k, m, hh, mm, ss, tid, pos = 1, a[3] = {0};
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		scanf("%d:%d:%d %d %d", &hh, &mm, &ss, &f[i].t, &f[i].is);
@@ -24,9 +24,8 @@ int main() {
 	sort(f+1, f+n+1, cmp);
 	cin >> k >> m;
 	while (m--) {
-		int x;
-		scanf("%d", &x);
-		sta[x] = 1;
+		scanf("%d", &tid);
+		sta[tid] = 1;
 	}
 	for (int i = 8*60*60; i < 21*60*60; i++) {
 		if (pos<=n && f[pos].date==i) q[f[pos].is].push(pos), pos++;
