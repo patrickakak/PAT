@@ -3,8 +3,12 @@
 #include <vector>
 using namespace std;
 const int inf = 99999999;
-struct station { double price, dis; };
-bool cmp(station a, station b) { return a.dis < b.dis; }
+struct station {
+	double price, dis;
+};
+bool cmp(station &a, station &b) {
+	return a.dis < b.dis;
+}
 int main() {
 	double cmax, d, davg;
 	int n;
