@@ -23,18 +23,18 @@ int main() {
 				idx++;
 			}
 	while (idx <= k) {
-		int tmpmin = p[1].poptime, tmpidx = 1;
+		int tmpmin = p[1].poptime, j = 1;
 		for (int i = 2; i <= n; i++)
 			if (tmpmin > p[i].poptime) {
 				tmpmin = p[i].poptime;
-				tmpidx = i;
+				j = i;
 			}
-		p[tmpidx].q.pop();
-		p[tmpidx].q.push(tm[idx]);
-		p[tmpidx].poptime += p[tmpidx].q.front();
-		if (p[tmpidx].endtime >= (17-8)*60) sorry[idx] = 1;
-		p[tmpidx].endtime += tm[idx];
-		ans[idx] = p[tmpidx].endtime;
+		p[j].q.pop();
+		p[j].q.push(tm[idx]);
+		p[j].poptime += p[j].q.front();
+		if (p[j].endtime >= (17-8)*60) sorry[idx] = 1;
+		p[j].endtime += tm[idx];
+		ans[idx] = p[j].endtime;
 		idx++;
 	}
 	for (int i = 0; i < q; i++) {
