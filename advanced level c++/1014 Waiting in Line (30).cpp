@@ -1,49 +1,46 @@
 #include <iostream>
-#include <queue>
 #include <vector>
+#include <queue>
 using namespace std;
-struct node {
+struct qnode {
 	int poptime, endtime;
 	queue<int> q;
 };
 int main() {
-	int n, m, k, q, index = 1;
-	scanf("%d%d%d%d", &n, &m, &k, &q);
-	vector<int> time(k + 1), res(k + 1);
-	for (int i = 1; i <= k; i++) scanf("%d", &time[i]);
-	vector<node> win(n + 1);
-	vector<bool> sorry(k + 1, false);
+	int n, m, k, q, idx = 1, query;
+	cin >> n >> m >> k >> q;
+	vector<qnode> p(n+1);
+	vector<int> tm(k+1), ans(k+1), sorry(k+1);
+	for (int i = 1; i <= k; i++) scanf("%d", &tm[i]);
 	for (int i = 1; i <= m; i++)
 		for (int j = 1; j <= n; j++)
-			if (index <= k) {
-				win[j].q.push(time[index]);
-				if (win[j].endtime >= 540) sorry[index] = true;
-				win[j].endtime += time[index];
-				if (i == 1) win[j].poptime = win[j].endtime;
-				res[index] = win[j].endtime;
-				index++;
+			if (idx <= k) {
+				p[j].q.push(tm[idx]);
+				if (p[j].endtime >= (17-8)*60) sorry[idx] = 1;
+				p[j].endtime += tm[idx];
+				if (i == 1) p[j].poptime = p[j].endtime;
+				ans[idx] = p[j].endtime;
+				idx++;
 			}
-	while (index <= k) {
-		int tmpmin = win[1].poptime, tmpwin = 1;
+	while (idx <= k) {
+		int tmpmin = p[1].poptime, tmpidx = 1;
 		for (int i = 2; i <= n; i++)
-			if (win[i].poptime < tmpmin) {
-				tmpwin = i;
-				tmpmin = win[i].poptime;
+			if (tmpmin > p[i].poptime) {
+				tmpmin = p[i].poptime;
+				tmpidx = i;
 			}
-		win[tmpwin].q.pop();
-		win[tmpwin].q.push(time[index]);
-		win[tmpwin].poptime +=  win[tmpwin].q.front();
-		if (win[tmpwin].endtime >= 540) sorry[index] = true;
-		win[tmpwin].endtime += time[index];
-		res[index] = win[tmpwin].endtime;
-		index++;
+		p[tmpidx].q.pop();
+		p[tmpidx].q.push(tm[idx]);
+		p[tmpidx].poptime += p[tmpidx].q.front();
+		if (p[tmpidx].endtime >= (17-8)*60) sorry[idx] = 1;
+		p[tmpidx].endtime += tm[idx];
+		ans[idx] = p[tmpidx].endtime;
+		idx++;
 	}
-	for (int i = 1; i <= q; i++) {
-		int query, minute;
+	for (int i = 0; i < q; i++) {
 		scanf("%d", &query);
-		minute = res[query];
-		if (sorry[query] == true) printf("Sorry\n");
-		else printf("%02d:%02d\n", (minute + 8*60) / 60, (minute + 8*60) % 60);
+		if (sorry[query] == 1) printf("Sorry\n");
+		else printf("%02d:%02d\n", (ans[query]+8*60)/60, (ans[query]+8*60)%60);
 	}
 	return 0;
 }
