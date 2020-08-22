@@ -11,7 +11,7 @@ bool cmp(node &a, node &b) {
     return a.nm != b.nm ? a.nm < b.nm : a.tm < b.tm;
 }
 int rate[25], n;
-double bill(node call) {
+double bill(node &call) {
     double total = rate[call.hh]*call.mm + rate[24]*60*call.dd;
     for (int i = 0; i < call.hh; i++) total += rate[i]*60;
     return total/100.0;
