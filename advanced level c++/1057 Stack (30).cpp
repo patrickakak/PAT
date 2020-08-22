@@ -14,9 +14,9 @@ int getsum(int x) {
 	return sum;
 }
 void peekMedian() {
-	int left = 1, right = maxn, mid, k = (s.size() + 1) / 2;
+	int left = 1, right = maxn, mid, k = (s.size() + 1)/2;
 	while (left < right) {
-		mid = (left + right) / 2;
+		mid = (left + right)/2;
 		if (getsum(mid) >= k) right = mid;
 		else left = mid + 1;
 	}
