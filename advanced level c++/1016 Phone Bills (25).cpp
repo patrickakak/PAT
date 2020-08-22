@@ -11,8 +11,8 @@ bool cmp(node &a, node &b) {
 	return a.name != b.name ? a.name < b.name : a.time < b.time;
 }
 double billFromZero(node call, int *rate) {
-	double total = rate[call.hr] * call.mm + rate[24] * 60 * call.day;
-	for (int i = 0; i < call.hr; i++) total += rate[i] * 60;
+	double total = rate[call.hr]*call.mm + rate[24]*60*call.day;
+	for (int i = 0; i < call.hr; i++) total += rate[i]*60;
 	return total/100.0;
 }
 int main() {
