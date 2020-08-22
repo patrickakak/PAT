@@ -13,7 +13,7 @@ int main() {
 	double cmax, d, davg;
 	int n;
 	scanf("%lf%lf%lf%d", &cmax, &d, &davg, &n);
-	vector<station> sta(n + 1);
+	vector<station> sta(n+1);
 	sta[0] = {0.0, d};
 	for (int i = 1; i <= n; i++) scanf("%lf%lf", &sta[i].price, &sta[i].dis);
 	sort(sta.begin(), sta.end(), cmp);
@@ -23,13 +23,13 @@ int main() {
 		return 0;
 	} else nowprice = sta[0].price;
 	while (nowdis < d) {
-		maxdis = nowdis + cmax * davg;
+		maxdis = nowdis + cmax*davg;
 		double minPriceDis = 0, minPrice = inf;
 		int flag = 0;
 		for (int i = 1; i <= n && sta[i].dis <= maxdis; i++) {
 			if (sta[i].dis <= nowdis) continue;
 			if (sta[i].price < nowprice) {
-				totalPrice += (sta[i].dis - nowdis - leftdis) * nowprice / davg;
+				totalPrice += (sta[i].dis-nowdis-leftdis)/davg * nowprice;
 				leftdis = 0.0;
 				nowprice = sta[i].price;
 				nowdis = sta[i].dis;
@@ -41,13 +41,13 @@ int main() {
 				minPriceDis = sta[i].dis;
 			}
 		}
-		if (flag == 0 && minPrice != inf) {
-			totalPrice += (nowprice * (cmax - leftdis / davg));
-			leftdis = cmax * davg - (minPriceDis - nowdis);
+		if (flag==0 && minPrice!=inf) {
+			totalPrice += (nowprice * (cmax - leftdis/davg));
+			leftdis = cmax*davg - (minPriceDis-nowdis);
 			nowprice = minPrice;
 			nowdis = minPriceDis;     
 		}
-		if (flag == 0 && minPrice == inf) {
+		if (flag==0 && minPrice==inf) {
 			nowdis += cmax * davg;
 			printf("The maximum travel distance = %.2f", nowdis);
 			return 0;
