@@ -24,7 +24,7 @@ int main() {
 	} else nowprice = sta[0].price;
 	while (nowdis < d) {
 		maxdis = nowdis + cmax*davg;
-		double minPriceDis = 0, minPrice = inf;
+		double minPriceDis = inf, minPrice = inf;
 		int flag = 0;
 		for (int i = 1; i <= n && sta[i].dis <= maxdis; i++) {
 			if (sta[i].dis <= nowdis) continue;
@@ -34,7 +34,6 @@ int main() {
 				nowprice = sta[i].price;
 				nowdis = sta[i].dis;
 				flag = 1;
-				break;
 			}
 			if (sta[i].price < minPrice) {
 				minPrice = sta[i].price;
