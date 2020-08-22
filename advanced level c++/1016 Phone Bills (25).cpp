@@ -4,51 +4,50 @@
 #include <algorithm>
 using namespace std;
 struct node {
-	string name;
-	int status, month, time, day, hr, mm;
+    string nm;
+    int flag, MM, tm, dd, hh, mm;
 };
 bool cmp(node &a, node &b) {
-	return a.name != b.name ? a.name < b.name : a.time < b.time;
+    return a.nm != b.nm ? a.nm < b.nm : a.tm < b.tm;
 }
-double billFromZero(node call, int *rate) {
-	double total = rate[call.hr]*call.mm + rate[24]*60*call.day;
-	for (int i = 0; i < call.hr; i++) total += rate[i]*60;
-	return total/100.0;
+int rate[25], n;
+double billFromZero(node call) {
+    double total = rate[call.hh]*call.mm + rate[24]*60*call.dd;
+    for (int i = 0; i < call.hh; i++) total += rate[i]*60;
+    return total/100.0;
 }
 int main() {
-	int rate[25] = {0}, n;
-	for (int i = 0; i < 24; i++) {
-		scanf("%d", &rate[i]);
-		rate[24] += rate[i];
-	}
-	scanf("%d", &n);
-	vector<node> data(n);
-	for (int i = 0; i < n; i++) {
-		cin >> data[i].name;
-		scanf("%d:%d:%d:%d", &data[i].month, &data[i].day, &data[i].hr, &data[i].mm);
-		string tmp;
-		cin >> tmp;
-		data[i].status = (tmp == "on-line") ? 1 : 0;
-		data[i].time = data[i].day * 24 * 60 + data[i].hr * 60 + data[i].mm;
-	}
-	sort(data.begin(), data.end(), cmp);
-	map<string, vector<node>> custom;
-	for (int i = 1; i < n; i++)
-		if (data[i].name == data[i-1].name && data[i-1].status == 1 && data[i].status == 0) {
-			custom[data[i-1].name].push_back(data[i-1]);
-			custom[data[i].name].push_back(data[i]);
-		}
-	for (auto it : custom) {
-		vector<node> tmp = it.second;
-		cout << it.first;
-		printf(" %02d\n", tmp[0].month);
-		double total = 0.0;
-		for (int i = 1; i < tmp.size(); i += 2) {
-			double t = billFromZero(tmp[i], rate) - billFromZero(tmp[i-1], rate);
-			printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.2f\n", tmp[i-1].day, tmp[i-1].hr, tmp[i-1].mm, tmp[i].day, tmp[i].hr, tmp[i].mm, tmp[i].time - tmp[i-1].time, t);
-			total += t;
-		}
-		printf("Total amount: $%.2f\n", total);
-	}
-	return 0;
+    for (int i = 0; i < 24; i++) {
+        scanf("%d", &rate[i]);
+        rate[24] += rate[i];
+    }
+    scanf("%d", &n);
+    vector<node> data(n);
+    for (int i = 0; i < n; i++) {
+        cin >> data[i].nm;
+        scanf("%d:%d:%d:%d", &data[i].MM, &data[i].dd, &data[i].hh, &data[i].mm);
+        string tmp;
+        cin >> tmp;
+        data[i].flag = (tmp == "on-line") ? 1 : 0;
+        data[i].tm = data[i].dd*24*60 + data[i].hh*60 + data[i].mm;
+    }
+    sort(data.begin(), data.end(), cmp);
+    map<string, vector<node>> custom;
+    for (int i = 1; i < n; i++)
+        if (data[i].nm==data[i-1].nm && data[i-1].flag==1 && data[i].flag==0) {
+            custom[data[i-1].nm].push_back(data[i-1]);
+            custom[data[i].nm].push_back(data[i]);
+        }
+    for (auto it : custom) {
+        vector<node> t = it.second;
+        printf("%s %02d\n", it.first.c_str(), t[0].MM);
+        double total = 0.0;
+        for (int i = 1; i < t.size(); i += 2) {
+            double cost = billFromZero(t[i]) - billFromZero(t[i-1]);
+            printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.2f\n", t[i-1].dd, t[i-1].hh, t[i-1].mm, t[i].dd, t[i].hh, t[i].mm, t[i].tm-t[i-1].tm, cost);
+            total += cost;
+        }
+        printf("Total amount: $%.2f\n", total);
+    }
+    return 0;
 }
