@@ -11,7 +11,7 @@ bool cmp(node &a, node &b) {
     return a.nm != b.nm ? a.nm < b.nm : a.tm < b.tm;
 }
 int rate[25], n;
-double billFromZero(node call) {
+double bill(node call) {
     double total = rate[call.hh]*call.mm + rate[24]*60*call.dd;
     for (int i = 0; i < call.hh; i++) total += rate[i]*60;
     return total/100.0;
@@ -43,7 +43,7 @@ int main() {
         printf("%s %02d\n", it.first.c_str(), t[0].MM);
         double total = 0.0;
         for (int i = 1; i < t.size(); i += 2) {
-            double cost = billFromZero(t[i]) - billFromZero(t[i-1]);
+            double cost = bill(t[i]) - bill(t[i-1]);
             printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.2f\n", t[i-1].dd, t[i-1].hh, t[i-1].mm, t[i].dd, t[i].hh, t[i].mm, t[i].tm-t[i-1].tm, cost);
             total += cost;
         }
