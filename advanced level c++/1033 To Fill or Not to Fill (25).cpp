@@ -34,6 +34,7 @@ int main() {
 				nowprice = sta[i].price;
 				nowdis = sta[i].dis;
 				flag = 1;
+				break;
 			}
 			if (sta[i].price < minPrice) {
 				minPrice = sta[i].price;
