@@ -7,11 +7,13 @@ struct node {
 	string name;
 	int status, month, time, day, hr, mm;
 };
-bool cmp(node a, node b) { return a.name != b.name ? a.name < b.name : a.time < b.time; }
+bool cmp(node &a, node &b) {
+	return a.name != b.name ? a.name < b.name : a.time < b.time;
+}
 double billFromZero(node call, int *rate) {
 	double total = rate[call.hr] * call.mm + rate[24] * 60 * call.day;
 	for (int i = 0; i < call.hr; i++) total += rate[i] * 60;
-	return total / 100.0;
+	return total/100.0;
 }
 int main() {
 	int rate[25] = {0}, n;
@@ -32,8 +34,8 @@ int main() {
 	sort(data.begin(), data.end(), cmp);
 	map<string, vector<node>> custom;
 	for (int i = 1; i < n; i++)
-		if (data[i].name == data[i - 1].name && data[i - 1].status == 1 && data[i].status == 0) {
-			custom[data[i - 1].name].push_back(data[i - 1]);
+		if (data[i].name == data[i-1].name && data[i-1].status == 1 && data[i].status == 0) {
+			custom[data[i-1].name].push_back(data[i-1]);
 			custom[data[i].name].push_back(data[i]);
 		}
 	for (auto it : custom) {
@@ -42,7 +44,7 @@ int main() {
 		printf(" %02d\n", tmp[0].month);
 		double total = 0.0;
 		for (int i = 1; i < tmp.size(); i += 2) {
-			double t = billFromZero(tmp[i], rate) - billFromZero(tmp[i - 1], rate);
+			double t = billFromZero(tmp[i], rate) - billFromZero(tmp[i-1], rate);
 			printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.2f\n", tmp[i-1].day, tmp[i-1].hr, tmp[i-1].mm, tmp[i].day, tmp[i].hr, tmp[i].mm, tmp[i].time - tmp[i-1].time, t);
 			total += t;
 		}
