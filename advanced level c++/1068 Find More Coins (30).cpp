@@ -4,7 +4,9 @@
 using namespace std;
 int dp[110], w[10010];
 bool choice[10010][110];
-int cmp(int a, int b) { return a > b; }
+int cmp(int a, int b) {
+	return a > b;
+}
 int main() {
 	int n, m;
 	scanf("%d%d", &n, &m);
