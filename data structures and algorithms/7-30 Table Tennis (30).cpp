@@ -1,111 +1,69 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
 #include <algorithm>
+#include <queue>
 using namespace std;
-struct person {
-	int arrive, start, time;
-	bool vip;
-} tmpperson;
-struct tblnode {
-	int end = 8 * 3600, num;
-	bool vip;
-};
-bool cmp1(person a, person b) { return a.arrive < b.arrive; }
-bool cmp2(person a, person b) { return a.start < b.start; }
-vector<person> player;
-vector<tblnode> tbl;
-void alloctbl(int personid, int tblid) {
-	if (player[personid].arrive <= tbl[tblid].end) player[personid].start = tbl[tblid].end;
-	else player[personid].start = player[personid].arrive;
-	tbl[tblid].end = player[personid].start + player[personid].time;
-	tbl[tblid].num++;
+struct player {
+	int arv, t, is, srv;
+} p[10010];
+bool cmp1(player &a, player &b) {
+	return a.arv < b.arv;
 }
-int findnextvip(int vipid) {
-	vipid++;
-	while (vipid < player.size() && player[vipid].vip == false) vipid++;
-	return vipid;
+bool cmp2(player &a, player &b) {
+	return a.srv < b.srv;
 }
+int vip[110], cnt[110], vis[110], a[2];
+queue<int> q[2];
 int main() {
-	int n, k, m, viptbl;
-	scanf("%d", &n);
-	for (int i = 0; i < n; i++) {
-		int h, m, s, tmptime, flag;
-		scanf("%d:%d:%d %d %d", &h, &m, &s, &tmptime, &flag);
-		tmpperson.arrive = h * 3600 + m * 60 + s;
-		tmpperson.start = 21 * 3600;
-		if (tmpperson.arrive >= 21 * 3600) continue;
-		tmpperson.time = tmptime <= 120 ? tmptime * 60 : 7200;
-		tmpperson.vip = ((flag == 1) ? true : false);
-		player.push_back(tmpperson);
+	int n, k, m, hh, mm, ss, tid, pos = 1;
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		scanf("%d:%d:%d %d %d", &hh, &mm, &ss, &p[i].t, &p[i].is);
+		p[i].arv = hh*60*60 + mm*60 + ss;
+		p[i].t = min(p[i].t*60, 2*60*60);
 	}
-	scanf("%d%d", &k, &m);
-	tbl.resize(k + 1);
+	sort(p+1, p+n+1, cmp1);
+	cin >> k >> m;
 	for (int i = 0; i < m; i++) {
-		scanf("%d", &viptbl);
-		tbl[viptbl].vip = true;
+		scanf("%d", &tid);
+		vip[tid] = 1;
 	}
-	sort(player.begin(), player.end(), cmp1);
-	int i = 0, vipid = -1;
-	vipid = findnextvip(vipid);
-	while (i < player.size()) {
-		int index = -1, minendtime = 999999999;
+	for (int i = 8*60*60; i < 21*60*60; i++) {
+		if (pos<=n && p[pos].arv==i) q[p[pos].is].push(pos), pos++;
+		if (!q[0].empty()) a[0] = q[0].front();
+		if (!q[1].empty()) a[1] = q[1].front();
+		queue<int> v;
+		for (int j = 1; j <= k; j++) {
+			if (vis[j] && p[vis[j]].srv+p[vis[j]].t==i) vis[j] = 0;
+			if (!vis[j] && vip[j]) v.push(j);
+		}
+		while (!q[1].empty() && !v.empty()) {
+			q[1].pop();
+			int num = v.front();
+			v.pop();
+			vis[num] = a[1];
+			cnt[num]++;
+			p[a[1]].srv = i;
+			a[1] = !q[1].empty() ? q[1].front() : 0;
+		}
 		for (int j = 1; j <= k; j++)
-			if (tbl[j].end < minendtime) {
-				minendtime = tbl[j].end;
-				index = j;
+			if (!vis[j]) {
+				if (!a[0] && !a[1]) continue;
+				int op = 0;
+				if (a[1] && (!a[0] || p[a[1]].arv<p[a[0]].arv)) op = 1;
+				q[op].pop();
+				vis[j] = a[op];
+				p[a[op]].srv = i;
+				a[op] = !q[op].empty() ? q[op].front() : 0;
+				cnt[j]++;
 			}
-		if (tbl[index].end >= 21 * 3600) break;
-		if (player[i].vip == true && i < vipid) {
-			i++;
-			continue;
-		}
-		if (tbl[index].vip == true) {
-			if (player[i].vip == true) {
-				alloctbl(i, index);
-				if (vipid == i) vipid = findnextvip(vipid);
-				i++;
-			} else {
-				if (vipid < player.size() && player[vipid].arrive <= tbl[index].end) {
-					alloctbl(vipid, index);
-					vipid = findnextvip(vipid);
-				} else {
-					alloctbl(i, index);
-					i++;
-				}
-			}
-		} else {
-			if (player[i].vip == false) {
-				alloctbl(i, index);
-				i++;
-			} else {
-				int vipindex = -1, minvipendtime = 999999999;
-				for (int j = 1; j <= k; j++)
-					if (tbl[j].vip == true && tbl[j].end < minvipendtime) {
-						minvipendtime = tbl[j].end;
-						vipindex = j;
-					}
-				if (vipindex != -1 && player[i].arrive >= tbl[vipindex].end) {
-					alloctbl(i, vipindex);
-					if (vipid == i) vipid = findnextvip(vipid);
-					i++;
-				} else {
-					alloctbl(i, index);
-					if(vipid == i) vipid = findnextvip(vipid);
-					i++;
-				}
-			}
-		}
 	}
-	sort(player.begin(), player.end(), cmp2);
-	for (i = 0; i < player.size() && player[i].start < 21 * 3600; i++) {
-		printf("%02d:%02d:%02d ", player[i].arrive / 3600, player[i].arrive % 3600 / 60, player[i].arrive % 60);
-		printf("%02d:%02d:%02d ", player[i].start / 3600, player[i].start % 3600 / 60, player[i].start % 60);
-		printf("%.0f\n", round((player[i].start - player[i].arrive) / 60.0));
-	}
-	for (int i = 1; i <= k; i++) {
-		if (i != 1) printf(" ");
-		printf("%d", tbl[i].num);
-	}
+	sort(p+1, p+n+1, cmp2);
+	for (int i = 1; i <= n; i++)
+		if (p[i].srv != 0)
+			printf("%02d:%02d:%02d %02d:%02d:%02d %d\n", p[i].arv/3600, p[i].arv%3600/60, 
+					p[i].arv%60, p[i].srv/3600, p[i].srv%3600/60, p[i].srv%60, (int)round((p[i].srv-p[i].arv)/60.0));
+	for (int i = 1; i <= k; i++)
+		printf("%d%c", cnt[i], i<k ? ' ' : '\n');
 	return 0;
 }
