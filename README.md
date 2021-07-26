@@ -5,4 +5,4 @@ compiler: GNU GCC/G++
 
 compiler flags: g++ follow the C++11 ISO C++ language standard [-std=c++11]
 
-for reference: https://github.com/liuchuo/PAT
+ref: https://github.com/liuchuo/PAT
