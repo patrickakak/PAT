@@ -1,8 +1,5 @@
 # PAT (programming ability test)
-website link: https://pintia.cn/problem-sets
-
-compiler: GNU GCC/G++
-
-compiler flags: g++ follow the C++11 ISO C++ language standard [-std=c++11]
-
-ref: https://github.com/liuchuo/PAT
+compiler: GNU GCC/G++<br>
+compiler flags: g++ follow the C++11 ISO C++ language standard [-std=c++11]<br>
+coding platform: https://pintia.cn/problem-sets<br>
+ref: https://github.com/liuchuo/PAT<br>
