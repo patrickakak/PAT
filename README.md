@@ -1,5 +1,3 @@
-# PAT
-compiler: GNU GCC/G++<br>
-compiler flags: g++ follow the C++11 ISO C++ language standard [-std=c++11]<br>
-coding platform: https://pintia.cn/problem-sets<br>
-ref: https://github.com/liuchuo/PAT<br>
+'pat' stands for programming ability test while 'pta' means programming teaching assistant (a zju coding platform)<br>
+website url: https://pintia.cn/problem-sets<br>
+for reference: https://github.com/liuchuo/PAT<br>
